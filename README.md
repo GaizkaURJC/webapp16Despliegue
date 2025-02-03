@@ -155,4 +155,5 @@ Nuestra aplicación contará con un sistema de recomendación de eventos para us
   - Usar la base de datos para almacenar las preferencias de los usuarios.
   - Consultas avanzadas para encontrar eventos similares.
 
----
+--------
+primer comit
