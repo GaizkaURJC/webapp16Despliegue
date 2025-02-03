@@ -1,6 +1,6 @@
 ## *webapp16 - Teatro DAW*
 
-Gestion de venta de entradas de clubbing, conciertos y eventos 
+Gestión de venta de entradas de clubbing, conciertos y eventos 
 
 ---
 
@@ -15,7 +15,7 @@ Gestion de venta de entradas de clubbing, conciertos y eventos
 |-----|-----------------|---------------------------------|----------------| 
 | 1   | Alberto Acebes  | a.acebes.2021@alumnos.urjc.es   | alberr22       |     
 | 2   | Jon Mazcuñan    | j.mazcunan.2022@alumnos.urjc.es | jonmazh        |  
-| 3   | Alejandro Rico  | a.rico.2022@alumnos.urjc.es     | Alejandro Rico | 
+| 3   | Alejandro Rico  | a.rico.2022@alumnos.urjc.es     | ALEJANDR0-RIC0 | 
 | 3   | Gaizka Arranbari| g.aranbarri.2022@alumnos.urjc.es| GaizkaURJC     | 
 
 ---
