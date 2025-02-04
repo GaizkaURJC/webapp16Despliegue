@@ -16,7 +16,7 @@ Gestión de venta de entradas de clubbing, conciertos y eventos
 | 1   | Alberto Acebes  | a.acebes.2021@alumnos.urjc.es   | alberr22       |     
 | 2   | Jon Mazcuñan    | j.mazcunan.2022@alumnos.urjc.es | jonmazh        |  
 | 3   | Alejandro Rico  | a.rico.2022@alumnos.urjc.es     | ALEJANDR0-RIC0 | 
-| 4   | Gaizka Arranbari| g.aranbarri.2022@alumnos.urjc.es| GaizkaURJC     | 
+| 3   | Gaizka Arranbari| g.aranbarri.2022@alumnos.urjc.es| GaizkaURJC     | 
 
 ---
 ## *Entidades*
@@ -32,6 +32,7 @@ Representa los diferentes tipos de eventos que se pueden realizar en el teatro, 
   - Descripción
   - Precio de entrada
   - Capacidad máxima
+  - Entradas por vender
 
 ### *2. Entrada*
 Representa las entradas vendidas para cada evento.
@@ -59,18 +60,17 @@ Representa las reservas realizadas para los eventos corporativos.
   - ID
   - ClienteID
   - EventoID
-  - Fecha_Reserva
   - Estado [Confirmado (Pagado), Pendiente, Cancelado]
-
-### *5. Alquiler*
-Representa los alquileres del teatro para eventos corporativos.
-- *Atributos*:
-  - ID
-  - ClienteID
   - Fecha de Inicio
   - Fecha de Fin
-  - Descripción del Evento
-  - Coste Total
+
+### *5. Comentarios*
+Representa los comemtarios realizados por los usuarios en los eventos .
+- *Atributos*:
+  - Evento_ID
+  - ClienteID
+  - Comentario
+  - Fecha_Comentario
 
 ---
 
@@ -156,4 +156,4 @@ Nuestra aplicación contará con un sistema de recomendación de eventos para us
   - Consultas avanzadas para encontrar eventos similares.
 
 --------
-primer comit
+
