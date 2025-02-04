@@ -72,6 +72,10 @@ Representa los alquileres del teatro para eventos corporativos.
   - Descripción del Evento
   - Coste Total
 
+## Diagrama entidad relación (provisional)
+![erDAW drawio](https://github.com/user-attachments/assets/7ccc0ac7-46f3-494e-b808-3659a4460e7c)
+
+
 ---
 
 ## *Tipos de Usuario*
