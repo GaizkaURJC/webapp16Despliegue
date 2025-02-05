@@ -171,14 +171,60 @@ h1 {
     justify-content: flex-start; /* Alinea el contenido a la izquierda */
     align-items: flex-start; /* Alinea el contenido en la parte superior */
     padding: 20px;
-    background: #f8b020;
     color: rgb(255, 255, 255);
     height: 100vh;
     border: yellow 2px solid;
     overflow: auto;
+    background-color: orange;
     scroll-margin-top: 76px;
     flex-wrap: wrap;
     min-height: 100vh; /* Asegura que la sección tenga al menos la altura de la ventana */
+}
+/*---------------------------------------
+  SECCION 4
+-----------------------------------------*/
+.container-section4 {
+    display: flex;
+    justify-content: flex-start; /* Alinea el contenido a la izquierda */
+    align-items: flex-start; /* Alinea el contenido en la parte superior */
+    padding: 20px;
+    color: rgb(255, 255, 255);
+    background: url(../img/event1.png) center no-repeat ;
+    background-size: cover;
+    height: 100vh;
+    border: rgb(92, 36, 244) 2px solid;
+    overflow: hidden;
+    scroll-margin-top: 76px;
+    flex-wrap: wrap;
+    justify-content: center;
+    min-height: 120vh; /* Asegura que la sección tenga al menos la altura de la ventana */
+}
+.container-eventos{
+    margin-top: 30px;
+    background: #281f90;
+    border-radius: 20px;
+    width:650px;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.form-element{
+    display: flex;
+    gap: 1px;
+    margin: 0 auto;
+    width: 50%;
+    padding: 3px;
+}
+.form-tittle{
+    size: 24px;
+    color:black;
+    background-color: #1f4590;
+    width: 80%;
+    margin-left: 60px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 20px;
 }
 /*---------------------------------------
   FOOTER
