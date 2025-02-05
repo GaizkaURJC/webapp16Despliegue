@@ -1,6 +1,5 @@
-ul, li{
+ul, li {
     list-style-type: none;
-
 }
 a {
     color: white;
@@ -16,35 +15,33 @@ small {
 h1 {
     color: white;
 }
-
-.top-navbar{
+.top-navbar {
     background: transparent;
     z-index: 9;
     min-height: 80px;
     align-items: center; 
     background-color: transparent;
     display: grid;
- }
-
-.nombre-logo{
+}
+.nombre-logo {
     color: white;
     font-size: 24px;
     font-weight: 700;
     margin-left: 10px;
 }
-.top-navbar .container-topnav{
+.top-navbar .container-topnav {
     justify-content: space-between;
     display: flex;
     align-items: center;
 }
-.top-navbar .elementos-header{
+.top-navbar .elementos-header {
     align-items: center !important; 
     justify-content: space-between ;
     padding: 0 20px;
     display: flex;
     margin-top: 10px;
 }
-.nav-item{
+.nav-item {
     box-shadow: 0 1rem 3rem rgba(0,0,0,.175);
     padding: 10px;
     color: white;
@@ -55,24 +52,23 @@ h1 {
     color: white; 
     size: 20px;
 }
-.container-section1{
+.container-section1 {
     display: flex;
     justify-content: center;
-    align-items:flex-start;
+    align-items: flex-start;
     border: green 2px solid;
     position: relative;
     overflow: hidden;
     padding-top: 100px;
-    height: calc(100vh - 92px);
-    
+    min-height: calc(100vh - 92px);
 }
-.texto-principal{
+.texto-principal {
     width: 100%;
     margin-top: auto !important;
     text-align: center;
     padding: 0 20px;
 }
-.texto-principal h1{
+.texto-principal h1 {
     font-size: 50px;
     font-weight: 700;
     margin-bottom: 20px;
@@ -81,7 +77,6 @@ h1 {
 /*---------------------------------------
   IMAGEN              
 -----------------------------------------*/
-
 .img {
     position: absolute;
     top: 0;
@@ -95,7 +90,6 @@ h1 {
     height: 100%;
     object-fit: cover;
     opacity: 0.9;
-    
 }
 /* para darle oscuridad a la foto */
 .overlay {
@@ -107,24 +101,84 @@ h1 {
     background: rgba(0, 0, 0, 0.5); /* Ajusta la opacidad y el color según tus necesidades */
     z-index: 1;
 }
-
 /*---------------------------------------
   SECCION 2
 -----------------------------------------*/
-.container-section2{
+.container-section2 {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start; /* Alinea el contenido a la izquierda */
+    align-items: flex-start; /* Alinea el contenido en la parte superior */
     padding: 20px;
-    background: #000;
+    background: #1c1d21;
     color: white;
     height: 100vh;
     border: yellow 2px solid;
+    overflow: auto;
+    flex-wrap: wrap;
+    height: 200vh; /* Asegura que la sección tenga al menos la altura de la ventana */
+
+
 }
-.club-container{
-    width: 50%;
+.clubbing-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 20px;
+    height: 300px;
+    width: 90%; 
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+}
+.item{
+    flex: 1 1 calc(33.33% -20px);
+    overflow: hidden;
+    border-radius: 8px;
+    margin: 0 auto;
+    flex-direction: column;
+    display: flexbox;
+    height: auto;
+    width: 200px;
+
+}
+.section2-tittle{
     width: 100%;
-    display: flex !important;
-    margin-top: 0;
-    align-items: center !important;
+}
+.img-clubbing {
+    width: 100%;
+    height:auto ;
+    overflow: hidden;
+}
+.img-clubbing img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.details{
+    padding: 15px;
+    position: relative;
+    background-color: rgb(8, 21, 105);
+    text-align: center;
+}
+.link{
+    text-decoration: none;
+    color: inherit;
+}
+
+/*---------------------------------------
+  SECCION 3
+-----------------------------------------*/
+.container-section3 {
+    display: flex;
+    justify-content: flex-start; /* Alinea el contenido a la izquierda */
+    align-items: flex-start; /* Alinea el contenido en la parte superior */
+    padding: 20px;
+    background: #023f93;
+    color: rgb(255, 255, 255);
+    height: 100vh;
+    border: yellow 2px solid;
+    overflow: auto;
+    scroll-margin-top: 76px;
+    flex-wrap: wrap;
+    min-height: 100vh; /* Asegura que la sección tenga al menos la altura de la ventana */
 }
