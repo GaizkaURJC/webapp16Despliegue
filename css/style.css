@@ -56,7 +56,6 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    border: green 2px solid;
     position: relative;
     overflow: hidden;
     padding-top: 100px;
@@ -115,7 +114,7 @@ h1 {
     border: yellow 2px solid;
     overflow: auto;
     flex-wrap: wrap;
-    height: 200vh; /* Asegura que la sección tenga al menos la altura de la ventana */
+    height: 100vh; /* Asegura que la sección tenga al menos la altura de la ventana */
 
 
 }
