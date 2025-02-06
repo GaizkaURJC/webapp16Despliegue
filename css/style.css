@@ -108,7 +108,7 @@ h1 {
     justify-content: flex-start; /* Alinea el contenido a la izquierda */
     align-items: flex-start; /* Alinea el contenido en la parte superior */
     padding: 20px;
-    background: #101114;
+    background: #000000;
     color: white;
     height: 100vh;
     overflow: auto;
