@@ -110,12 +110,10 @@ h1 {
     padding: 20px;
     background: #000000;
     color: white;
-    height: 100vh;
     overflow: auto;
     flex-wrap: wrap;
-    height: 100vh; /* Asegura que la sección tenga al menos la altura de la ventana */
-
-
+    min-height: 120vh; /* Asegura que la sección tenga al menos la altura de la ventana */
+    height: auto;
 }
 .clubbing-container {
     display: flex;
@@ -132,12 +130,13 @@ h1 {
     flex: 1 1 calc(33.33% -20px);
     overflow: hidden;
     border-radius: 8px;
-    margin: 0 auto;
+    margin:  auto;
     flex-direction: column;
     display: flexbox;
     height: auto;
-    width: 200px;
-
+    width: 250px;
+    margin-bottom: 20px;
+    border: #302e2e 2px solid;
 }
 .section2-tittle{
     width: 100%;
@@ -155,7 +154,7 @@ h1 {
 .details{
     padding: 15px;
     position: relative;
-    background-color: rgb(8, 21, 105);
+    background-color: rgb(6, 17, 89);
     text-align: center;
 }
 .link{
@@ -172,14 +171,92 @@ h1 {
     align-items: flex-start; /* Alinea el contenido en la parte superior */
     padding: 20px;
     color: rgb(255, 255, 255);
-    height: 100vh;
-    border: yellow 2px solid;
-    overflow: auto;
-    background-color: orange;
+    overflow: clip;
+    background-color: rgb(255, 255, 255);
     scroll-margin-top: 76px;
     flex-wrap: wrap;
-    min-height: 100vh; /* Asegura que la sección tenga al menos la altura de la ventana */
+    min-height: auto; /* Asegura que la sección tenga al menos la altura de la ventana */
 }
+.cocniertos-tittle{
+    color: rgb(40, 136, 255);
+    font-size: 30px;
+    height: 100px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.conciertos-container{
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    display: flex;
+
+}
+.portfolio-filters li {
+    cursor: pointer;
+    display: inline-block;
+    padding: 0;
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0 10px;
+    line-height: 1;
+    margin-bottom: 5px;
+    transition: all 0.3s ease-in-out;
+    color: #000000;
+  }
+  
+.portfolio .portfolio-content .portfolio-info .preview-link,
+.portfolio .portfolio-content .portfolio-info .details-link {
+  
+  position: absolute;
+  left: calc(50% - 40px);
+  font-size: 26px;
+  top: calc(50% - 14px);
+  color: #000000;
+  transition: 0.3s;
+  line-height: 1.2;
+}
+.cocniertos-disponibles{
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -15;
+    margin-right: -15;
+    margin-bottom: 1.5rem; /* 1.5rem es equivalente a 24px */
+    justify-content: space-between;
+    padding: 0 15px;
+    background-color: #b0a0a0;
+    border-radius: 20px;
+    width: 90%;
+    margin-left: 60px;
+}
+/* Estilos específicos para los elementos del portafolio */
+.portfolio-item {
+    margin-bottom: 30px;
+    position: relative;
+  }
+  .portfolio-content {
+    height: 100%;
+    position: relative;
+  }
+  /* Estilos para la imagen */
+ .img-fluid{
+    width: 330px;
+    height:330px;
+    border-radius: 10px;
+ }
+  .portfolio-info {
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    text-align: center;
+    border: 2px yellow solid;
+  }
+  /* Estilos para los enlaces */
+.preview-link, .details-link {
+    color: #fff;
+    margin: 0 5px;
+  }
 /*---------------------------------------
   SECCION 4
 -----------------------------------------*/
@@ -398,6 +475,6 @@ h1 {
 .line{
     border: 0.1px rgb(29, 27, 27) solid;
     width: 98%;
-
-
+    margin-bottom: 20px;
+    margin-top: 30px;
 }
