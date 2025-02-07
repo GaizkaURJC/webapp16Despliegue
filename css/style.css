@@ -184,6 +184,9 @@ h1 {
     width: 100%;
     margin-bottom: 20px;
 }
+.portfolio-content:hover img {
+    transform: scale(1.05);
+  }
 .conciertos-container{
     width: 100%;
     padding-right: 15px;
@@ -230,6 +233,7 @@ h1 {
     border-radius: 20px;
     width: 90%;
     margin-left: 60px;
+    min-height: auto;
 }
 /* Estilos específicos para los elementos del portafolio */
 .portfolio-item {
@@ -239,6 +243,8 @@ h1 {
   .portfolio-content {
     height: 100%;
     position: relative;
+    margin-top: 10px;
+
   }
   /* Estilos para la imagen */
  .img-fluid{
@@ -246,12 +252,34 @@ h1 {
     height:330px;
     border-radius: 10px;
  }
-  .portfolio-info {
+ .portfolio-info {
     background: rgba(0, 0, 0, 0.5);
     color: #fff;
     text-align: center;
-    border: 2px yellow solid;
-  }
+    opacity: 0; /* Inicialmente oculto */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px; /* Para que coincida con las esquinas redondeadas de la imagen */
+    transition: opacity 0.3s ease-in-out; /* Transición suave */
+}
+.portfolio-content:hover .portfolio-info {
+    opacity: 1;
+}
+.glightbox{
+    font-size: 25px;
+}
+.details-link{
+    color: #ffffff;
+    margin: 0 5px;
+    font-size: 25px;
+}
   /* Estilos para los enlaces */
 .preview-link, .details-link {
     color: #fff;
