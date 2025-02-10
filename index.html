@@ -55,7 +55,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title" id="exampleModalLabel">Iniciar sesión</h3>
+                    <h3 class="modal-title" id="titulo-login">Iniciar sesión</h3>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
@@ -69,12 +69,51 @@
                             <label for="exampleInputPassword1" class="form-label">Contraseña</label>
                             <input type="password" class="form-control" id="contraseña">
                         </div>
-                        <button type="submit" class="btn btn-login">Submit</button>
+
+                        <div class="d-flex align-items-center">
+                            <button type="submit" class="btn btn-login me-2">Confirmar</button>
+                            <span>Si aún no tienes cuenta, <a href="#" data-bs-toggle="modal"
+                                    data-bs-target="#modalSingUp">regístrate
+                                    aquí</a></span>
+                        </div>
+
                     </form>
                 </div>
             </div>
         </div>
     </div>
+    <!-- Fin Modal de login-->
+
+    <!-- Modal de sing up-->
+    <div class="modal fade" id="modalSingUp" tabindex="-1" aria-labelledby="modalSingUp" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="titulo-singup">Registrarse</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Correo electrónico</label>
+                            <input type="email" class="form-control" id="correo" aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="contraseña">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Repetir contraseña</label>
+                            <input type="password" class="form-control" id="contraseña">
+                        </div>
+                        <button type="submit" class="btn btn-login">Confirmar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin Modal de sing up-->
 
     <section class="section-1" id="section_1">
         <div class="container-section1">
