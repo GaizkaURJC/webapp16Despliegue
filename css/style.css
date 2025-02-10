@@ -590,3 +590,49 @@ h1 {
     margin-bottom: 20px;
     margin-top: 30px;
 }
+
+/*---------------------------------------
+    css para el formulario
+-----------------------------------------*/
+/* Hace el fondo del modal translúcido */
+.modal-content {
+    background: transparent;
+    backdrop-filter: blur(10px);
+    color: white;
+}
+
+.modal-backdrop {
+    background-color: rgba(0, 0, 0, 0) !important;
+}
+
+
+.modal-header {
+    background: rgba(8, 101, 200, 0.8);
+    color: white;
+}
+
+.modal-title {
+    color: white;
+}
+
+.btn-login {
+    background-color: rgba(8, 101, 200, 0.7);
+    border-color: rgba(8, 101, 200, 0.7);
+    color: white;
+}
+
+.btn-login:hover {
+    background-color: rgba(2, 61, 127, 0.9);
+    border-color: rgba(2, 61, 127, 0.9);
+}
+
+.btn-close {
+    width: 20px;
+    height: 20px;
+    filter: invert(1);
+}
+
+
+.form-label {
+    color: white;
+}
