@@ -16,12 +16,12 @@
 <body>
     <nav class="top-navbar">
         <div class="container-topnav">
-            <a href="index.html" class="nombre-logo">
+            <a href="index.html" class="nombre-logo animate__backInUp">
                 TEATRO DAW
             </a>
             <ul class="elementos-header align-items-lg-center ms-auto me-lg-5" id="elementos-cabecera">
                 <li class="nav-item">
-                    <a class="top-nav-section_1" href="section_1">HOME</a>
+                    <a class="top-nav-section_1" href="section_1">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="top-nav-section_2" href="section_2">Clubbing</a>
@@ -70,9 +70,14 @@
                         </div>
                         <div class="d-flex align-items-center margenGrande">
                             <button type="submit" class="btn btn-login me-2">Confirmar</button>
-                            <span>Si aún no tienes cuenta, <a href="#" class="switch-modal" data-bs-toggle="modal"
-                                    data-bs-target="#modalSingUp">regístrate aquí</a>
-                            </span>
+                            <p>
+                                <a href="#" class="switch-modal" data-bs-toggle="modal" data-bs-target="#modalSingUp">
+                                    <span style="color: white;">
+                                        Si aún no tienes cuenta,
+                                    </span>
+                                    Regístrate aquí
+                                </a>
+                            </p>
                         </div>
 
                     </form>
@@ -105,7 +110,10 @@
                             <label for="exampleInputPassword1" class="form-label">Repetir contraseña</label>
                             <input type="password" class="form-control" id="contraseña">
                         </div>
-                        <button type="submit" class="btn btn-login">Confirmar</button>
+                        <input type="checkbox" id="terminos" name="terminos" value="terminos" required> Acepto los terminos y condiciones
+                        <br>
+                        <input type="checkbox" id="datos" name="datos" value="datos" > Permito el uso de mis datos personales para las estadisticas
+                        <p><button type="submit" class="btn btn-login">Confirmar</button></p>
                     </form>
                 </div>
             </div>
@@ -134,7 +142,8 @@
     <section class="container-section2">
         <div class="section2-tittle">
             <h2>CLUBBING</h2>
-            <a class="line" href=""></a>
+            <hr class="line" href=""></hr>
+            <p>La mejor fiesta de la noche madrileña, en pleno centro!</p>
         </div>
 
         <div class="clubbing-container">
@@ -183,6 +192,7 @@
 
         <div class="conciertos-container">
             <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+                <div class="filtro-container">
                 <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
                     <li data-filter="*" class="filter-active">All</li>
                     <li data-filter=".filter-rock">Rock</li>
@@ -190,6 +200,7 @@
                     <li data-filter=".filter-rap">Rap</li>
                     <li data-filter=".filter-flamenco">Flamenco</li>
                 </ul>
+            </div>
                 <!-- End Conciertos Filters -->
                 <div class="cocniertos-disponibles" data-aos="fade-up" data-aos-delay="200">
                     <div class="portfolio-item isotope-item filter-app">
@@ -197,11 +208,13 @@
                             <img src="img/acdc.webp" class="img-fluid" alt="">
                             <div class="portfolio-info">
                                 <h4>AC-DC</h4>
-                                <a href="assets/img/portfolio/app-1.jpg" title="App 1"
-                                    data-gallery="portfolio-gallery-app" class="glightbox preview-link"><ion-icon
-                                        name="search-outline"></ion-icon></a>
-                                <a href="portfolio-details.html" title="More Details" class="details-link"><ion-icon
-                                        name="link-outline"></ion-icon></a>
+                                <div class="iconos-conciertos">
+                                    <a href="assets/img/portfolio/app-1.jpg" title="App 1"
+                                        data-gallery="portfolio-gallery-app" class="glightbox preview-link"><ion-icon
+                                            name="search-outline"></ion-icon></a>
+                                    <a href="paginaDetalleConcierto.html" title="More Details" class="details-link"><ion-icon
+                                            name="link-outline"></ion-icon></a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -210,11 +223,13 @@
                             <img src="img/cruzcafune.jpg" class="img-fluid" alt="">
                             <div class="portfolio-info">
                                 <h4>Cruz Cafune</h4>
-                                <a href="assets/img/portfolio/app-1.jpg" title="App 1"
-                                    data-gallery="portfolio-gallery-app" class="glightbox preview-link"><ion-icon
-                                        name="search-outline"></ion-icon></a>
-                                <a href="portfolio-details.html" title="More Details" class="details-link"><ion-icon
-                                        name="link-outline"></ion-icon></a>
+                                <div class="iconos-conciertos">
+                                    <a href="assets/img/portfolio/app-1.jpg" title="App 1"
+                                        data-gallery="portfolio-gallery-app" class="glightbox preview-link"><ion-icon
+                                            name="search-outline"></ion-icon></a>
+                                    <a href="paginaDetalleConcierto.html" title="More Details" class="details-link"><ion-icon
+                                            name="link-outline"></ion-icon></a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -223,11 +238,13 @@
                             <img src="img/yerayy.png" class="img-fluid" alt="">
                             <div class="portfolio-info">
                                 <h4>Yeray Cortes</h4>
-                                <a href="assets/img/portfolio/app-1.jpg" title="App 1"
-                                    data-gallery="portfolio-gallery-app" class="glightbox preview-link"><ion-icon
-                                        name="search-outline"></ion-icon></a>
-                                <a href="portfolio-details.html" title="More Details" class="details-link"><ion-icon
-                                        name="link-outline"></ion-icon></a>
+                                <div class="iconos-conciertos">
+                                    <a href="assets/img/portfolio/app-1.jpg" title="App 1"
+                                        data-gallery="portfolio-gallery-app" class="glightbox preview-link"><ion-icon
+                                            name="search-outline"></ion-icon></a>
+                                    <a href="paginaDetalleConcierto.html" title="More Details" class="details-link"><ion-icon
+                                            name="link-outline"></ion-icon></a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -236,11 +253,13 @@
                             <img src="img/mykeyowers.jpg" class="img-fluid" alt="">
                             <div class="portfolio-info">
                                 <h4>Myke Towers</h4>
-                                <a href="assets/img/portfolio/app-1.jpg" title="App 1"
-                                    data-gallery="portfolio-gallery-app" class="glightbox preview-link"><ion-icon
-                                        name="search-outline"></ion-icon></a>
-                                <a href="portfolio-details.html" title="More Details" class="details-link"><ion-icon
-                                        name="link-outline"></ion-icon></a>
+                                <div class="iconos-conciertos">
+                                    <a href="assets/img/portfolio/app-1.jpg" title="App 1"
+                                        data-gallery="portfolio-gallery-app" class="glightbox preview-link"><ion-icon
+                                            name="search-outline"></ion-icon></a>
+                                    <a href="paginaDetalleConcierto.html" title="More Details" class="details-link"><ion-icon
+                                            name="link-outline"></ion-icon></a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -249,11 +268,13 @@
                             <img src="img/the.rolling.jpg" class="img-fluid" alt="">
                             <div class="portfolio-info">
                                 <h4>The Rolling Stones</h4>
-                                <a href="assets/img/portfolio/app-1.jpg" title="App 1"
-                                    data-gallery="portfolio-gallery-app" class="glightbox preview-link"><ion-icon
-                                        name="search-outline"></ion-icon></a>
-                                <a href="portfolio-details.html" title="More Details" class="details-link"><ion-icon
-                                        name="link-outline"></ion-icon></a>
+                                <div class="iconos-conciertos">
+                                    <a href="assets/img/portfolio/app-1.jpg" title="App 1"
+                                        data-gallery="portfolio-gallery-app" class="glightbox preview-link"><ion-icon
+                                            name="search-outline"></ion-icon></a>
+                                    <a href="paginaDetalleConcierto.html" title="More Details" class="details-link"><ion-icon
+                                            name="link-outline"></ion-icon></a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -262,11 +283,13 @@
                             <img src="img/PekkeErgo.jpg" class="img-fluid" alt="">
                             <div class="portfolio-info">
                                 <h4>Ill Pekeño & Ergo Pro</h4>
-                                <a href="assets/img/portfolio/app-1.jpg" title="App 1"
-                                    data-gallery="portfolio-gallery-app" class="glightbox preview-link"><ion-icon
-                                        name="search-outline"></ion-icon></a>
-                                <a href="portfolio-details.html" title="More Details" class="details-link"><ion-icon
-                                        name="link-outline"></ion-icon></a>
+                                <div class="iconos-conciertos">
+                                    <a href="assets/img/portfolio/app-1.jpg" title="App 1"
+                                        data-gallery="portfolio-gallery-app" class="glightbox preview-link"><ion-icon
+                                            name="search-outline"></ion-icon></a>
+                                    <a href="paginaDetalleConcierto.html" title="More Details" class="details-link"><ion-icon
+                                            name="link-outline"></ion-icon></a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -275,11 +298,13 @@
                             <img src="img/fito.jpg" class="img-fluid" alt="">
                             <div class="portfolio-info">
                                 <h4>Fito & Fitipaldis</h4>
-                                <a href="assets/img/portfolio/app-1.jpg" title="App 1"
-                                    data-gallery="portfolio-gallery-app" class="glightbox preview-link"><ion-icon
-                                        name="search-outline"></ion-icon></a>
-                                <a href="portfolio-details.html" title="More Details" class="details-link"><ion-icon
-                                        name="link-outline"></ion-icon></a>
+                                <div class="iconos-conciertos">
+                                    <a href="assets/img/portfolio/app-1.jpg" title="App 1"
+                                        data-gallery="portfolio-gallery-app" class="glightbox preview-link"><ion-icon
+                                            name="search-outline"></ion-icon></a>
+                                    <a href="paginaDetalleConcierto.html" title="More Details" class="details-link"><ion-icon
+                                            name="link-outline"></ion-icon></a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -288,11 +313,13 @@
                             <img src="img/ctangana.jpg" class="img-fluid" alt="">
                             <div class="portfolio-info">
                                 <h4>C.Tangana</h4>
-                                <a href="assets/img/portfolio/app-1.jpg" title="App 1"
-                                    data-gallery="portfolio-gallery-app" class="glightbox preview-link"><ion-icon
-                                        name="search-outline"></ion-icon></a>
-                                <a href="portfolio-details.html" title="More Details" class="details-link"><ion-icon
-                                        name="link-outline"></ion-icon></a>
+                                <div class="iconos-conciertos">
+                                    <a href="assets/img/portfolio/app-1.jpg" title="App 1"
+                                        data-gallery="portfolio-gallery-app" class="glightbox preview-link"><ion-icon
+                                            name="search-outline"></ion-icon></a>
+                                    <a href="paginaDetalleConcierto.html" title="More Details" class="details-link"><ion-icon
+                                            name="link-outline"></ion-icon></a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -300,22 +327,17 @@
                         <div class="portfolio-content">
                             <img src="img/TheBeatles.webp" class="img-fluid" alt="">
                             <div class="portfolio-info">
-                                <h4>App 1</h4>
-                                <a href="assets/img/portfolio/app-1.jpg" title="App 1"
-                                    data-gallery="portfolio-gallery-app" class="glightbox preview-link"><ion-icon
-                                        name="search-outline"></ion-icon></a>
-                                <a href="portfolio-details.html" title="More Details" class="details-link"><ion-icon
-                                        name="link-outline"></ion-icon></a>
+                                <h4>The Beatles</h4>
+                                <div class="iconos-conciertos">
+                                    <a href="assets/img/portfolio/app-1.jpg" title="App 1"
+                                        data-gallery="portfolio-gallery-app" class="glightbox preview-link"><ion-icon
+                                            name="search-outline"></ion-icon></a>
+                                    <a href="paginaDetalleConcierto.html" title="More Details" class="details-link"><ion-icon
+                                            name="link-outline"></ion-icon></a>
+                                </div>
                             </div>
                         </div>
                     </div>
-
-
-
-
-
-
-
                 </div>
             </div>
     </section>
@@ -323,70 +345,152 @@
 
     <section class="container-section4">
         <div class="container-eventos">
-            <div class="form-tittle">
-                <h2>EVENTOS COORPORATIVOS</h2>
-            </div>
+
             <div class="event-form">
-                <form action="#" class="form" method="post">
-                    <div class="event-form-body">
-                        <div class="form-grow">
-                            <div class="form-element">
-                                <input type="text" name="company-name" id="company-name" class="form-control"
-                                    placeholder="Nombre de la empresa" required>
-                            </div>
-                            <div class="form-element">
-                                <input type="email" name="contact.email" id="contact.email" class="form-control"
-                                    placeholder="Email" required>
-                            </div>
-                            <div class="form-element">
-                                <input type="text" name="personal-name" id="personal-name" class="form-control"
-                                    placeholder="Nombre Personal" required>
-                            </div>
-                            <div class="form-element">
-                                <input type="text" name="personal-surname" id="personal-surname" class="form-control"
-                                    placeholder="Apellidos" required>
-                            </div>
-                            <div class="form-element">
-                                <input type="number" name="pax" id="pax" class="form-control"
-                                    placeholder="Numero de personas en el evento" required>
-                            </div>
-                            <div class="form-element">
-                                <input type="date" name="event-date" id="event-date" class="form-control"
-                                    placeholder="Fecha del evento" required>
-                            </div>
-                            <div class="form-element">
-                                <textarea name="contact-message" rows="3" class="form-control" id="contact-message"
-                                    placeholder="Indique peticiones especiales"></textarea>
-                            </div>
-                            <p></p>
-                            <!-- Opciones del evento -->
-                            <div class="cuestiones">
-                                <label class="pregunta">Que te gustaria Contratar para el evento?</label>
-                                <div class="checkbox-group">
-                                    <label><input type="checkbox" name="event-options" value="pack-basic"> Comida: Pack
-                                        Básico</label>
-                                    <label><input type="checkbox" name="event-options" value="pack-premium"> Comida:
-                                        Pack Premium</label>
-                                    <label><input type="checkbox" name="event-options" value="cocktail-standard">
-                                        Bebida: Cocktail Standard</label>
-                                    <label><input type="checkbox" name="event-options" value="cocktail-premium"> Bebida:
-                                        Cocktail Premium</label>
-                                    <label><input type="checkbox" name="event-options" value="open-bar"> Barra libre
-                                        (indicar horas)</label>
-                                    <input type="number" name="open-bar-hours" class="all-include-text"
-                                        placeholder="Horas de barra libre">
-                                </div>
-                            </div>
-                            <div class="bttn-container">
-                                <button type="submit" class="form-bttn">Solicitar Evento</button>
-                            </div>
+                <form class="form">
+                    <p class="title">Solicitar un evento </p>
+                    <p class="message">Rellena el formulario y solicita un presupuesto para tu evento </p>
+                        <div class="flex">
+                        <label>
+                            <input class="input" type="text" placeholder="" required="">
+                            <span>Nombre</span>
+                        </label>
+                
+                        <label>
+                            <input class="input" type="text" placeholder="" required="">
+                            <span>Apellidos</span>
+                        </label>
+                    </div>  
+                            
+                    <label>
+                        <input class="input" type="email" placeholder="" required="">
+                        <span>Email</span>
+                    </label> 
+                        
+                    <label>
+                        <input class="input" type="text" placeholder="" required="">
+                        <span>Nombre de la empresa</span>
+                    </label>
+                    <label>
+                        <input class="input" type="number" placeholder="" required="">
+                        <span>Numero de Personas</span>
+                    </label>
+                    <label>
+                        <div class="form-group">
+                            <span>Descripcion del evento y peticiones especiales</span>
+                            <p>
+
+                            </p>
+                            <textarea id="evento" class="form-control" rows="4" placeholder="Indica el tipo de evento que deseas y peticiones especiales" required></textarea>
                         </div>
-                    </div>
+                    </label>
+                    <button class="submit">Solicitar Presupuesto</button>
+                    <p class="signin"> ¿Tienes alguna pregunta? <a href="#">Contactanos</a> </p>
                 </form>
+                <!-- Carousel wrapper -->
+        <div class="carrusel-container">
+<div
+id="carouselVideoExample"
+data-mdb-carousel-init class="carousel slide carousel-fade"
+data-mdb-ride="carousel"
+>
+<!-- Indicators -->
+<div class="carousel-indicators">
+  <button data-mdb-button-init
+    type="button"
+    data-mdb-target="#carouselVideoExample"
+    data-mdb-slide-to="0"
+    class="active"
+    aria-current="true"
+    aria-label="Slide 1"
+  ></button>
+  <button data-mdb-button-init
+    type="button"
+    data-mdb-target="#carouselVideoExample"
+    data-mdb-slide-to="1"
+    aria-label="Slide 2"
+  ></button>
+  <button data-mdb-button-init
+    type="button"
+    data-mdb-target="#carouselVideoExample"
+    data-mdb-slide-to="2"
+    aria-label="Slide 3"
+  ></button>
+</div>
+
+<!-- Inner -->
+<div class="carousel-inner">
+  <!-- Single item -->
+  <div class="carousel-item active">
+    <video class="img-fluid" autoplay loop muted>
+      <source src="https://mdbcdn.b-cdn.net/img/video/Tropical.mp4" type="video/mp4" />
+    </video>
+    <div class="carousel-caption d-none d-md-block">
+      <h5>Etiqueta del primer slide</h5>
+      <p>
+        Nulla vitae elit libero, a pharetra augue mollis interdum.
+      </p>
+    </div>
+  </div>
+
+  <!-- Single item -->
+  <div class="carousel-item">
+    <video class="img-fluid" autoplay loop muted>
+      <source src="https://mdbcdn.b-cdn.net/img/video/forest.mp4" type="video/mp4" />
+    </video>
+    <div class="carousel-caption d-none d-md-block">
+      <h5>Etiqueta del segundo slide</h5>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      </p>
+    </div>
+  </div>
+
+  <!-- Single item -->
+  <div class="carousel-item">
+    <video class="img-fluid" autoplay loop muted>
+      <source
+        src="https://mdbcdn.b-cdn.net/img/video/Agua-natural.mp4"
+        type="video/mp4"
+      />
+    </video>
+    <div class="carousel-caption d-none d-md-block">
+      <h5>Etiqueta del tercer slide</h5>
+      <p>
+        Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+      </p>
+    </div>
+  </div>
+</div>
+<!-- Inner -->
+
+<!-- Controls -->
+<button data-mdb-button-init
+  class="carousel-control-prev"
+  type="button"
+  data-mdb-target="#carouselVideoExample"
+  data-mdb-slide="prev"
+>
+  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+  <span class="visually-hidden">Anterior</span>
+</button>
+<button data-mdb-button-init
+  class="carousel-control-next"
+  type="button"
+  data-mdb-target="#carouselVideoExample"
+  data-mdb-slide="next"
+>
+  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+  <span class="visually-hidden">Siguiente</span>
+</button>
+</div>
+<!-- Carousel wrapper -->
             </div>
         </div>
         </div>
+        
     </section>
+    </div>
     <footer class="site-footer">
         <div class="site-footer-top">
             <h2>TEATRO DAW</h2>

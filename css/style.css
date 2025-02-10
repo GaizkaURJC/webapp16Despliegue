@@ -1,3 +1,12 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+section {
+    margin: 0;
+    padding: 0;
+}
+
 ul,
 li {
     list-style-type: none;
@@ -133,7 +142,8 @@ h1 {
     align-items: flex-start;
     /* Alinea el contenido en la parte superior */
     padding: 20px;
-    background: #000000;
+    background-image: url("../img/fondoclub.avif");
+    background-position: center;
     color: white;
     overflow: auto;
     flex-wrap: wrap;
@@ -147,11 +157,12 @@ h1 {
     gap: 20px;
     flex-wrap: wrap;
     padding: 20px;
-    height: 300px;
+    height: auto;
     width: 90%;
     margin: 0 auto;
     align-items: center;
     justify-content: center;
+    padding: 0px;
 }
 
 .item {
@@ -169,8 +180,19 @@ h1 {
 
 .section2-tittle {
     width: 100%;
+    backdrop-filter: blur(10px);
+    border:1px rgb(57, 123, 231) solid;
+    border-radius: 20px;
 }
-
+.section2-tittle h2{
+    margin-left: 15px;
+    margin-top: 20px;
+    text-shadow: #000000;
+}
+.section2-tittle .line{
+    width: 100%;
+    border: 0.1px rgb(255, 255, 255) solid;
+}
 .img-clubbing {
     width: 100%;
     height: auto;
@@ -182,7 +204,9 @@ h1 {
     height: 100%;
     object-fit: cover;
 }
-
+.img-clubbing img:hover {
+    transform: scale(1.05);
+}
 .details {
     padding: 15px;
     position: relative;
@@ -213,7 +237,16 @@ h1 {
     min-height: auto;
     /* Asegura que la sección tenga al menos la altura de la ventana */
 }
-
+.filtro-container{
+    border-radius: 20px;
+    width: 100%;
+}
+.isotope-layout{
+    justify-content: center;
+    text-align: center;
+    justify-content: center;
+    justify-items: center;
+}
 .cocniertos-tittle {
     color: rgb(40, 136, 255);
     font-size: 30px;
@@ -234,6 +267,9 @@ h1 {
     margin-left: auto;
     text-align: center;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    
 
 }
 
@@ -297,7 +333,9 @@ h1 {
     height: 330px;
     border-radius: 10px;
 }
-
+.iconos-conciertos{
+    display: flex;
+}
 .portfolio-info {
     background: rgba(0, 0, 0, 0.5);
     color: #fff;
@@ -353,7 +391,7 @@ h1 {
     color: rgb(255, 255, 255);
     background: url(../img/event1.png) center no-repeat;
     background-size: cover;
-    height: 120vh;
+    height: auto;
     overflow: hidden;
     scroll-margin-top: 76px;
     flex-wrap: wrap;
@@ -361,104 +399,145 @@ h1 {
     min-height: 130vh;
     /* Asegura que la sección tenga al menos la altura de la ventana */
 }
-
-.container-eventos {
-    margin-top: 30px;
-    background: #3862eb;
-    display: flexbox;
-    border-radius: 30px;
-    width: 580px;
-    height: auto;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-.form-element {
-    display: flex;
-    gap: 1px;
-    margin: 0 auto;
-    width: 50%;
-    padding: 3px;
-}
-
-.form-tittle {
-    size: 24px;
-    color: black;
-    background-color: #3975ec;
-    width: 80%;
-    margin-left: 60px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    border-radius: 20px;
-}
-
-.cuestiones {
+.form {
     display: flex;
     flex-direction: column;
-    /* Alinea los elementos en columna */
-    align-items: flex-start;
-    /* Alinea los elementos a la izquierda */
-    padding: 10px;
-    margin: 10px 0;
-    flex: 1;
-    width: 100%;
-    height: 100%;
-}
-
-.all-include-text {
+    gap: 10px;
+    max-width: auto;
+    padding: 20px;
     border-radius: 20px;
-    border: none;
-    height: 60%;
-    margin-top: 10px;
-    margin-left: 5px;
-    width: 100%;
-}
-
-.cuestiones .pregunta {
-    margin-bottom: 10px;
-    /* Espacio entre la pregunta y los checkboxes */
-    font-weight: bold;
-    margin-left: 20px;
-
-}
-
-.checkbox-group {
-    width: 100%;
-    padding: 10px;
-    border-radius: 10px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    /* Dos columnas de igual tamaño */
-}
-
-.checkbox-group label {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-
-.form-bttn[type="submit"] {
-    background-color: #000000;
-    color: white;
-    border-radius: 10px;
-    margin-top: 15px;
-    margin-bottom: 10px;
-    width: 300px;
-    background-color: #36c5db;
-    border: none;
-    font-size: 20px;
-    font-weight: medium;
-    transition: all 0.3s;
-}
-
-.form-bttn:hover,
-.form-bttn:focus {
-    background: #01244e;
-    border-color: transparent;
+    position: relative;
+    background-color: #1a1a1a;
     color: #fff;
-}
-
+    border: 1px solid #333;
+    height: auto;
+    min-width: 600px;
+  }
+  
+  .title {
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -1px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+    color: #00bfff;
+  }
+  
+  .title::before {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .title::after {
+    width: 18px;
+    height: 18px;
+    animation: pulse 1s linear infinite;
+  }
+  
+  .title::before,
+  .title::after {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    left: 0px;
+    background-color: #00bfff;
+  }
+  
+  .message, 
+  .signin {
+    font-size: 14.5px;
+    color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .signin {
+    text-align: center;
+  }
+  
+  .signin a:hover {
+    text-decoration: underline royalblue;
+  }
+  
+  .signin a {
+    color: #00bfff;
+  }
+  
+  .flex {
+    display: flex;
+    width: 100%;
+    gap: 6px;
+  }
+  
+  .form label {
+    position: relative;
+  }
+  
+  .form label .input {
+    background-color: #333;
+    color: #fff;
+    width: 100%;
+    padding: 20px 05px 05px 10px;
+    outline: 0;
+    border: 1px solid rgba(105, 105, 105, 0.397);
+    border-radius: 10px;
+  }
+  
+  .form label .input + span {
+    color: rgba(255, 255, 255, 0.5);
+    position: absolute;
+    left: 10px;
+    top: 0px;
+    font-size: 0.9em;
+    cursor: text;
+    transition: 0.3s ease;
+  }
+  
+  .form label .input:placeholder-shown + span {
+    top: 12.5px;
+    font-size: 0.9em;
+  }
+  
+  .form label .input:focus + span,
+  .form label .input:valid + span {
+    color: #00bfff;
+    top: 0px;
+    font-size: 0.7em;
+    font-weight: 600;
+  }
+  
+  .input {
+    font-size: medium;
+  }
+  
+  .submit {
+    border: none;
+    outline: none;
+    padding: 10px;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 16px;
+    transform: .3s ease;
+    background-color: #00bfff;
+  }
+  
+  .submit:hover {
+    background-color: #00bfff96;
+  }
+  
+  @keyframes pulse {
+    from {
+      transform: scale(0.9);
+      opacity: 1;
+    }
+  
+    to {
+      transform: scale(1.8);
+      opacity: 0;
+    }
+  }
 /*---------------------------------------
   FOOTER
 -----------------------------------------*/
@@ -600,6 +679,7 @@ h1 {
 -----------------------------------------*/
 /* Hace el fondo del modal translúcido */
 .modal-content {
+    margin-top: 25px;
     background: transparent;
     backdrop-filter: blur(12px);
     color: white;
@@ -619,7 +699,7 @@ h1 {
 
 .modal-header {
     background: rgba(8, 101, 200, 0.9);
-    color: white;
+    color: rgb(255, 255, 255);
 }
 
 .btn-login {
@@ -627,7 +707,6 @@ h1 {
     border-color: rgba(8, 101, 200, 0.7);
     color: white;
 }
-
 .btn-login:hover {
     background-color: rgba(2, 61, 127, 0.9);
     border-color: rgba(2, 61, 127, 0.9);
@@ -641,5 +720,12 @@ h1 {
 
 
 .form-label {
+    color: white;
+}
+.carrusel-container{
+    width: auto;
+    align-items: center;
+    justify-content: center;
+    border: 2px rgb(241, 188, 188) solid;
     color: white;
 }
