@@ -64,6 +64,10 @@ h1 {
     size: 20px;
 }
 
+.nav-item-login .btn svg {
+    fill: white !important;
+}
+
 .container-section1 {
     display: flex;
     justify-content: center;
@@ -597,21 +601,24 @@ h1 {
 /* Hace el fondo del modal translúcido */
 .modal-content {
     background: transparent;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(12px);
     color: white;
+    min-height: 500px;
+}
+
+.modal-dialog {
+    max-width: 500px;
+    margin-top: -1vh;
 }
 
 .modal-backdrop {
     background-color: rgba(0, 0, 0, 0) !important;
+    display: none !important;
 }
 
 
 .modal-header {
-    background: rgba(8, 101, 200, 0.8);
-    color: white;
-}
-
-.modal-title {
+    background: rgba(8, 101, 200, 0.9);
     color: white;
 }
 
