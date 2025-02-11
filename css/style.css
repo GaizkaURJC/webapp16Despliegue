@@ -49,7 +49,9 @@ h1 {
 .top-navbar .container-topnav {
     justify-content: space-between;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
+    padding: 5px;
 }
 
 .top-navbar .elementos-header {
@@ -68,13 +70,12 @@ h1 {
 
 .nav-item-login {
     box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175);
-    padding: 10px;
     color: white;
-    size: 20px;
 }
 
 .nav-item-login .btn svg {
     fill: white !important;
+    min-width: 20px; 
 }
 
 .container-section1 {
