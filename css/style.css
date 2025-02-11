@@ -1,7 +1,8 @@
-body{
+body {
     margin: 0;
     padding: 0;
 }
+
 section {
     margin: 0;
     padding: 0;
@@ -182,18 +183,21 @@ h1 {
 .section2-tittle {
     width: 100%;
     backdrop-filter: blur(10px);
-    border:1px rgb(57, 123, 231) solid;
+    border: 1px rgb(57, 123, 231) solid;
     border-radius: 20px;
 }
-.section2-tittle h2{
+
+.section2-tittle h2 {
     margin-left: 15px;
     margin-top: 20px;
     text-shadow: #000000;
 }
-.section2-tittle .line{
+
+.section2-tittle .line {
     width: 100%;
     border: 0.1px rgb(255, 255, 255) solid;
 }
+
 .img-clubbing {
     width: 100%;
     height: auto;
@@ -205,9 +209,11 @@ h1 {
     height: 100%;
     object-fit: cover;
 }
+
 .img-clubbing img:hover {
     transform: scale(1.05);
 }
+
 .details {
     padding: 15px;
     position: relative;
@@ -238,16 +244,19 @@ h1 {
     min-height: auto;
     /* Asegura que la sección tenga al menos la altura de la ventana */
 }
-.filtro-container{
+
+.filtro-container {
     border-radius: 20px;
     width: 100%;
 }
-.isotope-layout{
+
+.isotope-layout {
     justify-content: center;
     text-align: center;
     justify-content: center;
     justify-items: center;
 }
+
 .cocniertos-tittle {
     color: rgb(40, 136, 255);
     font-size: 30px;
@@ -270,7 +279,7 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
 
 }
 
@@ -334,9 +343,11 @@ h1 {
     height: 330px;
     border-radius: 10px;
 }
-.iconos-conciertos{
+
+.iconos-conciertos {
     display: flex;
 }
+
 .portfolio-info {
     background: rgba(0, 0, 0, 0.5);
     color: #fff;
@@ -400,6 +411,7 @@ h1 {
     min-height: 130vh;
     /* Asegura que la sección tenga al menos la altura de la ventana */
 }
+
 .form {
     display: flex;
     flex-direction: column;
@@ -413,9 +425,9 @@ h1 {
     border: 1px solid #333;
     height: auto;
     min-width: 600px;
-  }
-  
-  .title {
+}
+
+.title {
     font-size: 28px;
     font-weight: 600;
     letter-spacing: -1px;
@@ -424,21 +436,21 @@ h1 {
     align-items: center;
     padding-left: 30px;
     color: #00bfff;
-  }
-  
-  .title::before {
+}
+
+.title::before {
     width: 18px;
     height: 18px;
-  }
-  
-  .title::after {
+}
+
+.title::after {
     width: 18px;
     height: 18px;
     animation: pulse 1s linear infinite;
-  }
-  
-  .title::before,
-  .title::after {
+}
+
+.title::before,
+.title::after {
     position: absolute;
     content: "";
     height: 16px;
@@ -446,37 +458,37 @@ h1 {
     border-radius: 50%;
     left: 0px;
     background-color: #00bfff;
-  }
-  
-  .message, 
-  .signin {
+}
+
+.message,
+.signin {
     font-size: 14.5px;
     color: rgba(255, 255, 255, 0.7);
-  }
-  
-  .signin {
+}
+
+.signin {
     text-align: center;
-  }
-  
-  .signin a:hover {
+}
+
+.signin a:hover {
     text-decoration: underline royalblue;
-  }
-  
-  .signin a {
+}
+
+.signin a {
     color: #00bfff;
-  }
-  
-  .flex {
+}
+
+.flex {
     display: flex;
     width: 100%;
     gap: 6px;
-  }
-  
-  .form label {
+}
+
+.form label {
     position: relative;
-  }
-  
-  .form label .input {
+}
+
+.form label .input {
     background-color: #333;
     color: #fff;
     width: 100%;
@@ -484,9 +496,9 @@ h1 {
     outline: 0;
     border: 1px solid rgba(105, 105, 105, 0.397);
     border-radius: 10px;
-  }
-  
-  .form label .input + span {
+}
+
+.form label .input+span {
     color: rgba(255, 255, 255, 0.5);
     position: absolute;
     left: 10px;
@@ -494,26 +506,26 @@ h1 {
     font-size: 0.9em;
     cursor: text;
     transition: 0.3s ease;
-  }
-  
-  .form label .input:placeholder-shown + span {
+}
+
+.form label .input:placeholder-shown+span {
     top: 12.5px;
     font-size: 0.9em;
-  }
-  
-  .form label .input:focus + span,
-  .form label .input:valid + span {
+}
+
+.form label .input:focus+span,
+.form label .input:valid+span {
     color: #00bfff;
     top: 0px;
     font-size: 0.7em;
     font-weight: 600;
-  }
-  
-  .input {
+}
+
+.input {
     font-size: medium;
-  }
-  
-  .submit {
+}
+
+.submit {
     border: none;
     outline: none;
     padding: 10px;
@@ -522,25 +534,26 @@ h1 {
     font-size: 16px;
     transform: .3s ease;
     background-color: #00bfff;
-  }
-  
-  .submit:hover {
+}
+
+.submit:hover {
     background-color: #00bfff96;
-  }
-  
-  @keyframes pulse {
+}
+
+@keyframes pulse {
     from {
-      transform: scale(0.9);
-      opacity: 1;
+        transform: scale(0.9);
+        opacity: 1;
     }
-  
+
     to {
-      transform: scale(1.8);
-      opacity: 0;
+        transform: scale(1.8);
+        opacity: 0;
     }
-  }
+}
+
 /*---------------------------------------
-  FOOTER
+    FOOTER
 -----------------------------------------*/
 .site-footer {
     border: 2px black solid;
@@ -708,6 +721,7 @@ h1 {
     border-color: rgba(8, 101, 200, 0.7);
     color: white;
 }
+
 .btn-login:hover {
     background-color: rgba(2, 61, 127, 0.9);
     border-color: rgba(2, 61, 127, 0.9);
@@ -723,10 +737,72 @@ h1 {
 .form-label {
     color: white;
 }
-.carrusel-container{
-    width: auto;
+
+/*---------------------------------------
+    css para el carrusel
+-----------------------------------------*/
+.carrusel-container {
     align-items: center;
     justify-content: center;
-    border: 2px rgb(241, 188, 188) solid;
     color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(270deg, #b403c5, #580692, #2b19ef, #b403c5);
+    background-size: 400% 400%;
+    animation: moverFondo 10s infinite linear;
+}
+
+/* Animación del fondo */
+@keyframes moverFondo {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Carrusel */
+.carousel {
+    display: flex;
+    justify-content: center;
+}
+
+.carousel-img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border: 5px solid black;
+    border-radius: 10px;
+    display: block;
+    margin: 0 auto;
+}
+
+.carousel-images {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Adaptación para pantallas pequeñas */
+@media (max-width: 869px) {
+    .carousel-images {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .carousel-img {
+        width: 100%;
+    }
+
+    .carousel-img:nth-child(2) {
+        display: none;
+    }
 }

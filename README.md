@@ -160,4 +160,47 @@ Nuestra aplicación contará con un sistema de recomendación de eventos para us
   - Consultas avanzadas para encontrar eventos similares.
 
 --------
+### *Capturas de pantalla*
+
+![image](https://github.com/user-attachments/assets/4ed5001b-4c6a-4219-9af5-41d6c3fb8f88)
+
+Comenzamos la navegacion por nuestra pagina web en la pantalla principal, aqui he os optado por la simplicidad con un fondo de la sala de fiesta, arriba encontramos un header con un background-color transparente para darle un toque de elegancia, y donde encontramos una navegacion con la libreria aos, y un login donde el usuario, en caso de no ser anonimo pueda registrarse o iniciar sesion.
+
+![image](https://github.com/user-attachments/assets/e168634e-98a3-467f-a0d8-2bd196342f5b)
+
+Una vez le das al icono de login, se desplegara un modal, en el que rellenando los campos de forma correcta, cada usuario podra acceder a su cuenta y poder realizar diversas funciones.
+
+![image](https://github.com/user-attachments/assets/a04a34ee-e805-497a-af52-17b4bcf3eb96)
+
+en caso de no tener cuenta, nuestra aplicacion te da la opcion de registrarte y asi poder obtener los permisos propios de cualquier usuario registrado. Añadiremos una cuenta especial, que sera con un correo especial, que sera la cuneta de administrador, el cual podra hacer funciones especiales y administrar la pagina.
+
+![image](https://github.com/user-attachments/assets/9e8aa25e-17c5-4e44-9304-8bb01ea0e974)
+
+La primera seccion de nuetra aplicacion web, encontramos la seccion de clubbing, la cual muestra las tres fiestas que se celebrar semanalmente en nuestra sala, el usuario podra elegir cualquiera de la tres para ver tematica, hora, precio, estadisticas varias, y en caso de estar registrado y loggeado, podra adquirir su entrada.
+
+![image](https://github.com/user-attachments/assets/6393e50c-056c-4fb6-b432-12e82a4391a6)
+![image](https://github.com/user-attachments/assets/ecdcd8c2-b5ba-4d1b-a822-38cf6106cdce)
+
+En esta seccion, encontramos los conciertos disponibles, donde el usuario podra elegir filtrar entre generos musicales, o navegar y ver todos los que hay disponibles.
+Si quiere consultar mas detalles de alguno de ellos, podra pinchar en el boton y consultar mas informacion, y en caso de estar registrado, comprar una o varias entradas.
+
+![image](https://github.com/user-attachments/assets/d7817bcd-0e5d-4e08-9ae1-82750f463a6f)
+![image](https://github.com/user-attachments/assets/74e46d91-c6d9-4e3d-81ac-319de482c991)
+![image](https://github.com/user-attachments/assets/243dc40f-a1ca-476b-b115-984fd4d1496b)
+
+En la parte de las pagina detalle, encontramos una foto del concierto en grande, con una descripcion y atributos del evento, ademas de un boton que te dejara comprar la entrada si estas registrado.
+Abajo encontramos los comentarios de la gente, con valoraciones.
+
+![image](https://github.com/user-attachments/assets/0a22dd24-d2ed-441d-b592-7806f45de59a) 
+
+Por ultimo encontramos la seccion de solicitud de evento corporativo, destinado a jefes o direccion de empresas, que quieran realizar algun tipo de evento para sus trabajadores, etc.
+El solicitante debera rellenar el fomrulario, y se le generara un pdf, con el presupuesto en base a lo que haya solicitado.
+
+![image](https://github.com/user-attachments/assets/b0f6e028-e132-41a1-b089-786f811a0848)
+
+Por ultimo encontramos un footer sencillo, con distina infomracion de la sala y la empresa que la dirige, ademas de los links a las RRSS
+
+
+
+
 
