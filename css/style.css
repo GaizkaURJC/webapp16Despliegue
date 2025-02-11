@@ -552,7 +552,7 @@ h1 {
 }
 
 /*---------------------------------------
-  FOOTER
+    FOOTER
 -----------------------------------------*/
 .site-footer {
     border: 2px black solid;
@@ -737,10 +737,71 @@ h1 {
     color: white;
 }
 
+/*---------------------------------------
+    css para el carrusel
+-----------------------------------------*/
 .carrusel-container {
-    width: auto;
     align-items: center;
     justify-content: center;
-    border: 2px rgb(241, 188, 188) solid;
     color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(270deg, #b403c5, #580692, #2b19ef, #b403c5);
+    background-size: 400% 400%;
+    animation: moverFondo 10s infinite linear;
+}
+
+/* Animación del fondo */
+@keyframes moverFondo {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Carrusel */
+.carousel {
+    display: flex;
+    justify-content: center;
+}
+
+.carousel-img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border: 5px solid black;
+    border-radius: 10px;
+    display: block;
+    margin: 0 auto;
+}
+
+.carousel-images {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Adaptación para pantallas pequeñas */
+@media (max-width: 869px) {
+    .carousel-images {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .carousel-img {
+        width: 100%;
+    }
+
+    .carousel-img:nth-child(2) {
+        display: none;
+    }
 }
