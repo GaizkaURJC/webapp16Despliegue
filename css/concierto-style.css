@@ -388,3 +388,41 @@ h1 {
     margin-right: 150px;
     margin-bottom: 20px;
 }
+
+ /*         FIN  SECCION 2 : CONCIERTO .... */
+
+
+ /*         SECCION 3 : COMENTARIOS .... */
+.comments-title {
+    text-decoration: underline;
+    font-size: 2rem;
+    line-height: 1.25;
+    font-weight: 400;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;  
+    margin-left: 50px;
+    margin-right: 150px;
+    margin-bottom: 20px;
+}
+
+.container-comments {
+    gap: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    overflow: hidden;
+    padding-top: 0px;
+    min-height: calc(100vh - 92px);
+    z-index: 2;
+    margin: 50px; 
+}
+
+.comment-post {
+    padding: 10px;
+    width: 200px;
+    height: 200px;
+    background-color: rgb(75, 75, 75);
+}
+
+.comment-post_user {
+    font-weight: bold;
+}
