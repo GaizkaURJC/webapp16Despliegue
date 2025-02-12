@@ -125,38 +125,6 @@ h1 {
     margin-bottom: 20px;
     color:white;
 }
-
-/*---------------------------------------
-  IMAGEN              
------------------------------------------*/
-.img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-}
-
-.imagen-fondo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    backdrop-filter: blur(5px);
-}
-
-/* para darle oscuridad a la foto */
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    /* Ajusta la opacidad y el color según tus necesidades */
-    z-index: 1;
-}
-
 /*---------------------------------------
   SECCION 2
 -----------------------------------------*/
@@ -177,30 +145,6 @@ h1 {
     height: auto;
 }
 
-.clubbing-container {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    padding: 20px;
-    height: auto;
-    width: 90%;
-    margin: 0 auto;
-    align-items: center;
-    justify-content: center;
-}
-
-.item {
-    flex: 1 1 calc(33.33% -20px);
-    overflow: hidden;
-    border-radius: 8px;
-    margin: auto;
-    flex-direction: column;
-    display: flexbox;
-    height: auto;
-    width: 250px;
-    margin-bottom: 20px;
-    border: #302e2e 2px solid;
-}
 
 .section2-tittle {
     padding: 20px;
@@ -237,34 +181,147 @@ h1 {
     
 }
 
-.img-clubbing {
-    width: 100%;
-    height: auto;
-    overflow: hidden;
-}
-
-.img-clubbing img {
-    width: 100%;
+.clubbing-container {
+    display: flex;
+    justify-content: center;
     height: 100%;
-    object-fit: cover;
+    width: 100%;
+    gap: 20px;
+    padding: 20px;
 }
-
-.img-clubbing img:hover {
-    transform: scale(1.05);
+.fiesta-item{
+    display: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #171616;
+    border-radius: 20px;
 }
-
-.details {
-    padding: 15px;
-    position: relative;
-    background-color: #8f904f;
+.fiesta-item:hover{
+    scale: 1.03;
+}
+.fiesta-item img{
+    max-width: 300px;
+    max-height: 300px;
+    height: 100%;
+    border-radius: 20px;
+    margin-top: 10px;
+    align-items: center;
     text-align: center;
 }
-
-.link {
-    text-decoration: none;
-    color: inherit;
+.fiesta-descripcion{
+    margin-top: 10px;
 }
-
+.comprar-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.fancy {
+    background-color: #f2f526;
+    border: 2px solid #000;
+    border-radius: 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    float: right;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin: 0;
+    outline: none;
+    overflow: visible;
+    padding: 1.25em 2em;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    text-transform: none;
+    transition: all 0.3s ease-in-out;
+    user-select: none;
+    font-size: 13px;
+}
+.fancy::before {
+    content: " ";
+    width: 1.5625rem;
+    height: 2px;
+    background: rgb(163, 163, 0);
+    top: 50%;
+    left: 1.5em;
+    position: absolute;
+    transform: translateY(-50%);
+    transform-origin: center;
+    transition: background 0.3s linear, width 0.3s linear;
+   }
+   
+   .fancy .text {
+    font-size: 1.125em;
+    line-height: 1.33333em;
+    padding-left: 2em;
+    display: block;
+    text-align: left;
+    transition: all 0.3s ease-in-out;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: black;
+   }
+   
+   .fancy .top-key {
+    height: 2px;
+    width: 1.5625rem;
+    top: -2px;
+    left: 0.625rem;
+    position: absolute;
+    background: #e8e8e8;
+    transition: width 0.5s ease-out, left 0.3s ease-out;
+   }
+   
+   .fancy .bottom-key-1 {
+    height: 2px;
+    width: 1.5625rem;
+    right: 1.875rem;
+    bottom: -2px;
+    position: absolute;
+    background: #e8e8e8;
+    transition: width 0.5s ease-out, right 0.3s ease-out;
+   }
+   
+   .fancy .bottom-key-2 {
+    height: 2px;
+    width: 0.625rem;
+    right: 0.625rem;
+    bottom: -2px;
+    position: absolute;
+    background: #e8e8e8;
+    transition: width 0.5s ease-out, right 0.3s ease-out;
+   }
+   
+   .fancy:hover {
+    color: white;
+    background: rgb(103, 117, 0);
+   }
+   
+   .fancy:hover::before {
+    width: 0.9375rem;
+    background: white;
+   }
+   
+   .fancy:hover .text {
+    color: white;
+    padding-left: 1.5em;
+   }
+   
+   .fancy:hover .top-key {
+    left: -2px;
+    width: 0px;
+   }
+   
+   .fancy:hover .bottom-key-1,
+    .fancy:hover .bottom-key-2 {
+    right: 0;
+    width: 0;
+   }
 /*---------------------------------------
   SECCION 3
 -----------------------------------------*/
@@ -324,19 +381,39 @@ h1 {
 }
 
 .conciertos-container {
-    width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
-    
-
+    flex-wrap: wrap;
+    margin-top: 0;
 }
-
+.conciertos-filters{
+    display: flex; /* Cambia de row a flex */
+    flex-direction: row; /* Alinea los elementos en fila */
+    align-items: center; /* Centra los elementos horizontalmente */
+    width: 100%;
+    gap: 15px;
+    justify-content: center;
+    background-color: #7e7f37;
+    color: black;
+    width: 35%;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+.conciertos-filters li{
+    margin-right: 25px;
+}
+.conciertos-filters a{
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+}
+.conciertos-filters a:hover{
+    color: #d5e33e;
+}
 .portfolio-filters li {
     cursor: pointer;
     display: inline-block;
@@ -366,7 +443,6 @@ h1 {
 .cocniertos-disponibles {
     display: flex;
     flex-wrap: wrap;
-    margin-left: -15;
     margin-right: -15;
     margin-bottom: 1.5rem;
     /* 1.5rem es equivalente a 24px */
@@ -374,9 +450,9 @@ h1 {
     padding: 0 15px;
     background-color: #c1c286;
     border-radius: 20px;
-    width: 90%;
-    margin-left: 60px;
     min-height: auto;
+    margin-left: 50px;
+    margin-right: 50px;
 }
 
 /* Estilos específicos para los elementos del portafolio */
@@ -457,7 +533,7 @@ h1 {
     padding: 20px;
     color: rgb(255, 255, 255);
     background-size: cover;
-    background-color: black;
+    background-color:rgb(14, 13, 13);
     height: auto;
     overflow: hidden;
     scroll-margin-top: 76px;
@@ -624,7 +700,7 @@ h1 {
 
 .site-footer-top {
     margin-top: 0;
-    background-color: #b28e65;
+    background-color: #b1bc36;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -668,7 +744,7 @@ h1 {
 
 .social-icon-link:hover {
     background-color: #02030a;
-    color: #b28e65;
+    color: #d5e33e;
 }
 
 .social-icon ul {
@@ -707,7 +783,7 @@ h1 {
 
 .site-footer-title {
     font-size: 25px;
-    color: #b28e65;
+    color: #d5e33e;
 }
 
 .site-footer-link-item {
@@ -746,7 +822,7 @@ h1 {
     margin-top: 30px;
 }
 h6{
-    color:#b28e65;
+    color:#d5e33e;
 }
 /*---------------------------------------
     css para el formulario
