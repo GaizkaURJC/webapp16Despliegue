@@ -253,7 +253,9 @@ h1 {
 }
 
 .container-concert-fields{
+    width: 40%;
     margin-left: 50px;
+    margin-right: 50px;
     display: flex;
     flex-direction: column;
     justify-content: top;
@@ -323,8 +325,27 @@ h1 {
     box-shadow:0px 0 0 rgb(201, 201, 1)  inset;
 }
 .btn-change8:hover{
-    -webkit-box-shadow: -500px 0 0 rgb(255, 255, 255) inset;
+    -webkit-box-shadow: -1000px 0 0 rgb(255, 255, 255) inset;
     border: 2px solid black;
+}
+
+.btn-change82{
+    text-decoration: underline;
+    background: rgb(0, 0, 0);
+    width: auto;
+    height: 20px;
+    float: left;
+    border:0px;
+    color:rgb(255, 255, 255);
+    box-shadow: 0 0 1px rgb(185, 185, 185);
+    -webkit-transition-duration: 0.5s;
+    -webkit-transition-timing-function: linear;
+    box-shadow:0px 0 0 rgb(206, 206, 206)  inset;
+}
+.btn-change82:hover{
+    -webkit-box-shadow: -100px 0 0 rgb(255, 255, 255) inset;
+    border: 2px solid black;
+    color: black; 
 }
 
 .buytickets {
@@ -341,16 +362,29 @@ h1 {
 }
 
 .container-concert-img {
+    justify-content: top;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     position: relative;
     overflow: hidden;
     padding-top: 0px;
     min-height: calc(100vh - 92px);
     z-index: 2;
+    width: 50%;
 }
 
 .imgconcert {
-    width: 70%;
     height: 100%; 
+    width: 80%;
+}
+
+.container-concert-description {
+    font-size: 2rem;
+    line-height: 1.25;
+    font-weight: 400;
+    font-family: Calendas, times, serif;
+    margin-left: 150px;
+    margin-right: 150px;
+    margin-bottom: 20px;
 }
