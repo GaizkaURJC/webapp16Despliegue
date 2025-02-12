@@ -160,4 +160,4 @@ Nuestra aplicación contará con un sistema de recomendación de eventos para us
   - Consultas avanzadas para encontrar eventos similares.
 
 --------
-
+### *Capturas de las pantallas*
