@@ -204,10 +204,10 @@ body {
 .section2{
     color: black;
     display: flex;
-    background-image: url("../img/concierto3.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    background-color: rgba(183, 182, 168, 0.329);
     
 }
 footer{
@@ -357,19 +357,25 @@ footer{
     margin-left: 0px;
 }
 .container3{
-    display: flex;
+    display: row;
     justify-content: space-between;
     min-height: 100vh;
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    justify-content: center;
+    border: 2px blue solid;
+    align-content: center;
 }
 .imagen-concierto{
-    width: 100%;
-    height: 100%;
+    width: 80%;
+    height: 80%;
     align-items: center;
     justify-content: center;
     display: flex;
+    margin-left: 10px;
+    margin-right: 10px;
+    border: 2px red solid;
 }
 .concierto-img{
     width: 100%;
