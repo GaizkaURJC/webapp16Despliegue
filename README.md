@@ -160,6 +160,7 @@ Nuestra aplicación contará con un sistema de recomendación de eventos para us
   - Consultas avanzadas para encontrar eventos similares.
 
 --------
+### *Capturas de las pantallas*
 ### *Capturas de pantalla*
 
 ![image](https://github.com/user-attachments/assets/4ed5001b-4c6a-4219-9af5-41d6c3fb8f88)
