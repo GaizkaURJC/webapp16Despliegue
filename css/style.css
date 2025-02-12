@@ -731,7 +731,9 @@ h1 {
     margin-bottom: 20px;
     margin-top: 30px;
 }
-
+h6{
+    color:#b28e65;
+}
 /*---------------------------------------
     css para el formulario
 -----------------------------------------*/
@@ -843,7 +845,7 @@ h1 {
         width: 100%;
     }
 
-    .carousel-img:nth-child(2) {
+    .carousel-img:nth-child(n+2) {
         display: none;
     }
 }
