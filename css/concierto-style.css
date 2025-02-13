@@ -449,6 +449,7 @@ h1 {
     min-height: 500px;
     border: 1px solid #000000;
     z-index: 11000;
+    background-color: rgb(0, 0, 0,0.7);
 
 }
 
@@ -537,7 +538,7 @@ h1 {
 
 .site-footer-top {
     margin-top: 0;
-    background-color: #b1bc36;
+    background-color: #f2f526;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -546,9 +547,10 @@ h1 {
     padding: 0 20px;
     top: 0;
     min-height: 100px;
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     background-repeat: no-repeat;
+    color: black;
 }
 
 .site-footer h2 {
@@ -564,6 +566,8 @@ h1 {
 
 .social-icon-item {
     display: inline-block;
+    
+
 }
 
 .social-icon-link {
@@ -576,6 +580,7 @@ h1 {
     border-radius: 50%;
     text-decoration: none;
     font-size: 20px;
+    color: black;
 
 }
 
