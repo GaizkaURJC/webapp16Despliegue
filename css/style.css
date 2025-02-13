@@ -422,7 +422,7 @@ h1 {
     /* Alinea los elementos en fila */
     align-items: center;
     /* Centra los elementos horizontalmente */
-    width: 100%;
+    max-width: 40%;
     gap: 15px;
     justify-content: center;
     background-color: #f2f526e5;
@@ -431,7 +431,6 @@ h1 {
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
 }
-
 .conciertos-filters li {
     margin-right: 25px;
 }
@@ -592,8 +591,8 @@ h1 {
     border: 1px solid #333;
     height: auto;
     min-width: 600px;
+    margin-bottom: 150px;
 }
-
 .title {
     font-size: 28px;
     font-weight: 900;
@@ -870,6 +869,7 @@ h6 {
     color: white;
     min-height: 500px;
     border: 1px solid #000000;
+    background-color: rgb(0,0, 0, 0.7);
 
 }
 
