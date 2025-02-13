@@ -89,9 +89,13 @@ h1 {
     overflow: hidden;
     padding-top: 100px;
     min-height: calc(100vh - 92px);
-    background-image: url("../img/VIDEO-PARA-WEB_sin-musica.mp4");
     background-size: cover;
     z-index: 2;
+}
+.video-container{
+    position: relative;
+    overflow: hidden;
+    
 }
 #bg-video {
     position: absolute;
@@ -386,7 +390,6 @@ h1 {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    margin-top: 0;
 }
 .conciertos-filters{
     display: flex; /* Cambia de row a flex */
@@ -858,7 +861,9 @@ h6{
     background-color:black;
     color: white;
 }
-
+.header{
+    border: solid 5px yellow
+}
 .btn-login:hover {
     background-color: #d5e33e;
     color: #000000;

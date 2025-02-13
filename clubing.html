@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Clubbing</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;400;700&display=swap" rel="stylesheet">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/bootstrap-icons.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link href="css/clubbing-stayle.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/isotope/3.0.6/isotope.pkgd.min.css">
+    </head>
+<body>
+    <!-- Modal de login-->
+    <div class="modal fade" id="modalLogin" tabindex="-1" aria-labelledby="modalLogin" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="titulo-login">Iniciar sesión</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Correo electrónico</label>
+                            <input type="email" class="form-control" id="correo" aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3 ">
+                            <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="contraseña">
+                        </div>
+                        <div class="d-flex align-items-center margenGrande">
+                            <button type="submit" class="btn btn-login me-2">Confirmar</button>
+                            <p>
+                                <a href="#" class="switch-modal" data-bs-toggle="modal" data-bs-target="#modalSingUp">
+                                    <span style="color: white;">
+                                        Si aún no tienes cuenta,
+                                    </span>
+                                    Regístrate aquí
+                                </a>
+                            </p>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin Modal de login-->
+
+    <!-- Modal de sing up-->
+    <div class="modal fade" id="modalSingUp" tabindex="-1" aria-labelledby="modalSingUp" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="titulo-singup">Registrarse</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <form><div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Correo electrónico</label>
+                        <input type="email" class="form-control" id="correo" aria-describedby="emailHelp">
+                    </div>
+                    
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Correo electrónico</label>
+                            <input type="email" class="form-control" id="correo" aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="contraseña">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Repetir contraseña</label>
+                            <input type="password" class="form-control" id="contraseña">
+                        </div>
+                        <input type="checkbox" id="terminos" name="terminos" value="terminos" required> Acepto los
+                        terminos y condiciones
+                        <br>
+                        <input type="checkbox" id="datos" name="datos" value="datos"> Permito el uso de mis datos
+                        personales para las estadisticas
+                        <p><button type="submit" class="btn btn-login">Confirmar</button></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin Modal de sing up-->
+     <section class="header">
+        <video autoplay loop muted playsinline id="bg-video">
+            <source src="img/video-clubbing.mp4" type="video/mp4">
+            Tu navegador no soporta el video en HTML5.
+        </video>
+            <div class="container1">
+                <div class="header-title">
+                    <a href="index.html"><span>TEATRO DAW</span></a>
+                </div>
+                <div class="navmenu" >
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="clubing.html">Clubing</a></li>
+                        <li><a href="clubing.html">Conciertos</a></li>
+                        <li><a href="index.html">Eventos</a></li>
+                        <li><a href="index.html">Contactanos</a></li>
+                        <li ><a href="#" class="btn-login" type="button" data-bs-toggle="modal" data-bs-target="#modalLogin"><ion-icon name="person"></ion-icon></a>
+                        
+                    </ul>
+                </div>
+            </div>
+     </section>
+        <!-- HEADER -->
+     <section class="section2">
+        <div class="container2">
+        <div class="container3">
+            <div class="fecha">
+                <span> 15 </span>
+                <p>FEB</p>
+            </div>
+            <div class="descripcion">
+                <h1>OCHO Y MEDIO EN EL TEATRO DAW | 14.02.2025</h1>
+                <p>LOS MEJORES DJs DE LA CAPITAL</p>
+                <small>COMPRA YA TU ENTRADA O RESERVA TU MESA!</samll>
+            </div>
+        </div>
+        <div class="fotoFiesta-Container">
+            <img src="img/ochoymedio.jpg" alt="Fiesta">
+        </div>
+        <div class="btn-entrad" >
+            <a class="btn" href="#">Comprar Entrada</a>
+        </div>
+        <div class="container3">
+            <div class="icono-detalle">
+                <ion-icon name="menu-outline"></ion-icon> 
+            </div>
+            <div class="detalles-evento">
+                <h2>Detalles del Evento</h2>
+                <p>La famosa y mitica fiesta de madrid todos los viernes y sabados</p>
+                <hr>Un fiesta caracterizada por su ambiente y su musica inddie, donde no te lo pasaras mal!
+            </div>
+        </div>
+        <div class="container4">
+            <div class="fecha-hora">
+                <div class="time-icon">
+                    <ion-icon name="time-outline"></ion-icon>
+                </div>
+                <div class="time-info">
+                    <p>(Viernes y Sabado) 00:00-06:00</p>
+                </div>
+            </div>
+            <div class="ubicacion">
+                <div class="ubicacion-icon">
+                    <ion-icon name="location-outline"></ion-icon>
+                </div>
+                <div class="ubicacion-info">
+                    <p>Teatro DAW, </p>
+                    <p>Calle del arenal 9, Madrid</p>
+                </div>
+            </div>
+        </div>
+        <div class="container5">
+            <div class="horario-reserva">
+                <div class="reserva-icon">
+                    <ion-icon name="phone-portrait-sharp"></ion-icon>
+                </div>
+                <div class="reserva-info">
+                    <h1>HORARIO DE RESERVAS</h1>
+                    <p>LUNES a SÁBADO: 14:00 – 05:00 h.</p>
+                    <p>DOMINGO: Cerrado.</p>
+                    <p>Vísperas de Festivo: Horario de Sábado</p>
+                    <p>TELÉFONO DE RESERVAS:</p>
+                    <h3>+34 000 111 222</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+     </section>
+      <!-- Footer -->
+    <footer class="text-center text-lg-start text-white" style="background-color: #262626">
+        <div class="site-footer-top">
+            <h2>TEATRO DAW</h2>
+            <ul class="social-icon">
+                <li class="social-icon-item"><a href="" class="social-icon-link"><ion-icon
+                            name="logo-twitter"></ion-icon></a></li>
+                <li class="social-icon-item"><a href="" class="social-icon-link"><ion-icon
+                            name="logo-apple"></ion-icon></a></li>
+                <li class="social-icon-item"><a href="" class="social-icon-link"><ion-icon
+                            name="logo-instagram"></ion-icon></a></li>
+                <li class="social-icon-item"><a href="" class="social-icon-link"><ion-icon
+                            name="logo-youtube"></ion-icon></a></li>
+                <li class="social-icon-item"><a href="" class="social-icon-link"><ion-icon
+                            name="logo-pinterest"></ion-icon></a></li>
+
+            </ul>
+        </div>
+        <!-- Grid container -->
+        <div class="container p-3 pb-0">
+            <!-- Section: Links -->
+            <section class="">
+                <div class="row">
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                        <h6 class="text-uppercase mb-4 font-weight-bold">
+                            Teatro DAW
+                        </h6>
+                        <p>
+                            Somos una de la mayores discotecas de Madrid, con una capacidad de 6000 personas y una de
+                            las mejores ofertas de fiestas en la capital.
+                            También, ofertamos fiestas privadas y eventos de todo tipo.
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+                    <hr class="w-100 clearfix d-md-none" />
+                    <!-- Grid column -->
+                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                        <h6 class="text-uppercase mb-4 font-weight-bold">Links</h6>
+                        <p>
+                            <a class="text-white" href="#">Página principal</a>
+                        </p>
+                        <p>
+                            <a class="text-white" href="#">Sobre nosotros</a>
+                        </p>
+                        <p>
+                            <a class="text-white" href="#">Artistas</a>
+                        </p>
+                        <p>
+                            <a class="text-white" href="#">Contacta con nosotros</a>
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+                    <hr class="w-100 clearfix d-md-none" />
+                    <!-- Grid column -->
+                    <hr class="w-100 clearfix d-md-none" />
+                    <!-- Grid column -->
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                        <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
+                        <p><i class="fas fa-home mr-3"></i> Calle del arenal, Madrid</p>
+                        <h6 class="text-uppercase mb-4 font-weight-bold">Contacto</h6>
+                        <p><i class="fas fa-envelope mr-3"></i> degradev@teatrodaw.com</p>
+                        <p><i class="fas fa-phone mr-3"></i> +69 315 094 877</p>
+                        <p><i class="fas fa-home mr-3"></i> Calle del arenal, Madrid</p>
+                        <div class="ratio ratio-16x9">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3037.6278563288365!2d-3.708406099138649!3d40.41709424043224!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd42287e9746e7dd%3A0x99807c2312ccc88!2sTeatro%20Eslava!5e0!3m2!1ses!2ses!4v1739357621449!5m2!1ses!2ses"
+                                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                        <p></p>
+                    </div>
+                    <!-- Grid column -->
+                </div>
+                <!--Grid row-->
+            </section>
+            <!-- Section: Links -->
+        </div>
+        <!-- Grid container -->
+
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+            © 2026 Copyright:
+            <p style="color:#d5e33e ;">DregraDEV</p>
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- JAVASCRIPT FILES -->
+    <!-- Incluye jQuery (necesario para Isotope) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Incluye el JS de Isotope -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/isotope/3.0.6/isotope.pkgd.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.sticky.js"></script>
+    <script src="js/click-scroll.js"></script>
+    <script src="js/custom.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+</html>
