@@ -97,10 +97,11 @@ h1 {
     background-size: cover;
     z-index: 2;
 }
-.video-container{
+
+.video-container {
     position: relative;
     overflow: hidden;
-    
+
 }
 
 #bg-video {
@@ -431,6 +432,7 @@ h1 {
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
 }
+
 .conciertos-filters li {
     margin-right: 25px;
 }
@@ -593,6 +595,7 @@ h1 {
     min-width: 600px;
     margin-bottom: 150px;
 }
+
 .title {
     font-size: 28px;
     font-weight: 900;
@@ -869,7 +872,7 @@ h6 {
     color: white;
     min-height: 500px;
     border: 1px solid #000000;
-    background-color: rgb(0,0, 0, 0.7);
+    background-color: rgb(0, 0, 0, 0.7);
 
 }
 
@@ -885,27 +888,32 @@ h6 {
 
 
 .modal-header {
-    background: rgba(146, 157, 25, 0.9);
-    color: rgb(255, 255, 255);
+    background: #f2f526;
+    color: black;
+    font-weight: 900;
 }
 
 .btn-login {
-    background-color: black;
-    color: white;
+    background-color: #d5e33e;
+    color: black;
 }
-.header{
+
+.header {
     border: solid 5px yellow
 }
+
 .btn-login:hover {
-    background-color: #d5e33e;
-    color: #000000;
-    border-color: #80882c;
+    background-color: black;
+    color: #d5e33e;
+    border-color: #d5e33e;
 }
 
 .btn-close {
     width: 20px;
     height: 20px;
     filter: invert(1);
+    color: black;
+    background: transparent;
 }
 
 
