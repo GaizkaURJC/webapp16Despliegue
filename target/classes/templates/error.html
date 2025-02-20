@@ -13,7 +13,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/isotope/3.0.6/isotope.pkgd.min.css">
 </head>
 <body>
-    <h1>Ha ocurrido un error</h1>
-    <p th:text="${errorMessage}"></p>
+    <div class="error-container"> 
+        <div class="alert alert-danger" role="alert">
+            <p class="errorText">La página no ha podido cargar. Por favor, intente nuevamente más tarde.</p>
+
+            <div class="errorButton"> 
+                <a href="/">Volver</a>
+            </div>  
+        </div>
+        
+    </div>
+    <p text={{errorMessage}}></p>
 </body>
 </html>
