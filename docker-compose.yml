@@ -1,0 +1,15 @@
+version: '3.1'
+services:
+  db_sala:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: sala_eventos
+    ports:
+      - "3306:3306"
+  app:
+    image: tu-imagen-springboot
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db_sala
