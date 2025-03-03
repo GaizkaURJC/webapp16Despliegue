@@ -9,8 +9,12 @@ import com.daw.daw.model.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    Optional <User> findByName(String name);
-    
+    Optional <User> findByName(String username);
+    Optional <User> findByEmail(String email);
+    Optional <User> findByTelefono(String telefono);
+    Optional <User> findByEncodedPassword(String encodedPassword);
+    Optional <User> findByRoles(String roles);
+    Optional <User> getUserById(Long id);
 } 
     
     

@@ -14,20 +14,19 @@ import com.daw.daw.repository.UserRepository;
 
 @Service
 public class RepositoryUserDetailsService implements UserDetailsService {
-        @Autowired
-        private UserRepository userRepository;
+    @Autowired
+    private UserRepository userRepository;
 
-        @Override
-        public UserDetails loadUserByUsername (String name) throws UsernameNotFoundException{
-            User user = userRepository.findByName(name)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findByName(username)
+            .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
-            List<GrantedAuthority> roles = new ArrayList<>();
-            for (String role : user.getRoles()){
-                roles.add(new SimpleGrantedAuthority("ROLE_" + role));
-            }
-        
-            return new org.springframework.security.core.userdetails.User(user.getNombre(),
-                user.getEncondedPaswword(), roles);
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        for (String role : user.getRoles()) {
+            authorities.add(new SimpleGrantedAuthority("ROLE_" + role));
         }
+
+        return new org.springframework.security.core.userdetails.User(user.getNombre(), user.getEncodedPassword(), authorities);
+    }
 }

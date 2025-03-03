@@ -2,6 +2,9 @@ package com.daw.daw.model;
 
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -9,7 +12,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import java.util.Date;
-
+import org.springframework.web.context.annotation.SessionScope;
+@Component
+@SessionScope
 @Entity(name= "user_table")
 public class User {
     @Id
@@ -17,7 +22,7 @@ public class User {
     private Long id;
 
     private String name;
-
+    @Column(unique = true)
     private String email;
 
     private String telefono;
@@ -64,11 +69,11 @@ public class User {
         this.telefono = telefono;
     }
 
-    public String getEncondedPaswword() {
+    public String getEncodedPassword() {
         return encodedPassword;
     }
 
-    public void setEncondedPaswword (String encodedPassword) {
+    public void setEncodedPassword (String encodedPassword) {
         this.encodedPassword = encodedPassword;
     }
 

@@ -34,12 +34,6 @@
                 <li class="nav-item">
                     <a class="top-nav-section_5" href="section_5">Contactanos</a>
                 </li>
-                <li class="nav-item">
-                    <a class="top-nav-section_5" href="admin">Seccion ADMIN</a>
-                </li>
-                <li class="nav-item">
-                    <a class="top-nav-section_5" href="perfil">Seccion PERFIL</a>
-                </li>
                 <li class="nav-item-login">
                     <a href="#" class="btn" type="button" data-bs-toggle="modal" data-bs-target="#modalLogin">
                         <svg xmlns="http://www.w3.org/2000/svg" width="auto" height="20" fill="currentColor"
@@ -64,14 +58,14 @@
                 </div>
 
                 <div class="modal-body">
-                    <form>
+                    <form action="/users/authenticate" method="post">
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Correo electrónico</label>
-                            <input type="email" class="form-control" id="correo" aria-describedby="emailHelp">
+                            <input type="email" class="form-control" id="emailLogin" name="emailLogin" aria-describedby="emailHelp">
                         </div>
                         <div class="mb-3 ">
                             <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" id="contraseña">
+                            <input type="password" class="form-control" id="passwordLogin" name="passwordLogin">
                         </div>
                         <div class="d-flex align-items-center margenGrande">
                             <button type="submit" class="btn btn-login me-2">Confirmar</button>
@@ -102,25 +96,22 @@
                 </div>
 
                 <div class="modal-body">
-                    <form>
+                    <form action="/users/create" method="post">
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Nombre</label>
-                            <input type="email" class="form-control" id="name">
-                            <label for="exampleInputEmail1" class="form-label">Apellidos</label>
-                            <input type="email" class="form-control" id="surname">
+                            <input type="text" class="form-control" id="name" name="name">
                         </div>
-
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Correo electrónico</label>
-                            <input type="email" class="form-control" id="correo" aria-describedby="emailHelp">
+                            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Telefono</label>
+                            <input type="text" class="form-control" id="telefono" name="telefono">
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" id="contraseña">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Repetir contraseña</label>
-                            <input type="password" class="form-control" id="contraseña">
+                            <input type="password" class="form-control" name="password" id="password">
                         </div>
                         <input type="checkbox" id="terminos" name="terminos" value="terminos" required> Acepto los
                         terminos y condiciones
@@ -392,33 +383,32 @@
         </div>
         <div class="container-eventos">
             <div class="event-form">
-                <form class="form">
+                <form class="form" action="/evento/eventoCoporativo" method="post">
                     <p class="title">Solicitar un evento </p>
                     <p class="message">Rellena el formulario y solicita un presupuesto para tu evento </p>
                     <div class="flex">
                         <label>
-                            <input class="input" type="text" placeholder="" required="">
+                            <input name="userName" class="input" type="text" placeholder="" required="">
                             <span>Nombre</span>
-                        </label>
-
-                        <label>
-                            <input class="input" type="text" placeholder="" required="">
-                            <span>Apellidos</span>
                         </label>
                     </div>
 
                     <label>
-                        <input class="input" type="email" placeholder="" required="">
+                        <input name="userEmail" class="input" type="email" placeholder="" required="">
                         <span>Email</span>
                     </label>
 
                     <label>
-                        <input class="input" type="text" placeholder="" required="">
+                        <input name="bussinesName" class="input" type="text" placeholder="" required="">
                         <span>Nombre de la empresa</span>
                     </label>
                     <label>
-                        <input class="input" type="number" placeholder="" required="">
+                        <input name="num_personas" class="input" type="number" placeholder="" required="">
                         <span>Numero de Personas</span>
+                    </label>
+                    <label for="">
+                        <input type="date" name="event_date" id="fecha_incio">
+                        <span>Fecha de inicio</span>
                     </label>
                     <label>
                         <div class="form-group">
@@ -426,7 +416,7 @@
                             <p>
 
                             </p>
-                            <textarea id="evento" class="form-control" rows="4"
+                            <textarea name="eventDescript" id="evento" class="form-control" rows="4"
                                 placeholder="Indica el tipo de evento que deseas y peticiones especiales"
                                 required></textarea>
                         </div>
