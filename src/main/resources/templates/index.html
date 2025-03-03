@@ -23,10 +23,10 @@
                     <a class="top-nav-section_1" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="top-nav-section_2" href="section_2">Clubbing</a>
+                    <a class="top-nav-section_2" href="/clubbing">Clubbing</a>
                 </li>
                 <li class="nav-item">
-                    <a class="top-nav-section_3" href="section_3">Conciertos</a>
+                    <a class="top-nav-section_3" href="c">Conciertos</a>
                 </li>
                 <li class="nav-item">
                     <a class="top-nav-section_4" href="section_4">Eventos</a>
@@ -141,7 +141,7 @@
         </div>
         <div class="img">
             <video autoplay muted loop id="bg-video">
-                <source src="/img/VIDEO-PARA-WEB_sin-musica.mp4" type="video/mp4">
+                <source src="/staticimg/vid" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
             <div class="overlay"></div>
@@ -155,15 +155,16 @@
             </hr>
             <p>La mejor fiesta de la noche madrileña, en pleno centro!</p>
         </div>
-
+        
         <div class="clubbing-container">
+            {{#party}}
             <div class="fiesta-item">
                 <div class="fiesta-img">
-                    <img src="/img/ochoymedio.jpg" alt="">
+                    <img src="/img/{{id}}" alt="">
                 </div>
                 <div class="fiesta-descripcion">
-                    <h3>Ocho y Medio</h3>
-                    <p>La mejor musica indie, todos los viernes y sabados en tu discoteca favorita</p>
+                    <h3>{{title}}</h3>
+                    <p>{{description}}</p>
                 </div>
                 <div class="comprar-container">
                     <a class="fancy" href="clubbing">
@@ -174,41 +175,7 @@
                     </a>
                 </div>
             </div>
-            <div class="fiesta-item">
-                <div class="fiesta-img">
-                    <img src="/img/BubuRoom.avif" alt="">
-                </div>
-                <div class="fiesta-descripcion">
-                    <h3>Bubu Room</h3>
-                    <p>Una noche llena de flow, dembow, y de los bailes mas latinos de la capital!</p>
-                </div>
-                <div class="comprar-container">
-                    <a class="fancy" href="clubbing">
-                        <span class="top-key"></span>
-                        <span class="text">Buy Tickets</span>
-                        <span class="bottom-key-1"></span>
-                        <span class="bottom-key-2"></span>
-                    </a>
-                </div>
-            </div>
-            <div class="fiesta-item">
-                <div class="fiesta-img">
-                    <img src="/img/wasabyFest.jpg" alt="">
-                </div>
-                <div class="fiesta-descripcion">
-                    <h3>Wasaby Fest</h3>
-                    <p>La fiesta mas picante de buenos aires, aterriza en madrid, chupitos gratis a las 4...</p>
-                </div>
-                <div class="comprar-container">
-                    <a class="fancy" href="/clubbing">
-                        <span class="top-key"></span>
-                        <span class="text">Buy Tickets</span>
-                        <span class="bottom-key-1"></span>
-                        <span class="bottom-key-2"></span>
-                    </a>
-                </div>
-            </div>
-
+            {{/party}}
         </div>
     </section>
 
@@ -241,133 +208,24 @@
                 </li>
             </ul>
             <!-- End Conciertos Filters -->
+             
             <div class="cocniertos-disponibles" data-aos="fade-up" data-aos-delay="200">
+                {{#concerts}}
                 <div class="portfolio-item isotope-item filter-app">
                     <div class="portfolio-content">
-                        <img src="/img/acdc.webp" class="img-fluid" alt="">
+                        <img src="/img/{{id}}" class="img-fluid" alt="">
                         <div class="portfolio-info">
-                            <h4>AC-DC</h4>
+                            <h4>{{title}}</h4>
                             <div class="iconos-conciertos">
-                                <a href="paginaDetalleConcierto" title="App 1" data-gallery="portfolio-gallery-app"
+                                <a href="/paginaDetalleConcierto/{{id}}" title="App 1" data-gallery="portfolio-gallery-app"
                                     class="glightbox preview-link"></a>
-                                <a href="paginaDetalleConcierto" title="More Details"
+                                <a href="/paginaDetalleConcierto/{{id}}" title="More Details"
                                     class="details-link"><ion-icon name="link-outline"></ion-icon></a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="portfolio-item isotope-item filter-app">
-                    <div class="portfolio-content">
-                        <img src="/img/cruzcafune.jpg" class="img-fluid" alt="">
-                        <div class="portfolio-info">
-                            <h4>Cruz Cafune</h4>
-                            <div class="iconos-conciertos">
-                                <a href="paginaDetalleConcierto" title="App 1" data-gallery="portfolio-gallery-app"
-                                    class="glightbox preview-link"></a>
-                                <a href="paginaDetalleConcierto" title="More Details"
-                                    class="details-link"><ion-icon name="link-outline"></ion-icon></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-item isotope-item filter-app">
-                    <div class="portfolio-content">
-                        <img src="/img/yerayy.png" class="img-fluid" alt="">
-                        <div class="portfolio-info">
-                            <h4>Yeray Cortes</h4>
-                            <div class="iconos-conciertos">
-                                <a href="paginaDetalleConcierto" title="App 1" data-gallery="portfolio-gallery-app"
-                                    class="glightbox preview-link"></a>
-                                <a href="paginaDetalleConcierto" title="More Details"
-                                    class="details-link"><ion-icon name="link-outline"></ion-icon></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-item isotope-item filter-app">
-                    <div class="portfolio-content">
-                        <img src="/img/mykeyowers.jpg" class="img-fluid" alt="">
-                        <div class="portfolio-info">
-                            <h4>Myke Towers</h4>
-                            <div class="iconos-conciertos">
-                                <a href="paginaDetalleConcierto" title="App 1" data-gallery="portfolio-gallery-app"
-                                    class="glightbox preview-link"></a>
-                                <a href="paginaDetalleConcierto" title="More Details"
-                                    class="details-link"><ion-icon name="link-outline"></ion-icon></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-item isotope-item filter-app">
-                    <div class="portfolio-content">
-                        <img src="/img/the.rolling.jpg" class="img-fluid" alt="">
-                        <div class="portfolio-info">
-                            <h4>The Rolling Stones</h4>
-                            <div class="iconos-conciertos">
-                                <a href="paginaDetalleConcierto" title="App 1" data-gallery="portfolio-gallery-app"
-                                    class="glightbox preview-link"></a>
-                                <a href="paginaDetalleConcierto" title="More Details"
-                                    class="details-link"><ion-icon name="link-outline"></ion-icon></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-item isotope-item filter-app">
-                    <div class="portfolio-content">
-                        <img src="/img/PekkeErgo.jpg" class="img-fluid" alt="">
-                        <div class="portfolio-info">
-                            <h4>Ill Pekeño & Ergo Pro</h4>
-                            <div class="iconos-conciertos">
-                                <a href="paginaDetalleConcierto" title="App 1" data-gallery="portfolio-gallery-app"
-                                    class="glightbox preview-link"></a>
-                                <a href="paginaDetalleConcierto" title="More Details"
-                                    class="details-link"><ion-icon name="link-outline"></ion-icon></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-item isotope-item filter-app">
-                    <div class="portfolio-content">
-                        <img src="/img/fito.jpg" class="img-fluid" alt="">
-                        <div class="portfolio-info">
-                            <h4>Fito & Fitipaldis</h4>
-                            <div class="iconos-conciertos">
-                                <a href="paginaDetalleConcierto" title="App 1" data-gallery="portfolio-gallery-app"
-                                    class="glightbox preview-link"></a>
-                                <a href="paginaDetalleConcierto" title="More Details"
-                                    class="details-link"><ion-icon name="link-outline"></ion-icon></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-item isotope-item filter-app">
-                    <div class="portfolio-content">
-                        <img src="/img/ctangana.jpg" class="img-fluid" alt="">
-                        <div class="portfolio-info">
-                            <h4>C.Tangana</h4>
-                            <div class="iconos-conciertos">
-                                <a href="paginaDetalleConcierto" title="App 1" data-gallery="portfolio-gallery-app"
-                                    class="glightbox preview-link"></a>
-                                <a href="paginaDetalleConcierto" title="More Details"
-                                    class="details-link"><ion-icon name="link-outline"></ion-icon></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-item isotope-item filter-app">
-                    <div class="portfolio-content">
-                        <img src="/img/TheBeatles.webp" class="img-fluid" alt="">
-                        <div class="portfolio-info">
-                            <h4>The Beatles</h4>
-                            <div class="iconos-conciertos">
-                                <a href="assets/img/portfolio/app-1.jpg" title="App 1"
-                                    data-gallery="portfolio-gallery-app" class="glightbox preview-link"></a>
-                                <a href="paginaDetalleConcierto" title="More Details"
-                                    class="details-link"><ion-icon name="link-outline"></ion-icon></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {{/concerts}}
             </div>
         </div>
     </section>
