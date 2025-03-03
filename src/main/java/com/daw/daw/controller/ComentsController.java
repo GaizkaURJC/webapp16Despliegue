@@ -35,8 +35,7 @@ public class ComentsController {
     @PostMapping("create")
     public String addComent(@RequestParam ("rate") int valoracion, @RequestParam ("coment") String comentario, String userName, HttpSession session) {
         if (userController.isLogged(session) == false) {
-            return "redirect:/login";
-            
+            return "redirect:/error";
         }
         String UserName = userController.getLoggedUser(session);
         Coments coments = new Coments(valoracion, comentario, UserName);

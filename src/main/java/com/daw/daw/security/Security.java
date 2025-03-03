@@ -36,7 +36,7 @@ public class Security {
         
         http
             .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/","/perfil", "/clubbing", "/paginaDetalleConcierto", "/register", "/error", "/css/**", "/js/**", "/images/**", "/users/create", "/users/authenticate","/admin","coments/create").permitAll()
+                .requestMatchers("/","/img/{id}","/perfil","/paginaDetalleConcierto/{id}","/staticimg/vid", "/clubbing", "/paginaDetalleConcierto", "/register", "/error", "/css/**", "/js/**", "/images/**", "/users/create", "/users/authenticate","/admin","coments/create","img/index.mp4").permitAll()
                 .anyRequest().authenticated())
                 .formLogin(formLogin -> formLogin
                 .loginPage("/users/login")

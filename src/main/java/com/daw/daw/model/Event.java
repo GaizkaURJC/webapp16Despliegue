@@ -9,7 +9,7 @@ import jakarta.persistence.Lob;
 
 import java.sql.Blob;
 
-@Entity(name= "event_table")
+@Entity(name= "event2_table")
 public class Event {
 
     @Id

@@ -80,29 +80,5 @@ public class PageController {
 		return "paginaPerfil";
 	}
 
-	@GetMapping("/staticimg/vid")
-	public ResponseEntity<StreamingResponseBody> streamVideo() throws SQLException {
-		Optional<Image> im = imageRepository.findByTitle("index");
-
-		if (im.isPresent() && im.get().getImageFile() != null) {
-			Blob videoBlob = im.get().getImageFile();
-			InputStream videoStream = videoBlob.getBinaryStream();
-
-			StreamingResponseBody responseBody = outputStream -> {
-				byte[] buffer = new byte[4096];
-				int bytesRead;
-				while ((bytesRead = videoStream.read(buffer)) != -1) {
-					outputStream.write(buffer, 0, bytesRead);
-					outputStream.flush();
-				}
-			};
-
-			return ResponseEntity.ok()
-					.header(HttpHeaders.CONTENT_TYPE, "video/mp4") // Ajusta el formato si no es MP4
-					.body(responseBody);
-		} else {
-			return ResponseEntity.notFound().build();
-		}
-	}
-
+	
 }
