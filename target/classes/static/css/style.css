@@ -359,10 +359,8 @@ canvas {
 -----------------------------------------*/
 .container-section3 {
     display: flex;
-    justify-content: flex-start;
-    /* Alinea el contenido a la izquierda */
+    justify-content: center;
     align-items: flex-start;
-    /* Alinea el contenido en la parte superior */
     padding: 20px;
     color: rgb(255, 255, 255);
     overflow: clip;
@@ -370,7 +368,6 @@ canvas {
     scroll-margin-top: 76px;
     flex-wrap: wrap;
     min-height: auto;
-    /* Asegura que la sección tenga al menos la altura de la ventana */
 }
 
 .filtro-container {
@@ -416,20 +413,20 @@ canvas {
 .conciertos-container {
     text-align: center;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     margin-top: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
 .conciertos-filters {
     display: flex;
-    /* Cambia de row a flex */
     flex-direction: row;
-    /* Alinea los elementos en fila */
     align-items: center;
-    /* Centra los elementos horizontalmente */
-    max-width: 40%;
     gap: 15px;
     justify-content: center;
     background-color: #f2f526e5;
@@ -437,6 +434,11 @@ canvas {
     width: 85%;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
+    width: fit-content;
+    list-style: none;
+    margin: 0;
+    padding-left: 5%;
+    padding-right: 5%;
 }
 
 .conciertos-filters li {
@@ -1009,45 +1011,72 @@ h6 {
     Página de error
 
 --------------------------------------------*/
+/* #262626 */
 
 .error-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: white;
-    color: white;
+    background-color: #262626;
+    color: #f2f526;
     font-size: 30px;
     font-weight: 900;
     text-align: center;
+    font-family: 'Poppins', sans-serif;
 }
 
 .errorText {
-    color: black;
-    font-family: 'Poppins', sans-serif; 
-    font-size: 15px;
-    font-weight: 600;
-    text-align: center;
-
-}
-
-.errorButton {
-    background-color: red;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 10px;
-    font-size: 10;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.3s;
-    width: 100px;
+    color: #f2f526;
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
 }
 
 .alert.alert-danger {
     display: flex;
-    flex-wrap: wrap;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: black;
+    border: 3px solid #f2f526;
+    padding: 50px;
+    border-radius: 15px;
+    width: 70%;
+    max-width: 800px;
+    text-align: center;
+}
+
+.errorButton {
+    background-color: #f2f526;
+    color: black;
+    text-decoration: none;
+    padding: 15px 30px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 2000;
+    cursor: pointer;
+    transition: 0.3s;
+    font-family: 'Poppins', sans-serif;
+    display: inline-block;
+}
+
+.errorButton a {
+    color: black;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    height: 100%;
+    line-height: normal;
+}
+
+.errorButton:hover {
+    background-color: black;
+    color: #f2f526;
+    border: 1px solid #f2f526;
+}
+
+.errorButton:hover a {
+    color: #f2f526;
 }

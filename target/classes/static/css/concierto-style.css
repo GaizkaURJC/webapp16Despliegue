@@ -1,7 +1,7 @@
-
 @font-face {
     font-family: 'Skrappa-bold';
-    src: url('./fonts/SK.woff') format('woff'); /* Usa ./ en lugar de .. */
+    src: url('./fonts/SK.woff') format('woff');
+    /* Usa ./ en lugar de .. */
     font-weight: bold;
     font-style: normal;
 }
@@ -37,9 +37,10 @@ a {
     display: block;
 }
 
-a:hover{
+a:hover {
     color: #d5e33e;
 }
+
 p {
     color: white;
 }
@@ -96,12 +97,14 @@ h1 {
 .nav-item-login {
     color: white;
 }
-.nav-item-login a:hover{
+
+.nav-item-login a:hover {
     color: #d5e33e;
 }
+
 .nav-item-login .btn svg {
     fill: white !important;
-    min-width: 20px; 
+    min-width: 20px;
 }
 
 .container-section1 {
@@ -117,8 +120,8 @@ h1 {
     z-index: 2;
 }
 
-.row{
-    margin-top : 80px ; 
+.row {
+    margin-top: 80px;
 }
 
 #bg-video {
@@ -126,19 +129,24 @@ h1 {
     top: 0;
     left: 0;
     width: 100%;
-    height: 70vh; /* Inicialmente ocupa toda la pantalla */
+    height: 70vh;
+    /* Inicialmente ocupa toda la pantalla */
     object-fit: cover;
-    z-index: -1; /* Asegura que esté detrás del contenido */
+    z-index: -1;
+    /* Asegura que esté detrás del contenido */
     animation-name: minimizeVideo;
     animation-range: entry 25% cover 50%;
 }
 
 @keyframes minimizeVideo {
     from {
-        opacity: 100; height: 100vh; 
+        opacity: 100;
+        height: 100vh;
     }
+
     to {
-        opacity: 60%; height: 20px;
+        opacity: 60%;
+        height: 20px;
     }
 }
 
@@ -160,8 +168,9 @@ h1 {
     margin: 0 auto;
     opacity: 1;
     margin-bottom: 5px;
-    
+
 }
+
 .texto-principal {
     width: 100%;
     margin-top: auto !important;
@@ -173,7 +182,7 @@ h1 {
     font-size: 50px;
     font-weight: 700;
     margin-bottom: 20px;
-    color:white;
+    color: white;
 }
 
 .top-navbar {
@@ -203,12 +212,14 @@ h1 {
 .nav-item-login {
     color: white;
 }
-.nav-item-login a:hover{
+
+.nav-item-login a:hover {
     color: #d5e33e;
 }
+
 .nav-item-login .btn svg {
     fill: white !important;
-    min-width: 20px; 
+    min-width: 20px;
 }
 
 .line-title {
@@ -219,8 +230,9 @@ h1 {
     margin: 0 auto;
     opacity: 1;
     margin-bottom: 5px;
-    
+
 }
+
 .texto-principal {
     width: 100%;
     margin-top: auto !important;
@@ -232,7 +244,7 @@ h1 {
     font-size: 50px;
     font-weight: 700;
     margin-bottom: 20px;
-    color:white;
+    color: white;
 }
 
 /*                   /* TOP NAVBAR ..... */
@@ -243,7 +255,7 @@ h1 {
 
 .container-section2 {
     display: flex;
-    justify-content: left ;
+    justify-content: left;
     align-items: center;
     position: relative;
     overflow: hidden;
@@ -252,7 +264,7 @@ h1 {
     z-index: 2;
 }
 
-.container-concert-fields{
+.container-concert-fields {
     width: 40%;
     margin-left: 50px;
     margin-right: 50px;
@@ -267,23 +279,24 @@ h1 {
     z-index: 2;
 }
 
-.field.field--name h1{
+.field.field--name h1 {
     font-family: 'Skrappa-bold', Helvetica, 'sans' !important;
-    line-height: .50 !important; 
+    line-height: .50 !important;
     font-size: clamp(6.5rem, 2vw, 1.5rem);
-    font-weight: 400 !important  ;
+    font-weight: 400 !important;
     overflow-wrap: break-word;
     -ms-word-wrap: break-word;
     word-wrap: break-word;
     color: #ffffff;
     margin-bottom: 20px;
-    margin-top: 20px; 
+    margin-top: 20px;
     line-height: 70px !important;
 }
 
 .field.field--subtitle {
     margin-top: 20px;
-    display: block; /* Asegura que "Concierto" no se solape */
+    display: block;
+    /* Asegura que "Concierto" no se solape */
     color: white;
     line-height: .9;
     font-size: 3.75rem;
@@ -297,7 +310,7 @@ h1 {
     text-transform: uppercase;
     font-family: Geomanist-medium, Helvetica, sans;
     font-weight: 400;
-    color: yellow ;
+    color: yellow;
 }
 
 .content1 {
@@ -308,7 +321,7 @@ h1 {
     margin-bottom: .6em;
 }
 
-.btn-change8{
+.btn-change8 {
     margin-top: 20px;
     text-align: center;
     align-items: center;
@@ -317,35 +330,37 @@ h1 {
     width: 100%;
     background: rgb(255, 238, 0);
     float: left;
-    border:0px;
-    color:rgb(0, 0, 0);
+    border: 0px;
+    color: rgb(0, 0, 0);
     box-shadow: 0 0 1px rgb(255, 247, 0);
     -webkit-transition-duration: 0.5s;
     -webkit-transition-timing-function: linear;
-    box-shadow:0px 0 0 rgb(201, 201, 1)  inset;
+    box-shadow: 0px 0 0 rgb(201, 201, 1) inset;
 }
-.btn-change8:hover{
+
+.btn-change8:hover {
     -webkit-box-shadow: -1000px 0 0 rgb(255, 255, 255) inset;
     border: 2px solid black;
 }
 
-.btn-change82{
+.btn-change82 {
     text-decoration: underline;
     background: rgb(0, 0, 0);
     width: auto;
     height: 20px;
     float: left;
-    border:0px;
-    color:rgb(255, 255, 255);
+    border: 0px;
+    color: rgb(255, 255, 255);
     box-shadow: 0 0 1px rgb(185, 185, 185);
     -webkit-transition-duration: 0.5s;
     -webkit-transition-timing-function: linear;
-    box-shadow:0px 0 0 rgb(206, 206, 206)  inset;
+    box-shadow: 0px 0 0 rgb(206, 206, 206) inset;
 }
-.btn-change82:hover{
+
+.btn-change82:hover {
     -webkit-box-shadow: -100px 0 0 rgb(255, 255, 255) inset;
     border: 2px solid black;
-    color: black; 
+    color: black;
 }
 
 .buytickets {
@@ -355,7 +370,7 @@ h1 {
     align-items: center;
     justify-content: center;
     outline: 0;
-    font-weight: bold   ;
+    font-weight: bold;
     font-family: Geomanist-regular, Helvetica, sans;
     height: auto;
     margin: 4px 0 0;
@@ -375,7 +390,7 @@ h1 {
 }
 
 .imgconcert {
-    height: 100%; 
+    height: 100%;
     width: 80%;
 }
 
@@ -389,29 +404,31 @@ h1 {
     margin-bottom: 20px;
 }
 
- /*         FIN  SECCION 2 : CONCIERTO .... */
+/*         FIN  SECCION 2 : CONCIERTO .... */
 
 
- /*         SECCION 3 : COMENTARIOS .... */
+/*         SECCION 3 : COMENTARIOS .... */
 
- .container-section3{
-    display:flex;
-    flex-direction:column;
- }
-.container-btn-comment{
+.container-section3 {
+    display: flex;
+    flex-direction: column;
+}
+
+.container-btn-comment {
     margin-left: 50px;
- }
+}
 
- .btn-comentario{
+.btn-comentario {
     width: fit-content;
     font-weight: bold;
- }
+}
+
 .comments-title {
     text-decoration: underline;
     font-size: 2rem;
     line-height: 1.25;
     font-weight: 400;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;  
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     margin-left: 50px;
     margin-right: 150px;
     margin-bottom: 20px;
@@ -426,7 +443,7 @@ h1 {
     padding-top: 0px;
     min-height: calc(100vh - 92px);
     z-index: 2;
-    margin: 50px; 
+    margin: 50px;
 }
 
 .comment-post {
@@ -440,7 +457,10 @@ h1 {
     font-weight: bold;
 }
 
-/*         MODAL */
+/*---------------------------------------
+    css para el formulario
+-----------------------------------------*/
+/* Hace el fondo del modal translúcido */
 .modal-content {
     margin-top: 25px;
     background: transparent;
@@ -448,8 +468,7 @@ h1 {
     color: white;
     min-height: 500px;
     border: 1px solid #000000;
-    z-index: 11000;
-    background-color: rgb(0, 0, 0,0.7);
+    background-color: rgb(0, 0, 0, 0.7);
 
 }
 
@@ -459,46 +478,57 @@ h1 {
 }
 
 .modal-backdrop {
-    background-color: #d5e33e !important;
+    background-color: #f2f526 !important;
     display: none !important;
 }
 
 
 .modal-header {
-    background: rgba(146, 157, 25, 0.9);
-    color: rgb(255, 255, 255);
+    background: #f2f526;
+    color: black;
+    font-weight: 900;
 }
 
-
 .btn-login {
-    background-color:black;
-    color: white;
+    background-color: #d5e33e;
+    color: black;
+}
+
+.header {
+    border: solid 5px yellow
 }
 
 .btn-login:hover {
-    background-color: #d5e33e;
-    color: #000000;
-    border-color: #80882c;
+    background-color: black;
+    color: #d5e33e;
+    border-color: #d5e33e;
 }
 
 .btn-close {
     width: 20px;
     height: 20px;
     filter: invert(1);
+    color: black;
+    background: transparent;
 }
 
-.btn-publicar
-{
+
+.form-label {
+    color: white;
+}
+
+.btn-publicar {
     background-color: #d5e33e;
     color: black;
     border-color: #d5e33e;
 }
 
-.btn-publicar:hover{
+.btn-publicar:hover {
     background-color: black;
     color: white;
     border-color: black;
 }
+
 .star-rating {
     direction: rtl;
     display: inline-block;
@@ -566,7 +596,7 @@ h1 {
 
 .social-icon-item {
     display: inline-block;
-    
+
 
 }
 
@@ -663,6 +693,7 @@ h1 {
     margin-bottom: 20px;
     margin-top: 30px;
 }
-h6{
-    color:#d5e33e;
+
+h6 {
+    color: #d5e33e;
 }

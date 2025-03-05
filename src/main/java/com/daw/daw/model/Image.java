@@ -9,16 +9,16 @@ import jakarta.persistence.Lob;
 
 import java.sql.Blob;
 
-@Entity(name= "image_table")
+@Entity(name = "image_table")
 public class Image {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Lob 
-    private Blob imageFile ; 
-    
+    @Lob
+    private Blob imageFile;
+
     private String title;
 
     public Image() {

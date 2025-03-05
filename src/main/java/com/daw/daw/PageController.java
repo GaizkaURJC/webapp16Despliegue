@@ -1,4 +1,4 @@
-package com.daw.daw; 
+package com.daw.daw;
 
 import java.io.InputStream;
 import java.sql.Blob;
@@ -28,46 +28,45 @@ import com.daw.daw.model.Image;
 import com.daw.daw.repository.EventRepository;
 import com.daw.daw.repository.ImageRepository;
 
+@Controller
+public class PageController {
 
-@Controller 
-public class PageController { 
-	
 	@Autowired
 	private EventRepository eventRepository;
 
 	@Autowired
 	private ImageRepository imageRepository;
 
-	@GetMapping("/") 
+	@GetMapping("/")
 	public String form(Model model) {
-		List<Event> party = eventRepository.findByTipo("party"); 
-        model.addAttribute("party", party);
-		List<Event> concerts = eventRepository.findByTipo("concert"); 
-        model.addAttribute("concerts", concerts);
-        return "index"; 
+		List<Event> party = eventRepository.findByTipo("party");
+		model.addAttribute("party", party);
+		List<Event> concerts = eventRepository.findByTipo("concert");
+		model.addAttribute("concerts", concerts);
+		return "index";
 	}
 
 	@GetMapping("/img/{id}")
-	public  ResponseEntity<Object>  getImage(@PathVariable Long id, Model model) throws SQLException {
+	public ResponseEntity<Object> getImage(@PathVariable Long id, Model model) throws SQLException {
 		Optional<Event> op = eventRepository.findById(id);
-        if (op.isPresent() && op.get().getImageFile() != null) {
-            Blob image = op.get().getImageFile();
-            return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
-            .body(new InputStreamResource(op.get().getImageFile().getBinaryStream()));
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+		if (op.isPresent() && op.get().getImageFile() != null) {
+			Blob image = op.get().getImageFile();
+			return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
+					.body(new InputStreamResource(op.get().getImageFile().getBinaryStream()));
+		} else {
+			return ResponseEntity.notFound().build();
+		}
 	}
 
-	@GetMapping("/clubbing") 
+	@GetMapping("/clubbing")
 	public String clubingRedirection(Model model) {
-        return "clubing"; 
+		return "clubing";
 	}
 
-	@GetMapping("/paginaDetalleConcierto/{id}") 
+	@GetMapping("/paginaDetalleConcierto/{id}")
 	public String concertDetailRedirection(@PathVariable Long id, Model model) {
 		model.addAttribute("event", eventRepository.findById(id).get());
-		return "paginaDetalleConcierto"; 
+		return "paginaDetalleConcierto";
 	}
 
 	@GetMapping("/admin")
@@ -80,5 +79,4 @@ public class PageController {
 		return "paginaPerfil";
 	}
 
-	
 }

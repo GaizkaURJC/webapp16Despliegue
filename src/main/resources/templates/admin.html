@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +14,7 @@
     <link href="../css/adminstyle.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/isotope/3.0.6/isotope.pkgd.min.css">
 </head>
+
 <body>
     <div class="grid-container">
         <div class="sidevar">
@@ -24,7 +26,7 @@
                     <div class="inico-icon">
                         <ion-icon name="home"></ion-icon>
                     </div>
-                    <div class="inicio-title" >
+                    <div class="inicio-title">
                         <h2>INICIO</h2>
                     </div>
                 </div>
@@ -94,11 +96,68 @@
         </div>
         <section class="inicio-section">
             <!-- Contenido de la sección -->
-             <div class="container1">
+            <div class="container1">
                 <h3>Bienvenido de nuevo, ADMIN!</h3>
-             </div>
+            </div>
         </section>
     </div>
+
+
+    <div class="item-container">
+        <div class="inicio-icon">
+            <ion-icon name="musical-notes"></ion-icon>
+        </div>
+        <div class="inicio-title">
+            <h2>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#modalCrearEvento">Añadir concierto</a>
+
+            </h2>
+        </div>
+    </div>
+
+    <!-- Modal Crear concierto -->
+    <div class="modal fade" id="modalCrearEvento" tabindex="-1" aria-labelledby="modalCrearEventoLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="modalCrearEventoLabel">Crear Nuevo Concierto</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+
+                <div class="modal-body">
+                    <form action="/evento/create" method="POST" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Título del evento:</label>
+                            <input type="text" class="form-control" id="title" name="title" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="tipo" class="form-label">Tipo de evento:</label>
+                            <input type="text" class="form-control" id="tipo" name="tipo" value="concert" readonly>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="descripcion" class="form-label">Descripción:</label>
+                            <textarea class="form-control" id="descripcion" name="description" required></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="imageFile" class="form-label">Subir imagen:</label>
+                            <input type="file" class="form-control" id="imageFile" name="imageFile" accept="image/*"
+                                required>
+                        </div>
+
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-primary">Crear Concierto</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin Modal Crear concierto -->
+
 
     <!-- Footer -->
 
@@ -120,4 +179,5 @@
         crossorigin="anonymous"></script>
     <!-- Incluir el JS de AOS -->
 </body>
+
 </html>

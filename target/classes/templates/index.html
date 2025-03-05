@@ -61,7 +61,8 @@
                     <form action="/users/authenticate" method="post">
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Correo electrónico</label>
-                            <input type="email" class="form-control" id="emailLogin" name="emailLogin" aria-describedby="emailHelp">
+                            <input type="email" class="form-control" id="emailLogin" name="emailLogin"
+                                aria-describedby="emailHelp">
                         </div>
                         <div class="mb-3 ">
                             <label for="exampleInputPassword1" class="form-label">Contraseña</label>
@@ -103,7 +104,8 @@
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Correo electrónico</label>
-                            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
+                            <input type="email" class="form-control" id="email" name="email"
+                                aria-describedby="emailHelp">
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Telefono</label>
@@ -155,7 +157,7 @@
             </hr>
             <p>La mejor fiesta de la noche madrileña, en pleno centro!</p>
         </div>
-        
+
         <div class="clubbing-container">
             {{#party}}
             <div class="fiesta-item">
@@ -208,7 +210,7 @@
                 </li>
             </ul>
             <!-- End Conciertos Filters -->
-             
+
             <div class="cocniertos-disponibles" data-aos="fade-up" data-aos-delay="200">
                 {{#concerts}}
                 <div class="portfolio-item isotope-item filter-app">
@@ -217,8 +219,8 @@
                         <div class="portfolio-info">
                             <h4>{{title}}</h4>
                             <div class="iconos-conciertos">
-                                <a href="/paginaDetalleConcierto/{{id}}" title="App 1" data-gallery="portfolio-gallery-app"
-                                    class="glightbox preview-link"></a>
+                                <a href="/paginaDetalleConcierto/{{id}}" title="App 1"
+                                    data-gallery="portfolio-gallery-app" class="glightbox preview-link"></a>
                                 <a href="/paginaDetalleConcierto/{{id}}" title="More Details"
                                     class="details-link"><ion-icon name="link-outline"></ion-icon></a>
                             </div>
@@ -241,7 +243,7 @@
         </div>
         <div class="container-eventos">
             <div class="event-form">
-                <form class="form" action="/reserva/request" method="post">
+                <form class="form" action="/evento/eventoCoporativo" method="post">
                     <p class="title">Solicitar un evento </p>
                     <p class="message">Rellena el formulario y solicita un presupuesto para tu evento </p>
                     <div class="flex">

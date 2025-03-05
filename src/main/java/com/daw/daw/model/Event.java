@@ -9,18 +9,18 @@ import jakarta.persistence.Lob;
 
 import java.sql.Blob;
 
-@Entity(name= "event2_table")
+@Entity(name = "event2_table")
 public class Event {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String description ; 
+    private String description;
 
-    @Lob 
-    private Blob imageFile ; 
-    
+    @Lob
+    private Blob imageFile;
+
     private String title;
 
     private String tipo;
@@ -29,7 +29,7 @@ public class Event {
 
     }
 
-    public Event( String title, String tipo, String description, java.sql.Blob imageFile) {
+    public Event(String title, String tipo, String description, java.sql.Blob imageFile) {
         this.title = title;
         this.tipo = tipo;
         this.imageFile = imageFile;
@@ -44,7 +44,6 @@ public class Event {
         return description;
     }
 
-    
     public void setId(Long id) {
         this.id = id;
     }
@@ -76,6 +75,5 @@ public class Event {
     public Blob getImageFile() {
         return imageFile;
     }
-
 
 }
