@@ -24,21 +24,19 @@ private Long id;
 
     private String estado;
 
-    private Date event_date;
 
 
 
     public Reserva() {
     }
 
-    public Reserva(String userName, String userEmail, String bussinesName, int num_personas, String eventDescript, String estado, Date event_date) {
+    public Reserva(String userName, String userEmail, String bussinesName, int num_personas, String eventDescript, String estado) {
         this.userName = userName;
         this.userEmail = userEmail;
         this.bussinesName = bussinesName;
         this.num_personas = num_personas;
         this.eventDescript = eventDescript;
         this.estado = estado;
-        this.event_date = event_date;
     }
 
     public String getUserName() {
@@ -89,13 +87,7 @@ private Long id;
         this.estado = estado;
     }
 
-    public Date getEvent_date() {
-        return event_date;
-    }
-
-    public void setEvent_date(Date event_date) {
-        this.event_date = event_date;
-    }
+   
 
     
 

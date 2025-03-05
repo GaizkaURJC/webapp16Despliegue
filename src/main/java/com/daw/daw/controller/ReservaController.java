@@ -1,6 +1,7 @@
 package com.daw.daw.controller;
 
 import java.net.URI;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,8 @@ import com.daw.daw.model.Reserva;
 import com.daw.daw.repository.ComentsRepository;
 import com.daw.daw.repository.ReservaRepository;
 import jakarta.servlet.http.HttpSession;
-import java.util.Date;;
+import java.util.Date;
+import java.text.ParseException;
 
 
 @Controller
@@ -31,16 +33,14 @@ public class ReservaController {
     @Autowired
     private ReservaRepository reservaRepository;
 
-    @GetMapping("request")
+    @PostMapping("request")
     public String requestEvent (@RequestParam ("userName") String name,
                                 @RequestParam ("userEmail") String email,
                                 @RequestParam ("bussinesName") String bussinesname,
                                 @RequestParam ("num_personas") int pax,
-                                @RequestParam ("date") Date eventDate,
                                 @RequestParam ("eventDescript") String description) {
-    
-        Reserva reserva = new Reserva(name, email, bussinesname, pax, description, "pendiente", eventDate);
-        reservaRepository.save(reserva);
-        return "redirect:/";
+            Reserva reserva = new Reserva(name, email, bussinesname, pax, description, "pendiente");
+            reservaRepository.save(reserva);
+            return "redirect:/";
 }
 }

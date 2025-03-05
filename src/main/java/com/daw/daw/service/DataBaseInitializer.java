@@ -16,7 +16,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
+import java.util.Date;
 import com.daw.daw.model.Coments;
 import com.daw.daw.model.User;
 import com.daw.daw.repository.ComentsRepository;
@@ -25,7 +25,8 @@ import com.daw.daw.model.Event;
 import com.daw.daw.model.Image;
 import com.daw.daw.repository.EventRepository;
 import com.daw.daw.repository.ImageRepository;
-
+import com.daw.daw.repository.ReservaRepository;
+import com.daw.daw.model.Reserva;
 @Service
 public class DataBaseInitializer {
     
@@ -44,6 +45,9 @@ public class DataBaseInitializer {
     @Autowired
     private ComentsRepository comentsRepository;
 
+    @Autowired
+    private ReservaRepository reservaRepository;
+
     @PostConstruct
     public void init() throws IOException, URISyntaxException{
 
@@ -55,20 +59,15 @@ public class DataBaseInitializer {
             UserRepository.save(admin);
             UserRepository.save(user);
         }
-
         if (imageRepository.findAll().isEmpty()) {
             Blob videoIndex = loadImage("img/index.mp4");
             Image imageIndex = new Image(videoIndex, "index");
             imageRepository.save(imageIndex);
         }
-
         Event cruzCafune = new Event("Cruz Cafune", "concert","Fiolo reza fiolo", loadImage("img/cruzcafune.jpg"));
         Event ochoYmedio = new Event("OCHOYMEDIO", "party","La mejor musica indie, todos los viernes y sabados en tu discoteca favorita", loadImage("img/ochoymedio.jpg"));  
-        
         Event wasaby = new Event("WASABI", "party","La fiesta mas picante de buenos aires, aterriza en madrid, chupitos gratis a las 4...", loadImage("img/wasabyFest.jpg"));
         Event bubuRoom = new Event("BUBU ROOM", "party","La fiesta mas picante de buenos aires, aterriza en madrid, chupitos gratis a las 4...", loadImage("img/BubuRoom.avif"));
-
-
         if (comentsRepository.findAll().isEmpty()) {
             Coments coments1 = new Coments(5, "Me encanto el concierto, la mejor noche de mi vida", "user");
             Coments coments2 = new Coments(4, "La musica era buena, pero la bebida era cara", "user");
@@ -88,10 +87,17 @@ public class DataBaseInitializer {
             eventRepository.save(wasaby);
             eventRepository.save(cruzCafune);
         }
+        if(reservaRepository.findAll().isEmpty()){
+            Reserva reserva1 = new Reserva("Amancio Ortega", "zara@zara.com", "Zara",1200,
+            "Evento corporativo con barra libre de cerveza, vino y refrescos durante 4 horas","pendiente");
+            Reserva reserva2 = new Reserva("Florentino Perez", "cristiano@mbappe.es", "Real Madrid CF",1500,
+            "Evento para celebrar una champions","pendiente");
+            reservaRepository.save(reserva1);
+            reservaRepository.save(reserva2);
         }
-
-        private Blob loadImage(String path) {
-            try {
+    }
+    private Blob loadImage(String path) {
+        try {
             InputStream inputStream = new ClassPathResource("static/" + path).getInputStream();
             return BlobProxy.generateProxy(inputStream, inputStream.available());
         } catch (IOException e) {

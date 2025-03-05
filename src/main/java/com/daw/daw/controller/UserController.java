@@ -33,10 +33,6 @@ public class UserController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @GetMapping
-    public Iterable<User> getUsers() {
-        return userRepository.findAll();
-    }
 
     @GetMapping("{id}")
     public Optional<User> getUserById(@PathVariable ("id") Long id) {

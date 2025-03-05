@@ -36,15 +36,16 @@ public class Security {
         
         http
             .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/","/img/{id}","/perfil","/paginaDetalleConcierto/{id}","/staticimg/vid", "/clubbing", "/paginaDetalleConcierto", "/register", "/error", "/css/**", "/js/**", "/images/**", "/users/create", "/users/authenticate","/admin","coments/create","img/index.mp4").permitAll()
-                .anyRequest().authenticated())
-                .formLogin(formLogin -> formLogin
-                .loginPage("/users/login")
-                .defaultSuccessUrl("/")
-                .permitAll())
-            .logout(logout -> logout
-                .permitAll());
-                http.csrf(csrf -> csrf.disable());
+            .requestMatchers("/","/static/**", "/perfil","/webapp16/src/main/resources/static/**", "/clubbing", "/paginaDetalleConcierto/**", "/register/**", "/error", "/css/**", "/js/**","/img/**", "/users/create", "/users/authenticate", "/admin", "/coments/create","reserva/request").permitAll()
+            .anyRequest().authenticated())
+        .formLogin(formLogin -> formLogin
+            .loginPage("/")
+            .defaultSuccessUrl("/")
+            .permitAll())
+        .logout(logout -> logout
+            .logoutUrl("/users/logout")
+            .permitAll());
+       http.csrf(csrf -> csrf.disable());
 
         return http.build();
     }
