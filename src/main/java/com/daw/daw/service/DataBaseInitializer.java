@@ -26,11 +26,15 @@ import com.daw.daw.model.Image;
 import com.daw.daw.repository.EventRepository;
 import com.daw.daw.repository.ImageRepository;
 import com.daw.daw.repository.ReservaRepository;
+import com.daw.daw.repository.TicketRepository;
 import com.daw.daw.model.Reserva;
+import com.daw.daw.model.Ticket;
 
 @Service
 public class DataBaseInitializer {
 
+    @Autowired
+    private TicketRepository ticketRepository;
     @Autowired
     private UserRepository UserRepository;
 
@@ -57,6 +61,10 @@ public class DataBaseInitializer {
         User user = new User("user", "user@user.com", "222111000", passwordEncoder.encode("user"),
                 Arrays.asList("USER"));
 
+        Ticket ticket = new Ticket("4", 10, "admin", "Concierto de prueba");
+        if (ticketRepository.findAll().isEmpty()) {
+            ticketRepository.save(ticket);
+        }
         // SAMPLE USERS
         if (UserRepository.findByName(admin.getNombre()).isEmpty()
                 && UserRepository.findByName(user.getNombre()).isEmpty()) {
@@ -68,16 +76,22 @@ public class DataBaseInitializer {
             Image imageIndex = new Image(videoIndex, "index");
             imageRepository.save(imageIndex);
         }
+        Event acdcd = new Event("AC-DC", "concert", "Los mejores rockeros de la hisotria de la musica", loadImage("img/acdc.webp"));
         Event cruzCafune = new Event("Cruz Cafune", "concert", "Fiolo reza fiolo", loadImage("img/cruzcafune.jpg"));
-        Event ochoYmedio = new Event("OCHOYMEDIO", "party",
-                "La mejor musica indie, todos los viernes y sabados en tu discoteca favorita",
-                loadImage("img/ochoymedio.jpg"));
-        Event wasaby = new Event("WASABI", "party",
-                "La fiesta mas picante de buenos aires, aterriza en madrid, chupitos gratis a las 4...",
-                loadImage("img/wasabyFest.jpg"));
-        Event bubuRoom = new Event("BUBU ROOM", "party",
-                "La fiesta mas picante de buenos aires, aterriza en madrid, chupitos gratis a las 4...",
-                loadImage("img/BubuRoom.avif"));
+        Event pekkeErgo = new Event("Il Pekkeño & Ergo Pro", "concert", "Los raperos mas duros de caravanchel, desde el barrio hacia madrid", loadImage("img/PekkeErgo.jpg"));
+        Event mykeTowers = new Event("Myke Towers", "concert", "El trappero mas pegao del momento, viene a la joy", loadImage("img/mykeyowers.jpg"));
+        Event rollingStones = new Event("The Rolling Stones", "concert", "El grupo mas mitico de rock de nuetra epoca viene a hacer mucho ruido!!", loadImage("img/the.rolling.jpg"));
+        Event yerayCortes = new Event("Yeray Cortes", "concert", "La revelacion de la guittara española viene al teatro despues de ganar su primer oscar...", loadImage("img/yerayy.png"));
+        Event elFerias = new Event("David Ramzi Akka.Elferias", "concert", "El gitano de moda viene a la joy a canatr su cancion, GITANO CABRON!", loadImage("img/ferias.png"));
+        Event ctangana = new Event("Ctanga", "concert", "Uno de los mejores artistas de la capital...El madrileño!!", loadImage("img/ctangana.jpg"));
+        Event fitoFitipaldis = new Event("Fito & Fitipaldis", "concert", "El mejor pop-rock de los 90 vienen a encogernois el corazon a la joy", loadImage("img/fito.jpg"));
+        Event theBeatles = new Event("The Beatles", "concert", "Los primeros en denominar Rock a un estilo musical!!", loadImage("img/TheBeatles.webp"));
+        Event monchoChavea = new Event("Moncho Chavea", "concert", "El gitaneo mas sonado de españa", loadImage("img/gitano2.jpg"));
+        Event cigala = new Event("El Cigala", "concert", "El gitano mas fomoso del pais, despues de ferias!", loadImage("img/gitano3.jpg"));
+        Event melendi = new Event("El Milindri", "concert", "Vuelve el milindri, aunque ha dejado los porros sigue siendo unico!!", loadImage("img/melendi.jpg"));
+        Event ochoYmedio = new Event("OCHOYMEDIO", "party","La mejor musica indie, todos los viernes y sabados en tu discoteca favorita",loadImage("img/ochoymedio.jpg"));
+        Event wasaby = new Event("WASABI", "party","La fiesta mas picante de buenos aires, aterriza en madrid, chupitos gratis a las 4...",loadImage("img/wasabyFest.jpg"));
+        Event bubuRoom = new Event("BUBU ROOM", "party","La fiesta mas picante de buenos aires, aterriza en madrid, chupitos gratis a las 4...",loadImage("img/BubuRoom.avif"));
         if (comentsRepository.findAll().isEmpty()) {
             Coments coments1 = new Coments(5, "Me encanto el concierto, la mejor noche de mi vida", "user");
             Coments coments2 = new Coments(4, "La musica era buena, pero la bebida era cara", "user");
@@ -96,6 +110,19 @@ public class DataBaseInitializer {
             eventRepository.save(bubuRoom);
             eventRepository.save(wasaby);
             eventRepository.save(cruzCafune);
+            eventRepository.save(pekkeErgo);
+            eventRepository.save(mykeTowers);
+            eventRepository.save(rollingStones);
+            eventRepository.save(yerayCortes);
+            eventRepository.save(elFerias);
+            eventRepository.save(ctangana);
+            eventRepository.save(fitoFitipaldis);
+            eventRepository.save(theBeatles);
+            eventRepository.save(monchoChavea);
+            eventRepository.save(cigala);
+            eventRepository.save(melendi);
+            eventRepository.save(acdcd);
+
         }
         if (reservaRepository.findAll().isEmpty()) {
             Reserva reserva1 = new Reserva("Amancio Ortega", "zara@zara.com", "Zara", 1200,

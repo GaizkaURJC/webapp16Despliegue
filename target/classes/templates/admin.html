@@ -109,14 +109,20 @@
         </div>
         <div class="inicio-title">
             <h2>
-                <a href="#" data-bs-toggle="modal" data-bs-target="#modalCrearEvento">Añadir concierto</a>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#modalCrearConcierto">Añadir concierto</a>
+
+            </h2>
+        </div>
+        <div class="inicio-title">
+            <h2>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#modalCrearFiesta">Añadir fiesta</a>
 
             </h2>
         </div>
     </div>
 
     <!-- Modal Crear concierto -->
-    <div class="modal fade" id="modalCrearEvento" tabindex="-1" aria-labelledby="modalCrearEventoLabel"
+    <div class="modal fade" id="modalCrearConcierto" tabindex="-1" aria-labelledby="modalCrearEventoLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -126,17 +132,11 @@
                 </div>
 
                 <div class="modal-body">
-                    <form action="/evento/create" method="POST" enctype="multipart/form-data">
+                    <form action="/events/conciertoCreate" method="post" enctype="multipart/form-data">
                         <div class="mb-3">
                             <label for="title" class="form-label">Título del evento:</label>
                             <input type="text" class="form-control" id="title" name="title" required>
                         </div>
-
-                        <div class="mb-3">
-                            <label for="tipo" class="form-label">Tipo de evento:</label>
-                            <input type="text" class="form-control" id="tipo" name="tipo" value="concert" readonly>
-                        </div>
-
                         <div class="mb-3">
                             <label for="descripcion" class="form-label">Descripción:</label>
                             <textarea class="form-control" id="descripcion" name="description" required></textarea>
@@ -144,7 +144,7 @@
 
                         <div class="mb-3">
                             <label for="imageFile" class="form-label">Subir imagen:</label>
-                            <input type="file" class="form-control" id="imageFile" name="imageFile" accept="image/*"
+                            <input type="file" class="form-control" id="imageFile" name="imageFile" accept="image/**"
                                 required>
                         </div>
 
@@ -153,9 +153,44 @@
                         </div>
                     </form>
                 </div>
+                
             </div>
         </div>
     </div>
+    <div class="modal fade" id="modalCrearFiesta" tabindex="-1" aria-labelledby="modalCrearEventoLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="modalCrearEventoLabel">Crear Nueva Fiesta</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="/events/partyCreate" method="post" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Título de la Fiesta:</label>
+                            <input type="text" class="form-control" id="title" name="title" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="descripcion" class="form-label">Detalles del evento:</label>
+                            <textarea class="form-control" id="descripcion" name="partyDetails" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="imageFile" class="form-label">Subir imagen:</label>
+                            <input type="file" class="form-control" id="imageFile" name="partyImageFile" accept="image/**"
+                                required>
+                        </div>
+            
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-primary">Crear Concierto</button>
+                        </div>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
     <!-- Fin Modal Crear concierto -->
 
 

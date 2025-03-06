@@ -39,7 +39,7 @@ public class PageController {
 
 	@GetMapping("/")
 	public String form(Model model) {
-		List<Event> party = eventRepository.findByTipo("party");
+		List<Event> party = eventRepository.findAllByTipo("party");
 		model.addAttribute("party", party);
 		List<Event> concerts = eventRepository.findByTipo("concert");
 		model.addAttribute("concerts", concerts);
