@@ -20,30 +20,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function reiniciarLoadMore() {
         const loadMoreButton = document.querySelector('.loadMore');
-        let currentItems = 4;
+        let currentItems = 3;
         const elementList = [...document.querySelectorAll('.portfolio-item')].filter(el => el.style.display === 'block');
 
-        // Mostrar solo los primeros 4 y ocultar el resto
         elementList.forEach((el, index) => {
             el.style.display = (index < currentItems) ? 'block' : 'none';
         });
 
-        // Mostrar o esconder el botón "Load More"
         if (elementList.length <= currentItems) {
             loadMoreButton.style.display = 'none';
         } else {
             loadMoreButton.style.display = 'block';
         }
 
-        // Función de paginación al hacer clic en "Load More"
         loadMoreButton.onclick = function (e) {
             e.preventDefault();
-            for (let i = currentItems; i < currentItems + 4; i++) {
+            for (let i = currentItems; i < currentItems + 3; i++) {
                 if (elementList[i]) {
                     elementList[i].style.display = 'block';
                 }
             }
-            currentItems += 4;
+            currentItems += 3;
 
             if (currentItems >= elementList.length) {
                 loadMoreButton.style.display = 'none';
@@ -62,7 +59,5 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // Simular clic inicial en "Todos" al cargar la página
-    aplicarFiltro("all");
-    filtros[0].classList.add("activo"); // Añadir clase activa al primer filtro
+    aplicarFiltro("all"); // Inicializa con todos visibles al principio
 });
