@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -70,5 +71,14 @@ public class EventController {
         }
         return "redirect:/";
     }
+
+    @GetMapping("/{id}")
+	public String clubbingRedirection(@PathVariable Long id, Model model) {
+		model.addAttribute("event", eventRepository.findById(id).get());
+        String[] partes = eventRepository.findById(id).get().getDescription().split("\\|");
+        model.addAttribute("descLinea1", partes[0]);
+        model.addAttribute("descLinea2", partes.length > 1 ? partes[1] : "");
+		return "clubing";
+	}
 }
 

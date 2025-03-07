@@ -50,7 +50,6 @@ public class PageController {
 	public ResponseEntity<Object> getImage(@PathVariable Long id, Model model) throws SQLException {
 		Optional<Event> op = eventRepository.findById(id);
 		if (op.isPresent() && op.get().getImageFile() != null) {
-			Blob image = op.get().getImageFile();
 			return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
 					.body(new InputStreamResource(op.get().getImageFile().getBinaryStream()));
 		} else {
@@ -59,11 +58,6 @@ public class PageController {
 	}
 
 	
-
-	@GetMapping("/clubbing")
-	public String clubingRedirection(Model model) {
-		return "clubing";
-	}
 
 	@GetMapping("/paginaDetalleConcierto/{id}")
 	public String concertDetailRedirection(@PathVariable Long id, Model model) {

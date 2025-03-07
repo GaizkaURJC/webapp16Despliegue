@@ -93,7 +93,7 @@
     <!-- Fin Modal de sing up-->
      <section class="header">
         <video autoplay loop muted playsinline id="bg-video">
-            <source src="videos/video-clubbing.mp4" type="video/mp4">
+            <source src="/videos/video-clubbing.mp4" type="video/mp4">
             Tu navegador no soporta el video en HTML5.
         </video>
             <div class="container1">
@@ -122,13 +122,13 @@
                 <p>FEB</p>
             </div>
             <div class="descripcion">
-                <h1>OCHO Y MEDIO EN EL TEATRO DAW | 14.02.2025</h1>
+                <h1>{{event.title}} EN EL TEATRO DAW | 14.02.2025</h1>
                 <p>LOS MEJORES DJs DE LA CAPITAL</p>
                 <small>COMPRA YA TU ENTRADA O RESERVA TU MESA!</samll>
             </div>
         </div>
         <div class="fotoFiesta-Container">
-            <img src="../img/ochoymedio.jpg" alt="Fiesta">
+            <img src="/img/{{event.id}}" alt="Fiesta">
         </div>
         <div class="btn-entrad" >
             <a class="btn" href="#">Comprar Entrada</a>
@@ -139,9 +139,8 @@
             </div>
             <div class="detalles-evento">
                 <h2>Detalles del Evento</h2>
-                <p>La famosa y mitica fiesta de madrid todos los viernes y sabados</p>
-                <hr>Un fiesta caracterizada por su ambiente y su musica inddie, donde no te lo pasaras mal!
-            </div>
+                <p>{{descLinea1}}</p>
+                <hr>{{descLinea2}}<hr
         </div>
         <div class="container4">
             <div class="fecha-hora">

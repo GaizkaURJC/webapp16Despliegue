@@ -112,14 +112,15 @@ public class DataBaseInitializer {
                 "Vuelve el milindri, aunque ha dejado los porros sigue siendo unico!!",
                 loadImage("img/melendi.jpg"), "pop");
         Event ochoYmedio = new Event("OCHOYMEDIO", "party",
-                "La mejor musica indie, todos los viernes y sabados en tu discoteca favorita",
-                loadImage("img/ochoymedio.jpg"), "party");
+                        "La mejor música indie de Madrid te espera cada viernes y sábado.|Vive el ambiente único de OCHOYMEDIO, donde la fiesta nunca termina.",
+                        loadImage("img/ochoymedio.jpg"), "party");
         Event wasaby = new Event("WASABI", "party",
-                "La fiesta mas picante de buenos aires, aterriza en madrid, chupitos gratis a las 4...",
-                loadImage("img/wasabyFest.jpg"), "party");
+                        "La fiesta más picante de Buenos Aires aterriza en Madrid.|Chupitos gratis a las 4 y música que arde en cada rincón.",
+                        loadImage("img/wasabyFest.jpg"), "party");
         Event bubuRoom = new Event("BUBU ROOM", "party",
-                "La fiesta mas picante de buenos aires, aterriza en madrid, chupitos gratis a las 4...",
-                loadImage("img/BubuRoom.avif"), "party");
+                        "Tu sala favorita se convierte en un paraíso electrónico.|BUBU ROOM mezcla luces, DJs internacionales y un ambiente brutal.",
+                        loadImage("img/BubuRoom.avif"), "party");
+                
         if (comentsRepository.findAll().isEmpty()) {
             Coments coments1 = new Coments(5, "Me encanto el concierto, la mejor noche de mi vida", "user");
             Coments coments2 = new Coments(4, "La musica era buena, pero la bebida era cara", "user");
