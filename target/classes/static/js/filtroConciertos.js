@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function reiniciarLoadMore() {
         const loadMoreButton = document.querySelector('.loadMore');
-        let currentItems = 3;
+        let currentItems = 4;
         const elementList = [...document.querySelectorAll('.portfolio-item')].filter(el => el.style.display === 'block');
 
         elementList.forEach((el, index) => {
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     elementList[i].style.display = 'block';
                 }
             }
-            currentItems += 3;
+            currentItems += 4;
 
             if (currentItems >= elementList.length) {
                 loadMoreButton.style.display = 'none';
