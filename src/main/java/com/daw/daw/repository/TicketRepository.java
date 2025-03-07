@@ -1,21 +1,23 @@
 package com.daw.daw.repository;
 
-
-import java.util.List;
-import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.Query;
 
 import com.daw.daw.model.Ticket;
 
+import java.util.List;
+import java.util.Optional;
 
 public interface TicketRepository extends JpaRepository<Ticket, Long> {
 
-    Optional <Ticket> findByTitulo(String titulo);
-    Optional <Ticket> getEntradaById(Long id);
-    List<Ticket> findAll();
+    List<Ticket> findByUserEmail(String userEmail);
+
+    List<Ticket> findByTitle(String title);
+
     List<Ticket> findByUserOwner(String userOwner);
-    List<Ticket> findByPrecio(int precio);
-    Optional <Ticket>  getByUserOwner(String userOwner);
-    Optional <Ticket> getByCategory (String category);
-} 
+
+    List<Ticket> findByDni(String dni);
+
+    long countByTitle(String title);
+
+}

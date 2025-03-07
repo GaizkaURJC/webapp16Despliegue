@@ -1,6 +1,5 @@
 package com.daw.daw.model;
 
-
 import java.util.List;
 import java.util.Locale.Category;
 
@@ -25,44 +24,80 @@ public class Ticket {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String evento_Id;
-
-    private int precio;
+    private String userEmail;
 
     private String userOwner;
 
-    private String titulo;
+    private String dni;
 
-    private String category; 
-    
+    private String ticketName;
 
-    //Añadiremos fecha de compra mas adelante
+    private String title;
+
+    private String gender;
+
+    private String category;
 
     public Ticket() {
     }
 
-    public Ticket(String evento_Id, int precio, String userOwner, String titulo, String category) {
-        this.evento_Id = evento_Id;
-        this.precio = precio;
+    public Ticket(String userEmail, String dni, String ticketName, String title, String gender,
+            String userOwner, String category) {
+        this.userEmail = userEmail;
+        this.dni = dni;
+        this.ticketName = ticketName;
+        this.title = title;
+        this.gender = gender;
         this.userOwner = userOwner;
-        this.titulo = titulo;
         this.category = category;
     }
 
-    public String getEvento_Id() {
-        return evento_Id;
-    }
-    
-    public void setEvento_Id(String evento_Id) {
-        this.evento_Id = evento_Id;
+    public Long getId() {
+        return id;
     }
 
-    public int getPrecio() {
-        return precio;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setPrecio(int precio) {
-        this.precio = precio;
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
+    public String getTicketName() {
+        return ticketName;
+    }
+
+    public void setTicketName(String ticketName) {
+        ticketName = ticketName;
+    }
+
+    public String getTittle() {
+        return title;
+    }
+
+    public void setTittle(String title) {
+        this.title = title;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public String getUserOwner() {
@@ -73,14 +108,6 @@ public class Ticket {
         this.userOwner = userOwner;
     }
 
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
     public String getCategory() {
         return category;
     }
@@ -88,6 +115,4 @@ public class Ticket {
     public void setCategory(String category) {
         this.category = category;
     }
-
-    
 }

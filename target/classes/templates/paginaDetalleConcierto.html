@@ -192,11 +192,13 @@
                         </div>
                     </div>
                 </div>
-                <div  class="btn-change8">
+                <div class="btn-change8" data-bs-toggle="modal" data-bs-target="#modalCompra" style="cursor: pointer;">
                     <div class="buytickets">
-                    COMPRAR ENTRADAS  
+                        COMPRAR ENTRADAS
                     </div>
                 </div>
+
+
 
             </div>
             <div class="container-concert-img">
@@ -206,6 +208,45 @@
                 <img class="imgconcert" src="/img/{{event.id}}" alt="concierto1">
 
             </div>
+
+            <!-- Modal de compra -->
+            <div class="modal fade" id="modalCompra" tabindex="-1" aria-labelledby="modalCompraLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title">Datos para la Entrada</h3>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <form action="/tickets/buyTicket" method="post">
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label class="form-label">Nombre completo</label>
+                                    <input type="text" class="form-control" name="ticketName" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">DNI</label>
+                                    <input type="text" class="form-control" name="dni" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Género</label>
+                                    <select class="form-select" name="gender">
+                                        <option value="Hombre">Hombre</option>
+                                        <option value="Mujer">Mujer</option>
+                                        <option value="Otro">Otro</option>
+                                    </select>
+                                </div>
+                                <input type="hidden" name="eventName" value="{{event.title}}">
+                                <input type="hidden" name="category" value="{{event.category}}">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-success">Terminar compra</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Fin Modal de compra -->
     </section>
     <!-- FIN DETALLES CONCIERTO -->
 
