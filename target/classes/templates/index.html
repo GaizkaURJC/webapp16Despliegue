@@ -151,7 +151,7 @@
                 <source src="/videos/VIDEO-PARA-WEB_sin-musica.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
-            
+
             <div class="overlay"></div>
 
         </div>
@@ -192,29 +192,29 @@
         <!-- Conciertos Title -->
         <div class="section2-tittle">
             <h2>CONCIERTOS</h2>
-            <hr class="line" href=""/>
+            <hr class="line" href="" />
             <p>Los mejores conciertos de la mano de nuestra sala, para vivir una experiencia completa!</p>
         </div>
 
         <div class="conciertos-container">
             <ul class="conciertos-filters" id="conciertos-filters">
                 <li>
-                    <a href="#">Todos</a>
+                    <a href="#" data-category="all">Todos</a>
                 </li>
                 <li>
-                    <a href="#">Rock</a>
+                    <a href="#" data-category="rock">Rock</a>
                 </li>
                 <li>
-                    <a href="#">Trap</a>
+                    <a href="#" data-category="trap">Trap</a>
                 </li>
                 <li>
-                    <a href="#">Pop</a>
+                    <a href="#" data-category="pop">Pop</a>
                 </li>
                 <li>
-                    <a href="#">Rap</a>
+                    <a href="#" data-category="rap">Rap</a>
                 </li>
                 <li>
-                    <a href="#">Flamenco</a>
+                    <a href="#" data-category="flamenco">Flamenco</a>
 
                 </li>
             </ul>
@@ -222,7 +222,7 @@
 
             <div class="cocniertos-disponibles" data-aos="fade-up" data-aos-delay="200">
                 {{#concerts}}
-                <div class="portfolio-item isotope-item filter-app">
+                <div class="portfolio-item isotope-item filter-app" data-category="{{category}}">
                     <div class="portfolio-content">
                         <img src="/img/{{id}}" class="img-fluid" alt="">
                         <div class="portfolio-info">
@@ -237,11 +237,11 @@
                     </div>
                 </div>
                 {{/concerts}}
-                
+
             </div>
             <a href="#" class="loadMore">
                 Load More
-            <span class="loading"></span>
+                <span class="loading"></span>
             </a>
         </div>
     </section>
@@ -459,9 +459,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-    </script>
+        </script>
     <script src="/js/main.js"></script>
     <script src="/js/ayax.js"></script>
+    <script src="/js/filtroConciertos.js"></script>
     <div th:replace="loader :: loader"></div>
 </body>
 

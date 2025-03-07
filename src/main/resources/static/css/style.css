@@ -7,6 +7,7 @@ section {
     margin: 0;
     padding: 0;
 }
+
 #loader {
     position: fixed;
     left: 50%;
@@ -33,6 +34,7 @@ section {
         transform: rotate(360deg);
     }
 }
+
 ul,
 li {
     list-style-type: none;
@@ -1109,7 +1111,7 @@ h6 {
 /*------------------------------------------
     LOAD MORE
 --------------------------------------------*/
-.loadMore{
+.loadMore {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1126,14 +1128,16 @@ h6 {
     margin-bottom: 10px;
 
 }
-.loadMore:hover{
+
+.loadMore:hover {
     background-color: rgb(38, 35, 35);
     color: inherit;
     transform: scale(1.03);
     color: yellow;
 }
- /* Estilos para el loader */
- #loader {
+
+/* Estilos para el loader */
+#loader {
     position: fixed;
     left: 50%;
     top: 50%;
@@ -1158,4 +1162,13 @@ h6 {
     100% {
         transform: rotate(360deg);
     }
+}
+
+/*------------------------------------------
+    Filtro
+--------------------------------------------*/
+.conciertos-filters a.activo {
+    font-weight: bold;
+    color: #ff0000;
+    text-decoration: underline;
 }
