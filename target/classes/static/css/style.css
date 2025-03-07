@@ -1115,25 +1115,27 @@ h6 {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 14px;
+    font-size: 16px;
     width: 180px;
     height: 52px;
     text-transform: uppercase;
-    background-color: rgb(150, 150, 51);
+    background-color: #f2f526;
     border: 2px black solid;
     color: rgb(0, 0, 0);
     margin: 0 auto;
     border-radius: 30px;
-    transition: all .3 ease-out;
+    transition: all .3s ease-out;
     margin-bottom: 10px;
-
+    text-align: center;
+    padding: 0;
+    line-height: 52px;
+    font-weight: 1000;
 }
 
 .loadMore:hover {
     background-color: rgb(38, 35, 35);
-    color: inherit;
+    color: #f2f526;
     transform: scale(1.03);
-    color: yellow;
 }
 
 /* Estilos para el loader */
@@ -1170,5 +1172,4 @@ h6 {
 .conciertos-filters a.activo {
     font-weight: bold;
     color: #ff0000;
-    text-decoration: underline;
 }
