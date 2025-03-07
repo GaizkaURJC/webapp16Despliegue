@@ -2,6 +2,7 @@ package com.daw.daw.model;
 
 
 import java.util.List;
+import java.util.Locale.Category;
 
 import org.springframework.stereotype.Component;
 
@@ -32,6 +33,7 @@ public class Ticket {
 
     private String titulo;
 
+    private String category; 
     
 
     //Añadiremos fecha de compra mas adelante
@@ -39,11 +41,12 @@ public class Ticket {
     public Ticket() {
     }
 
-    public Ticket(String evento_Id, int precio, String userOwner, String titulo) {
+    public Ticket(String evento_Id, int precio, String userOwner, String titulo, String category) {
         this.evento_Id = evento_Id;
         this.precio = precio;
         this.userOwner = userOwner;
         this.titulo = titulo;
+        this.category = category;
     }
 
     public String getEvento_Id() {
@@ -76,6 +79,14 @@ public class Ticket {
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     

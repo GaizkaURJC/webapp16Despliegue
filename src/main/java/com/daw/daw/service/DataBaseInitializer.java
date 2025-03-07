@@ -61,7 +61,7 @@ public class DataBaseInitializer {
         User user = new User("user", "user@user.com", "222111000", passwordEncoder.encode("user"),
                 Arrays.asList("USER"));
 
-        Ticket ticket = new Ticket("4", 10, "admin", "Concierto de prueba");
+        Ticket ticket = new Ticket("4", 10, "admin", "Concierto de prueba", "rock");    
         if (ticketRepository.findAll().isEmpty()) {
             ticketRepository.save(ticket);
         }

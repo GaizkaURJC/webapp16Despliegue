@@ -16,6 +16,6 @@ public interface TicketRepository extends JpaRepository<Ticket, Long> {
     List<Ticket> findAll();
     List<Ticket> findByUserOwner(String userOwner);
     List<Ticket> findByPrecio(int precio);
-
-    
+    Optional <Ticket>  getByUserOwner(String userOwner);
+    Optional <Ticket> getByCategory (String category);
 } 

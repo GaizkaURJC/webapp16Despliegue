@@ -1,7 +1,9 @@
 package com.daw.daw.controller;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
  
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +20,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
- 
+ import org.springframework.ui.Model;
 import com.daw.daw.model.User;
+import com.daw.daw.repository.TicketRepository;
+import com.daw.daw.model.Ticket;
 import com.daw.daw.repository.UserRepository;
 import jakarta.servlet.http.HttpSession;
-
+import java.util.Map;
+import java.util.stream.Collectors;
+import com.daw.daw.model.Event;
+import com.daw.daw.repository.EventRepository;
 @Controller
 @RequestMapping("/users/")
 public class UserController {
@@ -32,6 +39,12 @@ public class UserController {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private TicketRepository ticketRepository;
+
+    @Autowired
+    private EventRepository eventRepository;
 
 
     @GetMapping("{id}")
@@ -114,4 +127,39 @@ public class UserController {
         return "redirect:/";
     }
     
+    @GetMapping("userPreferences")
+    public String userPreferences( HttpSession session, Model model) {
+
+        // Recuperamos el usuario que ha inciado sesion
+        String user = getLoggedUser(session);
+        if (user==null) {
+            return "redirect:/login";     
+        }
+
+        // Buscamos los tickets que ha comprado el usuario
+        List <Ticket> tickets = ticketRepository.findByUserOwner(user);
+
+        //Contamos cuantos hay de cada categoria
+        Map<String, Long> categoryCount = tickets.stream()
+                .collect(Collectors.groupingBy(Ticket::getCategory, Collectors.counting()));
+
+        //Ordenamos las categorias por preferencia de mayor a menor
+
+        List <Map.Entry<String, Long>> preferenciasOrdenadas = categoryCount.entrySet().stream()
+                .sorted(Map.Entry.<String, Long>comparingByValue().reversed())
+                .collect(Collectors.toList());
+        
+        //Buscar event futuros de esas categorias
+        List <Event> recomendaciones = new ArrayList<>();
+        for (Map.Entry<String, Long> preferencia: preferenciasOrdenadas){
+            List<Event> eventosDeEsaCategoria = eventRepository.findByCategory(preferencia.getKey())
+                    .map(Arrays::asList)
+                    .orElseGet(ArrayList::new);
+            recomendaciones.addAll(eventosDeEsaCategoria);
+        }
+
+        //Pasamos las recomendaciones a la vista
+        model.addAttribute("recomendaciones", recomendaciones);
+        return "userPreferences";
+    }
 }

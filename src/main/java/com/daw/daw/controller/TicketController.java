@@ -44,14 +44,12 @@ public class TicketController {
 
     @PostMapping("/buyTicket")
     public String buyTicket(HttpSession session) {
-
-
         if (userController.isLogged(session) == false) {
             return "redirect:/error";
             
         }else{
             String UserName = userController.getLoggedUser(session);
-            Ticket ticket = new Ticket(UserName, 10, UserName, "Concierto de prueba");
+            Ticket ticket = new Ticket(UserName, 10, UserName, "Concierto de prueba","rock");
             ticketRepository.save(ticket);
             return "redirect:/perfil";
         }
