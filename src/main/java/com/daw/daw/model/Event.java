@@ -25,15 +25,18 @@ public class Event {
 
     private String tipo;
 
+    private String category;
+
     public Event() {
 
     }
 
-    public Event(String title, String tipo, String description, java.sql.Blob imageFile) {
+    public Event(String title, String tipo, String description, java.sql.Blob imageFile, String category) {
         this.title = title;
         this.tipo = tipo;
         this.imageFile = imageFile;
         this.description = description;
+        this.category = category;
     }
 
     public void setDescription(String description) {
@@ -74,6 +77,14 @@ public class Event {
 
     public Blob getImageFile() {
         return imageFile;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getCategory() {
+        return category;
     }
 
 }

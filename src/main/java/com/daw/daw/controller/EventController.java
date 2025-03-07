@@ -42,10 +42,11 @@ public class EventController {
     @PostMapping("/conciertoCreate")
     public String crearConcierto(@RequestParam("title") String tituloConcierto,
                                  @RequestParam("description") String conciertoDescription,
-                                 @RequestParam("imageFile") MultipartFile conciertoImagen) {
+                                 @RequestParam("imageFile") MultipartFile conciertoImagen,
+                                 @RequestParam("category") String category) {
         try {
             Blob blobImagen = new javax.sql.rowset.serial.SerialBlob(conciertoImagen.getBytes());
-            Event concierto = new Event(tituloConcierto, "concert", conciertoDescription, blobImagen);
+            Event concierto = new Event(tituloConcierto, "concert", conciertoDescription, blobImagen, category);
             eventRepository.save(concierto);
         } catch (Exception e) {
             e.printStackTrace();
@@ -57,10 +58,11 @@ public class EventController {
     @PostMapping("/partyCreate")
     public String crearFiesta (@RequestParam("title") String tituloFiesta,
                                @RequestParam("partyDetails") String fiestaDescription,
-                               @RequestParam("partyImageFile") MultipartFile fiestaImagen) {
+                               @RequestParam("partyImageFile") MultipartFile fiestaImagen,
+                               @RequestParam("category") String categoria) {
         try {
             Blob blobImagen = new javax.sql.rowset.serial.SerialBlob(fiestaImagen.getBytes());
-            Event fiesta = new Event(tituloFiesta, "party", fiestaDescription, blobImagen);
+            Event fiesta = new Event(tituloFiesta, "party", fiestaDescription, blobImagen, "party");
             eventRepository.save(fiesta);
         } catch (Exception e) {
             e.printStackTrace();

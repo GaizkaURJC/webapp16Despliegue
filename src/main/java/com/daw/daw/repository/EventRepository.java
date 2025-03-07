@@ -18,5 +18,6 @@ public interface EventRepository extends JpaRepository<Event, Long> {
     Optional <Event> getByTipo(String Tipo);
     List <Event> findAllByTipo(String tipo);
     boolean existsByTitle(String title);
+    Optional <Event> findByCategory(String category);
 
 }

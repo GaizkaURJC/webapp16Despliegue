@@ -134,8 +134,18 @@
                 <div class="modal-body">
                     <form action="/events/conciertoCreate" method="post" enctype="multipart/form-data">
                         <div class="mb-3">
-                            <label for="title" class="form-label">Título del evento:</label>
+                            <label for="title" class="form-label">Título del Concierto:</label>
                             <input type="text" class="form-control" id="title" name="title" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="category" class="form-label">Tipo de concierto:</label>
+                            <select class="form-control" id="category" name="category" required>
+                                <option value="rock">Rock</option>
+                                <option value="pop">Pop</option>
+                                <option value="rap">Rap</option>
+                                <option value="flamenco">Flamenco</option>
+                                <option value="trap">Trap</option>
+                            </select>
                         </div>
                         <div class="mb-3">
                             <label for="descripcion" class="form-label">Descripción:</label>
