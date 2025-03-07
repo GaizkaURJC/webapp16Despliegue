@@ -51,7 +51,7 @@ public class EventController {
             e.printStackTrace();
             return "redirect:/error";
         }
-        return "redirect:/";
+        return "redirect:/admin";
     }
 
     @PostMapping("/partyCreate")

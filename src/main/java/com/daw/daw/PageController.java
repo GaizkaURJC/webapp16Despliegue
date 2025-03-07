@@ -58,6 +58,8 @@ public class PageController {
 		}
 	}
 
+	
+
 	@GetMapping("/clubbing")
 	public String clubingRedirection(Model model) {
 		return "clubing";

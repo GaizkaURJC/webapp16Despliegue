@@ -22,9 +22,12 @@ import com.daw.daw.model.Reserva;
 import com.daw.daw.repository.ComentsRepository;
 import com.daw.daw.repository.ReservaRepository;
 import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpServletResponse;
 import java.util.Date;
 import java.text.ParseException;
-
+import java.io.IOException;
+import com.daw.daw.service.PdfService;
+import com.lowagie.text.DocumentException;
 
 @Controller
 @RequestMapping("/reserva/")
@@ -33,14 +36,28 @@ public class ReservaController {
     @Autowired
     private ReservaRepository reservaRepository;
 
+    @Autowired
+    private PdfService pdfService;
+
     @PostMapping("request")
-    public String requestEvent (@RequestParam ("userName") String name,
-                                @RequestParam ("userEmail") String email,
-                                @RequestParam ("bussinesName") String bussinesname,
-                                @RequestParam ("num_personas") int pax,
-                                @RequestParam ("eventDescript") String description) {
-            Reserva reserva = new Reserva(name, email, bussinesname, pax, description, "pendiente");
-            reservaRepository.save(reserva);
-            return "redirect:/";
-}
+    public void requestEvent(
+            @RequestParam("userName") String name,
+            @RequestParam("userEmail") String email,
+            @RequestParam("bussinesName") String bussinesname,
+            @RequestParam("num_personas") int pax,
+            @RequestParam("eventDescript") String description,
+            HttpServletResponse response) throws IOException, DocumentException {
+
+        Reserva reserva = new Reserva(name, email, bussinesname, pax, description, "pendiente");
+        reservaRepository.save(reserva);
+
+        // Generar el PDF
+        byte[] pdfBytes = pdfService.generarPdfReserva(reserva);
+
+        // Configurar la respuesta HTTP para que sea una descarga
+        response.setContentType("application/pdf");
+        response.setHeader("Content-Disposition", "attachment; filename=reserva_" + reserva.getUserName() + ".pdf");
+        response.getOutputStream().write(pdfBytes);
+        response.flushBuffer();
+    }
 }

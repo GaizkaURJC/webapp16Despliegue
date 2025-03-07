@@ -33,10 +33,9 @@ public class Security {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authenticationProvider(authenticationProvider());
-        
         http
             .authorizeHttpRequests(authorize -> authorize
-            .requestMatchers("/","/static/**","/tickets/buyTicket","/perfil","/webapp16/src/main/resources/static/**", "/clubbing", "/paginaDetalleConcierto/**", "/register/**", "/error", "/css/**", "/js/**","/img/**", "/users/create", "/users/authenticate", "/admin", "/coments/create","reserva/request","/events/**","/events/create").permitAll()
+            .requestMatchers("/","/static/**","/tickets/buyTicket","/perfil","/webapp16/src/main/resources/static/**", "/clubbing", "/paginaDetalleConcierto/**", "/register/**", "/error", "/css/**", "/js/**","/img/**", "/users/create", "/users/authenticate", "/admin", "/coments/create","reserva/request","/events/**","/events/create","/videos/**").permitAll()
             .anyRequest().authenticated())
         .formLogin(formLogin -> formLogin
             .loginPage("/")
@@ -45,7 +44,7 @@ public class Security {
         .logout(logout -> logout
             .logoutUrl("/users/logout")
             .permitAll());
-       http.csrf(csrf -> csrf.disable());
+        http.csrf(csrf -> csrf.disable());
 
         return http.build();
     }

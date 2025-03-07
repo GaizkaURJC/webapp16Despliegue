@@ -1105,3 +1105,57 @@ h6 {
 .errorButton:hover a {
     color: #f2f526;
 }
+
+/*------------------------------------------
+    LOAD MORE
+--------------------------------------------*/
+.loadMore{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    width: 180px;
+    height: 52px;
+    text-transform: uppercase;
+    background-color: rgb(150, 150, 51);
+    border: 2px black solid;
+    color: rgb(0, 0, 0);
+    margin: 0 auto;
+    border-radius: 30px;
+    transition: all .3 ease-out;
+    margin-bottom: 10px;
+
+}
+.loadMore:hover{
+    background-color: rgb(38, 35, 35);
+    color: inherit;
+    transform: scale(1.03);
+    color: yellow;
+}
+ /* Estilos para el loader */
+ #loader {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+}
+
+.spinner {
+    border: 16px solid #f3f3f3;
+    border-top: 16px solid #d8e44f;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

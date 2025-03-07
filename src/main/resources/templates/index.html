@@ -13,35 +13,6 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/isotope/3.0.6/isotope.pkgd.min.css">
-    <style>
-        /* Estilos para el loader */
-        #loader {
-            position: fixed;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 9999;
-        }
-
-        .spinner {
-            border: 16px solid #f3f3f3;
-            border-top: 16px solid #d8e44f;
-            border-radius: 50%;
-            width: 120px;
-            height: 120px;
-            animation: spin 2s linear infinite;
-        }
-
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-    </style>
 </head>
 
 <body>
@@ -177,9 +148,10 @@
         </div>
         <div class="img">
             <video autoplay muted loop id="bg-video">
-                <source src="../static/img/VIDEO-PARA-WEB_sin-musica.mp4" type="video/mp4">
+                <source src="/videos/VIDEO-PARA-WEB_sin-musica.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
+            
             <div class="overlay"></div>
 
         </div>
@@ -220,8 +192,7 @@
         <!-- Conciertos Title -->
         <div class="section2-tittle">
             <h2>CONCIERTOS</h2>
-            <hr class="line" href="">
-            </hr>
+            <hr class="line" href=""/>
             <p>Los mejores conciertos de la mano de nuestra sala, para vivir una experiencia completa!</p>
         </div>
 
@@ -241,6 +212,10 @@
                 </li>
                 <li>
                     <a href="#">Regueton</a>
+                </li>
+                <li>
+                    <a href="#">Flamenco</a>
+
                 </li>
             </ul>
             <!-- End Conciertos Filters -->
@@ -262,7 +237,12 @@
                     </div>
                 </div>
                 {{/concerts}}
+                
             </div>
+            <a href="#" class="loadMore">
+                Load More
+            <span class="loading"></span>
+            </a>
         </div>
     </section>
 
@@ -277,7 +257,7 @@
         </div>
         <div class="container-eventos">
             <div class="event-form">
-                <form class="form" action="/evento/eventoCoporativo" method="post">
+                <form class="form" action="/evento/eventoCoporativo" method="post" id="reservaForm">
                     <p class="title">Solicitar un evento </p>
                     <p class="message">Rellena el formulario y solicita un presupuesto para tu evento </p>
                     <div class="flex">
@@ -480,28 +460,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var loader = document.getElementById("loader");
-
-            function showLoader() {
-                loader.style.display = "block";
-            }
-
-            function hideLoader() {
-                loader.style.display = "none";
-            }
-
-            // Mostrar el loader al enviar formularios
-            var forms = document.querySelectorAll("form");
-            forms.forEach(function (form) {
-                form.addEventListener("submit", showLoader);
-            });
-
-            // Ocultar el loader después de cargar la página
-            window.addEventListener("load", hideLoader);
-        });
-    </script>
+    <script src="/js/main.js"></script>
+    <script src="/js/ayax.js"></script>
     <div th:replace="loader :: loader"></div>
 </body>
 
