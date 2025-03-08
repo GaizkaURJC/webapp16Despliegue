@@ -25,6 +25,10 @@ import com.daw.daw.model.User;
 import com.daw.daw.repository.TicketRepository;
 import com.daw.daw.model.Ticket;
 import com.daw.daw.repository.UserRepository;
+
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -51,6 +55,14 @@ public class UserController {
     public Optional<User> getUserById(@PathVariable ("id") Long id) {
         return userRepository.getUserById(id);
     }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+		session.setAttribute("username", null);
+        return "/";
+    }
+
     @PostMapping("create")
     public String createUser(@RequestParam("name") String nombre,
                              @RequestParam("email") String correo,
@@ -63,7 +75,6 @@ public class UserController {
         User user = new User(nombre, correo, telf, passwordEncoder.encode(contrasena), Arrays.asList("USER"));
         userRepository.save(user);
         if (session.isNew()){
-            session.setAttribute("user", user);
             session.setAttribute("username", user.getNombre());
             return "redirect:/perfil";
         }
@@ -77,8 +88,6 @@ public class UserController {
 
     User user = userRepository.findByEmail(correo)
             .orElseThrow(() -> new RuntimeException("User not found"));
-
-        session.setAttribute("user", user);
         session.setAttribute("username", user.getNombre());
     if (!passwordEncoder.matches(contrasena, user.getEncodedPassword())) {
         return "redirect:/login?error=true";
@@ -88,7 +97,6 @@ public class UserController {
         return "redirect:/admin";
     }
     else {       
-    session.setAttribute("user", user);
     session.setAttribute("username", user.getNombre());
     return "redirect:/";
     }
@@ -108,6 +116,7 @@ public class UserController {
     public boolean isLogged(HttpSession session) {
         return session.getAttribute("username") != null;
     }
+
     @GetMapping("isAdmin")
     public boolean isAdmin(HttpSession session) {
         String username = (String) session.getAttribute("username");
@@ -116,15 +125,10 @@ public class UserController {
         }else 
         return false;
     }
+
     @GetMapping("getLoggedUser")
     public String getLoggedUser(HttpSession session) {
-        User user = (User) session.getAttribute("user");
-        return user != null ? user.getNombre() : null;
-        }
-    @GetMapping("logout")
-    public String logout(HttpSession session) {
-        session.invalidate();
-        return "redirect:/";
+        return (String) session.getAttribute("username");
     }
     
     @GetMapping("userPreferences")

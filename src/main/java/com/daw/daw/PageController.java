@@ -23,13 +23,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import com.daw.daw.controller.UserController;
 import com.daw.daw.model.Event;
+import com.daw.daw.model.User;
 import com.daw.daw.model.Image;
 import com.daw.daw.repository.EventRepository;
 import com.daw.daw.repository.ImageRepository;
+import com.daw.daw.repository.UserRepository;
 
 @Controller
 public class PageController {
+
+	@Autowired
+    private UserRepository userRepository;
 
 	@Autowired
 	private EventRepository eventRepository;
@@ -37,12 +47,31 @@ public class PageController {
 	@Autowired
 	private ImageRepository imageRepository;
 
+	@Autowired
+	private final UserController userController;
+
+	public PageController(UserRepository userRepository, EventRepository eventRepository, UserController userController) {
+        this.userRepository = userRepository;
+        this.eventRepository = eventRepository;
+        this.userController = userController;  
+    }
+	
+    
+
 	@GetMapping("/")
-	public String form(Model model) {
-		List<Event> party = eventRepository.findAllByTipo("party");
-		model.addAttribute("party", party);
-		List<Event> concerts = eventRepository.findByTipo("concert");
-		model.addAttribute("concerts", concerts);
+	public String form(HttpSession session, Model model) {
+		String username = (String) session.getAttribute("username");
+
+		boolean isUserLogged = (username != null);
+		model.addAttribute("isUserLogged", isUserLogged);
+
+		if (isUserLogged) {
+			Optional<User> user = userRepository.findByName(username);
+			user.ifPresent(value -> model.addAttribute("userLogged", value));
+		}
+
+		model.addAttribute("party", eventRepository.findAllByTipo("party"));
+		model.addAttribute("concerts", eventRepository.findByTipo("concert"));
 		return "index";
 	}
 
@@ -71,7 +100,8 @@ public class PageController {
 	}
 
 	@GetMapping("/perfil")
-	public String profileRedirection(Model model) {
+	public String profileRedirection(HttpSession session, Model model) {
+		model.addAttribute("username", session.getAttribute("username")); 
 		return "paginaPerfil";
 	}
 
