@@ -35,7 +35,7 @@ public class Security {
         http.authenticationProvider(authenticationProvider());
         http
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/","/logout", "/static/**", "/tickets/**", "/perfil",
+                        .requestMatchers("/","/users/logout", "/static/**", "/tickets/**", "/perfil",
                                 "/webapp16/src/main/resources/static/**", "/clubbing", "/paginaDetalleConcierto/**",
                                 "/register/**", "/error", "/css/**", "/js/**", "/img/**", "/users/create",
                                 "/users/authenticate", "/admin", "/coments/create", "reserva/request", "/events/**",

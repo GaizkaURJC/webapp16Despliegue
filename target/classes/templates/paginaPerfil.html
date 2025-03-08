@@ -13,6 +13,7 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="../css/perfilStyle.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/isotope/3.0.6/isotope.pkgd.min.css">
+    
 </head>
 
 <script>
@@ -61,7 +62,7 @@
                     </a>
                 </li>
                 {{/isUserLogged}}
-                
+
                 {{^isUserLogged}}
                 <li class="nav-item-login">
                     <a href="#" class="btn" type="button" data-bs-toggle="modal" data-bs-target="#modalLogin">
@@ -126,11 +127,12 @@
                 </div>
 
                 <div class="modal-body">
-                    <form><div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Correo electrónico</label>
-                        <input type="email" class="form-control" id="correo" aria-describedby="emailHelp">
-                    </div>
-                    
+                    <form>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Correo electrónico</label>
+                            <input type="email" class="form-control" id="correo" aria-describedby="emailHelp">
+                        </div>
+
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Correo electrónico</label>
                             <input type="email" class="form-control" id="correo" aria-describedby="emailHelp">
@@ -155,7 +157,7 @@
         </div>
     </div>
     <!-- Fin Modal de sing up-->
-    
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -168,7 +170,7 @@
                         <a class="nav-link active" href="#" onclick="showTab('perfil', this)">Perfil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="showTab('ajustes', this)">Ajustes</a>
+                        <a class="nav-link" href="#" onclick="showTab('activity', this)">Actividad / Mis tickets</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" onclick="showTab('personalizacion', this)">Personalización</a>
@@ -177,11 +179,11 @@
             </div>
         </div>
     </nav>
-    
+
     <!-- PAGINA PERFIL -->
     <div id="perfil" class="content-tab">
         <div class="container-profile-info">
-            <div class="container-profile-img"> 
+            <div class="container-profile-img">
                 <img src="/users/profileImg" alt="Imagen de perfil" class="profile-img">
             </div>
             <div class="container-profile-data">
@@ -189,25 +191,104 @@
                 <p class="profile-username">username</p>
                 <p class="profile-email">{{userLogged.email}}</p>
                 <div class="butcontainer">
-                    <button class="btn btn-dark rounded-pill px-4 py-2">Editar perfil</button>
+                    <button class="btn btn-dark rounded-pill px-4 py-2" data-bs-toggle="modal" data-bs-target="#modalEditProfile">
+                        Editar perfil
+                    </button>                    
                 </div>
                 <div class="butcontainer">
-                    <button href="/users/logout" class="btn btn-dark rounded-pill px-4 py-2">Cerrar sesión</button>
+                    <a href="/users/logout" class="btn btn-dark rounded-pill px-4 py-2">Cerrar sesión</a>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <!--PAGINA ACTIVIDAD-->
-    <div id="ajustes" class="content-tab" style="display: none;">
-        <h2>Actividad</h2>
-        <p>Configuración de cuenta y preferencias.</p>
+    <div class="container-tickets">
+        <div id="activity" class="content-tab activity" style="display: none;">
+            <div class="row ">
+                <div class="col-12 mb-3">
+                    <div class="card text-white">
+                        <img class="card-img" src="https://i.twic.pics/v1/placeholder:200x150" alt="Card image">
+                        <div class="card-img-overlay d-flex flex-column justify-content-between">
+                            <div>
+                                <h5 class="card-title">Título del ticket</h5>
+                                <p class="card-text">Descripción del evento, fecha y lugar.</p>
+                                <p class="card-text"><small>Última actualización hace 3 min</small></p>
+                            </div>
+                            <button class="btn btn-light btn-sm align-self-end">Descargar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 mb-3">
+                    <div class="card text-white">
+                        <img class="card-img" src="https://i.twic.pics/v1/placeholder:200x150" alt="Card image">
+                        <div class="card-img-overlay d-flex flex-column justify-content-between">
+                            <div>
+                                <h5 class="card-title">Título del ticket</h5>
+                                <p class="card-text">Otra descripción aquí.</p>
+                                <p class="card-text"><small>Última actualización hace 3 min</small></p>
+                            </div>
+                            <button class="btn btn-light btn-sm align-self-end">Descargar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 mb-3">
+                    <div class="card text-white">
+                        <img class="card-img" src="https://i.twic.pics/v1/placeholder:200x150" alt="Card image">
+                        <div class="card-img-overlay d-flex flex-column justify-content-between">
+                            <div>
+                                <h5 class="card-title">Título del ticket</h5>
+                                <p class="card-text">Más información sobre este evento.</p>
+                                <p class="card-text"><small>Última actualización hace 3 min</small></p>
+                            </div>
+                            <button class="btn btn-light btn-sm align-self-end">Descargar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    
+
     <!--PAGINA PERSONALIZACION-->
     <div id="personalizacion" class="content-tab" style="display: none;">
         <h2>Personalización</h2>
-        <p>Opciones de personalización de la interfaz.</p>
     </div>
-    
-    
+
+    <div class="modal fade" id="modalEditProfile" tabindex="-1" aria-labelledby="modalEditProfileLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="modalEditProfileLabel">Editar cuenta</h3>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                          <label for="exampleInputEmail1">Name</label>
+                          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="{{userLogged.name}}">
+                          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputPassword1">Password</label>
+                          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        </div>
+                        <div class="form-group form-check">
+                          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      </form>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin Modal de sing up-->
+
+    <script src="/js/bootstrap.bundle.min.js"></script>
+
+
+
+</body>
+</html>
