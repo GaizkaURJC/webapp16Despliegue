@@ -31,15 +31,20 @@ import com.daw.daw.controller.UserController;
 import com.daw.daw.model.Event;
 import com.daw.daw.model.User;
 import com.daw.daw.model.Image;
+import com.daw.daw.model.Ticket;
 import com.daw.daw.repository.EventRepository;
 import com.daw.daw.repository.ImageRepository;
+import com.daw.daw.repository.TicketRepository;
 import com.daw.daw.repository.UserRepository;
 
 @Controller
 public class PageController {
 
 	@Autowired
-    private UserRepository userRepository;
+	private TicketRepository ticketRepository;
+
+	@Autowired
+	private UserRepository userRepository;
 
 	@Autowired
 	private EventRepository eventRepository;
@@ -50,13 +55,12 @@ public class PageController {
 	@Autowired
 	private final UserController userController;
 
-	public PageController(UserRepository userRepository, EventRepository eventRepository, UserController userController) {
-        this.userRepository = userRepository;
-        this.eventRepository = eventRepository;
-        this.userController = userController;  
-    }
-	
-    
+	public PageController(UserRepository userRepository, EventRepository eventRepository,
+			UserController userController) {
+		this.userRepository = userRepository;
+		this.eventRepository = eventRepository;
+		this.userController = userController;
+	}
 
 	@GetMapping("/")
 	public String form(HttpSession session, Model model) {
@@ -85,8 +89,6 @@ public class PageController {
 			return ResponseEntity.notFound().build();
 		}
 	}
-
-	
 
 	@GetMapping("/paginaDetalleConcierto/{id}")
 	public String concertDetailRedirection(HttpSession session, @PathVariable Long id, Model model) {
@@ -117,10 +119,13 @@ public class PageController {
 		if (isUserLogged) {
 			Optional<User> user = userRepository.findByName(username);
 			user.ifPresent(value -> model.addAttribute("userLogged", value));
+
+			List<Ticket> tickets = ticketRepository.findByUserOwner(username);
+			model.addAttribute("tickets", tickets);
 		}
 
-		model.addAttribute("username", session.getAttribute("username")); 
-		
+		model.addAttribute("username", session.getAttribute("username"));
+
 		return "paginaPerfil";
 	}
 

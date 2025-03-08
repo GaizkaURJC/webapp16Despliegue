@@ -2,6 +2,8 @@ package com.daw.daw.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.daw.daw.model.Ticket;
@@ -10,6 +12,7 @@ import com.daw.daw.service.PdfService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Optional;
 
 @Controller
 public class TicketController {
@@ -50,4 +53,22 @@ public class TicketController {
 
         return "redirect:/";
     }
+
+    @GetMapping("/tickets/download/{id}")
+    public void downloadTicket(@PathVariable Long id, HttpServletResponse response) throws IOException {
+        Optional<Ticket> optionalTicket = ticketRepository.findById(id);
+
+        if (optionalTicket.isPresent()) {
+            Ticket ticket = optionalTicket.get();
+            byte[] pdfBytes = pdfService.generarPdfTicket(ticket);
+
+            response.setContentType("application/pdf");
+            response.setHeader("Content-Disposition", "attachment; filename=ticket_" + ticket.getUserOwner() + ".pdf");
+            response.getOutputStream().write(pdfBytes);
+            response.flushBuffer();
+        } else {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND, "Ticket no encontrado");
+        }
+    }
+
 }
