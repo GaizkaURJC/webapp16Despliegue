@@ -1,20 +1,27 @@
 package com.daw.daw.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import com.daw.daw.model.Ticket;
 import com.daw.daw.repository.TicketRepository;
+import com.daw.daw.service.PdfService;
+import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 @Controller
 public class TicketController {
 
     @Autowired
     private TicketRepository ticketRepository;
+
+    @Autowired
+    private UserController userController;
+
+    @Autowired
+    private PdfService pdfService;
 
     @PostMapping("/tickets/buyTicket")
     public String createTicket(
@@ -23,35 +30,24 @@ public class TicketController {
             @RequestParam("gender") String genero,
             @RequestParam("eventName") String nombreEvento,
             @RequestParam("category") String categoria,
-            @AuthenticationPrincipal UserDetails userDetails) {
-
-        if (userDetails == null) {
-            return "redirect:/error";
+            HttpSession session,
+            HttpServletResponse response) throws IOException {
+        if (!userController.isLogged(session)) {
+            return "redirect:/paginaDetalleConcierto";
         }
 
-        // Crear el ticket con los datos recibidos
-        System.out.println("Recibido Ticket: ");
-        System.out.println("Nombre: " + nombreTicket);
-        System.out.println("DNI: " + DNI);
-        System.out.println("gender" + genero);
-        System.out.println("Evento: " + nombreEvento);
-        System.out.println("Categoria: " + categoria);
-        System.out.println("Usuario logeado: " + userDetails.getUsername());
-
-        Ticket ticket = new Ticket();
-        ticket.setTicketName(nombreTicket);
-        ticket.setDni(DNI);
-        ticket.setGender(genero);
-        ticket.setTittle(nombreEvento);
-        ticket.setCategory(categoria);
-        ticket.setUserEmail(userDetails.getUsername());
-
-        // Guardar en la base de datos
-        System.out.println("Voy a guardar el ticket: " + ticket);
+        String userName = userController.getLoggedUser(session);
+        Ticket ticket = new Ticket(userName, DNI, nombreTicket, nombreEvento, genero, userName, categoria);
         ticketRepository.save(ticket);
-        System.out.println("Ticket guardado correctamente.");
 
-        // Redirigir al perfil o donde quieras
+        byte[] pdfBytes = pdfService.generarPdfTicket(ticket);
+
+        // Configurar la respuesta HTTP para que sea una descarga
+        response.setContentType("application/pdf");
+        response.setHeader("Content-Disposition", "attachment; filename=ticket_" + ticket.getUserOwner() + ".pdf");
+        response.getOutputStream().write(pdfBytes);
+        response.flushBuffer();
+
         return "redirect:/";
     }
 }
