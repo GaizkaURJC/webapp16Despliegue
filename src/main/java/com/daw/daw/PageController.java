@@ -111,7 +111,6 @@ public class PageController {
 	@GetMapping("/perfil")
 	public String profileRedirection(HttpSession session, Model model) {
 		String username = (String) session.getAttribute("username");
-
 		boolean isUserLogged = (username != null);
 		model.addAttribute("isUserLogged", isUserLogged);
 
@@ -119,7 +118,9 @@ public class PageController {
 			Optional<User> user = userRepository.findByName(username);
 			user.ifPresent(value -> model.addAttribute("userLogged", value));
 		}
+
 		model.addAttribute("username", session.getAttribute("username")); 
+		
 		return "paginaPerfil";
 	}
 

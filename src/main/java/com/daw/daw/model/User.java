@@ -11,6 +11,9 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
+
+import java.sql.Blob;
 import java.util.Date;
 import org.springframework.web.context.annotation.SessionScope;
 @Component
@@ -29,6 +32,9 @@ public class User {
 
     private String encodedPassword;
 
+    @Lob
+    private Blob imageFile;
+    
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles;
 
@@ -37,12 +43,13 @@ public class User {
     public User() {
     }
     
-    public User(String name, String email, String telefono, String encodedPassword, List<String> roles) {
+    public User(String name, String email, String telefono, String encodedPassword, List<String> roles, java.sql.Blob imageFile) {
         this.name = name;
         this.email = email;
         this.telefono = telefono;
         this.encodedPassword = encodedPassword;
         this.roles = roles;
+        this.imageFile = imageFile;
     }
 
     public String getNombre() {
@@ -91,6 +98,10 @@ public class User {
 
     public void setFecharegistro (Date fecharegistro) {
         this.fecharegistro = fecharegistro;
+    }
+
+    public Blob getImageFile() {
+        return imageFile;
     }
 
 }

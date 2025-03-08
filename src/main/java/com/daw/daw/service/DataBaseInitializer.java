@@ -55,11 +55,11 @@ public class DataBaseInitializer {
 
     @PostConstruct
     public void init() throws IOException, URISyntaxException {
-
+        Blob defUserImg = loadImage("img/defuser.webp");
         User admin = new User("admin", "admin@admin.com", "00011122", passwordEncoder.encode("admin"),
-                Arrays.asList("ADMIN"));
+                Arrays.asList("ADMIN"), defUserImg);
         User user = new User("user", "user@user.com", "222111000", passwordEncoder.encode("user"),
-                Arrays.asList("USER"));
+                Arrays.asList("USER"), defUserImg);
 
         Ticket ticket = new Ticket("user@user.com", "12345678L", "Nombre", "Melendi", "Hombre", "user", "rock");
         if (ticketRepository.findAll().isEmpty()) {

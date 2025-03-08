@@ -190,6 +190,7 @@ h1 {
 }
 
 .container-profile-data {
+    row-gap: 20px;
     width: 100%;
     flex-direction: column;
     margin-top: 30px;
@@ -230,4 +231,22 @@ h1 {
     margin-left: 40px;
 }
 
+.content-tab {
+    transition: opacity 0.3s ease-in-out;
+    opacity: 1;
+}
 
+.content-tab[style*="display: none"] {
+    opacity: 0;
+}
+
+.navbar-nav .nav-link {
+    font-weight: normal;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+}
+
+.navbar-nav .nav-link.active-tab {
+    font-weight: bold;
+    text-decoration: underline;
+}

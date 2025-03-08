@@ -1,12 +1,20 @@
 package com.daw.daw.controller;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
- 
+
+import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -50,6 +58,17 @@ public class UserController {
     @Autowired
     private EventRepository eventRepository;
 
+    @GetMapping("profileImg")
+	public ResponseEntity<Object> getProfileImage(HttpSession session, Model model) throws SQLException {
+		String username = (String) session.getAttribute("username");
+		Optional<User> user = userRepository.findByName(username);
+		if (user.isPresent() && user.get().getImageFile() != null) {
+			return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
+					.body(new InputStreamResource(user.get().getImageFile().getBinaryStream()));
+		} else {
+			return ResponseEntity.notFound().build();
+		}
+	}
 
     @GetMapping("{id}")
     public Optional<User> getUserById(@PathVariable ("id") Long id) {
@@ -63,6 +82,16 @@ public class UserController {
         return "/";
     }
 
+    private Blob loadImage(String path) {
+        try {
+            InputStream inputStream = new ClassPathResource("static/" + path).getInputStream();
+            return BlobProxy.generateProxy(inputStream, inputStream.available());
+        } catch (IOException e) {
+            System.err.println("⚠ No se pudo cargar la imagen: " + path + ". Usando imagen por defecto.");
+            return BlobProxy.generateProxy(new byte[0]);
+        }
+    }
+
     @PostMapping("create")
     public String createUser(@RequestParam("name") String nombre,
                              @RequestParam("email") String correo,
@@ -72,7 +101,8 @@ public class UserController {
         if (userRepository.findByName(nombre).isPresent()) {
             return "redirect:/register?error=user_exists";  // O vuelve al formulario con mensaje de error
         }
-        User user = new User(nombre, correo, telf, passwordEncoder.encode(contrasena), Arrays.asList("USER"));
+        Blob defUserImg = loadImage("img/defuser.webp");
+        User user = new User(nombre, correo, telf, passwordEncoder.encode(contrasena), Arrays.asList("USER"), defUserImg);
         userRepository.save(user);
         if (session.isNew()){
             session.setAttribute("username", user.getNombre());
@@ -125,6 +155,7 @@ public class UserController {
         }else 
         return false;
     }
+    
 
     @GetMapping("getLoggedUser")
     public String getLoggedUser(HttpSession session) {

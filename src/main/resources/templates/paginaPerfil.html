@@ -15,6 +15,26 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/isotope/3.0.6/isotope.pkgd.min.css">
 </head>
 
+<script>
+    function showTab(tabId, element) {
+        // Ocultar todas las pestañas
+        document.querySelectorAll('.content-tab').forEach(tab => {
+            tab.style.display = 'none';
+        });
+
+        // Mostrar la pestaña seleccionada
+        document.getElementById(tabId).style.display = 'block';
+
+        // Eliminar la clase activa de todas las pestañas del menú
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.remove('active');
+        });
+
+        // Agregar la clase activa a la pestaña actual
+        element.classList.add('active');
+    }
+</script>
+
 <body>
     <nav class="top-navbar">
         <div class="container-topnav">
@@ -145,46 +165,49 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Perfil</a>
+                        <a class="nav-link active" href="#" onclick="showTab('perfil', this)">Perfil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Ajustes</a>
+                        <a class="nav-link" href="#" onclick="showTab('ajustes', this)">Ajustes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Personalización</a>
+                        <a class="nav-link" href="#" onclick="showTab('personalizacion', this)">Personalización</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-
-    <div class="container-profile-pag1">
+    
+    <!-- PAGINA PERFIL -->
+    <div id="perfil" class="content-tab">
         <div class="container-profile-info">
             <div class="container-profile-img"> 
-                <img src="../img/defuser.webp" alt="Imagen de perfil" class="profile-img">
+                <img src="/users/profileImg" alt="Imagen de perfil" class="profile-img">
             </div>
             <div class="container-profile-data">
-                <h1 class="profile-name">Jon Mazcuñán Hernández</h1>
-                <p class="profile-username">jonmazh</p>
-                <p class="profile-email">jonmazh@gmail.com</p>
+                <h1 class="profile-name">{{userLogged.name}}</h1>
+                <p class="profile-username">username</p>
+                <p class="profile-email">{{userLogged.email}}</p>
                 <div class="butcontainer">
                     <button class="btn btn-dark rounded-pill px-4 py-2">Editar perfil</button>
                 </div>
                 <div class="butcontainer">
-                    <a class="top-nav-section_5" href="/users/logout">
-                        Cerrar sesion
-                    </a>
+                    <button href="/users/logout" class="btn btn-dark rounded-pill px-4 py-2">Cerrar sesión</button>
                 </div>
             </div>
         </div>
-        <div class="container-profile-activity"> 
-            <h2 class="profile-activity-title">Actividad</h2>
-            <div class="container-profile-activity-list">
-                <div class="container-profile-activity-item">
-                    <p class="profile-activity-item-text">Has comprado una entrada para el concierto de "La Polla Records"</p>
-                    <p class="profile-activity-item-date">Hace 2 días</p>
-                </div>
-            </div>
-        </div>
-    </div> 
+    </div>
+    
+    <!--PAGINA ACTIVIDAD-->
+    <div id="ajustes" class="content-tab" style="display: none;">
+        <h2>Actividad</h2>
+        <p>Configuración de cuenta y preferencias.</p>
+    </div>
+    
+    <!--PAGINA PERSONALIZACION-->
+    <div id="personalizacion" class="content-tab" style="display: none;">
+        <h2>Personalización</h2>
+        <p>Opciones de personalización de la interfaz.</p>
+    </div>
+    
     
