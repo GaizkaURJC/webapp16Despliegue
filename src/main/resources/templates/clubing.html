@@ -107,8 +107,26 @@
                         <li><a href="clubing.html">Conciertos</a></li>
                         <li><a href="index.html">Eventos</a></li>
                         <li><a href="index.html">Contactanos</a></li>
-                        <li ><a href="#" class="btn-login" type="button" data-bs-toggle="modal" data-bs-target="#modalLogin"><ion-icon name="person"></ion-icon></a>
+                        {{#isUserLogged}}
+                        <li class="nav-item">
+                            <a class="top-nav-section_5" href="/perfil">
+                                {{userLogged.name}}
+                            </a>
+                        </li>
+                        {{/isUserLogged}}
                         
+                        {{^isUserLogged}}
+                        <li class="nav-item-login">
+                            <a href="#" class="btn" type="button" data-bs-toggle="modal" data-bs-target="#modalLogin">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="auto" height="20" fill="currentColor" class="bi bi-person-circle"
+                                    viewBox="0 0 16 16">
+                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                                    <path fill-rule="evenodd"
+                                        d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+                                </svg>
+                            </a>
+                        </li>
+                        {{/isUserLogged}}
                     </ul>
                 </div>
             </div>

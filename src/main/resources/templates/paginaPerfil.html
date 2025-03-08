@@ -34,6 +34,15 @@
                 <li class="nav-item">
                     <a class="top-nav-section_5" href="section_5">Contactanos</a>
                 </li>
+                {{#isUserLogged}}
+                <li class="nav-item">
+                    <a class="top-nav-section_5" href="/perfil">
+                        {{userLogged.name}}
+                    </a>
+                </li>
+                {{/isUserLogged}}
+                
+                {{^isUserLogged}}
                 <li class="nav-item-login">
                     <a href="#" class="btn" type="button" data-bs-toggle="modal" data-bs-target="#modalLogin">
                         <svg xmlns="http://www.w3.org/2000/svg" width="auto" height="20" fill="currentColor"
@@ -44,6 +53,7 @@
                         </svg>
                     </a>
                 </li>
+                {{/isUserLogged}}
             </ul>
         </div>
     </nav>

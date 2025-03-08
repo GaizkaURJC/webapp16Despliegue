@@ -89,7 +89,16 @@ public class PageController {
 	
 
 	@GetMapping("/paginaDetalleConcierto/{id}")
-	public String concertDetailRedirection(@PathVariable Long id, Model model) {
+	public String concertDetailRedirection(HttpSession session, @PathVariable Long id, Model model) {
+		String username = (String) session.getAttribute("username");
+
+		boolean isUserLogged = (username != null);
+		model.addAttribute("isUserLogged", isUserLogged);
+
+		if (isUserLogged) {
+			Optional<User> user = userRepository.findByName(username);
+			user.ifPresent(value -> model.addAttribute("userLogged", value));
+		}
 		model.addAttribute("event", eventRepository.findById(id).get());
 		return "paginaDetalleConcierto";
 	}
@@ -101,6 +110,15 @@ public class PageController {
 
 	@GetMapping("/perfil")
 	public String profileRedirection(HttpSession session, Model model) {
+		String username = (String) session.getAttribute("username");
+
+		boolean isUserLogged = (username != null);
+		model.addAttribute("isUserLogged", isUserLogged);
+
+		if (isUserLogged) {
+			Optional<User> user = userRepository.findByName(username);
+			user.ifPresent(value -> model.addAttribute("userLogged", value));
+		}
 		model.addAttribute("username", session.getAttribute("username")); 
 		return "paginaPerfil";
 	}

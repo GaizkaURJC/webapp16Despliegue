@@ -23,7 +23,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
  
 import com.daw.daw.model.Event;
+import com.daw.daw.model.User;
 import com.daw.daw.repository.EventRepository;
+import com.daw.daw.repository.UserRepository;
+
 import jakarta.servlet.http.HttpSession;
 
 
@@ -31,6 +34,9 @@ import jakarta.servlet.http.HttpSession;
 @RequestMapping("/events")
 public class EventController {
 
+    @Autowired
+    private UserRepository userRepository;
+    
     @Autowired
     private EventRepository eventRepository;
 
@@ -73,7 +79,16 @@ public class EventController {
     }
 
     @GetMapping("/{id}")
-	public String clubbingRedirection(@PathVariable Long id, Model model) {
+	public String clubbingRedirection(HttpSession session, @PathVariable Long id, Model model) {
+        String username = (String) session.getAttribute("username");
+
+		boolean isUserLogged = (username != null);
+		model.addAttribute("isUserLogged", isUserLogged);
+
+		if (isUserLogged) {
+			Optional<User> user = userRepository.findByName(username);
+			user.ifPresent(value -> model.addAttribute("userLogged", value));
+		}
 		model.addAttribute("event", eventRepository.findById(id).get());
         String[] partes = eventRepository.findById(id).get().getDescription().split("\\|");
         model.addAttribute("descLinea1", partes[0]);
