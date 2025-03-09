@@ -28,13 +28,13 @@
                     <a class="top-nav-section_1" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="top-nav-section_2" href="/clubbing">Clubbing</a>
+                    <a class="top-nav-section_2" href="#clubbing">Clubbing</a>
                 </li>
                 <li class="nav-item">
-                    <a class="top-nav-section_3" href="c">Conciertos</a>
+                    <a class="top-nav-section_3" href="#concerts">Conciertos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="top-nav-section_4" href="section_4">Eventos</a>
+                    <a class="top-nav-section_4" href="#events">Eventos</a>
                 </li>
                 <li class="nav-item">
                     <a class="top-nav-section_5" href="section_5">Contactanos</a>
@@ -166,7 +166,7 @@
 
         </div>
     </section>
-    <section class="container-section2">
+    <section class="container-section2" id="clubbing">
         <div class="section2-tittle">
             <h2>CLUBBING</h2>
             <hr class="line" href="">
@@ -198,7 +198,7 @@
     </section>
 
     <!-- Conciertos Section -->
-    <section class="container-section3" id="conciertos">
+    <section class="container-section3" id="concerts">
         <!-- Conciertos Title -->
         <div class="section2-tittle">
             <h2>CONCIERTOS</h2>
@@ -258,9 +258,9 @@
 
 
     <!-- Formulario solicitud de evento-->
-    <section class="container-section4">
+    <section class="container-section4"  id="events">
         <div class="section2-tittle">
-            <h2 style="color:white">CONCIERTOS</h2>
+            <h2 style="color:white">SOLICITAR EVENTOS</h2>
             <hr class="line" href="">
             </hr>
             <p>Buscas un sitio para celebrar un evento de empresa? Tenemos la solucion!</p>
@@ -473,6 +473,50 @@
     <script src="/js/ayax.js"></script>
     <script src="/js/filtroConciertos.js"></script>
     <div th:replace="loader :: loader"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener("click", function(e) {
+                    e.preventDefault();
+        
+                    const targetId = this.getAttribute("href").substring(1);
+                    const targetElement = document.getElementById(targetId);
+        
+                    if (targetElement) {
+                        smoothScroll(targetElement.offsetTop - 80, 1500); // 1500ms = 1.5 segundos
+                    }
+                });
+            });
+        
+            function smoothScroll(targetPosition, duration) {
+                let startPosition = window.scrollY;
+                let distance = targetPosition - startPosition;
+                let startTime = null;
+        
+                function animation(currentTime) {
+                    if (startTime === null) startTime = currentTime;
+                    let timeElapsed = currentTime - startTime;
+                    let scrollAmount = easeInOutQuad(timeElapsed, startPosition, distance, duration);
+                    window.scrollTo(0, scrollAmount);
+        
+                    if (timeElapsed < duration) {
+                        requestAnimationFrame(animation);
+                    }
+                }
+        
+                function easeInOutQuad(t, b, c, d) {
+                    t /= d / 2;
+                    if (t < 1) return (c / 2) * t * t + b;
+                    t--;
+                    return (-c / 2) * (t * (t - 2) - 1) + b;
+                }
+        
+                requestAnimationFrame(animation);
+            }
+        });
+        </script>
+        
 </body>
 
 </html>
