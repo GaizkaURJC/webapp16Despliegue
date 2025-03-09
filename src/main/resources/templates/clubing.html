@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Clubbing</title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;400;700&display=swap" rel="stylesheet">
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/bootstrap-icons.css" rel="stylesheet">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-            integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <link href="../css/clubbing-stayle.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/isotope/3.0.6/isotope.pkgd.min.css">
-    </head>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clubbing</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;400;700&display=swap" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="../css/clubbing-stayle.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/isotope/3.0.6/isotope.pkgd.min.css">
+</head>
+
 <body>
     <!-- Modal de login-->
     <div class="modal fade" id="modalLogin" tabindex="-1" aria-labelledby="modalLogin" aria-hidden="true">
@@ -62,11 +64,12 @@
                 </div>
 
                 <div class="modal-body">
-                    <form><div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Correo electrónico</label>
-                        <input type="email" class="form-control" id="correo" aria-describedby="emailHelp">
-                    </div>
-                    
+                    <form>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Correo electrónico</label>
+                            <input type="email" class="form-control" id="correo" aria-describedby="emailHelp">
+                        </div>
+
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Correo electrónico</label>
                             <input type="email" class="form-control" id="correo" aria-describedby="emailHelp">
@@ -91,113 +94,122 @@
         </div>
     </div>
     <!-- Fin Modal de sing up-->
-     <section class="header">
+    <section class="header">
         <video autoplay loop muted playsinline id="bg-video">
             <source src="/videos/video-clubbing.mp4" type="video/mp4">
             Tu navegador no soporta el video en HTML5.
         </video>
-            <div class="container1">
-                <div class="header-title">
-                    <a href="index.html"><span>TEATRO DAW</span></a>
-                </div>
-                <div class="navmenu" >
-                    <ul>
-                        <li><a href="/">Home</a></li>
-                        <li><a href="clubing.html">Clubing</a></li>
-                        <li><a href="clubing.html">Conciertos</a></li>
-                        <li><a href="index.html">Eventos</a></li>
-                        <li><a href="index.html">Contactanos</a></li>
-                        {{#isUserLogged}}
-                        <li class="nav-item">
-                            <a class="top-nav-section_5" href="/perfil">
-                                {{userLogged.name}}
-                            </a>
-                        </li>
-                        {{/isUserLogged}}
-                        
-                        {{^isUserLogged}}
-                        <li class="nav-item-login">
-                            <a href="#" class="btn" type="button" data-bs-toggle="modal" data-bs-target="#modalLogin">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="auto" height="20" fill="currentColor" class="bi bi-person-circle"
-                                    viewBox="0 0 16 16">
-                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-                                    <path fill-rule="evenodd"
-                                        d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
-                                </svg>
-                            </a>
-                        </li>
-                        {{/isUserLogged}}
-                    </ul>
-                </div>
+        <div class="container1">
+            <div class="header-title">
+                <a href="index.html"><span>TEATRO DAW</span></a>
             </div>
-     </section>
-        <!-- HEADER -->
-     <section class="section2">
+            <div class="navmenu">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="clubing.html">Clubing</a></li>
+                    <li><a href="clubing.html">Conciertos</a></li>
+                    <li><a href="index.html">Eventos</a></li>
+                    <li><a href="index.html">Contactanos</a></li>
+                    {{#isUserLogged}}
+                    <li class="nav-item">
+                        <a class="top-nav-section_5" href="/perfil">
+                            {{userLogged.name}}
+                        </a>
+                    </li>
+                    {{/isUserLogged}}
+
+                    {{^isUserLogged}}
+                    <li class="nav-item-login">
+                        <a href="#" class="btn" type="button" data-bs-toggle="modal" data-bs-target="#modalLogin">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="auto" height="20" fill="currentColor"
+                                class="bi bi-person-circle" viewBox="0 0 16 16">
+                                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                                <path fill-rule="evenodd"
+                                    d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+                            </svg>
+                        </a>
+                    </li>
+                    {{/isUserLogged}}
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- HEADER -->
+    <section class="section2">
         <div class="container2">
-        <div class="container3">
-            <div class="fecha">
-                <span> 15 </span>
-                <p>FEB</p>
-            </div>
-            <div class="descripcion">
-                <h1>{{event.title}} EN EL TEATRO DAW | 14.02.2025</h1>
-                <p>LOS MEJORES DJs DE LA CAPITAL</p>
-                <small>COMPRA YA TU ENTRADA O RESERVA TU MESA!</samll>
-            </div>
-        </div>
-        <div class="fotoFiesta-Container">
-            <img src="/imgEvent/{{event.id}}" alt="Fiesta">
-        </div>
-        <div class="btn-entrad" >
-            <a class="btn" href="#">Comprar Entrada</a>
-        </div>
-        <div class="container3">
-            <div class="icono-detalle">
-                <ion-icon name="menu-outline"></ion-icon> 
-            </div>
-            <div class="detalles-evento">
-                <h2>Detalles del Evento</h2>
-                <p>{{descLinea1}}</p>
-                <hr>{{descLinea2}}<hr>
-            </div>
-        </div>
-        <div class="container4">
-            <div class="fecha-hora">
-                <div class="time-icon">
-                    <ion-icon name="time-outline"></ion-icon>
+            <div class="container3">
+                <div class="fecha">
+                    <span> 15 </span>
+                    <p>FEB</p>
                 </div>
-                <div class="time-info">
-                    <p>(Viernes y Sabado) 00:00-06:00</p>
+                <div class="descripcion">
+                    <h1>{{event.title}} EN EL TEATRO DAW | 14.02.2025</h1>
+                    <p>LOS MEJORES DJs DE LA CAPITAL</p>
+                    <small>COMPRA YA TU ENTRADA O RESERVA TU MESA!</samll>
                 </div>
             </div>
-            <div class="ubicacion">
-                <div class="ubicacion-icon">
-                    <ion-icon name="location-outline"></ion-icon>
+            <div class="fotoFiesta-Container">
+                <img src="/imgEvent/{{event.id}}" alt="Fiesta">
+            </div>
+            <div class="btn-entrad">
+                <a class="btn" href="#" onclick="document.getElementById('buyTicketForm').submit();">Comprar Entrada</a>
+
+                <form id="buyTicketForm" action="/tickets/buyTicket" method="POST" style="display: none;">
+                    <input type="hidden" name="ticketName" value="Nombre del ticket">
+                    <input type="hidden" name="dni" value="12345678X">
+                    <input type="hidden" name="gender" value="M">
+                    <input type="hidden" name="eventName" value="{{event.title}}">
+                    <input type="hidden" name="category" value="party">
+                </form>
+            </div>
+            <div class="container3">
+                <div class="icono-detalle">
+                    <ion-icon name="menu-outline"></ion-icon>
                 </div>
-                <div class="ubicacion-info">
-                    <p>Teatro DAW, </p>
-                    <p>Calle del arenal 9, Madrid</p>
+                <div class="detalles-evento">
+                    <h2>Detalles del Evento</h2>
+                    <p>{{descLinea1}}</p>
+                    <hr>{{descLinea2}}
+                    <hr>
+                </div>
+            </div>
+            <div class="container4">
+                <div class="fecha-hora">
+                    <div class="time-icon">
+                        <ion-icon name="time-outline"></ion-icon>
+                    </div>
+                    <div class="time-info">
+                        <p>(Viernes y Sabado) 00:00-06:00</p>
+                    </div>
+                </div>
+                <div class="ubicacion">
+                    <div class="ubicacion-icon">
+                        <ion-icon name="location-outline"></ion-icon>
+                    </div>
+                    <div class="ubicacion-info">
+                        <p>Teatro DAW, </p>
+                        <p>Calle del arenal 9, Madrid</p>
+                    </div>
+                </div>
+            </div>
+            <div class="container5">
+                <div class="horario-reserva">
+                    <div class="reserva-icon">
+                        <ion-icon name="phone-portrait-sharp"></ion-icon>
+                    </div>
+                    <div class="reserva-info">
+                        <h1>HORARIO DE RESERVAS</h1>
+                        <p>LUNES a SÁBADO: 14:00 – 05:00 h.</p>
+                        <p>DOMINGO: Cerrado.</p>
+                        <p>Vísperas de Festivo: Horario de Sábado</p>
+                        <p>TELÉFONO DE RESERVAS:</p>
+                        <h3>+34 000 111 222</h3>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="container5">
-            <div class="horario-reserva">
-                <div class="reserva-icon">
-                    <ion-icon name="phone-portrait-sharp"></ion-icon>
-                </div>
-                <div class="reserva-info">
-                    <h1>HORARIO DE RESERVAS</h1>
-                    <p>LUNES a SÁBADO: 14:00 – 05:00 h.</p>
-                    <p>DOMINGO: Cerrado.</p>
-                    <p>Vísperas de Festivo: Horario de Sábado</p>
-                    <p>TELÉFONO DE RESERVAS:</p>
-                    <h3>+34 000 111 222</h3>
-                </div>
-            </div>
-        </div>
-    </div>
-     </section>
-      <!-- Footer -->
+    </section>
+    <!-- Footer -->
     <footer class="text-center text-lg-start text-white" style="background-color: #262626">
         <div class="site-footer-top">
             <h2>TEATRO DAW</h2>
@@ -328,4 +340,5 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 </body>
+
 </html>
