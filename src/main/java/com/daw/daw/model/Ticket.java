@@ -12,8 +12,13 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import java.util.Date;
+import jakarta.persistence.Lob;
+
+import java.sql.Blob;
+import java.time.LocalDateTime;
 import org.springframework.web.context.annotation.SessionScope;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Component
 @SessionScope
@@ -32,6 +37,9 @@ public class Ticket {
 
     private String ticketName;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime ticketDate; 
+
     private String title;
 
     private String gender;
@@ -42,7 +50,7 @@ public class Ticket {
     }
 
     public Ticket(String userEmail, String dni, String ticketName, String title, String gender,
-            String userOwner, String category) {
+            String userOwner, String category, LocalDateTime ticketDate) {
         this.userEmail = userEmail;
         this.dni = dni;
         this.ticketName = ticketName;
@@ -50,6 +58,15 @@ public class Ticket {
         this.gender = gender;
         this.userOwner = userOwner;
         this.category = category;
+        this.ticketDate = ticketDate;
+    }
+
+    public LocalDateTime getTicketDate() {
+        return ticketDate;
+    }
+
+    public void setTicketDate(LocalDateTime ticketDate) {
+        this.ticketDate = ticketDate;
     }
 
     public Long getId() {

@@ -210,16 +210,20 @@
                 {{#tickets}}
                 <div class="col-12 mb-3">
                     <div class="card text-white">
-                        <img class="card-img" src="https://i.twic.pics/v1/placeholder:200x150" alt="Card image">
+                        <img class="card-img" src="/img/melendiTicket.jpg" alt="Card image">
                         <div class="card-img-overlay d-flex flex-column justify-content-between">
                             <div>
-                                <h5 class="card-title">{{ticketName}}</h5>
-                                <p class="card-text">{{title}}</p>
+                                <h5 class="card-title">{{title}}</h5>
+                                <p class="card-text">{{ticketDate}}</p>
                                 <p class="card-text"><small>{{category}}</small></p>
                             </div>
-                            <a href="/tickets/download/{{id}}" class="btn btn-light btn-sm align-self-end">
-                                Descargar
-                            </a>
+                            <div class="d-flex">
+                                <a href="/tickets/download/{{id}}" class="btn btn-dark btn-sm rounded-pill d-flex align-items-center ms-auto">
+                                    <i class="fas fa-download me-2"></i> Descargar
+                                </a>
+                            </div>
+                            
+                            
                         </div>
                     </div>
                 </div>
@@ -273,6 +277,7 @@
     <!-- Fin Modal de sing up-->
 
     <script src="/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
 
 

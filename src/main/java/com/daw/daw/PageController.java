@@ -5,6 +5,7 @@ import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
@@ -79,7 +80,7 @@ public class PageController {
 		return "index";
 	}
 
-	@GetMapping("/img/{id}")
+	@GetMapping("/imgEvent/{id}")
 	public ResponseEntity<Object> getImage(@PathVariable Long id, Model model) throws SQLException {
 		Optional<Event> op = eventRepository.findById(id);
 		if (op.isPresent() && op.get().getImageFile() != null) {
@@ -121,7 +122,15 @@ public class PageController {
 			user.ifPresent(value -> model.addAttribute("userLogged", value));
 
 			List<Ticket> tickets = ticketRepository.findByUserOwner(username);
-			model.addAttribute("tickets", tickets);
+
+			List<Ticket> formattedTickets = tickets.stream()
+					.map(ticket -> {
+						ticket.setCategory(ticket.getCategory().toUpperCase());
+						return ticket;
+					})
+					.collect(Collectors.toList());
+
+			model.addAttribute("tickets", formattedTickets);
 		}
 
 		model.addAttribute("username", session.getAttribute("username"));

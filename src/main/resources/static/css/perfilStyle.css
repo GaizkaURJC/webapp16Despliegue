@@ -266,17 +266,74 @@ h1 {
     justify-content: center;
 }
 
+
+
+/**********************************
+    * Estilos de la tarjeta de TICKETS
+    **********************************/
+
+
 .card {
-    max-height: 200px; /* Ajusta esto según prefieras */
+    max-height: 200px; 
     overflow: hidden;
+    border-radius: 15px; 
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); 
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .card-img {
     height: 100%; 
-    max-height: 200px; /* Ajusta la altura máxima de la imagen */
-    object-fit: cover; /* Asegura que la imagen cubra todo el espacio sin deformarse */
+    max-height: 200px; 
+    object-fit: cover; 
+    filter: brightness(0.7); 
+    object-fit: cover;
 }
 
 .card-img-overlay {
-    padding: 10px; /* Reduce el padding interno para que el texto ocupe menos espacio */
+    padding: 10px; 
+    background: rgba(0, 0, 0, 0.4); 
+    padding: 1.5rem;
+    border-radius: 15px;
+}
+
+.btn-dark {
+    background-color: #343a40;
+    border: 2px solid #ffffff;
+    transition: background-color 0.3s ease-in-out, transform 0.2s;
+}
+
+.btn-dark:hover {
+    background-color: #212529;
+    transform: scale(1.05);
+}
+
+
+.card-title {
+    font-size: 1.8rem; 
+    font-weight: bold; 
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); 
+    color: #fff; 
+}
+
+
+.card-text {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #a0a0a0; 
+}
+
+.card-text small {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.card:hover {
+    transform: scale(1.05); 
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.4); 
+}
+
+.card:hover .card-img {
+    filter: brightness(0.6); 
 }

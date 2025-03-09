@@ -12,6 +12,7 @@ import com.daw.daw.service.PdfService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Controller
@@ -40,7 +41,7 @@ public class TicketController {
         }
 
         String userName = userController.getLoggedUser(session);
-        Ticket ticket = new Ticket(userName, DNI, nombreTicket, nombreEvento, genero, userName, categoria);
+        Ticket ticket = new Ticket(userName, DNI, nombreTicket, nombreEvento, genero, userName, categoria, LocalDateTime.now() );
         ticketRepository.save(ticket);
 
         byte[] pdfBytes = pdfService.generarPdfTicket(ticket);
