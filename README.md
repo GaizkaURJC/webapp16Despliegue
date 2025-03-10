@@ -203,25 +203,25 @@ Por ultimo encontramos un footer sencillo, con distina infomracion de la sala y 
 
 ## Instrucciones de Ejecución
 
-1. **Clonar el repositorio:**
+1. **Abrir docker**
+
+2. **Clonar el repositorio:**
 ```sh
-git clone https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13.git
+[git clone https://github.com/SSDD-2025/practica-sistemas-distribuidos-2025-grupo-13.git](https://github.com/CodeURJC-DAW-2024-25/webapp16.git)
 ```
 
-2. **Configurar la base de datos:**  
-Descargar MySQL WorkBench  
-Usuario: `root` | Contraseña: `password` | Puerto: `3306`  
-Crear un esquema llamado: grupo_13  
-```sql
-CREATE SCHEMA grupo_13;
-```
+3. **Configurar la base de datos:**  
+Descargar Docker   
+Usuario: `root` | Contraseña: `password` |
+docker run --rm -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=sala_DB -p 3306:3306 --name mySQL_sala -d mysql:8.0.33 --max-allowed-packet=256M 
 
-3. **Compilar y ejecutar la aplicación:**  
-   Abrir el MySQL WorkBench y meterse en la conexión creada anteriormente  
-   Run Application en VSCode  
 
-4. **Acceder a la aplicación:**  
-Ve a https://localhost/8080/
+4. **Compilar y ejecutar la aplicación:**  
+   Abrir el Docker y meterse en la conexión creada anteriormente  
+   Run Application en VSCode con Spring Boot
+
+5. **Acceder a la aplicación:**  
+Ve a [https://localhost/8080/](https://localhost:8443)
 
 ### Se necesita
 
@@ -243,6 +243,8 @@ Ve a https://localhost/8080/
    - Windows: https://maven.apache.org/download.cgi
 
 - Spring Boot 3.4.2
+
+- Docker 
 
 - VSCode + SpringBoot
 
