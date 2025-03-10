@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     const filtros = document.querySelectorAll("#conciertos-filters a");
     const conciertos = document.querySelectorAll(".portfolio-item");
+    const loader = document.getElementById("loader"); // Obtener el loader
 
     function normalizar(texto) {
         return texto.trim().toLowerCase();
@@ -35,16 +36,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
         loadMoreButton.onclick = function (e) {
             e.preventDefault();
-            for (let i = currentItems; i < currentItems + 3; i++) {
-                if (elementList[i]) {
-                    elementList[i].style.display = 'block';
-                }
-            }
-            currentItems += 4;
 
-            if (currentItems >= elementList.length) {
-                loadMoreButton.style.display = 'none';
-            }
+            // Mostrar el loader
+            loader.style.display = "block";
+            loadMoreButton.disabled = true; // Deshabilitar botón mientras carga
+
+            setTimeout(() => {
+                for (let i = currentItems; i < currentItems + 4; i++) {
+                    if (elementList[i]) {
+                        elementList[i].style.display = 'block';
+                    }
+                }
+                currentItems += 4;
+
+                if (currentItems >= elementList.length) {
+                    loadMoreButton.style.display = 'none';
+                }
+
+                // Ocultar el loader después de cargar
+                loader.style.display = "none";
+                loadMoreButton.disabled = false;
+            }, 200);
         };
     }
 

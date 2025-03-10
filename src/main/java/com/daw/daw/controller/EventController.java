@@ -2,6 +2,7 @@ package com.daw.daw.controller;
 
 import java.net.URI;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.sql.Blob;
  
@@ -29,6 +30,7 @@ import com.daw.daw.model.Event;
 import com.daw.daw.model.User;
 import com.daw.daw.repository.EventRepository;
 import com.daw.daw.repository.UserRepository;
+import com.daw.daw.repository.TicketRepository;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -39,6 +41,9 @@ public class EventController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private TicketRepository ticketRepository;
     
     @Autowired
     private EventRepository eventRepository;

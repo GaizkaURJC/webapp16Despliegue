@@ -22,7 +22,7 @@
                 <h3>DEGRADEV</h3>
             </div>
             <div class="elements-container">
-                <button  onclick="clubbing()" class="item-container">
+                <button onclick="clubbing()" class="item-container">
                     <div class="inicio-icon">
                         <ion-icon name="wine"></ion-icon>
                     </div>
@@ -73,7 +73,7 @@
                     <a href="#" class="nombre-usuario dropbtn">ADMIN</a>
                     <div class="dropdown-content">
                         <button href="#profile">Editar perfil</a>
-                        <a href="#settings">Cambiar Avatar</a>
+                            <a href="#settings">Cambiar Avatar</a>
                     </div>
                 </div>
             </div>
@@ -87,28 +87,32 @@
                         <th>Descripción</th>
                         <th>Eliminar</th>
                     </tr>
-                {{#party}}
+                    {{#party}}
                     <tr>
                         <td>{{title}}</td>
                         <td>{{description}}</td>
                         <td>
                             <form action="/events/deleteEvent" method="post">
                                 <input type="hidden" name="id" value="{{id}}">
-                                <button class="hidden" type="submit" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
-                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
-                                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+                                <button class="hidden" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                        height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                                        <path
+                                            d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
                                     </svg>
                                 </button>
                             </form>
                         </td>
-                          
+
                     </tr>
-                {{/party}}
+                    {{/party}}
                 </table>
-                <h2>
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#modalCrearFiesta">Añadir fiesta</a>
-    
-                </h2>
+
+                <p></p>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#modalCrearFiesta" class="AnadirConcierto">
+                    Añadir Fiesta
+                </a>
+
             </div>
 
             <div id="conciertos">
@@ -118,28 +122,31 @@
                         <th>Descripción</th>
                         <th>Eliminar</th>
                     </tr>
-                {{#concerts}}
+                    {{#concerts}}
                     <tr>
                         <td>{{title}}</td>
                         <td>{{description}}</td>
                         <td>
                             <form action="/events/deleteEvent" method="post">
                                 <input type="hidden" name="id" value="{{id}}">
-                                <button class="hidden" type="submit" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
-                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
-                                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+                                <button class="hidden" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                        height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                                        <path
+                                            d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
                                     </svg>
                                 </button>
                             </form>
                         </td>
-                          
+
                     </tr>
-                {{/concerts}}
+                    {{/concerts}}
                 </table>
-                <h2>
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#modalCrearConcierto">Añadir concierto</a>
-    
-                </h2>
+
+                <p></p>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#modalCrearConcierto" class="AnadirConcierto">
+                    Añadir Concierto
+                </a>
             </div>
 
             <div id="eventos">
@@ -147,44 +154,52 @@
                     <tr>
                         <th>Usuario</th>
                         <th>Descripción</th>
+                        <th>Estado</th>
                         <th>Aceptar</th>
                         <th>Rechazar</th>
                         <th>Eliminar</th>
                     </tr>
-                {{#reservas}}
+                    {{#reservas}}
                     <tr>
                         <td>{{userName}}</td>
                         <td>{{eventDescript}}</td>
+                        <td>{{estado}}</td>
                         <td>
                             <form action="/reserva/aceptar" method="post">
                                 <input type="hidden" name="id" value="{{id}}">
-                                <button class="hidden" type="submit" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-                                    <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/>
-                                  </svg>
+                                <button class="hidden" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                        height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
+                                        <path
+                                            d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z" />
+                                    </svg>
                                 </button>
                             </form>
                         </td>
                         <td>
                             <form action="/reserva/rechazar" method="post">
                                 <input type="hidden" name="id" value="{{id}}">
-                                <button class="hidden" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-ban" viewBox="0 0 16 16">
-                                    <path d="M15 8a6.97 6.97 0 0 0-1.71-4.584l-9.874 9.875A7 7 0 0 0 15 8M2.71 12.584l9.874-9.875a7 7 0 0 0-9.874 9.874ZM16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0"/>
-                                  </svg></button>
+                                <button class="hidden" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                        height="16" fill="currentColor" class="bi bi-ban" viewBox="0 0 16 16">
+                                        <path
+                                            d="M15 8a6.97 6.97 0 0 0-1.71-4.584l-9.874 9.875A7 7 0 0 0 15 8M2.71 12.584l9.874-9.875a7 7 0 0 0-9.874 9.874ZM16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0" />
+                                    </svg></button>
                             </form>
                         </td>
                         <td>
                             <form action="/reserva/deleteReserva" method="post">
                                 <input type="hidden" name="id" value="{{id}}">
-                                <button class="hidden" type="submit" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
-                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
-                                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+                                <button class="hidden" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                        height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                                        <path
+                                            d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
                                     </svg>
                                 </button>
                             </form>
                         </td>
-                          
+
                     </tr>
-                {{/reservas}}
+                    {{/reservas}}
                 </table>
             </div>
 
@@ -195,29 +210,27 @@
                         <th>Email</th>
                         <th>Eliminar</th>
                     </tr>
-                {{#users}}
+                    {{#users}}
                     <tr>
                         <td>{{name}}</td>
                         <td>{{email}}</td>
                         <td>
                             <form action="/users/deleteUser" method="post">
                                 <input type="hidden" name="id" value="{{id}}">
-                                <button class="hidden" type="submit" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
-                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
-                                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+                                <button class="hidden" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                        height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                                        <path
+                                            d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
                                     </svg>
                                 </button>
                             </form>
                         </td>
-                          
+
                     </tr>
-                {{/users}}
+                    {{/users}}
                 </table>
 
-                <a href="#" class="switch-modal" data-bs-toggle="modal" data-bs-target="#modalSingUp">
-                    <h2>Añadir Admin</h2>
-                </a>
-                
             </div>
 
         </section>
@@ -267,7 +280,7 @@
                         </div>
                     </form>
                 </div>
-                
+
             </div>
         </div>
     </div>
@@ -291,63 +304,24 @@
                         </div>
                         <div class="mb-3">
                             <label for="imageFile" class="form-label">Subir imagen:</label>
-                            <input type="file" class="form-control" id="imageFile" name="partyImageFile" accept="image/**"
-                                required>
+                            <input type="file" class="form-control" id="imageFile" name="partyImageFile"
+                                accept="image/**" required>
                         </div>
-            
+
                         <div class="d-flex justify-content-end">
                             <button type="submit" class="btn btn-login">Crear Concierto</button>
                         </div>
                     </form>
                 </div>
-                
+
             </div>
         </div>
     </div>
-    
+
     <!-- Fin Modal Crear concierto -->
 
-    <!-- Modal de sing up-->
-    <div class="modal fade" id="modalSingUp" tabindex="-1" aria-labelledby="modalSingUp" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title" id="titulo-singup">Registrarse</h3>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-
-                <div class="modal-body">
-                    <form action="/users/createAdmin" method="post">
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" id="name" name="name">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Correo electrónico</label>
-                            <input type="email" class="form-control" id="email" name="email"
-                                aria-describedby="emailHelp">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Telefono</label>
-                            <input type="text" class="form-control" id="telefono" name="telefono">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" name="password" id="password">
-                        </div>
-                        <p><button type="submit" class="btn btn-login">Confirmar</button></p>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Fin Modal de sing up-->
-         
-
-    <!-- Footer -->
-
     <!-- JAVASCRIPT FILES -->
-     <script src="/js/adminSection.js"></script>
+    <script src="/js/adminSection.js"></script>
     <!-- Incluye jQuery (necesario para Isotope) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Incluye el JS de Isotope -->
