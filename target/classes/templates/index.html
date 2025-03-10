@@ -16,11 +16,6 @@
 </head>
 
 <body>
-    <!-- Loader -->
-    <div id="loader" style="display: none;">
-        <div class="spinner"></div>
-    </div>
-    <!-- Fin Loader -->
     <nav class="top-navbar">
         <div class="container-topnav">
             <ul class="elementos-header align-items-lg-center ms-auto me-lg-5" id="elementos-cabecera">
@@ -46,7 +41,7 @@
                     </a>
                 </li>
                 {{/isUserLogged}}
-                
+
                 {{^isUserLogged}}
                 <li class="nav-item-login">
                     <a href="#" class="btn" type="button" data-bs-toggle="modal" data-bs-target="#modalLogin">
@@ -185,7 +180,7 @@
                     <p>{{description}}</p>
                 </div>
                 <div class="comprar-container">
-                    <a href="/events/{{id}}" class="fancy" >
+                    <a href="/events/{{id}}" class="fancy">
                         <span class="top-key"></span>
                         <span class="text">Buy Tickets</span>
                         <span class="bottom-key-1"></span>
@@ -249,6 +244,10 @@
                 {{/concerts}}
 
             </div>
+
+            <div id="loader" style="display: none;">
+                <div class="spinner"></div>
+            </div>
             <a href="#" class="loadMore">
                 Cargar más
                 <span class="loading"></span>
@@ -258,7 +257,7 @@
 
 
     <!-- Formulario solicitud de evento-->
-    <section class="container-section4"  id="events">
+    <section class="container-section4" id="events">
         <div class="section2-tittle">
             <h2 style="color:white">SOLICITAR EVENTOS</h2>
             <hr class="line" href="">
@@ -475,48 +474,48 @@
     <div th:replace="loader :: loader"></div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener("click", function(e) {
+                anchor.addEventListener("click", function (e) {
                     e.preventDefault();
-        
+
                     const targetId = this.getAttribute("href").substring(1);
                     const targetElement = document.getElementById(targetId);
-        
+
                     if (targetElement) {
                         smoothScroll(targetElement.offsetTop - 80, 1500); // 1500ms = 1.5 segundos
                     }
                 });
             });
-        
+
             function smoothScroll(targetPosition, duration) {
                 let startPosition = window.scrollY;
                 let distance = targetPosition - startPosition;
                 let startTime = null;
-        
+
                 function animation(currentTime) {
                     if (startTime === null) startTime = currentTime;
                     let timeElapsed = currentTime - startTime;
                     let scrollAmount = easeInOutQuad(timeElapsed, startPosition, distance, duration);
                     window.scrollTo(0, scrollAmount);
-        
+
                     if (timeElapsed < duration) {
                         requestAnimationFrame(animation);
                     }
                 }
-        
+
                 function easeInOutQuad(t, b, c, d) {
                     t /= d / 2;
                     if (t < 1) return (c / 2) * t * t + b;
                     t--;
                     return (-c / 2) * (t * (t - 2) - 1) + b;
                 }
-        
+
                 requestAnimationFrame(animation);
             }
         });
-        </script>
-        
+    </script>
+
 </body>
 
 </html>

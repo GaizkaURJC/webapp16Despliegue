@@ -1,27 +1,32 @@
-body{
+body {
     margin: 0;
     padding: 0;
 }
+
 .grid-container {
     display: grid;
     grid-template-areas:
         "sidevar topvar"
         "sidevar main";
-    grid-template-columns: auto 1fr; /* Ajusta el ancho de la barra lateral */
-    grid-template-rows: 70px 1fr; /* Ajusta la altura de la barra superior */
-    height:auto;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 70px 1fr;
+    height: 100vh;
 }
-a{
+
+a {
     text-decoration: none;
     color: white;
 }
-a:hover{
+
+a:hover {
     color: #d5e33e;
 
-}   
-li{
+}
+
+li {
     list-style-type: none;
 }
+
 .sidevar {
     grid-area: sidevar;
     position: relative;
@@ -32,10 +37,10 @@ li{
     color: #d5e33e;
     padding: 0;
     height: 100vh;
-    overflow-y: auto; /* Añade scroll si el contenido es demasiado alto */
+    overflow-y: auto;
 }
 
-.logo{
+.logo {
     position: relative;
     width: 100%;
     height: 70px;
@@ -45,11 +50,13 @@ li{
     background-color: rgb(31, 33, 30);
     border-bottom-left-radius: 20px;
 }
-.img{
+
+.img {
     max-width: 50px;
     max-width: 50px;
     border-radius: 50%;
 }
+
 .topvar {
     grid-area: topvar;
     position: relative;
@@ -61,7 +68,8 @@ li{
     align-items: center;
     padding: 0 20px;
 }
-.topnav-elements{
+
+.topnav-elements {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -72,18 +80,23 @@ li{
     max-width: auto;
     gap: 20px;
 }
-.elements-container{
+
+.elements-container {
     min-height: auto;
     display: flex;
     flex-direction: column;
     z-index: 11;
     width: 100%;
     min-width: 300px;
-    max-width: 1200px; /* Ajusta el ancho máximo según tus necesidades */
-    margin: 0 auto; /* Centra el contenedor */
-    padding: 10px; /* Añade padding si es necesario */
+    max-width: 1200px;
+    /* Ajusta el ancho máximo según tus necesidades */
+    margin: 0 auto;
+    /* Centra el contenedor */
+    padding: 10px;
+    /* Añade padding si es necesario */
 }
-.inicio-container{
+
+.inicio-container {
     margin-top: 30px;
     display: flex;
     border: 2px rgb(56, 56, 62) solid;
@@ -96,22 +109,27 @@ li{
     width: 100%;
     margin-top: 50px;
 }
+
 .dropdown-content {
     display: none;
     position: absolute;
     background-color: #f9f9f9;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
-    
+
 }
+
 .dropdown-content a {
     color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
 }
-.inicio-container, .item-container, .logout-container {
+
+.inicio-container,
+.item-container,
+.logout-container {
     display: flex;
     align-items: center;
     border: 2px rgb(56, 56, 62) solid;
@@ -123,22 +141,30 @@ li{
     width: 100%;
     box-sizing: border-box;
 }
-.inicio-container h2, .item-container h2, .logout-container h2 {
+
+.inicio-container h2,
+.item-container h2,
+.logout-container h2 {
     color: #d5e33e;
     font-size: 15px;
     width: 100%;
     text-align: center;
     margin-left: 20px;
 }
-.inicio-container:hover, .item-container:hover, .logout-container:hover {
+
+.inicio-container:hover,
+.item-container:hover,
+.logout-container:hover {
     background-color: rgb(56, 56, 62);
     transition: 0.5s;
 }
+
 .dropdown {
     position: relative;
     display: inline-block;
 }
-.item-container{
+
+.item-container {
     margin-top: 30px;
     display: flex;
     border: 2px rgb(56, 56, 62) solid;
@@ -150,6 +176,7 @@ li{
     margin-right: 10px;
     width: 100%;
 }
+
 .inicio-section {
     grid-area: main;
     position: relative;
@@ -161,7 +188,8 @@ li{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    overflow-y: auto; /* Añade scroll si el contenido es demasiado alto */
+    overflow-y: auto;
+    /* Añade scroll si el contenido es demasiado alto */
 }
 
 .inicio-section h2 {
@@ -169,7 +197,9 @@ li{
     margin-top: 20px;
 }
 
-.inicio-section table, th ,td{
+.inicio-section table,
+th,
+td {
     border: 2px solid #000000;
     background-color: #4A4A4A;
     width: auto;
@@ -181,29 +211,33 @@ li{
 
 
 
-.inicio-container:hover{
+.inicio-container:hover {
     background-color: rgb(56, 56, 62);
     transition: 0.5s;
 }
-.item-container:hover{
+
+.item-container:hover {
     background-color: rgb(56, 56, 62);
     transition: 0.5s;
 }
-.inicio-container h2{
+
+.inicio-container h2 {
     color: #d5e33e;
     font-size: 15px;
     width: 100%;
     text-align: center;
     margin-left: 20px;
 }
-.item-container h2{
+
+.item-container h2 {
     color: #d5e33e;
     font-size: 15px;
     width: 100%;
     text-align: center;
     margin-left: 20px;
 }
-.logout-container{
+
+.logout-container {
     margin-top: 30px;
     display: flex;
     border: 2px rgb(56, 56, 62) solid;
@@ -216,25 +250,30 @@ li{
     width: 100%;
     margin-bottom: 50px;
 }
-.logout-container:hover{
+
+.logout-container:hover {
     background-color: rgb(235, 36, 36);
     transition: 0.5s;
 }
-.logout-container h2{
+
+.logout-container h2 {
     color: #d5e33e;
     font-size: 15px;
     width: 100%;
 }
-.logout-title{
+
+.logout-title {
     width: 100%;
 }
+
 .dropbtn {
     color: white;
     padding: 16px;
     font-size: 16px;
     border: none;
     cursor: pointer;
-    background: none; /* Elimina el fondo del botón */
+    background: none;
+    /* Elimina el fondo del botón */
     margin-right: 10px;
 
 }
@@ -252,9 +291,9 @@ li{
     position: absolute;
     background-color: #f9f9f9;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
-    
+
 }
 
 /* Estilo de los enlaces dentro del menú desplegable */
@@ -281,7 +320,8 @@ li{
     color: black;
     border-radius: 10px;
 }
-.inicio-section{
+
+.inicio-section {
     position: relative;
     width: 100%;
     border-top: rgb(22, 22, 22) 20px solid;
@@ -289,23 +329,23 @@ li{
 
 }
 
-#conciertos{
+#conciertos {
     display: none;
 }
 
-#usuarios{
+#usuarios {
     display: none;
 }
 
-#eventos{
+#eventos {
     display: none;
 }
 
-.hidden{
-        background:none;
-        border:none; 
-        padding:0; 
-    
+.hidden {
+    background: none;
+    border: none;
+    padding: 0;
+
 }
 
 /* Modal */
@@ -365,3 +405,28 @@ li{
     color: white;
 }
 
+.AnadirConcierto {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    width: 180px;
+    height: 52px;
+    text-transform: uppercase;
+    background-color: #f2f526;
+    border: 2px black solid;
+    color: rgb(0, 0, 0);
+    margin: 0 auto;
+    border-radius: 30px;
+    transition: all .3s ease-out;
+    margin-bottom: 10px;
+    text-align: center;
+    padding: 0;
+    line-height: 52px;
+    font-weight: 1000;
+}
+
+.AnadirConcierto:hover {
+    background-color: rgb(38, 35, 35);
+    color: #f2f526;
+}
