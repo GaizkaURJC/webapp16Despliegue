@@ -22,55 +22,39 @@
                 <h3>DEGRADEV</h3>
             </div>
             <div class="elements-container">
-                <div class="inicio-container" style="margin-top: 50px;">
-                    <div class="inico-icon">
-                        <ion-icon name="home"></ion-icon>
-                    </div>
-                    <div class="inicio-title">
-                        <h2>INICIO</h2>
-                    </div>
-                </div>
-                <div class="item-container">
+                <button  onclick="clubbing()" class="item-container">
                     <div class="inicio-icon">
                         <ion-icon name="wine"></ion-icon>
                     </div>
                     <div class="inicio-title">
                         <h2>CLUBBING</h2>
                     </div>
-                </div>
-                <div class="item-container">
+                </button>
+                <button onclick="conciertos()" class="item-container">
                     <div class="inicio-icon">
                         <ion-icon name="musical-notes"></ion-icon>
                     </div>
                     <div class="inicio-title">
                         <h2>CONCIERTOS</h2>
                     </div>
-                </div>
-                <div class="item-container">
+                </button>
+                <button onclick="eventos()" class="item-container">
                     <div class="inicio-icon">
                         <ion-icon name="people"></ion-icon>
                     </div>
                     <div class="inicio-title">
                         <h2>EVENTOS</h2>
                     </div>
-                </div>
-                <div class="item-container">
+                </button>
+                <button onclick="usuarios()" class="item-container">
                     <div class="inicio-icon">
                         <ion-icon name="construct"></ion-icon>
                     </div>
                     <div class="inicio-title">
                         <h2>USUARIOS</h2>
                     </div>
-                </div>
-                <div class="item-container">
-                    <div class="inicio-icon">
-                        <ion-icon name="construct"></ion-icon>
-                    </div>
-                    <div class="inicio-title">
-                        <h2>AJUSTES GENERALES</h2>
-                    </div>
-                </div>
-                <a href="index.html">
+                </button>
+                <a href="/users/logout">
                     <div class="logout-container">
                         <div class="logout-icon">
                             <ion-icon name="log-in" style="font-size: 30px;"></ion-icon>
@@ -88,7 +72,7 @@
                 <div class="dropdown">
                     <a href="#" class="nombre-usuario dropbtn">ADMIN</a>
                     <div class="dropdown-content">
-                        <a href="#profile">Perfil</a>
+                        <button href="#profile">Editar perfil</a>
                         <a href="#settings">Cambiar Avatar</a>
                     </div>
                 </div>
@@ -96,9 +80,49 @@
         </div>
         <section class="inicio-section">
             <!-- Contenido de la sección -->
-            <div class="container1">
-                <h3>Bienvenido de nuevo, ADMIN!</h3>
+            <div class="container1" id="clubbing">
+                <table>
+                    <tr>
+                        <th>Titulo</th>
+                        <th>Descripción</th>
+                        <th>Imagen</th>
+                        <th>Eliminar</th>
+                    </tr>
+                {{#party}}
+                    <tr>
+                        <td>{{title}}</td>
+                        <td>{{description}}</td>
+                        <td><a href="deleteEvent/{{id}}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+                          </svg></a></td>
+                    </tr>
+                {{/party}}
+                </table>
+                <h2>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#modalCrearFiesta">Añadir fiesta</a>
+    
+                </h2>
             </div>
+
+            <div id="conciertos">
+                {{#concerts}}
+                    {{title}}
+                {{/concerts}}
+            </div>
+
+            <div id="eventos">
+                {{#reservas}}
+                    {{bussinesName}}
+                {{/reservas}}
+            </div>
+
+            <div id="usuarios">
+                {{#users}}
+                    {{name}}
+                {{/users}}
+            </div>
+
         </section>
     </div>
 
@@ -202,11 +226,12 @@
     </div>
     
     <!-- Fin Modal Crear concierto -->
-
+         
 
     <!-- Footer -->
 
     <!-- JAVASCRIPT FILES -->
+     <script src="/js/adminSection.js"></script>
     <!-- Incluye jQuery (necesario para Isotope) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Incluye el JS de Isotope -->

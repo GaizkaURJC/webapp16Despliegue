@@ -37,6 +37,7 @@ import com.daw.daw.repository.EventRepository;
 import com.daw.daw.repository.ImageRepository;
 import com.daw.daw.repository.TicketRepository;
 import com.daw.daw.repository.UserRepository;
+import com.daw.daw.repository.ReservaRepository;
 
 @Controller
 public class PageController {
@@ -56,11 +57,15 @@ public class PageController {
 	@Autowired
 	private final UserController userController;
 
+	@Autowired
+	private ReservaRepository reservaRepository;
+
 	public PageController(UserRepository userRepository, EventRepository eventRepository,
-			UserController userController) {
+			UserController userController , ReservaRepository reservaRepository) {
 		this.userRepository = userRepository;
 		this.eventRepository = eventRepository;
 		this.userController = userController;
+		this.reservaRepository = reservaRepository;
 	}
 
 	@GetMapping("/")
@@ -107,7 +112,20 @@ public class PageController {
 	}
 
 	@GetMapping("/admin")
-	public String adminRedirection(Model model) {
+	public String adminRedirection(Model model, HttpSession session) {
+		String username = (String) session.getAttribute("username");
+
+		boolean isUserLogged = (username != null);
+		model.addAttribute("isUserLogged", isUserLogged);
+
+		if (isUserLogged) {
+			Optional<User> user = userRepository.findByName(username);
+			user.ifPresent(value -> model.addAttribute("userLogged", value));
+		}
+		model.addAttribute("users", userRepository.findAll());
+		model.addAttribute("party", eventRepository.findAllByTipo("party"));
+		model.addAttribute("concerts", eventRepository.findByTipo("concert"));
+		model.addAttribute("reservas", reservaRepository.findAll());
 		return "admin";
 	}
 

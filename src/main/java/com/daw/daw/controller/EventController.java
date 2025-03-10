@@ -65,8 +65,7 @@ public class EventController {
     @PostMapping("/partyCreate")
     public String crearFiesta (@RequestParam("title") String tituloFiesta,
                                @RequestParam("partyDetails") String fiestaDescription,
-                               @RequestParam("partyImageFile") MultipartFile fiestaImagen,
-                               @RequestParam("category") String categoria) {
+                               @RequestParam("partyImageFile") MultipartFile fiestaImagen) {
         try {
             Blob blobImagen = new javax.sql.rowset.serial.SerialBlob(fiestaImagen.getBytes());
             Event fiesta = new Event(tituloFiesta, "party", fiestaDescription, blobImagen, "party");
