@@ -33,12 +33,12 @@ public class ComentsController {
     private UserController userController;
 
     @PostMapping("create")
-    public String addComent(@RequestParam ("rate") int valoracion, @RequestParam ("coment") String comentario, String userName, HttpSession session) {
+    public String addComent(@RequestParam ("rate") int valoracion, @RequestParam ("coment") String comentario, String userName, HttpSession session, @RequestParam ("id") int eventId) {
         if (userController.isLogged(session) == false) {
             return "redirect:/error";
         }
         String UserName = userController.getLoggedUser(session);
-        Coments coments = new Coments(valoracion, comentario, UserName);
+        Coments coments = new Coments(valoracion, comentario, UserName, eventId);
         comentsRepository.save(coments);
     return "redirect:/";
     }

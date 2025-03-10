@@ -125,10 +125,10 @@ public class DataBaseInitializer {
                                 loadImage("img/BubuRoom.avif"), "party");
 
                 if (comentsRepository.findAll().isEmpty()) {
-                        Coments coments1 = new Coments(5, "Me encanto el concierto, la mejor noche de mi vida", "user");
-                        Coments coments2 = new Coments(4, "La musica era buena, pero la bebida era cara", "user");
-                        Coments coments3 = new Coments(3, "No me gusto mucho, la musica era muy rara", "user");
-                        Coments coments4 = new Coments(5, "La mejor fiesta de mi vida, repetire seguro", "user");
+                        Coments coments1 = new Coments(5, "Me encanto el concierto, la mejor noche de mi vida", "user", 5);
+                        Coments coments2 = new Coments(4, "La musica era buena, pero la bebida era cara", "user", 6);
+                        Coments coments3 = new Coments(3, "No me gusto mucho, la musica era muy rara", "user", 3);
+                        Coments coments4 = new Coments(5, "La mejor fiesta de mi vida, repetire seguro", "user", 4);
                         comentsRepository.save(coments1);
                         comentsRepository.save(coments2);
                         comentsRepository.save(coments3);

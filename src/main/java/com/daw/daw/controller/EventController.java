@@ -74,7 +74,7 @@ public class EventController {
             e.printStackTrace();
             return "redirect:/error";
         }
-        return "redirect:/";
+        return "redirect:/admin";
     }
 
     @GetMapping("/{id}")
@@ -94,5 +94,11 @@ public class EventController {
         model.addAttribute("descLinea2", partes.length > 1 ? partes[1] : "");
 		return "clubing";
 	}
+
+    @PostMapping("/deleteEvent")
+    public String deleteEvent(@RequestParam Long id) {
+        eventRepository.deleteById(id);
+        return "redirect:/admin";
+    }
 }
 

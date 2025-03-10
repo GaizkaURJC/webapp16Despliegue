@@ -15,14 +15,16 @@ public class Coments {
     private String username;
     private String comentario;
     private int valoracion;
+    private int eventId;
 
     // Constructor vacío obligatorio para JPA
     public Coments() {}
 
-    public Coments(int valoracion, String comentario, String  username) {
+    public Coments(int valoracion, String comentario, String  username, int eventId) {
         this.username = username;
         this.valoracion = valoracion;
         this.comentario = comentario;
+        this.eventId = eventId;
     }
 
     // Getters y setters
@@ -37,4 +39,7 @@ public class Coments {
 
     public int getValoracion() { return valoracion; }
     public void setValoracion(int valoracion) { this.valoracion = valoracion; }
+
+    public int getEventId() { return eventId; }
+    public void setEventId(int eventId) { this.eventId = eventId; }
 }

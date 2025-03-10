@@ -277,3 +277,9 @@ li{
     display: none;
 }
 
+.hidden{
+        background:none;
+        border:none; 
+        padding:0; 
+    
+}
