@@ -4,7 +4,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import com.daw.daw.model.Coments;
-
+import java.util.List;
 @Repository
 public interface ComentsRepository extends JpaRepository<Coments, Long> {
 
@@ -12,6 +12,6 @@ public interface ComentsRepository extends JpaRepository<Coments, Long> {
     Optional<Coments> findByComentario(String coment); // Cambiar a findByComentario
     Optional<Coments> findByValoracion(int rate); // Cambiar a findByValoracion
     Optional <Coments> getComentsById(Long id);
-    Optional <Coments> getComentsByEventId(Long eventId);
+    List <Coments> getComentsByEventId(Long eventId);
     
 }
