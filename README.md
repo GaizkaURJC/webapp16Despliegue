@@ -255,12 +255,55 @@ Cada miembro del equipo debe indicar su contribución en la práctica.
 
 ### Jon
 
-- Tareas: 
+- Tareas realizadas
 
-- 5 commits más significativos:
+1. Implementación de la funcionalidad de tickets:
+   - Los tickets ahora se generan y son descargables desde el perfil del usuario, con la información obtenida de la base de datos.
 
+2. Integración de iconos de inicio/cierre de sesión:
+   - Se añadieron iconos funcionales para las acciones de login y logout en la interfaz de usuario.
 
-- 5 ficheros en los que he participado:
+3. Desarrollo de la sección "Clubbing" desde la base de datos:
+   - La sección "Clubbing" ahora muestra información obtenida directamente de la base de datos, mejorando la dinámica del contenido.
+
+4. Creación de la página de detalle de eventos:
+   - Se implementó una página de detalle para cada evento, con carga de datos e imágenes desde la base de datos.
+
+5. Diseño de la página de detalle de conciertos con imágenes:
+   - Se diseñó la página de detalle de conciertos, incluyendo la visualización de fotos asociadas a cada concierto.
+
+---
+
+- Commits más significativos
+
+Cada apartado realizado está separado por varios commits, no está todo el contenido en uno solo:
+
+- [Commit 1](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/fafc5d8b6965079724be25a99401dbce4790008a): Implementación de la funcionalidad de tickets descargables desde el perfil del usuario.
+- [Commit 2](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/d8fd6e2682392401a06e761c2324cf293bf37ec1): Integración de iconos funcionales para las acciones de login y logout.
+- [Commit 3](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/fb106ac40a63d7ccb4ebdfadca06bdd3ec0a9ec2): Desarrollo de la sección "Clubbing" con datos obtenidos desde la base de datos.
+- [Commit 4](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/c8e9f20f67bc7819878c1d0a0bc0f7289d16c165): Creación de la página de detalle de eventos con carga de datos e imágenes desde la base de datos.
+- [Commit 5](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/411272f66c614a0140d95db33c7826eab0cf3d6e): Diseño de la página de detalle de conciertos con visualización de imágenes asociadas.
+
+---
+
+- Ficheros en los que se ha participado
+
+1. src/main/java/com/daw/daw/PageController.java`
+   - Controlador principal que gestiona las rutas y la lógica de navegación de la aplicación.
+
+2. `src/main/java/com/daw/daw/controller/TicketController.java`
+   - Controlador encargado de la gestión y generación de tickets para los usuarios.
+
+3. `src/main/resources/templates/paginaPerfil.html`
+   - Plantilla que define la estructura y el diseño de la página de perfil de usuario.
+
+4. `src/main/resources/templates/clubing.html`
+   - Plantilla que muestra la sección "Clubbing" con información dinámica obtenida de la base de datos.
+
+5. `src/main/java/com/daw/daw/controller/EventController.java`
+   - Controlador responsable de la gestión de eventos, incluyendo la carga de datos y la interacción con la base de datos.
+
+---
  
 
 ### Alberto
@@ -268,7 +311,11 @@ Cada miembro del equipo debe indicar su contribución en la práctica.
 - Tareas: 
 
 - 5 commits más significativos (cada apartado realizado está separado por varios commits, no está todo el contenido en uno solo):
-
+[Commit 1]()
+[Commit 2]()
+[Commit 3]()
+[Commit 4]()
+[Commit 5]()
 
 - 5 ficheros en los que se ha participado:
 
