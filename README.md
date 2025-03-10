@@ -249,6 +249,49 @@ Ve a [https://localhost/8080/](https://localhost:8443)
 - VSCode + SpringBoot
 
 
+## Participación de los Miembros
+
+Cada miembro del equipo debe indicar su contribución en la práctica.
+
+### Jon
+
+- Tareas: 
+
+- 5 commits más significativos:
+
+
+- 5 ficheros en los que he participado:
+ 
+
+### Alberto
+
+- Tareas: 
+
+- 5 commits más significativos (cada apartado realizado está separado por varios commits, no está todo el contenido en uno solo):
+
+
+- 5 ficheros en los que se ha participado:
+
+### Alejandro
+- Tareas: 
+
+- 5 commits más significativos :
+  
+
+- 5 ficheros en los que se ha participado:
+  
+
+### Gaizka
+
+- Tareas: 
+
+- 5 commits más significativos (cada apartado realizado está separado por varios commits, no está todo el contenido en uno solo):
+
+
+- 5 ficheros en los que se ha participado:
+ 
+
+
 
 
 
