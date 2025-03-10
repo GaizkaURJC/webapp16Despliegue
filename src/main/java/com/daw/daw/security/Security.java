@@ -9,6 +9,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
+import org.springframework.security.web.context.SecurityContextRepository;
 
 @Configuration
 @EnableWebSecurity
@@ -31,25 +33,55 @@ public class Security {
     }
 
     @Bean
+    public SecurityContextRepository securityContextRepository() {
+        return new HttpSessionSecurityContextRepository();
+    }
+
+    @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authenticationProvider(authenticationProvider());
-        http
-                .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/","/users/logout", "/static/**", "/tickets/**", "/perfil",
-                                "/webapp16/src/main/resources/static/**", "/clubbing", "/paginaDetalleConcierto/**",
-                                "/register/**", "/error", "/css/**", "/js/**", "/img/**", "/users/create",
-                                "/users/authenticate", "/admin", "/coments/create", "reserva/request", "/events/**",
-                                "/events/create", "/videos/**", "/profileImg","/imgEvent/**", "/users/profileImg", "/reserva/**", "/users/deleteUser")
-                        .permitAll()
-                        .anyRequest().authenticated())
-                .formLogin(formLogin -> formLogin
-                        .loginPage("/")
-                        .defaultSuccessUrl("/")
-                        .permitAll())
-                .logout(logout -> logout
-                        .logoutUrl("/users/logout")
-                        .permitAll());
-        http.csrf(csrf -> csrf.disable());
+
+        http.securityContext(securityContext -> securityContext
+        .securityContextRepository(securityContextRepository()) // Habilita el almacenamiento en sesión
+        );
+
+        http.authorizeHttpRequests(authorize -> authorize
+                //PUBLIC PAGES
+                .requestMatchers("/").permitAll()
+                .requestMatchers("/css/**").permitAll()
+                .requestMatchers("/img/**").permitAll()
+                .requestMatchers("/js/**").permitAll()
+                .requestMatchers("/videos/**").permitAll()
+                .requestMatchers("/imgEvent/**").permitAll()
+                .requestMatchers("/users/authenticate").permitAll()
+                .requestMatchers("/users/create").permitAll()
+                .requestMatchers("/favicon/**").permitAll()
+                .requestMatchers("/events/**").permitAll()
+                .requestMatchers("/paginaDetalleConcierto/**").permitAll()
+                .requestMatchers("/clubing/**").permitAll()
+                .requestMatchers("/favicon.ico/**").permitAll()
+                //PRIVATE PAGES
+                .requestMatchers("/admin/**").hasRole("ADMIN")
+                .requestMatchers("/perfil/**").hasRole("USER")
+                .requestMatchers("/paginaperfil/**").hasRole("USER")
+                .requestMatchers("/users/**").hasAnyRole("USER", "ADMIN")
+                .requestMatchers("/tickets/buyTicket").hasRole("USER")
+                .requestMatchers("/tickets/**").hasRole("USER")
+                .requestMatchers("/events/partyCreate").hasRole("ADMIN")
+                .requestMatchers("/events/conciertoCreate").hasRole("ADMIN")
+                .requestMatchers("/reserva/aceptar").hasRole("ADMIN")
+                .requestMatchers("/reserva/request").hasRole("USER")
+                .requestMatchers("/reserva/**").hasRole("ADMIN")
+                .requestMatchers("/application/pdf").hasRole("USER")     
+                .requestMatchers("/coments/create").hasRole("USER")
+            )
+            .formLogin(formLogin -> formLogin
+                .loginPage("/login")
+                .defaultSuccessUrl("/", true) // nos manda al home después del login
+                .permitAll())
+            .logout(logout -> logout
+                .logoutUrl("/users/logout").permitAll()
+                .logoutSuccessUrl("/").permitAll());
 
         return http.build();
     }

@@ -152,9 +152,18 @@
             <div class="fotoFiesta-Container">
                 <img src="/imgEvent/{{event.id}}" alt="Fiesta">
             </div>
+            <div class="btn-entrad">
+                <a class="btn" href="#" onclick="document.getElementById('buyTicketForm').submit();">Comprar Entrada</a>
 
-            <p></p>
-
+                <form id="buyTicketForm" action="/tickets/buyTicket" method="POST" style="display: none;">
+                    <input type="hidden" name="ticketName" value="Nombre del ticket">
+                    <input type="hidden" name="dni" value="12345678X">
+                    <input type="hidden" name="gender" value="M">
+                    <input type="hidden" name="eventName" value="{{event.title}}">
+                    <input type="hidden" name="category" value="party">
+                    <input type="hidden"  name="_csrf" value="{{token}}">
+                </form>
+            </div>
             <div class="container3">
                 <div class="icono-detalle">
                     <ion-icon name="menu-outline"></ion-icon>

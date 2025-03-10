@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -83,35 +86,33 @@ public class EventController {
     }
 
     @GetMapping("/{id}")
-    public String clubbingRedirection(HttpSession session, @PathVariable Long id, Model model) {
-        String username = (String) session.getAttribute("username");
-        boolean isUserLogged = (username != null);
+	public String clubbingRedirection(HttpSession session, @PathVariable Long id, Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        boolean isUserLogged = authentication.isAuthenticated();
+
         model.addAttribute("isUserLogged", isUserLogged);
-        if (isUserLogged) {
-            Optional<User> user = userRepository.findByName(username);
-            user.ifPresent(value -> model.addAttribute("userLogged", value));
-        }
 
-        Optional<Event> eventOptional = eventRepository.findById(id);
-        if (eventOptional.isPresent()) {
-            Event event = eventOptional.get();
-            model.addAttribute("event", event);
-            String[] partes = event.getDescription().split("\\|");
-            model.addAttribute("descLinea1", partes[0]);
-            model.addAttribute("descLinea2", partes.length > 1 ? partes[1] : "");
+		if (isUserLogged) {
+			Object principal = authentication.getPrincipal();
+            String username = "";
+            User user = null;
 
-            // Get gender data
-            String title = event.getTitle();
-            int maleCount = ticketRepository.findByTitleAndGender(title, "Hombre").size();
-            int femaleCount = ticketRepository.findByTitleAndGender(title, "Mujer").size();
-            model.addAttribute("maleCount", maleCount);
-            model.addAttribute("femaleCount", femaleCount);
+            if (principal instanceof UserDetails) {
+                username = ((UserDetails) principal).getUsername();
+            } else if (principal instanceof User) {
+                username = ((User) principal).getEmail(); // Usa email si es lo que almacenas en User
+                user = ((User) principal);
+            }
 
-            return "clubing";
-        } else {
-            return "error"; // Or handle the case where the event is not found
-        }
-    }
+            System.out.println("Usuario autenticado: " + username);
+            model.addAttribute("userLogged", user);
+		}
+		model.addAttribute("event", eventRepository.findById(id).get());
+        String[] partes = eventRepository.findById(id).get().getDescription().split("\\|");
+        model.addAttribute("descLinea1", partes[0]);
+        model.addAttribute("descLinea2", partes.length > 1 ? partes[1] : "");
+		return "clubing";
+	}
 
     @PostMapping("/deleteEvent")
     public String deleteEvent(@RequestParam Long id) {
