@@ -151,16 +151,10 @@
                 <img src="/imgEvent/{{event.id}}" alt="Fiesta">
             </div>
             <div class="btn-entrad">
-                <a class="btn" href="#" onclick="document.getElementById('buyTicketForm').submit();">Comprar Entrada</a>
-
-                <form id="buyTicketForm" action="/tickets/buyTicket" method="POST" style="display: none;">
-                    <input type="hidden" name="ticketName" value="Nombre del ticket">
-                    <input type="hidden" name="dni" value="12345678X">
-                    <input type="hidden" name="gender" value="M">
-                    <input type="hidden" name="eventName" value="{{event.title}}">
-                    <input type="hidden" name="category" value="party">
-                    <input type="hidden"  name="_csrf" value="{{token}}">
-                </form>
+                <a class="btn" href="#" onclick="document.getElementById('buyTicketForm').submit();"
+                    data-bs-toggle="modal" data-bs-target="#modalCompra">
+                    Comprar Entrada
+                </a>
             </div>
             <div class="container3">
                 <div class="icono-detalle">
@@ -212,12 +206,7 @@
             <div class="container6">
                 <canvas id="genderChart" width="600" height="600"></canvas>
             </div>
-            <div class="btn-entrad">
-                <a class="btn" href="#" onclick="document.getElementById('buyTicketForm').submit();"
-                    data-bs-toggle="modal" data-bs-target="#modalCompra">
-                    Comprar Entrada
-                </a>
-            </div>
+            
         </div>
     </section>
     <p id="separador"></p>
@@ -254,6 +243,8 @@
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-success">Terminar compra </button>
+                        <input type="hidden"  name="_csrf" value="{{token}}">
+
                     </div>
                 </form>
             </div>

@@ -102,23 +102,36 @@ public class UserController {
     }
 
     @PostMapping("create")
-    public String createUser(@RequestParam("name") String nombre,
-                             @RequestParam("email") String correo,
-                             @RequestParam("telefono") String telf,
-                             @RequestParam("password") String contrasena,
-                             HttpSession session) {
-        if (userRepository.findByName(nombre).isPresent()) {
-            return "redirect:/register?error=user_exists";  // O vuelve al formulario con mensaje de error
-        }
-        Blob defUserImg = loadImage("img/defuser.webp");
-        User user = new User(nombre, correo, telf, passwordEncoder.encode(contrasena), Arrays.asList("USER"), defUserImg);
-        userRepository.save(user);
-        if (session.isNew()){
-            session.setAttribute("username", user.getNombre());
-            return "redirect:/perfil";
-        }
-        return "redirect:/perfil";
+public String createUser(@RequestParam("name") String nombre,
+                         @RequestParam("email") String correo,
+                         @RequestParam("telefono") String telf,
+                         @RequestParam("password") String contrasena,
+                         HttpServletRequest request) {
+
+    if (userRepository.findByName(correo).isPresent()) {
+        return "redirect:/register?error=user_exists";  // O vuelve al formulario con mensaje de error
     }
+    Blob defUserImg = loadImage("img/defuser.webp");
+    User user = new User(nombre, correo, telf, passwordEncoder.encode(contrasena), Arrays.asList("USER"), defUserImg);
+    userRepository.save(user);
+
+    // Autenticar al usuario después de registrarlo
+    List<GrantedAuthority> authorities = new ArrayList<>();
+    for (String role : user.getRoles()) {
+        authorities.add(new SimpleGrantedAuthority("ROLE_" + role));
+    }
+
+    // Crear token de autenticación
+    UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(user, null, authorities);
+
+    // Guardar en el contexto de seguridad
+    SecurityContextHolder.getContext().setAuthentication(auth);
+
+    // Asociar el contexto de seguridad a la sesión
+    request.getSession().setAttribute("SPRING_SECURITY_CONTEXT", SecurityContextHolder.getContext());
+
+    return "redirect:/";  // Redirigir a la página principal
+}
     
     @PostMapping("authenticate")
     public String loginUser(@RequestParam("emailLogin") String correo,

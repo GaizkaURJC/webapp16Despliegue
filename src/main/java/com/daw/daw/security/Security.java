@@ -38,51 +38,58 @@ public class Security {
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authenticationProvider(authenticationProvider());
+public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    http.authenticationProvider(authenticationProvider());
 
-        http.securityContext(securityContext -> securityContext
+    http.securityContext(securityContext -> securityContext
         .securityContextRepository(securityContextRepository()) // Habilita el almacenamiento en sesión
-        );
+    );
 
-        http.authorizeHttpRequests(authorize -> authorize
-                //PUBLIC PAGES
-                .requestMatchers("/").permitAll()
-                .requestMatchers("/css/**").permitAll()
-                .requestMatchers("/img/**").permitAll()
-                .requestMatchers("/js/**").permitAll()
-                .requestMatchers("/videos/**").permitAll()
-                .requestMatchers("/imgEvent/**").permitAll()
-                .requestMatchers("/users/authenticate").permitAll()
-                .requestMatchers("/users/create").permitAll()
-                .requestMatchers("/favicon/**").permitAll()
-                .requestMatchers("/events/**").permitAll()
-                .requestMatchers("/paginaDetalleConcierto/**").permitAll()
-                .requestMatchers("/clubing/**").permitAll()
-                .requestMatchers("/favicon.ico/**").permitAll()
-                //PRIVATE PAGES
-                .requestMatchers("/admin/**").hasRole("ADMIN")
-                .requestMatchers("/perfil/**").hasRole("USER")
-                .requestMatchers("/paginaperfil/**").hasRole("USER")
-                .requestMatchers("/users/**").hasAnyRole("USER", "ADMIN")
-                .requestMatchers("/tickets/buyTicket").hasRole("USER")
-                .requestMatchers("/tickets/**").hasRole("USER")
-                .requestMatchers("/events/partyCreate").hasRole("ADMIN")
-                .requestMatchers("/events/conciertoCreate").hasRole("ADMIN")
-                .requestMatchers("/reserva/aceptar").hasRole("ADMIN")
-                .requestMatchers("/reserva/request").hasRole("USER")
-                .requestMatchers("/reserva/**").hasRole("ADMIN")
-                .requestMatchers("/application/pdf").hasRole("USER")     
-                .requestMatchers("/coments/create").hasRole("USER")
-            )
-            .formLogin(formLogin -> formLogin
-                .loginPage("/login")
-                .defaultSuccessUrl("/", true) // nos manda al home después del login
-                .permitAll())
-            .logout(logout -> logout
-                .logoutUrl("/users/logout").permitAll()
-                .logoutSuccessUrl("/").permitAll());
+    http.authorizeHttpRequests(authorize -> authorize
+            //PUBLIC PAGES
+            .requestMatchers("/").permitAll()
+            .requestMatchers("/css/**").permitAll()
+            .requestMatchers("/img/**").permitAll()
+            .requestMatchers("/js/**").permitAll()
+            .requestMatchers("/videos/**").permitAll()
+            .requestMatchers("/imgEvent/**").permitAll()
+            .requestMatchers("/users/authenticate").permitAll()
+            .requestMatchers("/users/create").permitAll()
+            .requestMatchers("/favicon/**").permitAll()
+            .requestMatchers("/events/**").permitAll()
+            .requestMatchers("/paginaDetalleConcierto/**").permitAll()
+            .requestMatchers("/clubing/**").permitAll()
+            .requestMatchers("/favicon.ico/**").permitAll()
+            //PRIVATE PAGES
+            .requestMatchers("/admin/**").hasRole("ADMIN")
+            .requestMatchers("/perfil/**").hasRole("USER")
+            .requestMatchers("/paginaperfil/**").hasRole("USER")
+            .requestMatchers("/users/**").hasAnyRole("USER", "ADMIN")
+            .requestMatchers("/tickets/buyTicket").hasRole("USER")
+            .requestMatchers("/tickets/**").hasRole("USER")
+            .requestMatchers("/events/partyCreate").hasRole("ADMIN")
+            .requestMatchers("/events/conciertoCreate").hasRole("ADMIN")
+            .requestMatchers("/reserva/aceptar").hasRole("ADMIN")
+            .requestMatchers("/reserva/request").hasRole("USER")
+            .requestMatchers("/application/pdf").hasRole("USER")     
+            .requestMatchers("/coments/create").hasRole("USER")
+            .requestMatchers("/events/deleteEvent").hasRole("ADMIN")
+            .requestMatchers("/reserva/aceptar").hasRole("ADMIN")
+            .requestMatchers("/reserva/rechazar").hasRole("ADMIN")
+            .requestMatchers("/reserva/deleteReserva").hasRole("ADMIN")
+            .requestMatchers("/users/deleteUser").hasRole("ADMIN")
+            .requestMatchers("/events/conciertoCreate").hasRole("ADMIN")
+            .requestMatchers("/events/partyCreate").hasRole("ADMIN")
+            .requestMatchers("/events/**").hasRole("ADMIN")
+    )
+        .formLogin(formLogin -> formLogin
+            .loginPage("/login")
+            .defaultSuccessUrl("/", true) // nos manda al home después del login
+            .permitAll())
+        .logout(logout -> logout
+            .logoutUrl("/users/logout").permitAll()
+            .logoutSuccessUrl("/").permitAll());
 
-        return http.build();
-    }
+    return http.build();
+}
 }

@@ -19,3 +19,38 @@ document.addEventListener("DOMContentLoaded", function() {
         loginSection.style.display = "flex";
     });
 });
+document.addEventListener('DOMContentLoaded', function () {
+    const ctx = document.getElementById('genderChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ['Hombre', 'Mujer'],
+            datasets: [{
+                
+                data: [maleCount, femaleCount],
+        backgroundColor: [
+            '#f2f526', 
+            'black'  
+        ],
+        borderColor: [
+            '#f2f526',
+            'black'
+        ],
+        borderWidth: 1
+    }]
+  },
+    options: {
+    responsive: true,
+    maintainAspectRatio: false, // Allow the chart to fill the canvas
+    plugins: {
+        legend: {
+            position: 'bottom',
+        },
+        title: {
+            display: true,
+            text: 'Distribucion por genero'
+        }
+    }
+}
+});
+});
