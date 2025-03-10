@@ -31,6 +31,8 @@ li{
     background-color: rgb(22, 22, 22);
     color: #d5e33e;
     padding: 0;
+    height: 100vh;
+    overflow-y: auto; /* Añade scroll si el contenido es demasiado alto */
 }
 
 .logo{
@@ -153,9 +155,31 @@ li{
     position: relative;
     width: 100%;
     padding: 20px;
-    border: 2px blue solid;
+    background-color: rgb(31, 33, 30);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     overflow-y: auto; /* Añade scroll si el contenido es demasiado alto */
 }
+
+.inicio-section h2 {
+    color: white;
+    margin-top: 20px;
+}
+
+.inicio-section table, th ,td{
+    border: 2px solid #000000;
+    background-color: #4A4A4A;
+    width: auto;
+    height: auto;
+    text-align: center;
+    border-collapse: collapse;
+    padding: 10px;
+}
+
+
 
 .inicio-container:hover{
     background-color: rgb(56, 56, 62);
@@ -260,7 +284,7 @@ li{
 .inicio-section{
     position: relative;
     width: 100%;
-    border: 2px blue solid;
+    border-top: rgb(22, 22, 22) 20px solid;
 
 
 }
@@ -283,3 +307,61 @@ li{
         padding:0; 
     
 }
+
+/* Modal */
+.modal-content {
+    margin-top: 25px;
+    background: transparent;
+    backdrop-filter: blur(12px);
+    color: white;
+    min-height: 500px;
+    border: 1px solid #000000;
+    background-color: rgb(0, 0, 0, 0.7);
+
+}
+
+.modal-dialog {
+    max-width: 500px;
+    margin-top: -1vh;
+}
+
+.modal-backdrop {
+    background-color: #f2f526 !important;
+    display: none !important;
+}
+
+
+.modal-header {
+    background: #f2f526;
+    color: black;
+    font-weight: 900;
+}
+
+.btn-login {
+    background-color: #d5e33e;
+    color: black;
+}
+
+.header {
+    border: solid 5px yellow
+}
+
+.btn-login:hover {
+    background-color: black;
+    color: #d5e33e;
+    border-color: #d5e33e;
+}
+
+.btn-close {
+    width: 20px;
+    height: 20px;
+    filter: invert(1);
+    color: black;
+    background: transparent;
+}
+
+
+.form-label {
+    color: white;
+}
+

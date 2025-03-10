@@ -132,6 +132,8 @@ public class UserController {
     }
 }
 
+
+
     @DeleteMapping("{id}")
     public void deleteUser(@PathVariable ("id") Long id) {
         userRepository.deleteById(id);
