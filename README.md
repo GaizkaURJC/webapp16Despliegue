@@ -352,7 +352,7 @@ Algunos commits no tienen toda la lógica o les falta un poco, pero son los prin
 - [Commit 2](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/1f601b3f4f8c792525fd2c2773a5d079e060c5c0): Compra de tickets
 - [Commit 3](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/563e9e5185734905e3853c56e1b5b6ddd2448e0f): Filtro de conciertos
 - [Commit 4](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/dd7c873bb2bd2edbb2687623f356b05688ce8232): Corrección cargar más
-- [Commit 5]()
+- [Commit 5](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/56aebd87ae00a8b4fab04a15992fedb39a7bd227): Validación del formulario
   
 
 - 5 ficheros en los que se ha participado:
@@ -366,8 +366,8 @@ Algunos commits no tienen toda la lógica o les falta un poco, pero son los prin
 3. 'src/main/java/com/daw/daw/EventController.java`
    - Controlador de los eventos (conciertos y fiestas) con sus funciones como crearConcierto o crearFiesta.
 
-4. `src/main/resources/templates/paginaDetalleConcierto.html`
-   - Plantilla que muestra la sección de conciertos con información sobre estos y el modal para poder comprar una entrada.
+4. `src/main/resources/static/js/validaciones.js`
+   - Archivo con el código para la validación en tiempo real de los forms de login y singup.
 
 5. `src/main/resources/static/js/filtroConciertos.js`
    - Archivo con el código para el filtro de elementos y el cargar más.
