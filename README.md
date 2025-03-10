@@ -201,7 +201,21 @@ El solicitante debera rellenar el fomrulario, y se le generara un pdf, con el pr
 
 Por ultimo encontramos un footer sencillo, con distina infomracion de la sala y la empresa que la dirige, ademas de los links a las RRSS
 
-## Instrucciones de Ejecución
+-------
+### *Diagrama de navegación*
+![Diseño sin título](https://github.com/user-attachments/assets/59eb7b9e-4f72-45a8-afc9-af67864b45ad)
+Como se puede ver en el diagrama, de la página principal se puede ir al login, a la página de los conciertos o fiestas y a un form en el que se podrá solicitar un evento.
+En la página de conciertos o fiestas, se va a poder comprar entradas y si se quisiese escribir un comentario.
+
+
+-------
+## 📌 *Práctica 1: Web con HTML generado en servidor y AJAX*
+### *Diagrama de navegación actualizado*
+![Diseño sin título (1)](https://github.com/user-attachments/assets/ef45f2d5-4e5f-4bb0-a01c-a4b9a78812dd)
+En este nuevo diagrama de navegación se observa como ha mejorado la página respecto a la anterior fase. Empezando por la paleta de colores y el diseño de alguna de las páginas, como por la adición de nuevas páginas como la de admin y la implementación de todas las funcionalidades como por ejemplo que se vean a simple vista: el botón de cargar más y la posibilidad de añadir comentarios.
+
+-----------
+### *Instrucciones de ejecución*
 
 1. **Abrir docker**
 
@@ -249,7 +263,13 @@ Ve a [https://localhost/8080/](https://localhost:8443)
 - VSCode + SpringBoot
 
 
-## Participación de los Miembros
+-----------
+### *Diagrama de entidades de la base de datos*
+A continuación se puede ver el diagrama de la base de datos, la cual ha cambiado bastante al propuesto en la preparación.
+![Diagrama en blanco](https://github.com/user-attachments/assets/932d6aa6-80e1-4e3f-b251-8774ea0412b5)
+
+
+## *Participación de los miembros*
 
 Cada miembro del equipo debe indicar su contribución en la práctica.
 
