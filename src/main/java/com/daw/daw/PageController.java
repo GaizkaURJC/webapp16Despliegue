@@ -38,6 +38,7 @@ import com.daw.daw.repository.ImageRepository;
 import com.daw.daw.repository.TicketRepository;
 import com.daw.daw.repository.UserRepository;
 import com.daw.daw.repository.ReservaRepository;
+import com.daw.daw.repository.ComentsRepository;
 
 @Controller
 public class PageController {
@@ -56,6 +57,9 @@ public class PageController {
 
 	@Autowired
 	private final UserController userController;
+
+	@Autowired
+	private ComentsRepository commentRepository;
 
 	@Autowired
 	private ReservaRepository reservaRepository;
@@ -102,12 +106,13 @@ public class PageController {
 
 		boolean isUserLogged = (username != null);
 		model.addAttribute("isUserLogged", isUserLogged);
-
 		if (isUserLogged) {
 			Optional<User> user = userRepository.findByName(username);
 			user.ifPresent(value -> model.addAttribute("userLogged", value));
 		}
 		model.addAttribute("event", eventRepository.findById(id).get());
+		model.addAttribute("coments", commentRepository.getComentsByEventId(id));
+
 		return "paginaDetalleConcierto";
 	}
 

@@ -12,5 +12,6 @@ public interface ComentsRepository extends JpaRepository<Coments, Long> {
     Optional<Coments> findByComentario(String coment); // Cambiar a findByComentario
     Optional<Coments> findByValoracion(int rate); // Cambiar a findByValoracion
     Optional <Coments> getComentsById(Long id);
+    Optional <Coments> getComentsByEventId(Long eventId);
     
 }

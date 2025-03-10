@@ -197,4 +197,30 @@ public class UserController {
         model.addAttribute("recomendaciones", recomendaciones);
         return "userPreferences";
     }
+
+    @PostMapping("deleteUser")
+    public String deleteUseString(@RequestParam Long id) {
+        userRepository.deleteById(id);
+        return "redirect:/admin";
+    }
+
+    @PostMapping("createAdmin")
+    public String createAdmin(@RequestParam("name") String nombre,
+                             @RequestParam("email") String correo,
+                             @RequestParam("telefono") String telf,
+                             @RequestParam("password") String contrasena,
+                             HttpSession session) {
+        if (userRepository.findByName(nombre).isPresent()) {
+            return "redirect:/register?error=user_exists";  // O vuelve al formulario con mensaje de error
+        }
+        Blob defUserImg = loadImage("img/defuser.webp");
+        User user = new User(nombre, correo, telf, passwordEncoder.encode(contrasena), Arrays.asList("ADMIN"), defUserImg);
+        userRepository.save(user);
+        if (session.isNew()){
+            session.setAttribute("username", user.getNombre());
+            return "redirect:/perfil";
+        }
+        return "redirect:/admin";
+    }
+    
 }

@@ -60,4 +60,39 @@ public class ReservaController {
         response.getOutputStream().write(pdfBytes);
         response.flushBuffer();
     }
+
+    @PostMapping("aceptar")
+    public String aceptarReserva(@RequestParam Long id) {
+        Optional<Reserva> reserva = reservaRepository.getReservaById(id);
+        if (reserva.isPresent()) {
+            Reserva r = reserva.get();
+            r.setEstado("aceptada");
+            reservaRepository.deleteById(id);
+            reservaRepository.save(r);
+            return "redirect:/admin";
+        } else {
+            return "redirect:/error";
+        }
+    }
+
+    @PostMapping("rechazar")
+    public String rechazarReserva(@RequestParam Long id) {
+        Optional<Reserva> reserva = reservaRepository.getReservaById(id);
+        if (reserva.isPresent()) {
+            reserva.get().setEstado("rechazada");
+            reservaRepository.save(reserva.get());
+            return "redirect:/admin";
+        } else {
+            return "redirect:/error";
+        }
+    }
+
+    @PostMapping("deleteReserva")
+    public String deleteReserva(@RequestParam Long id) {
+        reservaRepository.deleteById(id);
+        return "redirect:/admin";
+        
+    }
+    
+    
 }

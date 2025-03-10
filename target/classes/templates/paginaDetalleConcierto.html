@@ -270,55 +270,24 @@
                 <button class="btn-change8 btn-comentario" type="button" data-bs-toggle="modal"
                     data-bs-target="#modalComentario">Añadir comentario</button>
             </div>
+            
             <div class="container-comments">
-                <div class="comment-post">
-                    <div class="comment-post_user">
-                        jonmazh
+                {{#coments}}
+                    <div class="comment-post">
+                        <div class="comment-post_user">
+                            {{username}}
+                        </div>
+                        <div class="comment-post_content">
+                            <p>{{comentario}}</p>
+                        </div>
+                        <div class="comment-post_valoration">
+                            <p>
+                               {{valoracion}} 
+                            </p>
+                            
+                        </div>
                     </div>
-                    <div class="comment-post_content">
-                        <p>Increíble concierto, la sala es perfecta
-                            para disfrutar de la música en directo. ¡Volveré!</p>
-                    </div>
-                    <div class="comment-post_valoration">
-                        <p>⭐⭐⭐⭐⭐</p>
-                    </div>
-                </div>
-                <div class="comment-post">
-                    <div class="comment-post_user">
-                        alber07
-                    </div>
-                    <div class="comment-post_content">
-                        <p>
-                            Son bastante peores que cruz cafune, pero al menos no son de murcia...
-                        </p>
-                    </div>
-                    <div class="comment-post_valoration">
-                        <p>⭐⭐⭐</p>
-                    </div>
-
-                </div>
-                <div class="comment-post">
-                    <div class="comment-post_user">
-                        rikok01
-                    </div>
-                    <div class="comment-post_content">
-                        <p>Si no es en pozuelo no voy. Prefiero a Taburete.</p>
-                    </div>
-                    <div class="comment-post_valoration">
-                        <p>⭐</p>
-                    </div>
-                </div>
-                <div class="comment-post">
-                    <div class="comment-post_user">
-                        gaizkorri
-                    </div>
-                    <div class="comment-post_content">
-                        <p>Ez dut ezer ulertzen</p>
-                    </div>
-                    <div class="comment-post_valoration">
-                        <p>⭐⭐⭐</p>
-                    </div>
-                </div>
+                {{/coments}}
             </div>
 
         </div>
