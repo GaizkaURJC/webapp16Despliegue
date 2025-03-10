@@ -104,6 +104,8 @@ public class EventController {
                 user = ((User) principal);
             }
 
+            
+
             System.out.println("Usuario autenticado: " + username);
             model.addAttribute("userLogged", user);
 		}
@@ -111,6 +113,12 @@ public class EventController {
         String[] partes = eventRepository.findById(id).get().getDescription().split("\\|");
         model.addAttribute("descLinea1", partes[0]);
         model.addAttribute("descLinea2", partes.length > 1 ? partes[1] : "");
+
+        String title = eventRepository.findById(id).get().getTitle();
+        int maleCount = ticketRepository.findByTitleAndGender(title, "Hombre").size();
+        int femaleCount = ticketRepository.findByTitleAndGender(title, "Mujer").size();
+        model.addAttribute("maleCount", maleCount);
+        model.addAttribute("femaleCount", femaleCount);
 		return "clubing";
 	}
 
