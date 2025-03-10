@@ -164,40 +164,7 @@ public class UserController {
         return (String) session.getAttribute("username");
     }
     
-    @GetMapping("userPreferences")
-    public String userPreferences( HttpSession session, Model model) {
-
-        // Recuperamos el usuario que ha inciado sesion
-        String user = getLoggedUser(session);
-        if (user==null) {
-            return "redirect:/login";     
-        }
-
-        // Buscamos los tickets que ha comprado el usuario
-        List <Ticket> tickets = ticketRepository.findByUserOwner(user);
-
-        //Contamos cuantos hay de cada categoria
-        Map<String, Long> categoryCount = tickets.stream()
-                .collect(Collectors.groupingBy(Ticket::getCategory, Collectors.counting()));
-
-        //Ordenamos las categorias por preferencia de mayor a menor
-        List <Map.Entry<String, Long>> preferenciasOrdenadas = categoryCount.entrySet().stream()
-                .sorted(Map.Entry.<String, Long>comparingByValue().reversed())
-                .collect(Collectors.toList());
-        
-        //Buscar event futuros de esas categorias
-        List <Event> recomendaciones = new ArrayList<>();
-        for (Map.Entry<String, Long> preferencia: preferenciasOrdenadas){
-            List<Event> eventosDeEsaCategoria = eventRepository.findByCategory(preferencia.getKey())
-                    .map(Arrays::asList)
-                    .orElseGet(ArrayList::new);
-            recomendaciones.addAll(eventosDeEsaCategoria);
-        }
-
-        //Pasamos las recomendaciones a la vista
-        model.addAttribute("recomendaciones", recomendaciones);
-        return "userPreferences";
-    }
+    
 
     @PostMapping("deleteUser")
     public String deleteUseString(@RequestParam Long id) {

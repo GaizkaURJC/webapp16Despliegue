@@ -6,6 +6,10 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
@@ -76,21 +80,61 @@ public class PageController {
 	}
 
 	@GetMapping("/")
-	public String form(HttpSession session, Model model) {
-		String username = (String) session.getAttribute("username");
+    public String form(HttpSession session, Model model) {
+        String username = (String) session.getAttribute("username");
+        boolean isUserLogged = (username != null);
+        model.addAttribute("isUserLogged", isUserLogged);
 
-		boolean isUserLogged = (username != null);
-		model.addAttribute("isUserLogged", isUserLogged);
+        List<Event> allConcerts = eventRepository.findByTipo("concert");
+        model.addAttribute("party", eventRepository.findAllByTipo("party"));
 
-		if (isUserLogged) {
-			Optional<User> user = userRepository.findByName(username);
-			user.ifPresent(value -> model.addAttribute("userLogged", value));
-		}
+        if (isUserLogged) {
+            Optional<User> user = userRepository.findByName(username);
+            user.ifPresent(value -> model.addAttribute("userLogged", value));
 
-		model.addAttribute("party", eventRepository.findAllByTipo("party"));
-		model.addAttribute("concerts", eventRepository.findByTipo("concert"));
-		return "index";
-	}
+            List<Ticket> tickets = ticketRepository.findByUserOwner(username);
+            Map<String, Long> categoryCount = tickets.stream()
+                    .collect(Collectors.groupingBy(Ticket::getCategory, Collectors.counting()));
+
+            List<Map.Entry<String, Long>> sortedPreferences = categoryCount.entrySet().stream()
+                    .sorted(Map.Entry.<String, Long>comparingByValue().reversed())
+                    .collect(Collectors.toList());
+
+            // Reorder concerts based on user preferences
+            List<Event> orderedConcerts = reorderConcerts(allConcerts, sortedPreferences);
+            model.addAttribute("concerts", orderedConcerts);
+
+        } else {
+            model.addAttribute("concerts", allConcerts);
+        }
+
+        return "index";
+    }
+
+    private List<Event> reorderConcerts(List<Event> allConcerts,
+            List<Map.Entry<String, Long>> sortedPreferences) {
+        List<Event> orderedConcerts = new ArrayList<>();
+        Set<Long> addedEventIds = new HashSet<>();
+
+        // Add concerts from preferred categories first
+        for (Map.Entry<String, Long> preference : sortedPreferences) {
+            String preferredCategory = preference.getKey();
+            for (Event concert : allConcerts) {
+                if (concert.getCategory().equals(preferredCategory) && addedEventIds.add(concert.getId())) {
+                    orderedConcerts.add(concert);
+                }
+            }
+        }
+
+        // Add remaining concerts
+        for (Event concert : allConcerts) {
+            if (addedEventIds.add(concert.getId())) {
+                orderedConcerts.add(concert);
+            }
+        }
+
+        return orderedConcerts;
+    }
 
 	@GetMapping("/imgEvent/{id}")
 	public ResponseEntity<Object> getImage(@PathVariable Long id, Model model) throws SQLException {
