@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    
+
     <!-- Modal de login-->
     <div class="modal fade" id="modalLogin" tabindex="-1" aria-labelledby="modalLogin" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -27,17 +27,18 @@
                 </div>
 
                 <div class="modal-body">
-                    <form>
+                    <form action="/users/authenticate" method="post">
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Correo electrónico</label>
-                            <input type="email" class="form-control" id="correo" aria-describedby="emailHelp">
+                            <input type="email" class="form-control" id="emailLogin" name="emailLogin"
+                                aria-describedby="emailHelp">
                         </div>
                         <div class="mb-3 ">
                             <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" id="contraseña">
+                            <input type="password" class="form-control" id="passwordLogin" name="passwordLogin">
                         </div>
                         <div class="d-flex align-items-center margenGrande">
-                            <button type="submit" class="btn btn-login me-2">Confirmar</button>
+                            <button type="submit" class="btn btn-login me-2" id="submitLogin">Confirmar</button>
                             <p>
                                 <a href="#" class="switch-modal" data-bs-toggle="modal" data-bs-target="#modalSingUp">
                                     <span style="color: white;">
@@ -47,7 +48,6 @@
                                 </a>
                             </p>
                         </div>
-
                     </form>
                 </div>
             </div>
@@ -65,36 +65,38 @@
                 </div>
 
                 <div class="modal-body">
-                    <form>
+                    <form action="/users/create" method="post">
                         <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Correo electrónico</label>
-                            <input type="email" class="form-control" id="correo" aria-describedby="emailHelp">
+                            <label for="exampleInputEmail1" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
                         </div>
-
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Correo electrónico</label>
-                            <input type="email" class="form-control" id="correo" aria-describedby="emailHelp">
+                            <input type="email" class="form-control" id="email" name="email"
+                                aria-describedby="emailHelp" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Telefono</label>
+                            <input type="text" class="form-control" id="telefono" name="telefono" required>
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" id="contraseña">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Repetir contraseña</label>
-                            <input type="password" class="form-control" id="contraseña">
+                            <input type="password" class="form-control" name="password" id="password" required>
                         </div>
                         <input type="checkbox" id="terminos" name="terminos" value="terminos" required> Acepto los
                         terminos y condiciones
                         <br>
                         <input type="checkbox" id="datos" name="datos" value="datos"> Permito el uso de mis datos
                         personales para las estadisticas
-                        <p><button type="submit" class="btn btn-login">Confirmar</button></p>
+                        <p><button type="submit" class="btn btn-login" id="submitBtn">Confirmar</button></p>
                     </form>
                 </div>
             </div>
         </div>
     </div>
     <!-- Fin Modal de sing up-->
+
+
     <section class="header">
         <video autoplay loop muted playsinline id="bg-video">
             <source src="/videos/video-clubbing.mp4" type="video/mp4">
@@ -146,7 +148,7 @@
                     <small>COMPRA YA TU ENTRADA O RESERVA TU MESA!</samll>
                 </div>
             </div>
-           
+
             <div class="fotoFiesta-Container">
                 <img src="/imgEvent/{{event.id}}" alt="Fiesta">
             </div>
@@ -155,6 +157,16 @@
                     data-bs-toggle="modal" data-bs-target="#modalCompra">
                     Comprar Entrada
                 </a>
+                <a class="btn" href="#" onclick="document.getElementById('buyTicketForm').submit();">Comprar Entrada</a>
+
+                <form id="buyTicketForm" action="/tickets/buyTicket" method="POST" style="display: none;">
+                    <input type="hidden" name="ticketName" value="Nombre del ticket">
+                    <input type="hidden" name="dni" value="12345678X">
+                    <input type="hidden" name="gender" value="M">
+                    <input type="hidden" name="eventName" value="{{event.title}}">
+                    <input type="hidden" name="category" value="party">
+                    <input type="hidden" name="_csrf" value="{{token}}">
+                </form>
             </div>
             <div class="container3">
                 <div class="icono-detalle">
@@ -167,7 +179,7 @@
                     <hr>
                 </div>
             </div>
-            
+
             <div class="container4">
                 <div class="fecha-hora">
                     <div class="time-icon">
@@ -185,7 +197,7 @@
                         <p>Teatro DAW, </p>
                         <p>Calle del arenal 9, Madrid</p>
                     </div>
-            </div>
+                </div>
             </div>
             <div class="container5">
                 <div class="horario-reserva">
@@ -251,9 +263,43 @@
         </div>
     </div>
     <!-- Fin Modal de compra -->
-    
+
     <script>
-        
+        document.addEventListener('DOMContentLoaded', function () {
+            const ctx = document.getElementById('genderChart').getContext('2d');
+            const myChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['Hombre', 'Mujer'],
+                    datasets: [{
+
+                        data: [{{ maleCount }}, {{ femaleCount }}],
+                backgroundColor: [
+                    '#f2f526',
+                    'black'
+                ],
+                borderColor: [
+                    '#f2f526',
+                    'black'
+                ],
+                borderWidth: 1
+            }]
+          },
+            options: {
+            responsive: true,
+            maintainAspectRatio: false, // Allow the chart to fill the canvas
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                },
+                title: {
+                    display: true,
+                    text: 'Distribucion por genero'
+                }
+            }
+        }
+      });
+        });
     </script>
 
     <!-- JAVASCRIPT FILES -->
@@ -275,6 +321,7 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/js/validaciones.js"></script>
 </body>
 
 </html>

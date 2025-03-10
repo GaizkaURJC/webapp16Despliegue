@@ -339,22 +339,24 @@ Cada apartado realizado está separado por varios commits, no está todo el cont
 
 - 5 ficheros en los que se ha participado:
 
+------
 ### Alejandro
 - Tareas:
-- Filtro de conciertos: filtro que muestra los conciertos por género cuando se pulsa (rock, trap, flamenco...).
-- Botón de cargar más: función que carga solo 4 conciertos hasta que se pulsa nuevamente y muestra 4 más (esta función estaba implementada antes pero se tube que hacer nuevamente porque chocaba con el filtro y no funcionaba bien).
-- Comprar tickets: función que tras rellenar el formulario de la compra de tickets se guarda en base de datos.
-- Crear un evento: lógica y formulario para la creación de conciertos y fiestas.
+  1. Filtro de conciertos: filtro que muestra los conciertos por género cuando se pulsa (rock, trap, flamenco...).
+  2. Botón de cargar más: función que carga solo 4 conciertos hasta que se pulsa nuevamente y muestra 4 más (esta función estaba implementada antes pero se tube que hacer nuevamente porque chocaba con el filtro y no funcionaba bien).
+  3. Comprar tickets: función que tras rellenar el formulario de la compra de tickets se guarda en base de datos.
+  4. Crear un evento: lógica y formulario para la creación de conciertos y fiestas.
 
+------
 - 5 commits más significativos :
 Algunos commits no tienen toda la lógica o les falta un poco, pero son los principales.
-- [Commit 1](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/e51855780b8dd006b455ffa7d228542ca4b88ae2): Creación de eventos
-- [Commit 2](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/1f601b3f4f8c792525fd2c2773a5d079e060c5c0): Compra de tickets
-- [Commit 3](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/563e9e5185734905e3853c56e1b5b6ddd2448e0f): Filtro de conciertos
-- [Commit 4](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/dd7c873bb2bd2edbb2687623f356b05688ce8232): Corrección cargar más
-- [Commit 5]()
+  - [Commit 1](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/e51855780b8dd006b455ffa7d228542ca4b88ae2): Creación de eventos
+  - [Commit 2](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/1f601b3f4f8c792525fd2c2773a5d079e060c5c0): Compra de tickets
+  - [Commit 3](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/563e9e5185734905e3853c56e1b5b6ddd2448e0f): Filtro de conciertos
+  - [Commit 4](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/dd7c873bb2bd2edbb2687623f356b05688ce8232): Corrección cargar más
+  - [Commit 5](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/56aebd87ae00a8b4fab04a15992fedb39a7bd227): Validación del formulario
   
-
+-----
 - 5 ficheros en los que se ha participado:
 
 1. src/main/java/com/daw/daw/TicketController.java`
@@ -366,8 +368,8 @@ Algunos commits no tienen toda la lógica o les falta un poco, pero son los prin
 3. 'src/main/java/com/daw/daw/EventController.java`
    - Controlador de los eventos (conciertos y fiestas) con sus funciones como crearConcierto o crearFiesta.
 
-4. `src/main/resources/templates/paginaDetalleConcierto.html`
-   - Plantilla que muestra la sección de conciertos con información sobre estos y el modal para poder comprar una entrada.
+4. `src/main/resources/static/js/validaciones.js`
+   - Archivo con el código para la validación en tiempo real de los forms de login y singup.
 
 5. `src/main/resources/static/js/filtroConciertos.js`
    - Archivo con el código para el filtro de elementos y el cargar más.
@@ -377,12 +379,35 @@ Algunos commits no tienen toda la lógica o les falta un poco, pero son los prin
 ### Gaizka
 
 - Tareas: 
+- Funciones del administrador: Eliminacion de usuarios y diferentes tipos de eventos, aceptacion/rechazo de entrevistas.
+- Implementacion del algoritmo de recomendación de conciertos.
+- Extraccion de comentarios de la base de datos.
+- Grafico que muestra la distinccion por generos a la hora de comprar entradas.
 
-- 5 commits más significativos (cada apartado realizado está separado por varios commits, no está todo el contenido en uno solo):
 
+- 5 commits más significativos:
+- [Commit 1] (https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/d147f6db73b535571a4649636ff3eec0617d90a4): Arreglo de creación de fiestas y js para la pagina admin.
+- [Commit 2] (https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/299914055fdc6f7212173c9dcc28eada53f9aad4): Se ponen todas las funciones necesarias para el administrador.
+- [Commit 3] (https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/80255664eb8a58a37d3c9a9f386debb742dceef8): Ordenados los conciertos para cada usuario.
+- [Commit 4] (https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/eb7caf493b3e5de35f1b2a3f6f26005a3d742d53): Grafico distribucion de genero
+- [Commit 5] (https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/67876d680fc87d504f6d03a9b6d78ab9b1df9df1): Admin totalmente funcional
 
 - 5 ficheros en los que se ha participado:
 
+1. `src/main/resources/templates/admin.html`
+   - Todas las funcionalidades y redirecciones de esta pagina.
+
+2. `src/main/java/com/daw/daw/controller/EventController.java`
+   - Añadida la funcion de eliminacion de eventos, añadido datos de genero y arreglo de creacion de fiestas.
+
+3. `src/main/java/com/daw/daw/PageController.java`
+   - Implementado el algoritmo para ordenar conciertos segun preferencias.
+
+4. `src/main/resources/template/clubing.html`
+   - Añadido el grafico de distribución de genero
+
+5. `src/main/resources/js/adminSection.js`
+   -Creacion del JavaScript para gestionar las diferentes secciones de admin.
 
  ## DIAGRAMA DE CLASES Y TEMPLATES
 

@@ -14,6 +14,7 @@
     <link href="/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/isotope/3.0.6/isotope.pkgd.min.css">
 </head>
+
 <body>
     <nav class="top-navbar">
         <div class="container-topnav">
@@ -78,7 +79,7 @@
                             <input type="password" class="form-control" id="passwordLogin" name="passwordLogin">
                         </div>
                         <div class="d-flex align-items-center margenGrande">
-                            <button type="submit" class="btn btn-login me-2">Confirmar</button>
+                            <button type="submit" class="btn btn-login me-2" id="submitLogin">Confirmar</button>
                             <p>
                                 <a href="#" class="switch-modal" data-bs-toggle="modal" data-bs-target="#modalSingUp">
                                     <span style="color: white;">
@@ -88,7 +89,7 @@
                                 </a>
                             </p>
                         </div>
-                        <input type="hidden"  name="_csrf" value="{{token}}">
+                        <input type="hidden" name="_csrf" value="{{token}}">
                     </form>
                 </div>
             </div>
@@ -109,29 +110,28 @@
                     <form action="/users/create" method="post">
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" id="name" name="name">
+                            <input type="text" class="form-control" id="name" name="name" required>
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Correo electrónico</label>
                             <input type="email" class="form-control" id="email" name="email"
-                                aria-describedby="emailHelp">
+                                aria-describedby="emailHelp" required>
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Telefono</label>
-                            <input type="text" class="form-control" id="telefono" name="telefono">
+                            <input type="text" class="form-control" id="telefono" name="telefono" required>
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" name="password" id="password">
+                            <input type="password" class="form-control" name="password" id="password" required>
                         </div>
                         <input type="checkbox" id="terminos" name="terminos" value="terminos" required> Acepto los
                         terminos y condiciones
                         <br>
                         <input type="checkbox" id="datos" name="datos" value="datos"> Permito el uso de mis datos
                         personales para las estadisticas
-                        <p><button type="submit" class="btn btn-login">Confirmar</button></p>
-                        <input type="hidden"  name="_csrf" value="{{token}}">
-
+                        <p><button type="submit" class="btn btn-login" id="submitBtn">Confirmar</button></p>
+                        <input type="hidden" name="_csrf" value="{{token}}">
                     </form>
                 </div>
             </div>
@@ -307,7 +307,7 @@
                     </label>
                     <button class="submit">Solicitar Presupuesto</button>
                     <p class="signin"> ¿Tienes alguna pregunta? <a href="#">Contactanos</a> </p>
-                    <input type="hidden"  name="_csrf" value="{{token}}">
+                    <input type="hidden" name="_csrf" value="{{token}}">
                 </form>
             </div>
         </div>
@@ -387,6 +387,7 @@
         </script>
     <script src="/js/ayax.js"></script>
     <script src="/js/filtroConciertos.js"></script>
+    <script src="/js/validaciones.js"></script>
     <div th:replace="loader :: loader"></div>
 
     <script>

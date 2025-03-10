@@ -41,7 +41,7 @@
                     </a>
                 </li>
                 {{/isUserLogged}}
-                
+
                 {{^isUserLogged}}
                 <li class="nav-item-login">
                     <a href="#" class="btn" type="button" data-bs-toggle="modal" data-bs-target="#modalLogin">
@@ -79,7 +79,7 @@
                             <input type="password" class="form-control" id="passwordLogin" name="passwordLogin">
                         </div>
                         <div class="d-flex align-items-center margenGrande">
-                            <button type="submit" class="btn btn-login me-2">Confirmar</button>
+                            <button type="submit" class="btn btn-login me-2" id="submitLogin">Confirmar</button>
                             <p>
                                 <a href="#" class="switch-modal" data-bs-toggle="modal" data-bs-target="#modalSingUp">
                                     <span style="color: white;">
@@ -89,7 +89,6 @@
                                 </a>
                             </p>
                         </div>
-
                     </form>
                 </div>
             </div>
@@ -110,27 +109,27 @@
                     <form action="/users/create" method="post">
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" id="name" name="name">
+                            <input type="text" class="form-control" id="name" name="name" required>
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Correo electrónico</label>
                             <input type="email" class="form-control" id="email" name="email"
-                                aria-describedby="emailHelp">
+                                aria-describedby="emailHelp" required>
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Telefono</label>
-                            <input type="text" class="form-control" id="telefono" name="telefono">
+                            <input type="text" class="form-control" id="telefono" name="telefono" required>
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" name="password" id="password">
+                            <input type="password" class="form-control" name="password" id="password" required>
                         </div>
                         <input type="checkbox" id="terminos" name="terminos" value="terminos" required> Acepto los
                         terminos y condiciones
                         <br>
                         <input type="checkbox" id="datos" name="datos" value="datos"> Permito el uso de mis datos
                         personales para las estadisticas
-                        <p><button type="submit" class="btn btn-login">Confirmar</button></p>
+                        <p><button type="submit" class="btn btn-login" id="submitBtn">Confirmar</button></p>
                     </form>
                 </div>
             </div>
@@ -271,23 +270,23 @@
                 <button class="btn-change8 btn-comentario" type="button" data-bs-toggle="modal"
                     data-bs-target="#modalComentario">Añadir comentario</button>
             </div>
-            
+
             <div class="container-comments">
                 {{#coments}}
-                  <div class="comment-post">
+                <div class="comment-post">
                     <div class="comment-post_user">
-                      {{username}}
+                        {{username}}
                     </div>
                     <div class="comment-post_content">
-                      <p>{{comentario}}</p>
+                        <p>{{comentario}}</p>
                     </div>
                     <div class="comment-post_valoration">
-                      <p>{{valoracion}}</p>
+                        <p>{{valoracion}}</p>
                     </div>
-                  </div>
+                </div>
                 {{/coments}}
-              </div>
-              
+            </div>
+
 
         </div>
     </section>
@@ -351,6 +350,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+    <script src="/js/validaciones.js"></script>
     <!-- Incluir el JS de AOS -->
 </body>
 
