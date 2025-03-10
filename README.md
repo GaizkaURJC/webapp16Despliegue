@@ -340,13 +340,39 @@ Cada apartado realizado está separado por varios commits, no está todo el cont
 - 5 ficheros en los que se ha participado:
 
 ### Alejandro
-- Tareas: 
+- Tareas:
+- Filtro de conciertos: filtro que muestra los conciertos por género cuando se pulsa (rock, trap, flamenco...).
+- Botón de cargar más: función que carga solo 4 conciertos hasta que se pulsa nuevamente y muestra 4 más (esta función estaba implementada antes pero se tube que hacer nuevamente porque chocaba con el filtro y no funcionaba bien).
+- Comprar tickets: función que tras rellenar el formulario de la compra de tickets se guarda en base de datos.
+- Crear un evento: lógica y formulario para la creación de conciertos y fiestas.
 
 - 5 commits más significativos :
+Algunos commits no tienen toda la lógica o les falta un poco, pero son los principales.
+- [Commit 1](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/e51855780b8dd006b455ffa7d228542ca4b88ae2): Creación de eventos
+- [Commit 2](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/1f601b3f4f8c792525fd2c2773a5d079e060c5c0): Compra de tickets
+- [Commit 3](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/563e9e5185734905e3853c56e1b5b6ddd2448e0f): Filtro de conciertos
+- [Commit 4](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/dd7c873bb2bd2edbb2687623f356b05688ce8232): Corrección cargar más
+- [Commit 5]()
   
 
 - 5 ficheros en los que se ha participado:
-  
+
+1. src/main/java/com/daw/daw/TicketController.java`
+   - Controlador que se encarga de las funciones de los tickets, en este caso en concrerto crear tickets y descargarlos.
+
+2. `src/main/java/com/daw/daw/controller/Ticket.java`
+   - Modelo para las tablas de base de datos de los tickets con sus atributos y sus geters y seters.
+
+3. 'src/main/java/com/daw/daw/EventController.java`
+   - Controlador de los eventos (conciertos y fiestas) con sus funciones como crearConcierto o crearFiesta.
+
+4. `src/main/resources/templates/paginaDetalleConcierto.html`
+   - Plantilla que muestra la sección de conciertos con información sobre estos y el modal para poder comprar una entrada.
+
+5. `src/main/resources/static/js/filtroConciertos.js`
+   - Archivo con el código para el filtro de elementos y el cargar más.
+
+---
 
 ### Gaizka
 
