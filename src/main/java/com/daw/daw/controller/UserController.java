@@ -10,8 +10,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
@@ -23,6 +25,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.GrantedAuthoritiesContainer;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,6 +52,7 @@ import com.daw.daw.repository.EventRepository;
 @Controller
 @RequestMapping("/users/")
 public class UserController {
+
 
     @Autowired
     private UserRepository userRepository;
@@ -76,11 +84,12 @@ public class UserController {
     }
 
     @GetMapping("/logout")
-    public String logout(HttpSession session) {
-        session.invalidate();
-		session.setAttribute("username", null);
-        return "/";
-    }
+        public String logout(HttpServletRequest request, HttpServletResponse response) {
+            SecurityContextHolder.clearContext();
+            request.getSession().invalidate();
+            return "redirect:/";
+}
+
 
     private Blob loadImage(String path) {
         try {
@@ -108,30 +117,40 @@ public class UserController {
             session.setAttribute("username", user.getNombre());
             return "redirect:/perfil";
         }
-        return "redirect:/";
+        return "redirect:/perfil";
     }
     
     @PostMapping("authenticate")
     public String loginUser(@RequestParam("emailLogin") String correo,
-                            @RequestParam("passwordLogin") String contrasena,
-                        HttpSession session) {
+            @RequestParam("passwordLogin") String contrasena,
+            HttpServletRequest request) {
 
-    User user = userRepository.findByEmail(correo)
-            .orElseThrow(() -> new RuntimeException("User not found"));
-        session.setAttribute("username", user.getNombre());
-    if (!passwordEncoder.matches(contrasena, user.getEncodedPassword())) {
-        return "redirect:/login?error=true";
-    }
-    if(isAdmin(session)==true){
-        
-        return "redirect:/admin";
-    }
-    else {       
-    session.setAttribute("username", user.getNombre());
-    return "redirect:/";
-    }
-}
+        User user = userRepository.findByEmail(correo)
+                .orElseThrow(() -> new RuntimeException("User not found"));
 
+        if (!passwordEncoder.matches(contrasena, user.getEncodedPassword())) {
+            return "redirect:/login?error=true";
+        }
+
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        for (String role : user.getRoles()) {
+            authorities.add(new SimpleGrantedAuthority("ROLE_" + role));
+        }
+
+        // Crear token de autenticación
+        UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(user, null, authorities);
+
+        // Guardar en el contexto de seguridad
+        SecurityContextHolder.getContext().setAuthentication(auth);
+
+        // Asociar el contexto de seguridad a la sesión
+        request.getSession().setAttribute("SPRING_SECURITY_CONTEXT", SecurityContextHolder.getContext());
+
+        if (authorities.contains(new SimpleGrantedAuthority("ROLE_ADMIN"))) {
+            return "redirect:/admin";
+        }
+        return "redirect:/";
+    }
 
 
     @DeleteMapping("{id}")

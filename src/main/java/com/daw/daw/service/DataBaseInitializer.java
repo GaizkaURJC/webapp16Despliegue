@@ -58,7 +58,7 @@ public class DataBaseInitializer {
         public void init() throws IOException, URISyntaxException {
                 Blob defUserImg = loadImage("img/defuser.webp");
                 User admin = new User("admin", "admin@admin.com", "00011122", passwordEncoder.encode("admin"),
-                                Arrays.asList("ADMIN"), defUserImg);
+                                Arrays.asList("ADMIN","USER"), defUserImg);
                 User user = new User("user", "user@user.com", "222111000", passwordEncoder.encode("user"),
                                 Arrays.asList("USER"), defUserImg);
                 LocalDateTime newDate = LocalDateTime.of(2025, 3, 15, 14, 30); // Año, Mes, Día, Hora, Minutos

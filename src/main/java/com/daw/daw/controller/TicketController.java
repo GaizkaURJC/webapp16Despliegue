@@ -1,12 +1,16 @@
 package com.daw.daw.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.daw.daw.model.Ticket;
+import com.daw.daw.model.User;
 import com.daw.daw.repository.TicketRepository;
 import com.daw.daw.service.PdfService;
 import jakarta.servlet.http.HttpSession;
@@ -34,14 +38,29 @@ public class TicketController {
             @RequestParam("gender") String genero,
             @RequestParam("eventName") String nombreEvento,
             @RequestParam("category") String categoria,
-            HttpSession session,
             HttpServletResponse response) throws IOException {
-        if (!userController.isLogged(session)) {
+
+        // Comprobar si el usuario está logueado
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        boolean isUserLogged = authentication.isAuthenticated();
+
+        if (!isUserLogged) {
             return "redirect:/paginaDetalleConcierto";
         }
 
-        String userName = userController.getLoggedUser(session);
-        Ticket ticket = new Ticket(userName, DNI, nombreTicket, nombreEvento, genero, userName, categoria, LocalDateTime.now() );
+        Object principal = authentication.getPrincipal();
+        String username = "";
+        User user = null;
+
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername();
+        } else if (principal instanceof User) {
+            username = ((User) principal).getEmail(); // Usa email si es lo que almacenas en User
+            user = ((User) principal);
+        }
+
+        Ticket ticket = new Ticket(username, DNI, nombreTicket, nombreEvento, genero, username, categoria,
+                LocalDateTime.now());
         ticketRepository.save(ticket);
 
         byte[] pdfBytes = pdfService.generarPdfTicket(ticket);

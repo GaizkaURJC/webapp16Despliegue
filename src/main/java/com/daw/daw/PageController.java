@@ -15,6 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -50,65 +53,78 @@ import com.daw.daw.repository.ComentsRepository;
 @Controller
 public class PageController {
 
-	@Autowired
-	private TicketRepository ticketRepository;
+    @Autowired
+    private TicketRepository ticketRepository;
 
-	@Autowired
-	private UserRepository userRepository;
+    @Autowired
+    private UserRepository userRepository;
 
-	@Autowired
-	private EventRepository eventRepository;
+    @Autowired
+    private EventRepository eventRepository;
 
-	@Autowired
-	private ImageRepository imageRepository;
+    @Autowired
+    private ImageRepository imageRepository;
 
-	@Autowired
-	private final UserController userController;
+    @Autowired
+    private final UserController userController;
 
-	@Autowired
-	private ComentsRepository commentRepository;
+    @Autowired
+    private ComentsRepository commentRepository;
 
-	@Autowired
-	private ReservaRepository reservaRepository;
+    @Autowired
+    private ReservaRepository reservaRepository;
 
-	public PageController(UserRepository userRepository, EventRepository eventRepository,
-			UserController userController , ReservaRepository reservaRepository) {
-		this.userRepository = userRepository;
-		this.eventRepository = eventRepository;
-		this.userController = userController;
-		this.reservaRepository = reservaRepository;
-	}
+    public PageController(UserRepository userRepository, EventRepository eventRepository,
+            UserController userController, ReservaRepository reservaRepository) {
+        this.userRepository = userRepository;
+        this.eventRepository = eventRepository;
+        this.userController = userController;
+        this.reservaRepository = reservaRepository;
+    }
 
-	@GetMapping("/")
-    public String form(HttpSession session, Model model) {
-        String username = (String) session.getAttribute("username");
-        boolean isUserLogged = (username != null);
+    @GetMapping("/")
+    public String form(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        boolean isUserLogged = authentication != null && authentication.isAuthenticated()
+                && !(authentication.getPrincipal() instanceof String);
+
         model.addAttribute("isUserLogged", isUserLogged);
 
-        List<Event> allConcerts = eventRepository.findByTipo("concert");
-        model.addAttribute("party", eventRepository.findAllByTipo("party"));
-
         if (isUserLogged) {
-            Optional<User> user = userRepository.findByName(username);
-            user.ifPresent(value -> model.addAttribute("userLogged", value));
+            Object principal = authentication.getPrincipal();
+            String username = "";
+            User user = null;
 
-            List<Ticket> tickets = ticketRepository.findByUserOwner(username);
-            Map<String, Long> categoryCount = tickets.stream()
-                    .collect(Collectors.groupingBy(Ticket::getCategory, Collectors.counting()));
+            if (principal instanceof UserDetails) {
+                username = ((UserDetails) principal).getUsername();
+            } else if (principal instanceof User) {
+                username = ((User) principal).getEmail(); // Usa email si es lo que almacenas en User
+                user = ((User) principal);
+            }
 
-            List<Map.Entry<String, Long>> sortedPreferences = categoryCount.entrySet().stream()
-                    .sorted(Map.Entry.<String, Long>comparingByValue().reversed())
-                    .collect(Collectors.toList());
-
-            // Reorder concerts based on user preferences
-            List<Event> orderedConcerts = reorderConcerts(allConcerts, sortedPreferences);
-            model.addAttribute("concerts", orderedConcerts);
-
-        } else {
-            model.addAttribute("concerts", allConcerts);
+            System.out.println("Usuario autenticado: " + username);
+            model.addAttribute("userLogged", user);
         }
 
+        model.addAttribute("party", eventRepository.findAllByTipo("party"));
+        model.addAttribute("concerts", eventRepository.findByTipo("concert"));
         return "index";
+    }
+
+    @GetMapping("/login")
+    public String loginRedirection(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        boolean isUserLogged = authentication != null && authentication.isAuthenticated()
+                && !(authentication.getPrincipal() instanceof String);
+
+        model.addAttribute("isUserLogged", isUserLogged);
+
+        if (isUserLogged) {
+            String username = ((UserDetails) authentication.getPrincipal()).getUsername();
+            Optional<User> user = userRepository.findByName(username);
+            user.ifPresent(value -> model.addAttribute("userLogged", value));
+        }
+        return "login";
     }
 
     private List<Event> reorderConcerts(List<Event> allConcerts,
@@ -147,64 +163,93 @@ public class PageController {
 		}
 	}
 
-	@GetMapping("/paginaDetalleConcierto/{id}")
-	public String concertDetailRedirection(HttpSession session, @PathVariable Long id, Model model) {
-		String username = (String) session.getAttribute("username");
-		boolean isUserLogged = (username != null);
-		model.addAttribute("isUserLogged", isUserLogged);
-		if (isUserLogged) {
-			Optional<User> user = userRepository.findByName(username);
-			user.ifPresent(value -> model.addAttribute("userLogged", value));
-		}
-		model.addAttribute("event", eventRepository.findById(id).get());
-		model.addAttribute("coments", commentRepository.getComentsByEventId(id));
+    @GetMapping("/paginaDetalleConcierto/{id}")
+    public String concertDetailRedirection(HttpSession session, @PathVariable Long id, Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        boolean isUserLogged = authentication.isAuthenticated();
+        model.addAttribute("isUserLogged", isUserLogged);
+        if (isUserLogged) {
+            Object principal = authentication.getPrincipal();
+            String username = "";
+            User user = null;
 
-		return "paginaDetalleConcierto";
-	}
+            if (principal instanceof UserDetails) {
+                username = ((UserDetails) principal).getUsername();
+            } else if (principal instanceof User) {
+                username = ((User) principal).getEmail(); // Usa email si es lo que almacenas en User
+                user = ((User) principal);
+            }
 
-	@GetMapping("/admin")
-	public String adminRedirection(Model model, HttpSession session) {
-		String username = (String) session.getAttribute("username");
+            System.out.println("Usuario autenticado: " + username);
+            model.addAttribute("userLogged", user);
+        }
+        model.addAttribute("event", eventRepository.findById(id).get());
+        model.addAttribute("coments", commentRepository.getComentsByEventId(id));
 
-		boolean isUserLogged = (username != null);
-		model.addAttribute("isUserLogged", isUserLogged);
+        return "paginaDetalleConcierto";
+    }
 
-		if (isUserLogged) {
-			Optional<User> user = userRepository.findByName(username);
-			user.ifPresent(value -> model.addAttribute("userLogged", value));
-		}
-		model.addAttribute("users", userRepository.findAll());
-		model.addAttribute("party", eventRepository.findAllByTipo("party"));
-		model.addAttribute("concerts", eventRepository.findByTipo("concert"));
-		model.addAttribute("reservas", reservaRepository.findAll());
-		return "admin";
-	}
+    @GetMapping("/admin")
+    public String adminRedirection(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        boolean isUserLogged = authentication.isAuthenticated();
 
-	@GetMapping("/perfil")
-	public String profileRedirection(HttpSession session, Model model) {
-		String username = (String) session.getAttribute("username");
-		boolean isUserLogged = (username != null);
-		model.addAttribute("isUserLogged", isUserLogged);
+        model.addAttribute("isUserLogged", isUserLogged);
 
-		if (isUserLogged) {
-			Optional<User> user = userRepository.findByName(username);
-			user.ifPresent(value -> model.addAttribute("userLogged", value));
+        if (isUserLogged) {
+            Object principal = authentication.getPrincipal();
+            String username = "";
+            User user = null;
 
-			List<Ticket> tickets = ticketRepository.findByUserOwner(username);
+            if (principal instanceof UserDetails) {
+                username = ((UserDetails) principal).getUsername();
+            } else if (principal instanceof User) {
+                username = ((User) principal).getEmail(); // Usa email si es lo que almacenas en User
+                user = ((User) principal);
+            }
 
-			List<Ticket> formattedTickets = tickets.stream()
-					.map(ticket -> {
-						ticket.setCategory(ticket.getCategory().toUpperCase());
-						return ticket;
-					})
-					.collect(Collectors.toList());
+            System.out.println("Usuario autenticado: " + username);
+            model.addAttribute("userLogged", user);
+        }
 
-			model.addAttribute("tickets", formattedTickets);
-		}
+        model.addAttribute("users", userRepository.findAll());
+        model.addAttribute("party", eventRepository.findAllByTipo("party"));
+        model.addAttribute("concerts", eventRepository.findByTipo("concert"));
+        model.addAttribute("reservas", reservaRepository.findAll());
+        return "admin";
+    }
 
-		model.addAttribute("username", session.getAttribute("username"));
+    @GetMapping("/perfil")
+    public String profileRedirection(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-		return "paginaPerfil";
-	}
+        System.out.println("Autenticación: " + authentication);
+        System.out.println("Principal: " + authentication.getPrincipal());
+        System.out.println("¿Autenticado?: " + authentication.isAuthenticated());
+
+        boolean isUserLogged = authentication.isAuthenticated();
+        model.addAttribute("isUserLogged", isUserLogged);
+
+        if (isUserLogged) {
+            Object principal = authentication.getPrincipal();
+            String username = "";
+            User user = null;
+
+            if (principal instanceof UserDetails) {
+                username = ((UserDetails) principal).getUsername();
+            } else if (principal instanceof User) {
+                username = ((User) principal).getEmail(); // Usa email si es lo que almacenas en User
+                user = ((User) principal);
+            }
+
+            System.out.println("Usuario autenticado: " + username);
+            model.addAttribute("userLogged", user);
+
+            List<Ticket> tickets = ticketRepository.findByUserOwner(username);
+            model.addAttribute("tickets", tickets);
+        }
+
+        return "paginaPerfil";
+    }
 
 }
