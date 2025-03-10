@@ -181,7 +181,6 @@ public class UserController {
                 .collect(Collectors.groupingBy(Ticket::getCategory, Collectors.counting()));
 
         //Ordenamos las categorias por preferencia de mayor a menor
-
         List <Map.Entry<String, Long>> preferenciasOrdenadas = categoryCount.entrySet().stream()
                 .sorted(Map.Entry.<String, Long>comparingByValue().reversed())
                 .collect(Collectors.toList());
