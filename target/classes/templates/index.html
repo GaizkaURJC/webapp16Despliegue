@@ -14,7 +14,6 @@
     <link href="/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/isotope/3.0.6/isotope.pkgd.min.css">
 </head>
-
 <body>
     <!-- Loader -->
     <div id="loader" style="display: none;">
@@ -94,7 +93,7 @@
                                 </a>
                             </p>
                         </div>
-
+                        <input type="hidden"  name="_csrf" value="{{token}}">
                     </form>
                 </div>
             </div>
@@ -136,6 +135,8 @@
                         <input type="checkbox" id="datos" name="datos" value="datos"> Permito el uso de mis datos
                         personales para las estadisticas
                         <p><button type="submit" class="btn btn-login">Confirmar</button></p>
+                        <input type="hidden"  name="_csrf" value="{{token}}">
+
                     </form>
                 </div>
             </div>
@@ -267,7 +268,7 @@
         </div>
         <div class="container-eventos">
             <div class="event-form">
-                <form class="form" action="/evento/eventoCoporativo" method="post" id="reservaForm">
+                <form class="form" action="/reserva/request" method="post" id="reservaForm">
                     <p class="title">Solicitar un evento </p>
                     <p class="message">Rellena el formulario y solicita un presupuesto para tu evento </p>
                     <div class="flex">
@@ -307,6 +308,7 @@
                     </label>
                     <button class="submit">Solicitar Presupuesto</button>
                     <p class="signin"> ¿Tienes alguna pregunta? <a href="#">Contactanos</a> </p>
+                    <input type="hidden"  name="_csrf" value="{{token}}">
                 </form>
             </div>
         </div>
