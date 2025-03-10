@@ -2,6 +2,7 @@ package com.daw.daw.controller;
 
 import java.net.URI;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.sql.Blob;
  
@@ -26,6 +27,7 @@ import com.daw.daw.model.Event;
 import com.daw.daw.model.User;
 import com.daw.daw.repository.EventRepository;
 import com.daw.daw.repository.UserRepository;
+import com.daw.daw.repository.TicketRepository;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -36,6 +38,9 @@ public class EventController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private TicketRepository ticketRepository;
     
     @Autowired
     private EventRepository eventRepository;
@@ -78,22 +83,35 @@ public class EventController {
     }
 
     @GetMapping("/{id}")
-	public String clubbingRedirection(HttpSession session, @PathVariable Long id, Model model) {
+    public String clubbingRedirection(HttpSession session, @PathVariable Long id, Model model) {
         String username = (String) session.getAttribute("username");
+        boolean isUserLogged = (username != null);
+        model.addAttribute("isUserLogged", isUserLogged);
+        if (isUserLogged) {
+            Optional<User> user = userRepository.findByName(username);
+            user.ifPresent(value -> model.addAttribute("userLogged", value));
+        }
 
-		boolean isUserLogged = (username != null);
-		model.addAttribute("isUserLogged", isUserLogged);
+        Optional<Event> eventOptional = eventRepository.findById(id);
+        if (eventOptional.isPresent()) {
+            Event event = eventOptional.get();
+            model.addAttribute("event", event);
+            String[] partes = event.getDescription().split("\\|");
+            model.addAttribute("descLinea1", partes[0]);
+            model.addAttribute("descLinea2", partes.length > 1 ? partes[1] : "");
 
-		if (isUserLogged) {
-			Optional<User> user = userRepository.findByName(username);
-			user.ifPresent(value -> model.addAttribute("userLogged", value));
-		}
-		model.addAttribute("event", eventRepository.findById(id).get());
-        String[] partes = eventRepository.findById(id).get().getDescription().split("\\|");
-        model.addAttribute("descLinea1", partes[0]);
-        model.addAttribute("descLinea2", partes.length > 1 ? partes[1] : "");
-		return "clubing";
-	}
+            // Get gender data
+            String title = event.getTitle();
+            int maleCount = ticketRepository.findByTitleAndGender(title, "Hombre").size();
+            int femaleCount = ticketRepository.findByTitleAndGender(title, "Mujer").size();
+            model.addAttribute("maleCount", maleCount);
+            model.addAttribute("femaleCount", femaleCount);
+
+            return "clubing";
+        } else {
+            return "error"; // Or handle the case where the event is not found
+        }
+    }
 
     @PostMapping("/deleteEvent")
     public String deleteEvent(@RequestParam Long id) {
