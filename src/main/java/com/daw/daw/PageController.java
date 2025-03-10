@@ -29,6 +29,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import com.daw.daw.controller.UserController;
+import com.daw.daw.model.Coments;
 import com.daw.daw.model.Event;
 import com.daw.daw.model.User;
 import com.daw.daw.model.Image;
@@ -111,7 +112,8 @@ public class PageController {
 			user.ifPresent(value -> model.addAttribute("userLogged", value));
 		}
 		model.addAttribute("event", eventRepository.findById(id).get());
-		model.addAttribute("coments", commentRepository.getComentsByEventId(id));
+		List<Coments> coments = commentRepository.getComentsByEventId(id);
+		model.addAttribute("coments", coments);
 
 		return "paginaDetalleConcierto";
 	}
