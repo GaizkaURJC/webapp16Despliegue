@@ -112,8 +112,8 @@ public class PageController {
 			user.ifPresent(value -> model.addAttribute("userLogged", value));
 		}
 		model.addAttribute("event", eventRepository.findById(id).get());
-		List <Coments> coment = commentRepository.getComentsByEventId(id);
 		model.addAttribute("coments", commentRepository.getComentsByEventId(id));
+
 		return "paginaDetalleConcierto";
 	}
 
