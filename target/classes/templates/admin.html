@@ -154,6 +154,7 @@
                     <tr>
                         <th>Usuario</th>
                         <th>Descripción</th>
+                        <th>Estado</th>
                         <th>Aceptar</th>
                         <th>Rechazar</th>
                         <th>Eliminar</th>
@@ -162,6 +163,7 @@
                     <tr>
                         <td>{{userName}}</td>
                         <td>{{eventDescript}}</td>
+                        <td>{{estado}}</td>
                         <td>
                             <form action="/reserva/aceptar" method="post">
                                 <input type="hidden" name="id" value="{{id}}">

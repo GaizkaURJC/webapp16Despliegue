@@ -65,10 +65,8 @@ public class ReservaController {
     public String aceptarReserva(@RequestParam Long id) {
         Optional<Reserva> reserva = reservaRepository.getReservaById(id);
         if (reserva.isPresent()) {
-            Reserva r = reserva.get();
-            r.setEstado("aceptada");
-            reservaRepository.deleteById(id);
-            reservaRepository.save(r);
+            reserva.get().setEstado("aceptada");
+            reservaRepository.save(reserva.get());
             return "redirect:/admin";
         } else {
             return "redirect:/error";

@@ -39,7 +39,7 @@ public class Security {
                                 "/webapp16/src/main/resources/static/**", "/clubbing", "/paginaDetalleConcierto/**",
                                 "/register/**", "/error", "/css/**", "/js/**", "/img/**", "/users/create",
                                 "/users/authenticate", "/admin", "/coments/create", "reserva/request", "/events/**",
-                                "/events/create", "/videos/**", "/profileImg","/imgEvent/**", "/users/profileImg")
+                                "/events/create", "/videos/**", "/profileImg","/imgEvent/**", "/users/profileImg", "/reserva/**", "/users/deleteUser", "/users/createAdmin")
                         .permitAll()
                         .anyRequest().authenticated())
                 .formLogin(formLogin -> formLogin
