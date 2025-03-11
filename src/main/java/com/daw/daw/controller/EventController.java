@@ -88,7 +88,9 @@ public class EventController {
     @GetMapping("/{id}")
 	public String clubbingRedirection( @PathVariable Long id, Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        boolean isUserLogged = authentication.isAuthenticated();
+        boolean isUserLogged = authentication != null && authentication.isAuthenticated()
+                && !(authentication.getPrincipal() instanceof String);
+
 
         model.addAttribute("isUserLogged", isUserLogged);
 
@@ -116,7 +118,7 @@ public class EventController {
         int femaleCount = ticketRepository.findByTitleAndGender(title, "Mujer").size();
         model.addAttribute("maleCount", maleCount);
         model.addAttribute("femaleCount", femaleCount);
-		return "clubbing";
+		return "clubing";
 	}
 
     @PostMapping("/deleteEvent")
