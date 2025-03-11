@@ -262,33 +262,32 @@
                 data: {
                     labels: ['Hombre', 'Mujer'],
                     datasets: [{
-
                         data: [{{ maleCount }}, {{ femaleCount }}],
-                backgroundColor: [
-                    '#f2f526',
-                    'black'
-                ],
-                borderColor: [
-                    '#f2f526',
-                    'black'
-                ],
-                borderWidth: 1
-            }]
-          },
-            options: {
-            responsive: true,
-            maintainAspectRatio: false, // Allow the chart to fill the canvas
-            plugins: {
-                legend: {
-                    position: 'bottom',
+                        backgroundColor: [
+                            '#f2f526',
+                            'black'
+                        ],
+                        borderColor: [
+                            '#f2f526',
+                            'black'
+                        ],
+                        borderWidth: 1
+                    }]
                 },
-                title: {
-                    display: true,
-                    text: 'Distribucion por genero'
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Distribucion por genero'
+                        }
+                    }
                 }
-            }
-        }
-      });
+            });
         });
     </script>
 
