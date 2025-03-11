@@ -1,30 +1,14 @@
 package com.daw.daw.controller;
 
-import java.net.URI;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 import com.daw.daw.model.Reserva;
-import com.daw.daw.repository.ComentsRepository;
 import com.daw.daw.repository.ReservaRepository;
-import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.Date;
-import java.text.ParseException;
 import java.io.IOException;
 import com.daw.daw.service.PdfService;
 import com.lowagie.text.DocumentException;
@@ -32,7 +16,7 @@ import com.lowagie.text.DocumentException;
 @Controller
 @RequestMapping("/reserva/")
 public class ReservaController {
-    
+
     @Autowired
     private ReservaRepository reservaRepository;
 
@@ -51,10 +35,10 @@ public class ReservaController {
         Reserva reserva = new Reserva(name, email, bussinesname, pax, description, "pendiente");
         reservaRepository.save(reserva);
 
-        // Generar el PDF
+        // Generate PDF
         byte[] pdfBytes = pdfService.generarPdfReserva(reserva);
 
-        // Configurar la respuesta HTTP para que sea una descarga
+        // HTTPS configuration for the response
         response.setContentType("application/pdf");
         response.setHeader("Content-Disposition", "attachment; filename=reserva_" + reserva.getUserName() + ".pdf");
         response.getOutputStream().write(pdfBytes);
@@ -89,8 +73,7 @@ public class ReservaController {
     public String deleteReserva(@RequestParam Long id) {
         reservaRepository.deleteById(id);
         return "redirect:/admin";
-        
+
     }
-    
-    
+
 }

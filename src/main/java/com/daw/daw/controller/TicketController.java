@@ -13,7 +13,6 @@ import com.daw.daw.model.Ticket;
 import com.daw.daw.model.User;
 import com.daw.daw.repository.TicketRepository;
 import com.daw.daw.service.PdfService;
-import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -24,9 +23,6 @@ public class TicketController {
 
     @Autowired
     private TicketRepository ticketRepository;
-
-    @Autowired
-    private UserController userController;
 
     @Autowired
     private PdfService pdfService;
@@ -40,14 +36,14 @@ public class TicketController {
             @RequestParam("category") String categoria,
             HttpServletResponse response) throws IOException {
 
-        // Comprobar si el usuario está logueado
+        // Is the user logged in?
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         boolean isUserLogged = authentication.isAuthenticated();
 
-        if (authentication == null || !authentication.isAuthenticated() || authentication.getPrincipal().equals("anonymousUser")) {
+        if (authentication == null || !authentication.isAuthenticated()
+                || authentication.getPrincipal().equals("anonymousUser")) {
             return "redirect:/paginaDetalleConcierto";
         }
-        
 
         Object principal = authentication.getPrincipal();
         String username = "";
@@ -56,7 +52,7 @@ public class TicketController {
         if (principal instanceof UserDetails) {
             username = ((UserDetails) principal).getUsername();
         } else if (principal instanceof User) {
-            username = ((User) principal).getEmail(); // Usa email si es lo que almacenas en User
+            username = ((User) principal).getEmail();
             user = ((User) principal);
         }
 
@@ -66,7 +62,7 @@ public class TicketController {
 
         byte[] pdfBytes = pdfService.generarPdfTicket(ticket);
 
-        // Configurar la respuesta HTTP para que sea una descarga
+
         response.setContentType("application/pdf");
         response.setHeader("Content-Disposition", "attachment; filename=ticket_" + ticket.getUserOwner() + ".pdf");
         response.getOutputStream().write(pdfBytes);

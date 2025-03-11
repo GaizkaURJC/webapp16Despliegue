@@ -51,17 +51,17 @@ public class EventController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-//TIPOS DE EVENTO
-// conciertos = concert
+//EVENT TYPES
+// concert = concert
 // clubbing = party
     @PostMapping("/conciertoCreate")
     public String crearConcierto(@RequestParam("title") String tituloConcierto,
                                  @RequestParam("description") String conciertoDescription,
                                  @RequestParam("imageFile") MultipartFile conciertoImagen,
-                                 @RequestParam("category") String category) {
+                                 @RequestParam("category") String Category) {
         try {
             Blob blobImagen = new javax.sql.rowset.serial.SerialBlob(conciertoImagen.getBytes());
-            Event concierto = new Event(tituloConcierto, "concert", conciertoDescription, blobImagen, category);
+            Event concierto = new Event(tituloConcierto, "concert", conciertoDescription, blobImagen, Category);
             eventRepository.save(concierto);
         } catch (Exception e) {
             e.printStackTrace();
@@ -102,7 +102,7 @@ public class EventController {
             if (principal instanceof UserDetails) {
                 username = ((UserDetails) principal).getUsername();
             } else if (principal instanceof User) {
-                username = ((User) principal).getEmail(); // Usa email si es lo que almacenas en User
+                username = ((User) principal).getEmail(); 
                 user = ((User) principal);
             } 
             System.out.println("Usuario autenticado: " + username);

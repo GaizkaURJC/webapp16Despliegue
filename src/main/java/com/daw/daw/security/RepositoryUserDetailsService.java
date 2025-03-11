@@ -18,20 +18,19 @@ public class RepositoryUserDetailsService implements UserDetailsService {
     private UserRepository userRepository;
 
     @Override
-public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-    User user = userRepository.findByEmail(email)
-        .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + email));
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + email));
 
-    List<GrantedAuthority> authorities = new ArrayList<>();
-    for (String role : user.getRoles()) {
-        authorities.add(new SimpleGrantedAuthority("ROLE_" + role));
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        for (String role : user.getRoles()) {
+            authorities.add(new SimpleGrantedAuthority("ROLE_" + role));
+        }
+
+        return new org.springframework.security.core.userdetails.User(
+                user.getEmail(),
+                user.getEncodedPassword(),
+                authorities);
     }
-
-    return new org.springframework.security.core.userdetails.User(
-            user.getEmail(),   // Aseguramos que se usa el email
-            user.getEncodedPassword(),
-            authorities);
-}
-
 
 }
