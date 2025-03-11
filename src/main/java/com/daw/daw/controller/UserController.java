@@ -204,7 +204,7 @@ public String createUser(@RequestParam("name") String nombre,
         return "redirect:/admin";
     }
 
-    @PutMapping("updateUser")
+    @PostMapping("updateUser")
 public String updateUser(@RequestParam Long id, 
                          @RequestParam("user") String name, 
                          @RequestParam("email") String emailUser, 
@@ -217,7 +217,7 @@ public String updateUser(@RequestParam Long id,
         user.setEmail(emailUser);
         user.setEncodedPassword(passwordEncoder.encode(Password));
         userRepository.save(user);
-        return "redirect:/admin";
+        return "redirect:/";
     } else {
         return "redirect:/admin?error=user_not_found";
     }

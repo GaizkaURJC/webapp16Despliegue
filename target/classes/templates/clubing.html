@@ -213,12 +213,6 @@
             <div class="container6">
                 <canvas id="genderChart" width="400" height="400"></canvas>
             </div>
-            
-
-
-
-
-
         </div>
     </section>
     <p id="separador"></p>
@@ -265,7 +259,41 @@
     <!-- Fin Modal de compra -->
 
     <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const ctx = document.getElementById('genderChart').getContext('2d');
+            const myChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['Hombre', 'Mujer'],
+                    datasets: [{
 
+                        data: [{{ maleCount }}, {{ femaleCount }}],
+                backgroundColor: [
+                    '#f2f526',
+                    'black'
+                ],
+                borderColor: [
+                    '#f2f526',
+                    'black'
+                ],
+                borderWidth: 1
+            }]
+          },
+            options: {
+            responsive: true,
+            maintainAspectRatio: false, // Allow the chart to fill the canvas
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                },
+                title: {
+                    display: true,
+                    text: 'Distribucion por genero'
+                }
+            }
+        }
+      });
+        });
     </script>
 
     <!-- JAVASCRIPT FILES -->
