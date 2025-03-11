@@ -11,7 +11,8 @@
     <link href="css/bootstrap-icons.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link href="../css/perfilStyle.css" rel="stylesheet">
+    <link href="/css/perfilStyle.css" rel="stylesheet">
+    <link href="/css/loader.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/isotope/3.0.6/isotope.pkgd.min.css">
 
 </head>
@@ -44,7 +45,7 @@
                     <a class="top-nav-section_1" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="top-nav-section_2" href="section_2">Clubbing</a>
+                    <a class="top-nav-section_2" href="/">Clubbing</a>
                 </li>
                 <li class="nav-item">
                     <a class="top-nav-section_3" href="section_3">Conciertos</a>
@@ -251,17 +252,24 @@
                 </div>
 
                 <div class="modal-body">
-                    <form>
+                    <form >
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Name</label>
+                            <label for="exampleInputEmail1">Nombre De Usuario</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp" name="user" placeholder="{{userLogged.name}}">
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                                else.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email</label>
                             <input type="email" class="form-control" id="exampleInputEmail1"
-                                aria-describedby="emailHelp" placeholder="{{userLogged.name}}">
+                                aria-describedby="emailHelp" name="email" placeholder="{{userLogged.email}}">
                             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
                                 else.</small>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1"
+                            <input type="password" class="form-control" name="password" id="exampleInputPassword1"
                                 placeholder="Password">
                         </div>
                         <div class="form-group form-check">
@@ -269,6 +277,8 @@
                             <label class="form-check-label" for="exampleCheck1">Check me out</label>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
+                        <input type="hidden" name="_csrf" value="{{token}}">
+
                     </form>
                 </div>
             </div>
@@ -278,9 +288,7 @@
 
     <script src="/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-
-
+    <div th:replace="loader :: loader"></div>
 </body>
 
 </html>

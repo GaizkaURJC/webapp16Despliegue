@@ -33,6 +33,7 @@ public class PdfService {
         Document document = new Document();
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         PdfWriter.getInstance(document, out);
+        
 
         document.open();
         document.add(new Paragraph("Confirmación de Ticket", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 18)));

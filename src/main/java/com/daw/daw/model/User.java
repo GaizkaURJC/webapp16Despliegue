@@ -56,7 +56,7 @@ public class User {
         return name;
     }
 
-    public void setNombre (String name) {
+    public void setName (String name) {
         this.name = name;
     }
 

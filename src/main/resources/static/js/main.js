@@ -54,3 +54,23 @@ document.addEventListener('DOMContentLoaded', function () {
 }
 });
 });
+document.addEventListener("DOMContentLoaded", function () {
+    var loader = document.getElementById("loader");
+
+    function showLoader() {
+        loader.style.display = "block";
+    }
+
+    function hideLoader() {
+        loader.style.display = "none";
+    }
+
+    // Mostrar el loader al enviar formularios
+    var forms = document.querySelectorAll("form");
+    forms.forEach(function (form) {
+        form.addEventListener("submit", showLoader);
+    });
+
+    // Ocultar el loader después de cargar la página
+    window.addEventListener("load", hideLoader);
+});

@@ -81,6 +81,7 @@ public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
             .requestMatchers("/events/conciertoCreate").hasRole("ADMIN")
             .requestMatchers("/events/partyCreate").hasRole("ADMIN")
             .requestMatchers("/events/**").hasRole("ADMIN")
+            .requestMatchers("users/profileImg/**").hasAnyRole("USER", "ADMIN")
     )
         .formLogin(formLogin -> formLogin
             .loginPage("/login")

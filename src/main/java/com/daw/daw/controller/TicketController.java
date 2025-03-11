@@ -44,9 +44,10 @@ public class TicketController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         boolean isUserLogged = authentication.isAuthenticated();
 
-        if (!isUserLogged) {
+        if (authentication == null || !authentication.isAuthenticated() || authentication.getPrincipal().equals("anonymousUser")) {
             return "redirect:/paginaDetalleConcierto";
         }
+        
 
         Object principal = authentication.getPrincipal();
         String username = "";

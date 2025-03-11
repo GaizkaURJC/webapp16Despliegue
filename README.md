@@ -328,16 +328,31 @@ Cada apartado realizado está separado por varios commits, no está todo el cont
 
 ### Alberto
 
-- Tareas: 
+- Tareas:
+   1. Implementacion de docker para la base de datos SQL de nuestra aplicacion en Springboot, creando una imagen en un container llamado mySQL_sala, a la cual accedemos con un usuario y contraseña especificados en el archivo start_db.sh
+   2. Creacion y gestion de todo lo relacionado con los usuarios de la aplicacion, tanto la precarga de un usuario prueba y un unico usuario ADMIN, tanto como el registro y el loggin de todos los potenciales clientes de manera que todo quede registrado en la base de datos para poder consultar dicha informacion.
+   3. Implementacion de toda la seguridad que maneja el flujo y la proteccion de los datos y las ventanas de nuestra aplicacion web, de manera que a determinadas paginas o funciones solo puede acceder un usuario con un determinado roll, ya sea "USER" o "ADMIN", el usuario anonimo solo podra navegar por la pagina principal.
+   4. Implementacion de tecnologia como el generador de pdfs al solicitar una reserva para un evento corporativo, ademas de la creacion de un algoritmo de recomendacion de conciertos a usuarios dependiendo de las categorias de sus compras pasadas y la autenticacion https, generando un autocertificado firmado por nuestro grupo para implementar el protocolo https.
+   5. Creacion de la entidad de comentarios, creando una base de datos donde se guarda el usuario  autor del comentario, el id del evento sobre el que se realiza el comentario, el propio texto que contiene el comentario y su valoracion, para su posterior implementacion.
 
 - 5 commits más significativos (cada apartado realizado está separado por varios commits, no está todo el contenido en uno solo):
-[Commit 1]()
-[Commit 2]()
-[Commit 3]()
-[Commit 4]()
-[Commit 5]()
+[Commit 1](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/1780ff1ab7239206ce0af125fecf6f4bc859ed5d) :  Base de datos en Docker
+[Commit 2](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/8cc64a7d3cb70fd2e3fa254f5a493042c528c65e) :  Arreglado videos, boton cargar mas y pdf
+[Commit 3](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/7118b70e3bccfed71ee05556a0286cab010e1d0d) :  Event y User
+[Commit 4](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/38c27b2d88bac03e24bab8f3935dc30aee433a57) :  HTTPS
+[Commit 5](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/2c9ddbed8ab7ca51badef68ab5183370450115e6) :  Admin y Security 
 
 - 5 ficheros en los que se ha participado:
+1. `src/main/java/com/daw/daw/controller/UserController.java`
+    -Controlador de todos los usuarios una vez creada la entidad User.java
+2. `src/main/java/com/daw/daw/security/Security.java`
+   -Seguridad de toda la aplicacion con SpringSecurity
+3. `src/main/java/com/daw/daw/model/Event.java`
+   -Creacion de tablas en base de datos con todos los atributos y campos necesrios para su implementacion
+4. `src/main/java/com/daw/daw/service/PdfService.java`
+   -Implementacion de la tecnologia PDF
+5. `src/main/java/com/daw/daw/service/DataBaseinitializer.java`
+   -Carga de datos por defecto en las tablas generadas en la base de datos
 
 ------
 ### Alejandro

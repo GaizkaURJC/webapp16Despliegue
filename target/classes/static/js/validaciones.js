@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function validarPassword() {
         const password = passwordInput?.value.trim();
         if (!password || password.length < 4) {
-            passwordError.textContent = "La contraseña debe tener al menos 4 caracteres.";
+            passwordError.textContent = "La paswword debe tener al menos 4 caracteres.";
             return false;
         } else {
             passwordError.textContent = "";
