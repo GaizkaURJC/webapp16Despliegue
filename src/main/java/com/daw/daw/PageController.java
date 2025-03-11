@@ -182,7 +182,7 @@ public class PageController {
 	}
 
     @GetMapping("/paginaDetalleConcierto/{id}")
-    public String concertDetailRedirection(HttpSession session, @PathVariable Long id, Model model) {
+    public String concertDetailRedirection( @PathVariable Long id, Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         boolean isUserLogged = authentication.isAuthenticated();
         model.addAttribute("isUserLogged", isUserLogged);
@@ -269,5 +269,6 @@ public class PageController {
 
         return "paginaPerfil";
     }
+    
 
 }

@@ -60,7 +60,10 @@ public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
             .requestMatchers("/paginaDetalleConcierto/**").permitAll()
             .requestMatchers("/clubing/**").permitAll()
             .requestMatchers("/favicon.ico/**").permitAll()
+            .requestMatchers("/error/**").permitAll()
             .requestMatchers("/error").permitAll()
+            
+
             //PRIVATE PAGES
             .requestMatchers("/admin/**").hasRole("ADMIN")
             .requestMatchers("/perfil/**").hasRole("USER")
@@ -84,6 +87,7 @@ public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
             .requestMatchers("/events/**").hasRole("ADMIN")
             .requestMatchers("users/profileImg/**").hasAnyRole("USER", "ADMIN")
             .requestMatchers("/users/updateUser").hasRole("USER")
+
     )
         .formLogin(formLogin -> formLogin
             .loginPage("/login")

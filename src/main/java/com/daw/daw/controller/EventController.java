@@ -86,7 +86,7 @@ public class EventController {
     }
 
     @GetMapping("/{id}")
-	public String clubbingRedirection(HttpSession session, @PathVariable Long id, Model model) {
+	public String clubbingRedirection( @PathVariable Long id, Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         boolean isUserLogged = authentication.isAuthenticated();
 
@@ -102,10 +102,7 @@ public class EventController {
             } else if (principal instanceof User) {
                 username = ((User) principal).getEmail(); // Usa email si es lo que almacenas en User
                 user = ((User) principal);
-            }
-
-            
-
+            } 
             System.out.println("Usuario autenticado: " + username);
             model.addAttribute("userLogged", user);
 		}
@@ -119,7 +116,7 @@ public class EventController {
         int femaleCount = ticketRepository.findByTitleAndGender(title, "Mujer").size();
         model.addAttribute("maleCount", maleCount);
         model.addAttribute("femaleCount", femaleCount);
-		return "clubing";
+		return "clubbing";
 	}
 
     @PostMapping("/deleteEvent")
