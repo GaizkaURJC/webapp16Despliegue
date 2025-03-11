@@ -394,22 +394,22 @@ Algunos commits no tienen toda la lógica o les falta un poco, pero son los prin
 ### Gaizka
 
 - Tareas: 
-- Funciones del administrador: Eliminacion de usuarios y diferentes tipos de eventos, aceptacion/rechazo de entrevistas.
-- Implementacion del algoritmo de recomendación de conciertos.
-- Extraccion de comentarios de la base de datos.
-- Grafico que muestra la distinccion por generos a la hora de comprar entradas.
+  1. Funciones del administrador: Eliminacion de usuarios y diferentes tipos de eventos, aceptacion/rechazo de entrevistas.
+  2. Implementacion del algoritmo de recomendación de conciertos.
+  3. Extraccion de comentarios de la base de datos.
+  4. Grafico que muestra la distinccion por generos a la hora de comprar entradas.
 
 
 - 5 commits más significativos:
-- [Commit 1] (https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/d147f6db73b535571a4649636ff3eec0617d90a4): Arreglo de creación de fiestas y js para la pagina admin.
-- [Commit 2] (https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/299914055fdc6f7212173c9dcc28eada53f9aad4): Se ponen todas las funciones necesarias para el administrador.
-- [Commit 3] (https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/80255664eb8a58a37d3c9a9f386debb742dceef8): Ordenados los conciertos para cada usuario.
-- [Commit 4] (https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/eb7caf493b3e5de35f1b2a3f6f26005a3d742d53): Grafico distribucion de genero
-- [Commit 5] (https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/67876d680fc87d504f6d03a9b6d78ab9b1df9df1): Admin totalmente funcional
+- [Commit 1](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/d147f6db73b535571a4649636ff3eec0617d90a4): Arreglo de creación de fiestas y js para la pagina admin.
+- [Commit 2](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/299914055fdc6f7212173c9dcc28eada53f9aad4): Se ponen todas las funciones necesarias para el administrador.
+- [Commit 3](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/80255664eb8a58a37d3c9a9f386debb742dceef8): Ordenados los conciertos para cada usuario.
+- [Commit 4](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/eb7caf493b3e5de35f1b2a3f6f26005a3d742d53): Grafico distribucion de genero
+- [Commit 5](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/67876d680fc87d504f6d03a9b6d78ab9b1df9df1): Admin totalmente funcional
 
 - 5 ficheros en los que se ha participado:
 
-1. `src/main/resources/templates/admin.html`
+1. src/main/resources/templates/admin.html`
    - Todas las funcionalidades y redirecciones de esta pagina.
 
 2. `src/main/java/com/daw/daw/controller/EventController.java`

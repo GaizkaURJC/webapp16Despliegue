@@ -90,6 +90,9 @@ public class PageController {
 
         model.addAttribute("isUserLogged", isUserLogged);
 
+        List<Event> allConcerts = eventRepository.findByTipo("concert");
+        model.addAttribute("party", eventRepository.findAllByTipo("party"));
+
         if (isUserLogged) {
             Object principal = authentication.getPrincipal();
             String username = "";
@@ -102,14 +105,52 @@ public class PageController {
                 user = ((User) principal);
             }
 
+            List<Ticket> tickets = ticketRepository.findByUserOwner(username);
+             Map<String, Long> categoryCount = tickets.stream()
+                     .collect(Collectors.groupingBy(Ticket::getCategory, Collectors.counting()));
+ 
+             List<Map.Entry<String, Long>> sortedPreferences = categoryCount.entrySet().stream()
+                     .sorted(Map.Entry.<String, Long>comparingByValue().reversed())
+                     .collect(Collectors.toList());
+ 
+             // Reorder concerts based on user preferences
+             List<Event> orderedConcerts = reorderConcerts(allConcerts, sortedPreferences);
+             model.addAttribute("concerts", orderedConcerts);
+
             System.out.println("Usuario autenticado: " + username);
             model.addAttribute("userLogged", user);
+        } else {
+            model.addAttribute("concerts", allConcerts);
         }
 
         model.addAttribute("party", eventRepository.findAllByTipo("party"));
-        model.addAttribute("concerts", eventRepository.findByTipo("concert"));
         return "index";
     }
+
+    private List<Event> reorderConcerts(List<Event> allConcerts,
+             List<Map.Entry<String, Long>> sortedPreferences) {
+         List<Event> orderedConcerts = new ArrayList<>();
+         Set<Long> addedEventIds = new HashSet<>();
+ 
+         // Add concerts from preferred categories first
+         for (Map.Entry<String, Long> preference : sortedPreferences) {
+             String preferredCategory = preference.getKey();
+             for (Event concert : allConcerts) {
+                 if (concert.getCategory().equals(preferredCategory) && addedEventIds.add(concert.getId())) {
+                     orderedConcerts.add(concert);
+                 }
+             }
+         }
+ 
+         // Add remaining concerts
+         for (Event concert : allConcerts) {
+             if (addedEventIds.add(concert.getId())) {
+                 orderedConcerts.add(concert);
+             }
+         }
+ 
+         return orderedConcerts;
+     }
 
     @GetMapping("/login")
     public String loginRedirection(Model model) {
@@ -127,30 +168,7 @@ public class PageController {
         return "login";
     }
 
-    private List<Event> reorderConcerts(List<Event> allConcerts,
-            List<Map.Entry<String, Long>> sortedPreferences) {
-        List<Event> orderedConcerts = new ArrayList<>();
-        Set<Long> addedEventIds = new HashSet<>();
-
-        // Add concerts from preferred categories first
-        for (Map.Entry<String, Long> preference : sortedPreferences) {
-            String preferredCategory = preference.getKey();
-            for (Event concert : allConcerts) {
-                if (concert.getCategory().equals(preferredCategory) && addedEventIds.add(concert.getId())) {
-                    orderedConcerts.add(concert);
-                }
-            }
-        }
-
-        // Add remaining concerts
-        for (Event concert : allConcerts) {
-            if (addedEventIds.add(concert.getId())) {
-                orderedConcerts.add(concert);
-            }
-        }
-
-        return orderedConcerts;
-    }
+    
 
 	@GetMapping("/imgEvent/{id}")
 	public ResponseEntity<Object> getImage(@PathVariable Long id, Model model) throws SQLException {
