@@ -184,10 +184,14 @@ public class PageController {
     @GetMapping("/paginaDetalleConcierto/{id}")
     public String concertDetailRedirection( @PathVariable Long id, Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        boolean isUserLogged = authentication.isAuthenticated();
+        boolean isUserLogged = authentication != null && authentication.isAuthenticated()
+                && !(authentication.getPrincipal() instanceof String);
+
+
         model.addAttribute("isUserLogged", isUserLogged);
-        if (isUserLogged) {
-            Object principal = authentication.getPrincipal();
+
+		if (isUserLogged) {
+			Object principal = authentication.getPrincipal();
             String username = "";
             User user = null;
 
@@ -196,11 +200,10 @@ public class PageController {
             } else if (principal instanceof User) {
                 username = ((User) principal).getEmail(); // Usa email si es lo que almacenas en User
                 user = ((User) principal);
-            }
-
+            } 
             System.out.println("Usuario autenticado: " + username);
             model.addAttribute("userLogged", user);
-        }
+		}
         model.addAttribute("event", eventRepository.findById(id).get());
         model.addAttribute("coments", commentRepository.getComentsByEventId(id));
 

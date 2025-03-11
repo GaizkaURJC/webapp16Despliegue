@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function validarTelefono() {
         const telefono = telefonoInput?.value.trim();
         if (!telefono || !/^\d{9}$/.test(telefono)) {
-            telefonoError.textContent = "El número de teléfono debe tener exactamente 9 dígitos.";
+            telefonoError.textContent = "El numero de telefono debe tener exactamente 9 dígitos.";
             return false;
         } else {
             telefonoError.textContent = "";
@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const email = emailInput?.value.trim();
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!email || !emailRegex.test(email)) {
-            emailError.textContent = "Por favor, introduce un correo válido.";
+            emailError.textContent = "Por favor, introduce un correo valido.";
             return false;
         } else {
             emailError.textContent = "";
@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function validarNombre() {
         const name = nameInput?.value.trim();
         if (!name || !/^[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+(\s[A-ZÁÉÍÓÚÑ][a-záéíóúñ]+)*$/.test(name)) {
-            nameError.textContent = "El nombre debe comenzar con una mayúscula.";
+            nameError.textContent = "El nombre debe comenzar con una mayuscula.";
             return false;
         } else {
             nameError.textContent = "";
@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function validarPassword() {
         const password = passwordInput?.value.trim();
         if (!password || password.length < 4) {
-            passwordError.textContent = "La contraseña debe tener al menos 4 caracteres.";
+            passwordError.textContent = "La contrasena debe tener al menos 4 caracteres.";
             return false;
         } else {
             passwordError.textContent = "";
@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const emailLogin = emailLoginInput?.value.trim();
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailLogin || !emailRegex.test(emailLogin)) {
-            emailLoginError.textContent = "Por favor, introduce un correo válido.";
+            emailLoginError.textContent = "Por favor, introduce un correo valido.";
             return false;
         } else {
             emailLoginError.textContent = "";
@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function validarPasswordLogin() {
         const password = passwordLoginInput?.value.trim();
         if (!password || password.length < 4) {
-            passwordLoginError.textContent = "La contraseña debe tener al menos 4 caracteres.";
+            passwordLoginError.textContent = "La contrasena debe tener al menos 4 caracteres.";
             return false;
         } else {
             passwordLoginError.textContent = "";
