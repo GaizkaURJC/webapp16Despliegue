@@ -179,22 +179,22 @@ public class UserController {
     }
 
     @PostMapping("updateUser")
-    public String updateUser(@RequestParam Long id,
-            @RequestParam("user") String name,
-            @RequestParam("email") String emailUser,
-            @RequestParam("password") String Password,
-            HttpServletRequest request) {
-        Optional<User> optionalUser = userRepository.findById(id);
-        if (optionalUser.isPresent()) {
-            User user = optionalUser.get();
-            user.setName(name);
-            user.setEmail(emailUser);
-            user.setEncodedPassword(passwordEncoder.encode(Password));
-            userRepository.save(user);
-            return "redirect:/";
-        } else {
-            return "redirect:/admin?error=user_not_found";
-        }
+public String updateUser(@RequestParam Long id, 
+                         @RequestParam("user") String name, 
+                         @RequestParam("email") String emailUser, 
+                         @RequestParam("password") String Password, 
+                         HttpServletRequest request) { 
+    Optional<User> optionalUser = userRepository.findById(id);
+    if (optionalUser.isPresent()) {
+        User user = optionalUser.get();
+        user.setName(name);
+        user.setEmail(emailUser);
+        user.setEncodedPassword(passwordEncoder.encode(Password));
+        userRepository.save(user);
+        return "redirect:/";
+    } else {
+        return "redirect:/admin?error=user_not_found";
     }
+}
 
 }
