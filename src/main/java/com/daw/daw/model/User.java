@@ -38,7 +38,6 @@ public class User {
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles;
 
-    private Date fecharegistro;
 
     public User() {
     }
@@ -90,14 +89,6 @@ public class User {
 
     public void setRoles (List<String> roles) {
         this.roles = roles;
-    }
-
-    public Date getFecharegistro() {
-        return fecharegistro;
-    }
-
-    public void setFecharegistro (Date fecharegistro) {
-        this.fecharegistro = fecharegistro;
     }
 
     public Blob getImageFile() {

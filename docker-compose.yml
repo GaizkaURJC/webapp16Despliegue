@@ -1,18 +1,28 @@
 version: '3.1'
+
 services:
-  db_sala:
-    image: mysql:latest
-    environment:
-      MYSQL_ROOT_PASSWORD: admin
-      MYSQL_DATABASE: sala_eventos
-      MYSQL_USER: root
-      MYSQL_PASSWORD: admin
+  webapp:
+    image: webapp:latest
     ports:
-      - "3306:3306"
-    command: --max_allowed_packet=256M
-  app:
-    image: tu-imagen-springboot
-    ports:
-      - "8080:8080"
+      - "8443:8443"
     depends_on:
-      - db_sala
+      db:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/sala_DB
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: password
+
+  db:
+    image: mysql:8.0.33
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: sala_DB
+    ports:
+      - "3307:3306"
+    command: --max-allowed-packet=256M
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5

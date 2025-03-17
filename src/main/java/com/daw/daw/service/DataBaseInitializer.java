@@ -169,12 +169,12 @@ public class DataBaseInitializer {
         }
 
         private Blob loadImage(String path) {
-                try {
-                        InputStream inputStream = new ClassPathResource("static/" + path).getInputStream();
-                        return BlobProxy.generateProxy(inputStream, inputStream.available());
+                try (InputStream inputStream = new ClassPathResource("static/" + path).getInputStream()) {
+                    byte[] bytes = inputStream.readAllBytes();
+                    return BlobProxy.generateProxy(bytes);
                 } catch (IOException e) {
-                        System.err.println("⚠ No se pudo cargar la imagen: " + path + ". Usando imagen por defecto.");
-                        return BlobProxy.generateProxy(new byte[0]);
+                    System.err.println("⚠ No se pudo cargar la imagen: " + path + ". Usando imagen por defecto.");
+                    return BlobProxy.generateProxy(new byte[0]);
                 }
-        }
+            }
 }
