@@ -20,7 +20,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import com.daw.daw.controller.UserController;
+
+import com.daw.daw.controller.MVC.UserMVCController;
 import com.daw.daw.model.Event;
 import com.daw.daw.model.User;
 import com.daw.daw.model.Ticket;
@@ -43,7 +44,7 @@ public class PageController {
     private EventRepository eventRepository;
 
     @Autowired
-    private final UserController userController;
+    private final UserMVCController userController;
 
     @Autowired
     private ComentsRepository commentRepository;
@@ -52,7 +53,7 @@ public class PageController {
     private ReservaRepository reservaRepository;
 
     public PageController(UserRepository userRepository, EventRepository eventRepository,
-            UserController userController, ReservaRepository reservaRepository) {
+            UserMVCController userController, ReservaRepository reservaRepository) {
         this.userRepository = userRepository;
         this.eventRepository = eventRepository;
         this.userController = userController;

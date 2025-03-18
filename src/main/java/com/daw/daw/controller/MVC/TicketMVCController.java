@@ -1,4 +1,4 @@
-package com.daw.daw.controller;
+package com.daw.daw.controller.MVC;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Controller
-public class TicketController {
+public class TicketMVCController {
 
     @Autowired
     private TicketRepository ticketRepository;

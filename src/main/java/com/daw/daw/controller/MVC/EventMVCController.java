@@ -1,4 +1,4 @@
-package com.daw.daw.controller;
+package com.daw.daw.controller.MVC;
 
 import java.net.URI;
 import java.util.Arrays;
@@ -37,7 +37,7 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/events")
-public class EventController {
+public class EventMVCController {
 
     @Autowired
     private UserRepository userRepository;

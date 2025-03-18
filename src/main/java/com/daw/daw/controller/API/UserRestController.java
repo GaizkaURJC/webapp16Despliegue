@@ -1,4 +1,4 @@
-package com.daw.daw.controller.restcontroller;
+package com.daw.daw.controller.API;
 
 import java.security.Principal;
 import java.util.NoSuchElementException;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.daw.daw.dto.UserDTO;
 import com.daw.daw.service.UserService;
+
 @RestController
 @RequestMapping("/api/v1/users")
 public class UserRestController {
@@ -31,9 +32,14 @@ public class UserRestController {
             throw new NoSuchElementException("usuario anonimo");
         }
     }
+
+
     @GetMapping("/")
 	public Collection <UserDTO> getBooks() {
 
         return userService.getAllUsers();
 	}
+
+
+
 }

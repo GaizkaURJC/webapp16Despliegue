@@ -1,4 +1,4 @@
-package com.daw.daw.controller;
+package com.daw.daw.controller.MVC;
 
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import com.lowagie.text.DocumentException;
 
 @Controller
 @RequestMapping("/reserva/")
-public class ReservaController {
+public class ReservaMVCController {
 
     @Autowired
     private ReservaRepository reservaRepository;

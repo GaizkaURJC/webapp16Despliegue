@@ -1,4 +1,4 @@
-package com.daw.daw.controller;
+package com.daw.daw.controller.MVC;
 
 import java.net.URI;
 import java.util.Arrays;
@@ -29,14 +29,14 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/coments/")
-public class ComentsController {
+public class ComentsMVCController {
 
     @Autowired
     private ComentsRepository comentsRepository;
 
 
     @Autowired
-    private UserController userController;
+    private UserMVCController userController;
 
     @PostMapping("create")
     public String addComent(@RequestParam("rate") int valoracion,

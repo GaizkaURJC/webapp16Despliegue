@@ -1,4 +1,4 @@
-package com.daw.daw.controller;
+package com.daw.daw.controller.MVC;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -37,7 +37,7 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/users/")
-public class UserController {
+public class UserMVCController {
 
     @Autowired
     private UserRepository userRepository;
