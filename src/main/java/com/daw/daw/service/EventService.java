@@ -2,6 +2,8 @@ package com.daw.daw.service;
 
 import java.net.URI;
 import java.util.Collection;
+import java.util.NoSuchElementException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -49,5 +51,18 @@ public class EventService {
       events.deleteById(id);
 
       return eventDto;
+    }
+
+    public EventDTO replaceEvent(Long id, Event updatedEvent){
+      if (events.existsById(id)){
+        updatedEvent.setId(id);
+        events.save(updatedEvent);
+        return (eventMapper.toDTO(updatedEvent));
+      }
+      else{
+        throw new NoSuchElementException();
+      }
+      
+      
     }
 }
