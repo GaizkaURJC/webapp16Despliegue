@@ -68,8 +68,8 @@ public class PageController {
 
         model.addAttribute("isUserLogged", isUserLogged);
 
-        List<Event> allConcerts = eventRepository.findByTipo("concert");
-        model.addAttribute("party", eventRepository.findAllByTipo("party"));
+        List<Event> allConcerts = eventRepository.findByType("concert");
+        model.addAttribute("party", eventRepository.findAllByType("party"));
 
         if (isUserLogged) {
             Object principal = null;
@@ -104,7 +104,7 @@ public class PageController {
             model.addAttribute("concerts", allConcerts);
         }
 
-        model.addAttribute("party", eventRepository.findAllByTipo("party"));
+        model.addAttribute("party", eventRepository.findAllByType("party"));
         return "index";
     }
 
@@ -212,8 +212,8 @@ public class PageController {
         }
 
         model.addAttribute("users", userRepository.findAll());
-        model.addAttribute("party", eventRepository.findAllByTipo("party"));
-        model.addAttribute("concerts", eventRepository.findByTipo("concert"));
+        model.addAttribute("party", eventRepository.findAllByType("party"));
+        model.addAttribute("concerts", eventRepository.findAllByType("concert"));
         model.addAttribute("reservas", reservaRepository.findAll());
         return "admin";
     }

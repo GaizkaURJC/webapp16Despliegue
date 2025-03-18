@@ -11,12 +11,12 @@ import com.daw.daw.model.Event;
 public interface EventRepository extends JpaRepository<Event, Long> {
 
     Optional <Event> findByTitle(String title);
-    List <Event> findByTipo(String tipo);
+    List <Event> findByType(String type);
     Optional <Event> findByDescription(String description);
     Optional <Event> getEventoById(Long id); 
     Optional <Event> getByTitle(String Title);
-    Optional <Event> getByTipo(String Tipo);
-    List <Event> findAllByTipo(String tipo);
+    Optional <Event> getByType(String type);
+    List <Event> findAllByType(String type);
     boolean existsByTitle(String title);
     Optional <Event> findByCategory(String category);
 

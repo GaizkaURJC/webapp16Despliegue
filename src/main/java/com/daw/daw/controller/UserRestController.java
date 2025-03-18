@@ -1,4 +1,4 @@
-package com.daw.daw.controller.API;
+package com.daw.daw.controller;
 
 import java.net.URI;
 import java.security.Principal;
