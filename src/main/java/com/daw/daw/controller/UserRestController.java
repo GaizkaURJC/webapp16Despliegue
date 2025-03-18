@@ -1,4 +1,4 @@
-package com.daw.daw.controller.API;
+package com.daw.daw.controller;
 
 import java.security.Principal;
 import java.util.NoSuchElementException;

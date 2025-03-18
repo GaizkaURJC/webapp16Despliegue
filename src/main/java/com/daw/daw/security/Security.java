@@ -1,6 +1,5 @@
 package com.daw.daw.security;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,7 +21,6 @@ public class Security {
     @Autowired
     private RepositoryUserDetailsService userDetailsService;
 
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -42,7 +40,14 @@ public class Security {
     }
 
     @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+        return authenticationConfiguration.getAuthenticationManager();
+    }
+
+    @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.csrf(csrf -> csrf.disable());
+
         http.authenticationProvider(authenticationProvider());
 
         http.securityContext(securityContext -> securityContext
@@ -67,6 +72,7 @@ public class Security {
                 .requestMatchers("/error").permitAll()
                 // API ROUTES
                 .requestMatchers("/api/v1/**").permitAll()
+                
                 // PRIVATE PAGES
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .requestMatchers("/perfil/**").hasRole("USER")
@@ -90,7 +96,6 @@ public class Security {
                 .requestMatchers("/events/**").hasRole("ADMIN")
                 .requestMatchers("users/profileImg/**").hasAnyRole("USER", "ADMIN")
                 .requestMatchers("/users/updateUser").hasRole("USER")
-
         )
                 .formLogin(formLogin -> formLogin
                         .loginPage("/login")
@@ -102,10 +107,4 @@ public class Security {
 
         return http.build();
     }
-
-     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-        return authenticationConfiguration.getAuthenticationManager();
-    }
-    
 }
