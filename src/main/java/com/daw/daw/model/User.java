@@ -50,8 +50,15 @@ public class User {
         this.roles = roles;
         this.imageFile = imageFile;
     }
+    public Long getId() {
+        return id;
+    }
 
-    public String getNombre() {
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
         return name;
     }
 
@@ -67,11 +74,11 @@ public class User {
         this.email = email;
     }
 
-    public String getTelefono() {
+    public String getPhone() {
         return telefono;
     }
 
-    public void setTelefono (String telefono) {
+    public void setPhone (String telefono) {
         this.telefono = telefono;
     }
 

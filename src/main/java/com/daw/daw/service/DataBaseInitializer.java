@@ -69,8 +69,8 @@ public class DataBaseInitializer {
                         ticketRepository.save(ticket);
                 }
                 // SAMPLE USERS
-                if (UserRepository.findByName(admin.getNombre()).isEmpty()
-                                && UserRepository.findByName(user.getNombre()).isEmpty()) {
+                if (UserRepository.findByName(admin.getName()).isEmpty()
+                                && UserRepository.findByName(user.getName()).isEmpty()) {
                         UserRepository.save(admin);
                         UserRepository.save(user);
                 }
