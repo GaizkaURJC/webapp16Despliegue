@@ -1,25 +1,44 @@
 package com.daw.daw.security;
 
+import org.springframework.http.HttpMethod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.security.web.context.SecurityContextRepository;
+
+import com.daw.daw.security.jwt.JwtRequestFilter;
+import com.daw.daw.security.jwt.UnauthorizedHandlerJwt;
 
 @Configuration
 @EnableWebSecurity
 public class Security {
 
     @Autowired
+    private JwtRequestFilter jwtRequestFilter;
+
+    @Autowired
+    private UnauthorizedHandlerJwt unauthorizedHandlerJwt;
+
+    @Autowired
     private RepositoryUserDetailsService userDetailsService;
+
+    @Autowired
+    private CSRFHandlerConfiguration CSRFHandlerConfiguration;
+
+    // Eliminar la inyección del AuthenticationManager en el constructor
+    public Security() {}
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -45,65 +64,60 @@ public class Security {
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf(csrf -> csrf.disable());
-
+    @Order(1)
+    public SecurityFilterChain apiFilterChain(HttpSecurity http) throws Exception {
         http.authenticationProvider(authenticationProvider());
 
-        http.securityContext(securityContext -> securityContext
-                .securityContextRepository(securityContextRepository()));
+        http
+            .securityMatcher("/api/**")
+            .exceptionHandling(handling -> handling
+                .authenticationEntryPoint(unauthorizedHandlerJwt));
+
+        http
+            .authorizeHttpRequests(authorize -> authorize
+                .requestMatchers(HttpMethod.POST, "/api/**").hasRole("USER")
+                .requestMatchers(HttpMethod.PUT, "/api/**").hasRole("USER")
+                .requestMatchers(HttpMethod.DELETE, "/api/**").hasRole("ADMIN")
+                .anyRequest().permitAll()
+            );
+
+        http.formLogin(formLogin -> formLogin.disable());
+        http.csrf(csrf -> csrf.disable());
+        http.httpBasic(httpBasic -> httpBasic.disable());
+        http.sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+        http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+
+        return http.build();
+    }
+
+    @Bean
+    @Order(2) // Cambia el orden para evitar conflictos
+    public SecurityFilterChain webFilterChain(HttpSecurity http) throws Exception {
+        http.authenticationProvider(authenticationProvider());
 
         http.authorizeHttpRequests(authorize -> authorize
-                // PUBLIC PAGES
-                .requestMatchers("/").permitAll()
-                .requestMatchers("/css/**").permitAll()
-                .requestMatchers("/img/**").permitAll()
-                .requestMatchers("/js/**").permitAll()
-                .requestMatchers("/videos/**").permitAll()
-                .requestMatchers("/imgEvent/**").permitAll()
-                .requestMatchers("/users/authenticate").permitAll()
-                .requestMatchers("/users/create").permitAll()
-                .requestMatchers("/favicon/**").permitAll()
-                .requestMatchers("/events/**").permitAll()
-                .requestMatchers("/paginaDetalleConcierto/**").permitAll()
-                .requestMatchers("/clubing/**").permitAll()
-                .requestMatchers("/favicon.ico/**").permitAll()
-                .requestMatchers("/error/**").permitAll()
-                .requestMatchers("/error").permitAll()
-                // API ROUTES
-                .requestMatchers("/api/v1/**").permitAll()
-                
-                // PRIVATE PAGES
-                .requestMatchers("/admin/**").hasRole("ADMIN")
-                .requestMatchers("/perfil/**").hasRole("USER")
-                .requestMatchers("/paginaperfil/**").hasRole("USER")
-                .requestMatchers("/users/**").hasAnyRole("USER", "ADMIN")
-                .requestMatchers("/tickets/buyTicket").hasRole("USER")
-                .requestMatchers("/tickets/**").hasRole("USER")
-                .requestMatchers("/events/partyCreate").hasRole("ADMIN")
-                .requestMatchers("/events/conciertoCreate").hasRole("ADMIN")
-                .requestMatchers("/reserva/aceptar").hasRole("ADMIN")
-                .requestMatchers("/reserva/request").hasRole("USER")
-                .requestMatchers("/application/pdf").hasRole("USER")
-                .requestMatchers("/coments/create").hasRole("USER")
-                .requestMatchers("/events/deleteEvent").hasRole("ADMIN")
-                .requestMatchers("/reserva/aceptar").hasRole("ADMIN")
-                .requestMatchers("/reserva/rechazar").hasRole("ADMIN")
-                .requestMatchers("/reserva/deleteReserva").hasRole("ADMIN")
-                .requestMatchers("/users/deleteUser").hasRole("ADMIN")
-                .requestMatchers("/events/conciertoCreate").hasRole("ADMIN")
-                .requestMatchers("/events/partyCreate").hasRole("ADMIN")
-                .requestMatchers("/events/**").hasRole("ADMIN")
-                .requestMatchers("users/profileImg/**").hasAnyRole("USER", "ADMIN")
-                .requestMatchers("/users/updateUser").hasRole("USER")
-        )
-                .formLogin(formLogin -> formLogin
-                        .loginPage("/login")
-                        .defaultSuccessUrl("/", true) // nos manda al home después del login
-                        .permitAll())
-                .logout(logout -> logout
-                        .logoutUrl("/users/logout").permitAll()
-                        .logoutSuccessUrl("/").permitAll());
+            .requestMatchers("/", "/css/**", "/img/**", "/js/**", "/videos/**", "/imgEvent/**").permitAll()
+            .requestMatchers("/users/authenticate", "/users/create", "/favicon/**", "/events/**").permitAll()
+            .requestMatchers("/admin/**").hasRole("ADMIN")
+            .requestMatchers("/perfil/**", "/paginaperfil/**", "/users/**").hasAnyRole("USER", "ADMIN")
+            .requestMatchers("/tickets/buyTicket", "/tickets/**").hasRole("USER")
+            .requestMatchers("/events/partyCreate", "/events/conciertoCreate", "/events/**").hasRole("ADMIN")
+            .requestMatchers("/reserva/aceptar", "/reserva/rechazar", "/reserva/deleteReserva").hasRole("ADMIN")
+            .requestMatchers("/application/pdf", "/coments/create", "users/profileImg/**", "/users/updateUser").hasRole("USER")
+            .anyRequest().permitAll()
+        );
+
+        http.formLogin(formLogin -> formLogin
+            .loginPage("/login")
+            .defaultSuccessUrl("/", true)
+            .permitAll()
+        );
+
+        http.logout(logout -> logout
+            .logoutUrl("/users/logout")
+            .logoutSuccessUrl("/")
+            .permitAll()
+        );
 
         return http.build();
     }
