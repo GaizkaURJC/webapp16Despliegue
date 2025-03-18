@@ -43,4 +43,11 @@ public class EventService {
 
       return ResponseEntity.created(location).body(event); 
     }
+
+    public EventDTO deleteEvent(Long id){
+      EventDTO eventDto = eventMapper.toDTO(events.findById(id).orElseThrow()); 
+      events.deleteById(id);
+
+      return eventDto;
+    }
 }
