@@ -75,9 +75,9 @@ public class Security {
 
         http
             .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers(HttpMethod.POST, "/api/**").hasRole("USER")
-                .requestMatchers(HttpMethod.PUT, "/api/**").hasRole("USER")
-                .requestMatchers(HttpMethod.DELETE, "/api/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.POST, "/api/**").permitAll()
+                .requestMatchers(HttpMethod.PUT, "/api/**").permitAll()
+                .requestMatchers(HttpMethod.DELETE, "/api/**").permitAll()
                 .anyRequest().permitAll()
             );
 
@@ -94,7 +94,6 @@ public class Security {
     @Order(2) // Cambia el orden para evitar conflictos
     public SecurityFilterChain webFilterChain(HttpSecurity http) throws Exception {
         http.authenticationProvider(authenticationProvider());
-
         http.authorizeHttpRequests(authorize -> authorize
             .requestMatchers("/", "/css/**", "/img/**", "/js/**", "/videos/**", "/imgEvent/**").permitAll()
             .requestMatchers("/users/authenticate", "/users/create", "/favicon/**", "/events/**").permitAll()
