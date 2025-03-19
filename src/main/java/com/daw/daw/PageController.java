@@ -182,6 +182,7 @@ public class PageController {
             System.out.println("Usuario autenticado: " + username);
             model.addAttribute("userLogged", user);
         }
+        
         model.addAttribute("event", eventRepository.findById(id).get());
         model.addAttribute("coments", commentRepository.getComentsByEventId(id));
 
