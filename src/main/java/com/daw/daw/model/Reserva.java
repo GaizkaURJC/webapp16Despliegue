@@ -4,14 +4,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import java.util.Date;
 
 @Entity(name = "reserva_table")
 public class Reserva {
-    
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-private Long id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String userName;
 
     private String userEmail;
@@ -24,13 +23,11 @@ private Long id;
 
     private String estado;
 
-
-
-
     public Reserva() {
     }
 
-    public Reserva(String userName, String userEmail, String bussinesName, int num_personas, String eventDescript, String estado) {
+    public Reserva(String userName, String userEmail, String bussinesName, int num_personas, String eventDescript,
+            String estado) {
         this.userName = userName;
         this.userEmail = userEmail;
         this.bussinesName = bussinesName;
@@ -87,12 +84,12 @@ private Long id;
         this.estado = estado;
     }
 
-   
+    public Long getId() {
+        return id;
+    }
 
-    
-
-   
-
-
+    public void setId(Long id) {
+        this.id = id;
+    }
 
 }
