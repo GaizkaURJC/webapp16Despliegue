@@ -18,9 +18,9 @@ import org.springframework.core.io.Resource;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.Date;
-import com.daw.daw.model.Coments;
+import com.daw.daw.model.Comment;
 import com.daw.daw.model.User;
-import com.daw.daw.repository.ComentsRepository;
+import com.daw.daw.repository.CommentRepository;
 import com.daw.daw.repository.UserRepository;
 import com.daw.daw.model.Event;
 import com.daw.daw.model.Image;
@@ -49,7 +49,7 @@ public class DataBaseInitializer {
         private PasswordEncoder passwordEncoder;
 
         @Autowired
-        private ComentsRepository comentsRepository;
+        private CommentRepository comentsRepository;
 
         @Autowired
         private ReservaRepository reservaRepository;
@@ -125,10 +125,10 @@ public class DataBaseInitializer {
                                 loadImage("img/BubuRoom.avif"), "party");
 
                 if (comentsRepository.findAll().isEmpty()) {
-                        Coments coments1 = new Coments(5, "Me encanto el concierto, la mejor noche de mi vida", "user", 5);
-                        Coments coments2 = new Coments(4, "La musica era buena, pero la bebida era cara", "user", 6);
-                        Coments coments3 = new Coments(3, "No me gusto mucho, la musica era muy rara", "user", 3);
-                        Coments coments4 = new Coments(5, "La mejor fiesta de mi vida, repetire seguro", "user", 4);
+                        Comment coments1 = new Comment(5, "Me encanto el concierto, la mejor noche de mi vida", "user", 5);
+                        Comment coments2 = new Comment(4, "La musica era buena, pero la bebida era cara", "user", 6);
+                        Comment coments3 = new Comment(3, "No me gusto mucho, la musica era muy rara", "user", 3);
+                        Comment coments4 = new Comment(5, "La mejor fiesta de mi vida, repetire seguro", "user", 4);
                         comentsRepository.save(coments1);
                         comentsRepository.save(coments2);
                         comentsRepository.save(coments3);

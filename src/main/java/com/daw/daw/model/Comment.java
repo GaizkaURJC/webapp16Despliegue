@@ -4,25 +4,30 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity(name = "coments_table")
-public class Coments {
+public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
     private String username;
     private String comentario;
-    private int valoracion;
+    private int rate;
     private int eventId;
 
     // Constructor vacío obligatorio para JPA
-    public Coments() {}
+    public Comment() {}
 
-    public Coments(int valoracion, String comentario, String  username, int eventId) {
+    public Comment(int rate, String comentario, String  username, int eventId) {
         this.username = username;
-        this.valoracion = valoracion;
+        this.rate = rate;
         this.comentario = comentario;
         this.eventId = eventId;
     }
@@ -37,8 +42,8 @@ public class Coments {
     public String getComentario() { return comentario; }
     public void setComentario(String comentario) { this.comentario = comentario; }
 
-    public int getValoracion() { return valoracion; }
-    public void setValoracion(int valoracion) { this.valoracion = valoracion; }
+    public int getRate() { return rate; }
+    public void setRate(int rate) { this.rate = rate; }
 
     public int getEventId() { return eventId; }
     public void setEventId(int eventId) { this.eventId = eventId; }

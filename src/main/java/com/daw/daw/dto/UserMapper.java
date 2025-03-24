@@ -11,12 +11,11 @@ import java.util.List;
 public interface UserMapper{
 
     UserDTO toDTO(User user);
+    
     List <UserDTO> toDTOs(Collection <User> user);
 
-    @Mapping(target = "id", ignore = true)
-    User toDomain(UserDTO userDTO);
-    
-    
+    @Mapping(target = "imageFile", ignore = true)
+    User toDomain(UserDTO userDTO);   
 }
 
 

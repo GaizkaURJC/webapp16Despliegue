@@ -7,6 +7,7 @@ public record UserDTO(
     String name,
     String email,
     String phone,
-    List <String> roles) {
+    List <String> roles,
+    boolean image) {
     
 }

@@ -20,9 +20,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import com.daw.daw.model.Coments;
+import com.daw.daw.model.Comment;
 import com.daw.daw.model.User;
-import com.daw.daw.repository.ComentsRepository;
+import com.daw.daw.repository.CommentRepository;
 
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -32,7 +32,7 @@ import jakarta.servlet.http.HttpSession;
 public class ComentsMVCController {
 
     @Autowired
-    private ComentsRepository comentsRepository;
+    private CommentRepository comentsRepository;
 
 
     @Autowired
@@ -63,7 +63,7 @@ public class ComentsMVCController {
         username = ((User) principal).getEmail(); // Usa email si es lo que almacenas en User
         user = ((User) principal);
     }
-    Coments coments = new Coments(valoracion, comentario, username, eventId);
+    Comment coments = new Comment(valoracion, comentario, username, eventId);
     comentsRepository.save(coments);
     return "redirect:/";
 }

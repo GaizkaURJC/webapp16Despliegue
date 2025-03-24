@@ -16,6 +16,8 @@ import jakarta.persistence.Lob;
 import java.sql.Blob;
 import java.util.Date;
 import org.springframework.web.context.annotation.SessionScope;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Component
 @SessionScope
 @Entity(name= "user_table")
@@ -33,7 +35,10 @@ public class User {
     private String encodedPassword;
 
     @Lob
+    @JsonIgnore
     private Blob imageFile;
+
+    private boolean image;
     
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles;
@@ -102,4 +107,15 @@ public class User {
         return imageFile;
     }
 
+    public void setImageFile (Blob imageFile) {
+        this.imageFile = imageFile;
+    }
+
+    public boolean getImage() {
+        return image;
+    }
+
+    public void setImage (boolean image) {
+        this.image = image;
+    }
 }

@@ -29,7 +29,7 @@ import com.daw.daw.repository.EventRepository;
 import com.daw.daw.repository.TicketRepository;
 import com.daw.daw.repository.UserRepository;
 import com.daw.daw.repository.ReservaRepository;
-import com.daw.daw.repository.ComentsRepository;
+import com.daw.daw.repository.CommentRepository;
 
 @Controller
 public class PageController {
@@ -47,7 +47,7 @@ public class PageController {
     private final UserMVCController userController;
 
     @Autowired
-    private ComentsRepository commentRepository;
+    private CommentRepository commentRepository;
 
     @Autowired
     private ReservaRepository reservaRepository;
