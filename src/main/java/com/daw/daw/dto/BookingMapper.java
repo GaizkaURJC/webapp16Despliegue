@@ -6,6 +6,13 @@ import com.daw.daw.model.Booking;
 import java.util.List;
 import java.util.Collection;
 
+/**
+ * This file contains the BookingMapper class, which is responsible for mapping
+ * booking-related data transfer objects (DTOs) to and from entity objects.
+ * It facilitates the conversion between different layers of the application,
+ * ensuring that data is correctly transformed and transferred.
+ */
+
 @Mapper(componentModel = "spring")
 public interface BookingMapper {
 

@@ -13,6 +13,23 @@ import java.io.IOException;
 import com.daw.daw.service.PdfService;
 import com.lowagie.text.DocumentException;
 
+/**
+ * This controller class handles the MVC pattern for
+ * managing reservations
+ * within the web application. It is part of the "com.daw.daw.controller.MVC"
+ * package.
+ * 
+ * The class is responsible for processing incoming web requests related to
+ * reservations,
+ * interacting with the service layer to perform business logic, and returning
+ * appropriate
+ * views to the client.
+ * 
+ * Note: Specific methods within this class handle various CRUD operations and
+ * other
+ * functionalities related to reservations.
+ */
+
 @Controller
 @RequestMapping("/reserva/")
 public class ReservaMVCController {

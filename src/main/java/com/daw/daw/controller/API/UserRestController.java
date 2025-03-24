@@ -34,6 +34,23 @@ import org.springframework.web.bind.annotation.RequestBody;
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 import org.springframework.web.bind.annotation.PutMapping;
 
+/**
+ * This class is a REST controller for managing users in the application.
+ * It provides endpoints for various user-related operations such as:
+ * - Retrieving the current authenticated user's details.
+ * - Fetching a paginated list of users.
+ * - Creating a new user.
+ * - Deleting all users or a specific user by ID.
+ * - Replacing a user's details.
+ * - Managing user images, including uploading, retrieving, replacing, and
+ * deleting images.
+ * 
+ * The controller uses services and repositories to handle the business logic
+ * and data access.
+ * It also handles exceptions such as NoSuchElementException when a user is not
+ * found.
+ */
+
 @RestController
 @RequestMapping("/api/v1/users")
 public class UserRestController {
@@ -42,7 +59,6 @@ public class UserRestController {
 
     @Autowired
     private UserMapper userMapper;
-
 
     private final CSRFHandlerConfiguration CSRFHandlerConfiguration;
 
@@ -67,10 +83,10 @@ public class UserRestController {
     }
 
     @GetMapping("/")
-	public Page <UserDTO> getUsers(Pageable pageable) {
+    public Page<UserDTO> getUsers(Pageable pageable) {
 
         return userRepository.findAll(pageable).map(userMapper::toDTO);
-	}
+    }
 
     @GetMapping("/{id}")
     public UserDTO getUser(@PathVariable Long id) {
@@ -97,42 +113,42 @@ public class UserRestController {
     }
 
     @PutMapping("/{id}")
-    public UserDTO replaceUser(@PathVariable Long id, @RequestBody CreateRequestUserDTO updateUserDTO) {        
+    public UserDTO replaceUser(@PathVariable Long id, @RequestBody CreateRequestUserDTO updateUserDTO) {
         return userService.replaceUser(id, updateUserDTO);
     }
-    
-    @PostMapping("/{id}/image")
-    public ResponseEntity <Object> createUserImage(@PathVariable long id, @RequestParam MultipartFile imageFile) 
-        throws IOException {
 
-            userService.createUserImage((id),imageFile.getInputStream(),imageFile.getSize());
-            URI location = fromCurrentRequest().build().toUri();
-            return ResponseEntity.created(location).build();
-        }
+    @PostMapping("/{id}/image")
+    public ResponseEntity<Object> createUserImage(@PathVariable long id, @RequestParam MultipartFile imageFile)
+            throws IOException {
+
+        userService.createUserImage((id), imageFile.getInputStream(), imageFile.getSize());
+        URI location = fromCurrentRequest().build().toUri();
+        return ResponseEntity.created(location).build();
+    }
 
     @GetMapping("/{id}/image")
-    public ResponseEntity <Object> getUserImage (@PathVariable long id) throws IOException, SQLException {
+    public ResponseEntity<Object> getUserImage(@PathVariable long id) throws IOException, SQLException {
 
-        Resource postImage= userService.getUserImage(id);
-
+        Resource postImage = userService.getUserImage(id);
 
         return ResponseEntity.ok()
-            .header(HttpHeaders.CONTENT_TYPE,"image/jpeg")
-            .body(postImage);
-        
+                .header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
+                .body(postImage);
+
     }
 
     @PutMapping("{id}/image")
-    public ResponseEntity <Object> replaceUserImage(@PathVariable Long id, @RequestBody MultipartFile imageFile) throws IOException {
+    public ResponseEntity<Object> replaceUserImage(@PathVariable Long id, @RequestBody MultipartFile imageFile)
+            throws IOException {
 
-        userService.replaceUserImage(id, imageFile.getInputStream(), imageFile.getSize());        
+        userService.replaceUserImage(id, imageFile.getInputStream(), imageFile.getSize());
         return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/{id}/image")
-    public ResponseEntity <Object> deleteUserImage(@PathVariable Long id) throws IOException {
+    public ResponseEntity<Object> deleteUserImage(@PathVariable Long id) throws IOException {
 
         userService.deleteUserImage(id);
         return ResponseEntity.noContent().build();
     }
-}  
+}

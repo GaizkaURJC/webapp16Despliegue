@@ -1,10 +1,6 @@
 package com.daw.daw.controller.API;
 
-import java.security.Principal;
-import java.util.NoSuchElementException;
 import java.util.Collection;
-
-import jakarta.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +16,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.daw.daw.dto.EventDTO;
 import com.daw.daw.model.Event;
 import com.daw.daw.service.EventService;
+
+/**
+ * This class is a REST controller for handling API requests related to events.
+ * It provides endpoints for creating, retrieving, updating, and deleting event
+ * resources.
+ * The controller is part of the web application and is located in the package
+ * com.daw.daw.controller.API.
+ */
 
 @RestController
 @RequestMapping("/api/v1/events")
