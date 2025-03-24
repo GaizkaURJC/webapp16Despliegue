@@ -225,6 +225,7 @@ public class PageController {
         model.addAttribute("party", eventRepository.findAllByType("party"));
         model.addAttribute("concerts", eventRepository.findAllByType("concert"));
         model.addAttribute("reservas", reservaRepository.findAll());
+        model.addAttribute("coments", commentRepository.findAll());
         return "admin";
     }
 

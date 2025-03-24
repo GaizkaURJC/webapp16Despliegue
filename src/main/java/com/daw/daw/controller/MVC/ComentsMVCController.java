@@ -14,6 +14,8 @@ import com.daw.daw.repository.CommentRepository;
 
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 /**
  * This controller handles the creation of comments for events in the web
@@ -77,5 +79,12 @@ public class ComentsMVCController {
         comentsRepository.save(coments);
         return "redirect:/";
     }
+
+    @PostMapping("deleteComment")
+    public String deleteComment(@RequestParam("id") Long id) {
+        comentsRepository.deleteById(id);
+        return "redirect:/admin";
+    }
+    
 
 }
