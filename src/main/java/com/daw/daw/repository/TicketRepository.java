@@ -34,4 +34,6 @@ public interface TicketRepository extends JpaRepository<Ticket, Long> {
 
     List<Ticket> findByCategory(String category);
 
+    long countByGender(String gender);
+
 }
