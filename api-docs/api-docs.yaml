@@ -1,0 +1,1117 @@
+openapi: 3.1.0
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- url: https://localhost:8443
+  description: Generated server url
+paths:
+  /api/v1/users/{id}:
+    get:
+      tags:
+      - user-rest-controller
+      summary: Get a single user by its id
+      operationId: getUser
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/UserDTO"
+    put:
+      tags:
+      - user-rest-controller
+      summary: Update a user that already exists
+      operationId: replaceUser
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateRequestUserDTO"
+        required: true
+      responses:
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/UserDTO"
+    delete:
+      tags:
+      - user-rest-controller
+      summary: Delete a user by its id
+      operationId: deleteUser
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+  /api/v1/users/{id}/image:
+    get:
+      tags:
+      - user-rest-controller
+      summary: Get a user image
+      operationId: getUserImage
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+    put:
+      tags:
+      - user-rest-controller
+      summary: Replace a user image
+      operationId: replaceUserImage
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                imageFile:
+                  type: string
+                  format: binary
+        required: true
+      responses:
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+    post:
+      tags:
+      - user-rest-controller
+      summary: Create a user image
+      operationId: createUserImage
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                imageFile:
+                  type: string
+                  format: binary
+              required:
+              - imageFile
+      responses:
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+    delete:
+      tags:
+      - user-rest-controller
+      summary: Delete a user image
+      operationId: deleteUserImage
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/v1/tickets/{id}:
+    get:
+      tags:
+      - ticket-rest-controller
+      summary: Get a single ticket by its id
+      operationId: getTicketById
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/TicketDTO"
+    put:
+      tags:
+      - ticket-rest-controller
+      summary: Update a ticket that already exists
+      operationId: updateTicket
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TicketDTO"
+        required: true
+      responses:
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/TicketDTO"
+    delete:
+      tags:
+      - ticket-rest-controller
+      summary: Delete a ticket by its id
+      operationId: deleteTicket
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+  /api/v1/events/{id}:
+    get:
+      tags:
+      - event-rest-controller
+      summary: Get a single event by its id
+      operationId: getEvent
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/EventDTO"
+    put:
+      tags:
+      - event-rest-controller
+      summary: Update an event that already exists
+      operationId: replaceEvent
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Event"
+        required: true
+      responses:
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/EventDTO"
+    delete:
+      tags:
+      - event-rest-controller
+      summary: Delete an event by its id
+      operationId: deleteEvent
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/EventDTO"
+  /api/v1/comments/{id}:
+    get:
+      tags:
+      - comment-rest-controller
+      summary: Get a comment by its id
+      operationId: getCommentById
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CommentDTO"
+    put:
+      tags:
+      - comment-rest-controller
+      summary: Update a comment by its id
+      operationId: replaceComment
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommentDTO"
+        required: true
+      responses:
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+    delete:
+      tags:
+      - comment-rest-controller
+      summary: Delete a comment by its id
+      operationId: deleteComment
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+  /api/v1/bookings/{id}:
+    get:
+      tags:
+      - bookings-rest-controller
+      summary: Get a single booking by its id
+      operationId: getBooking
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/BookingDTO"
+    put:
+      tags:
+      - bookings-rest-controller
+      summary: Update a booking that already exists
+      operationId: updateBooking
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BookingDTO"
+        required: true
+      responses:
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/BookingDTO"
+    delete:
+      tags:
+      - bookings-rest-controller
+      summary: Delete a booking by its id
+      operationId: deleteBooking
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+  /api/v1/users/:
+    get:
+      tags:
+      - user-rest-controller
+      summary: Get all users
+      operationId: getUsers
+      parameters:
+      - name: pageable
+        in: query
+        required: true
+        schema:
+          $ref: "#/components/schemas/Pageable"
+      responses:
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/PagedModelUserDTO"
+    post:
+      tags:
+      - user-rest-controller
+      summary: Create a new user
+      operationId: createUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateRequestUserDTO"
+        required: true
+      responses:
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CreateRequestUserDTO"
+    delete:
+      tags:
+      - user-rest-controller
+      summary: Delete all users
+      operationId: deleteAllUsers
+      responses:
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/UserDTO"
+  /api/v1/tickets/:
+    get:
+      tags:
+      - ticket-rest-controller
+      summary: Get all the tickets
+      operationId: getAllTickets
+      responses:
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/TicketDTO"
+    post:
+      tags:
+      - ticket-rest-controller
+      summary: Create a new ticket
+      operationId: createTicket
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TicketDTO"
+        required: true
+      responses:
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/TicketDTO"
+    delete:
+      tags:
+      - ticket-rest-controller
+      summary: Delete all tickets
+      operationId: deleteAllTickets
+      responses:
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+  /api/v1/events/:
+    get:
+      tags:
+      - event-rest-controller
+      summary: Get all the events
+      operationId: getAllEvents
+      responses:
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/EventDTO"
+    post:
+      tags:
+      - event-rest-controller
+      summary: Create a new event
+      operationId: createEvent
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EventDTO"
+        required: true
+      responses:
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/Event"
+  /api/v1/comments/:
+    get:
+      tags:
+      - comment-rest-controller
+      summary: Get all comments
+      operationId: getComments
+      responses:
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CommentDTO"
+    post:
+      tags:
+      - comment-rest-controller
+      summary: Create a new comment
+      operationId: createComment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CommentDTO"
+        required: true
+      responses:
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/CommentDTO"
+    delete:
+      tags:
+      - comment-rest-controller
+      summary: Delete all comments
+      operationId: deleteAllComments
+      responses:
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CommentDTO"
+  /api/v1/bookings/:
+    get:
+      tags:
+      - bookings-rest-controller
+      summary: Get all the bookings done
+      operationId: getAllBookings
+      responses:
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/BookingDTO"
+    post:
+      tags:
+      - bookings-rest-controller
+      summary: Create a new booking
+      operationId: createBooking
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BookingDTO"
+        required: true
+      responses:
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/BookingDTO"
+  /api/auth/refresh:
+    post:
+      tags:
+      - login-rest-controller
+      operationId: refreshToken
+      parameters:
+      - name: RefreshToken
+        in: cookie
+        required: false
+        schema:
+          type: string
+      responses:
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/AuthResponse"
+  /api/auth/logout:
+    post:
+      tags:
+      - login-rest-controller
+      operationId: logout
+      responses:
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/AuthResponse"
+  /api/auth/login:
+    post:
+      tags:
+      - login-rest-controller
+      operationId: login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginRequest"
+        required: true
+      responses:
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/AuthResponse"
+  /api/v1/users/me:
+    get:
+      tags:
+      - user-rest-controller
+      summary: Get all the users
+      operationId: me
+      responses:
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: "#/components/schemas/UserDTO"
+  /api/v1/tickets/userOwner/{userOwner}:
+    get:
+      tags:
+      - ticket-rest-controller
+      summary: Get all the tickets of a certain userOwner
+      operationId: getTicketsByUserOwner
+      parameters:
+      - name: userOwner
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/TicketDTO"
+  /api/v1/tickets/title/{title}:
+    get:
+      tags:
+      - ticket-rest-controller
+      summary: Get all the tickets of a certain title
+      operationId: getTicketsByTitle
+      parameters:
+      - name: title
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/TicketDTO"
+  /api/v1/tickets/gender/{gender}/{title}:
+    get:
+      tags:
+      - ticket-rest-controller
+      summary: Get all the tickets of a certain gender
+      operationId: getTicketsByTitleAndGender
+      parameters:
+      - name: gender
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: title
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/TicketDTO"
+  /api/v1/tickets/dni/{dni}:
+    get:
+      tags:
+      - ticket-rest-controller
+      summary: Get all the tickets of a certain user by dni
+      operationId: getTicketsByDni
+      parameters:
+      - name: dni
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/TicketDTO"
+  /api/v1/tickets/category/{category}:
+    get:
+      tags:
+      - ticket-rest-controller
+      summary: Get all the tickets of a certain category
+      operationId: getTicketsByCategory
+      parameters:
+      - name: category
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/TicketDTO"
+  /api/v1/events/type/{type}:
+    get:
+      tags:
+      - event-rest-controller
+      summary: Get all the events of a certain type
+      operationId: getAllEventsByType
+      parameters:
+      - name: type
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/EventDTO"
+  /api/v1/comments/user/{userId}:
+    get:
+      tags:
+      - comment-rest-controller
+      summary: Get comments by user id
+      operationId: getCommentByUserId
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CommentDTO"
+  /api/v1/comments/rate/{rate}:
+    get:
+      tags:
+      - comment-rest-controller
+      summary: Get comments by rate
+      operationId: getCommentsByRate
+      parameters:
+      - name: rate
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        "404":
+          description: Not Found
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CommentDTO"
+components:
+  schemas:
+    CreateRequestUserDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        phone:
+          type: string
+        roles:
+          type: array
+          items:
+            type: string
+    UserDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        roles:
+          type: array
+          items:
+            type: string
+        image:
+          type: boolean
+    TicketDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        userEmail:
+          type: string
+        dni:
+          type: string
+        ticketName:
+          type: string
+        title:
+          type: string
+        gender:
+          type: string
+        category:
+          type: string
+    Event:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        description:
+          type: string
+        imageFile:
+          type: object
+          properties:
+            binaryStream:
+              type: object
+        title:
+          type: string
+        type:
+          type: string
+        category:
+          type: string
+    EventDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        title:
+          type: string
+        type:
+          type: string
+        description:
+          type: string
+        category:
+          type: string
+    CommentDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        username:
+          type: string
+        comentario:
+          type: string
+        eventId:
+          type: integer
+          format: int32
+        rate:
+          type: integer
+          format: int32
+    BookingDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        userName:
+          type: string
+        userEmail:
+          type: string
+        bussinesName:
+          type: string
+        capacity:
+          type: integer
+          format: int32
+        eventDescript:
+          type: string
+        status:
+          type: string
+    AuthResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - SUCCESS
+          - FAILURE
+        message:
+          type: string
+        error:
+          type: string
+    LoginRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+    Pageable:
+      type: object
+      properties:
+        page:
+          type: integer
+          format: int32
+          minimum: 0
+        size:
+          type: integer
+          format: int32
+          minimum: 1
+        sort:
+          type: array
+          items:
+            type: string
+    PageMetadata:
+      type: object
+      properties:
+        size:
+          type: integer
+          format: int64
+        number:
+          type: integer
+          format: int64
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int64
+    PagedModelUserDTO:
+      type: object
+      properties:
+        content:
+          type: array
+          items:
+            $ref: "#/components/schemas/UserDTO"
+        page:
+          $ref: "#/components/schemas/PageMetadata"

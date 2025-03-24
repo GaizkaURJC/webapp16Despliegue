@@ -29,6 +29,9 @@ import com.daw.daw.dto.UserMapper;
 import com.daw.daw.security.CSRFHandlerConfiguration;
 import com.daw.daw.dto.CreateRequestUserDTO;
 import com.daw.daw.service.UserService;
+
+import io.swagger.v3.oas.annotations.Operation;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
@@ -54,6 +57,7 @@ public class UserRestController {
         this.userRepository = userRepository;
     }
 
+    @Operation (summary = "Get all the users")
     @GetMapping("/me")
     public UserDTO me(HttpServletRequest request) {
 
@@ -66,17 +70,20 @@ public class UserRestController {
         }
     }
 
+    @Operation(summary = "Get all users")
     @GetMapping("/")
 	public Page <UserDTO> getUsers(Pageable pageable) {
 
         return userRepository.findAll(pageable).map(userMapper::toDTO);
 	}
 
+    @Operation(summary = "Get a single user by its id")
     @GetMapping("/{id}")
     public UserDTO getUser(@PathVariable Long id) {
         return userService.getUser(id);
     }
 
+    @Operation(summary = "Create a new user")
     @PostMapping("/")
     public ResponseEntity<CreateRequestUserDTO> createUser(@RequestBody CreateRequestUserDTO createRequestUserDTO) {
         createRequestUserDTO = userService.createUser(createRequestUserDTO);
@@ -85,22 +92,26 @@ public class UserRestController {
         return ResponseEntity.created(location).body(createRequestUserDTO);
     }
 
+    @Operation(summary = "Delete all users")
     @DeleteMapping("/")
     public Collection<UserDTO> deleteAllUsers() {
         return userService.deleteAllUsers();
     }
 
+    @Operation(summary = "Delete a user by its id")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
         return ResponseEntity.noContent().build();
     }
 
+    @Operation(summary = "Update a user that already exists")
     @PutMapping("/{id}")
     public UserDTO replaceUser(@PathVariable Long id, @RequestBody CreateRequestUserDTO updateUserDTO) {        
         return userService.replaceUser(id, updateUserDTO);
     }
     
+    @Operation(summary = "Create a user image")
     @PostMapping("/{id}/image")
     public ResponseEntity <Object> createUserImage(@PathVariable long id, @RequestParam MultipartFile imageFile) 
         throws IOException {
@@ -110,6 +121,7 @@ public class UserRestController {
             return ResponseEntity.created(location).build();
         }
 
+    @Operation(summary = "Get a user image")
     @GetMapping("/{id}/image")
     public ResponseEntity <Object> getUserImage (@PathVariable long id) throws IOException, SQLException {
 
@@ -122,6 +134,7 @@ public class UserRestController {
         
     }
 
+    @Operation(summary = "Replace a user image")
     @PutMapping("{id}/image")
     public ResponseEntity <Object> replaceUserImage(@PathVariable Long id, @RequestBody MultipartFile imageFile) throws IOException {
 
@@ -129,6 +142,7 @@ public class UserRestController {
         return ResponseEntity.noContent().build();
     }
 
+    @Operation(summary = "Delete a user image")
     @DeleteMapping("/{id}/image")
     public ResponseEntity <Object> deleteUserImage(@PathVariable Long id) throws IOException {
 

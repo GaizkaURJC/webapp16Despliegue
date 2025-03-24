@@ -38,7 +38,8 @@ public class Security {
     private CSRFHandlerConfiguration CSRFHandlerConfiguration;
 
     // Eliminar la inyección del AuthenticationManager en el constructor
-    public Security() {}
+    public Security() {
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -59,7 +60,8 @@ public class Security {
     }
 
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
+            throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
 
@@ -68,20 +70,20 @@ public class Security {
     public SecurityFilterChain apiFilterChain(HttpSecurity http) throws Exception {
         http.authenticationProvider(authenticationProvider());
 
-
+        http
+                .securityMatcher("/api/**")
+                .exceptionHandling(handling -> handling
+                        .authenticationEntryPoint(unauthorizedHandlerJwt));
 
         http
-            .securityMatcher("/api/**")
-            .exceptionHandling(handling -> handling
-                .authenticationEntryPoint(unauthorizedHandlerJwt));
-
-        http
-            .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers(HttpMethod.POST, "/api/**").hasAnyRole("USER", "ADMIN")
-                .requestMatchers(HttpMethod.PUT, "/api/**").hasAnyRole("USER", "ADMIN")
-                .requestMatchers(HttpMethod.DELETE, "/api/**").hasAnyRole("USER", "ADMIN")
-                .anyRequest().permitAll()
-            );
+                .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers("/v3/api-docs*/**").permitAll()
+                        .requestMatchers("/swagger-ui.html").permitAll()
+                        .requestMatchers("/swagger-ui/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/**").permitAll()
+                        .requestMatchers(HttpMethod.PUT, "/api/**").permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/api/**").permitAll()
+                        .anyRequest().permitAll());
 
         http.formLogin(formLogin -> formLogin.disable());
         http.csrf(csrf -> csrf.disable());
@@ -97,28 +99,25 @@ public class Security {
     public SecurityFilterChain webFilterChain(HttpSecurity http) throws Exception {
         http.authenticationProvider(authenticationProvider());
         http.authorizeHttpRequests(authorize -> authorize
-            .requestMatchers("/", "/css/**", "/img/**", "/js/**", "/videos/**", "/imgEvent/**").permitAll()
-            .requestMatchers("/users/authenticate", "/users/create", "/favicon/**", "/events/**").permitAll()
-            .requestMatchers("/admin/**").hasRole("ADMIN")
-            .requestMatchers("/perfil/**", "/paginaperfil/**", "/users/**").hasAnyRole("USER", "ADMIN")
-            .requestMatchers("/tickets/buyTicket", "/tickets/**").hasRole("USER")
-            .requestMatchers("/events/partyCreate", "/events/conciertoCreate", "/events/**").hasRole("ADMIN")
-            .requestMatchers("/reserva/aceptar", "/reserva/rechazar", "/reserva/deleteReserva").hasRole("ADMIN")
-            .requestMatchers("/application/pdf", "/coments/create", "users/profileImg/**", "/users/updateUser").hasRole("USER")
-            .anyRequest().permitAll()
-        );
-
+                // Permitir acceso a la documentación
+                .requestMatchers("/v3/api-docs*/**").permitAll()
+                .requestMatchers("/swagger-ui.html").permitAll()
+                .requestMatchers("/swagger-ui/**").permitAll()
+                // Otras configuraciones de autorización
+                .requestMatchers("/", "/css/**", "/img/**", "/js/**", "/videos/**", "/imgEvent/**").permitAll()
+                .requestMatchers("/users/authenticate", "/users/create", "/favicon/**", "/events/**").permitAll()
+                .requestMatchers("/admin/**").hasRole("ADMIN")
+                .requestMatchers("/perfil/**", "/paginaperfil/**", "/users/**").hasAnyRole("USER", "ADMIN")
+                .anyRequest().permitAll());
         http.formLogin(formLogin -> formLogin
-            .loginPage("/login")
-            .defaultSuccessUrl("/", true)
-            .permitAll()
-        );
+                .loginPage("/login")
+                .defaultSuccessUrl("/", true)
+                .permitAll());
 
         http.logout(logout -> logout
-            .logoutUrl("/users/logout")
-            .logoutSuccessUrl("/")
-            .permitAll()
-        );
+                .logoutUrl("/users/logout")
+                .logoutSuccessUrl("/")
+                .permitAll());
 
         return http.build();
     }

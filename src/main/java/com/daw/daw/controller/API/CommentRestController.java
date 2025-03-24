@@ -29,6 +29,8 @@ import com.daw.daw.security.CSRFHandlerConfiguration;
 import com.daw.daw.service.CommentService;
 import com.daw.daw.service.UserService;
 
+import io.swagger.v3.oas.annotations.Operation;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
@@ -56,27 +58,33 @@ public class CommentRestController {
         this.authenticationManager = authenticationManager;
     }
 
+    @Operation(summary = "Get all comments")
     @GetMapping("/")
     public Collection <CommentDTO> getComments(){
 
         return commentService.getAllComments();
     }
 
+    @Operation(summary  = "Get a comment by its id")
     @GetMapping("/{id}")
     public CommentDTO getCommentById (@PathVariable Long id) {
         return commentService.getCommentById(id);
     }
 
+    @Operation(summary = "Get comments by rate")
     @GetMapping("/rate/{rate}") 
     public Collection <CommentDTO> getCommentsByRate( @PathVariable int rate) {
         return commentService.getCommentByRate(rate);
     }
+
+    @Operation(summary = "Get comments by user id")
     @GetMapping("/user/{userId}")
     public Collection <CommentDTO> getCommentByUserId( @PathVariable Long userId) {
         
         return commentService.getCommentsByUserId(userId);
     }
 
+    @Operation(summary = "Create a new comment")
     @PostMapping("/")
     public ResponseEntity <CommentDTO> createComment(@RequestBody CommentDTO commentDTO){
 
@@ -88,6 +96,7 @@ public class CommentRestController {
         return ResponseEntity.created(location).body(commentDTO);
     }
 
+    @Operation (summary = "Delete a comment by its id")
     @DeleteMapping("/{id}")
     public ResponseEntity <Void> deleteComment(@PathVariable Long id) {
         commentService.deleteComment(id);
@@ -95,11 +104,13 @@ public class CommentRestController {
         
     }
 
+    @Operation(summary = "Delete all comments")
     @DeleteMapping("/")
     public Collection<CommentDTO> deleteAllComments() {
         return commentService.deleteAllComments();
     }
 
+    @Operation(summary = "Update a comment by its id")
     @PutMapping("/{id}")
     public void replaceComment(@PathVariable Long id, @RequestBody CommentDTO updateCommentDTO) {
         commentService.replaceComment(id, updateCommentDTO);
