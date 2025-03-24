@@ -1,24 +1,28 @@
 package com.daw.daw.model;
 
-import java.util.List;
-import java.util.Locale.Category;
-
 import org.springframework.stereotype.Component;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
 
-import java.sql.Blob;
 import java.time.LocalDateTime;
 import org.springframework.web.context.annotation.SessionScope;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+
+/**
+ * This class represents a Ticket entity in the application.
+ * It is annotated with @Entity to indicate that it is a JPA entity.
+ * The class contains fields such as id, userEmail, userOwner, dni, ticketName,
+ * title, gender, category, and ticketDate.
+ * It uses @JsonFormat to format the ticketDate field.
+ * The class is also annotated with @Component and @SessionScope to indicate
+ * that it is a Spring component with session scope.
+ * It includes a default constructor and a parameterized constructor for
+ * creating instances of Ticket.
+ */
 
 @Component
 @SessionScope
@@ -38,7 +42,7 @@ public class Ticket {
     private String ticketName;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime ticketDate; 
+    private LocalDateTime ticketDate;
 
     private String title;
 
@@ -98,14 +102,14 @@ public class Ticket {
     }
 
     public void setTicketName(String ticketName) {
-        ticketName = ticketName;
+        this.ticketName = ticketName;
     }
 
-    public String getTittle() {
+    public String getTitle() {
         return title;
     }
 
-    public void setTittle(String title) {
+    public void setTitle(String title) {
         this.title = title;
     }
 

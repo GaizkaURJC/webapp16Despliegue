@@ -18,6 +18,11 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+/**
+ * This controller handles the creation and downloading of tickets.
+ * It includes endpoints for buying a ticket and downloading a ticket as a PDF.
+ */
+
 @Controller
 public class TicketMVCController {
 
@@ -61,7 +66,6 @@ public class TicketMVCController {
         ticketRepository.save(ticket);
 
         byte[] pdfBytes = pdfService.generarPdfTicket(ticket);
-
 
         response.setContentType("application/pdf");
         response.setHeader("Content-Disposition", "attachment; filename=ticket_" + ticket.getUserOwner() + ".pdf");
