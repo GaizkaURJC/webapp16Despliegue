@@ -70,8 +70,6 @@ public class Security {
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
             throws Exception {
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
-            throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
 
@@ -83,7 +81,7 @@ public class Security {
         http
                 .securityMatcher("/api/**")
                 .exceptionHandling(handling -> handling
-                        .authenticationEntryPoint(unauthorizedHandlerJwt));
+                        .authenticationEntryPoint(unauthorizedHandlerJwt))
                 .securityMatcher("/api/**")
                 .exceptionHandling(handling -> handling
                         .authenticationEntryPoint(unauthorizedHandlerJwt));
@@ -125,7 +123,7 @@ public class Security {
         http.formLogin(formLogin -> formLogin
                 .loginPage("/login")
                 .defaultSuccessUrl("/", true)
-                .permitAll());
+                .permitAll()
                 .loginPage("/login")
                 .defaultSuccessUrl("/", true)
                 .permitAll());
@@ -133,7 +131,7 @@ public class Security {
         http.logout(logout -> logout
                 .logoutUrl("/users/logout")
                 .logoutSuccessUrl("/")
-                .permitAll());
+                .permitAll()
                 .logoutUrl("/users/logout")
                 .logoutSuccessUrl("/")
                 .permitAll());
