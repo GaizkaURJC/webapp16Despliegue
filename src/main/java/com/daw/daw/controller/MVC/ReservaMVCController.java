@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import com.daw.daw.model.Reserva;
-import com.daw.daw.repository.ReservaRepository;
+import com.daw.daw.model.Booking;
+import com.daw.daw.repository.BookingRepository;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import com.daw.daw.service.PdfService;
@@ -18,7 +18,7 @@ import com.lowagie.text.DocumentException;
 public class ReservaMVCController {
 
     @Autowired
-    private ReservaRepository reservaRepository;
+    private BookingRepository reservaRepository;
 
     @Autowired
     private PdfService pdfService;
@@ -32,7 +32,7 @@ public class ReservaMVCController {
             @RequestParam("eventDescript") String description,
             HttpServletResponse response) throws IOException, DocumentException {
 
-        Reserva reserva = new Reserva(name, email, bussinesname, pax, description, "pendiente");
+        Booking reserva = new Booking(name, email, bussinesname, pax, description, "pendiente");
         reservaRepository.save(reserva);
 
         // Generate PDF
@@ -47,9 +47,9 @@ public class ReservaMVCController {
 
     @PostMapping("aceptar")
     public String aceptarReserva(@RequestParam Long id) {
-        Optional<Reserva> reserva = reservaRepository.getReservaById(id);
+        Optional<Booking> reserva = reservaRepository.getBookingById(id);
         if (reserva.isPresent()) {
-            reserva.get().setEstado("aceptada");
+            reserva.get().setStatus("aceptada");
             reservaRepository.save(reserva.get());
             return "redirect:/admin";
         } else {
@@ -59,9 +59,9 @@ public class ReservaMVCController {
 
     @PostMapping("rechazar")
     public String rechazarReserva(@RequestParam Long id) {
-        Optional<Reserva> reserva = reservaRepository.getReservaById(id);
+        Optional<Booking> reserva = reservaRepository.getBookingById(id);
         if (reserva.isPresent()) {
-            reserva.get().setEstado("rechazada");
+            reserva.get().setStatus("rechazada");
             reservaRepository.save(reserva.get());
             return "redirect:/admin";
         } else {

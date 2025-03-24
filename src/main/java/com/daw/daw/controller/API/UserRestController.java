@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 import org.springframework.web.bind.annotation.PutMapping;
 
-
 @RestController
 @RequestMapping("/api/v1/users")
 public class UserRestController {
@@ -36,19 +35,18 @@ public class UserRestController {
 
         Principal principal = request.getUserPrincipal();
 
-        if(principal != null) {
+        if (principal != null) {
             return userService.getMe(principal.getName());
         } else {
             throw new NoSuchElementException("usuario anonimo");
         }
     }
 
-
     @GetMapping("/")
-	public Collection <UserDTO> getBooks() {
+    public Collection<UserDTO> getAllUsers() {
 
         return userService.getAllUsers();
-	}
+    }
 
     @GetMapping("/{id}")
     public UserDTO getUser(@PathVariable Long id) {
@@ -56,21 +54,17 @@ public class UserRestController {
     }
 
     @PostMapping("/")
-    public ResponseEntity <CreateRequestUserDTO> createUser (@RequestBody CreateRequestUserDTO createRequestUserDTO) {
-        
+    public ResponseEntity<CreateRequestUserDTO> createUser(@RequestBody CreateRequestUserDTO createRequestUserDTO) {
         createRequestUserDTO = userService.createUser(createRequestUserDTO);
-
         URI location = fromCurrentRequest().path("/{id}")
-            .buildAndExpand(createRequestUserDTO.id()).toUri();
-        
+                .buildAndExpand(createRequestUserDTO.id()).toUri();
         return ResponseEntity.created(location).body(createRequestUserDTO);
     }
-    
+
     @DeleteMapping("/")
     public Collection<UserDTO> deleteAllUsers() {
         return userService.deleteAllUsers();
     }
-
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
@@ -80,10 +74,8 @@ public class UserRestController {
 
     @PutMapping("/{id}")
     public UserDTO replaceUser(@PathVariable Long id, @RequestBody CreateRequestUserDTO updateUserDTO) {
-        //TODO: process PUT request
-        
+        // TODO: process PUT request
         return userService.replaceUser(id, updateUserDTO);
     }
-    
 
 }

@@ -1,6 +1,6 @@
 package com.daw.daw.service;
 
-import com.daw.daw.model.Reserva;
+import com.daw.daw.model.Booking;
 import com.lowagie.text.*;
 import com.lowagie.text.pdf.PdfWriter;
 import org.springframework.stereotype.Service;
@@ -11,7 +11,7 @@ import java.io.ByteArrayOutputStream;
 @Service
 public class PdfService {
 
-    public byte[] generarPdfReserva(Reserva reserva) throws DocumentException {
+    public byte[] generarPdfReserva(Booking reserva) throws DocumentException {
         Document document = new Document();
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         PdfWriter.getInstance(document, out);
@@ -21,9 +21,9 @@ public class PdfService {
         document.add(new Paragraph("Nombre: " + reserva.getUserName()));
         document.add(new Paragraph("Email: " + reserva.getUserEmail()));
         document.add(new Paragraph("Empresa: " + reserva.getBussinesName()));
-        document.add(new Paragraph("Número de personas: " + reserva.getNum_personas()));
+        document.add(new Paragraph("Número de personas: " + reserva.getCapacity()));
         document.add(new Paragraph("Descripción: " + reserva.getEventDescript()));
-        document.add(new Paragraph("Estado: " + reserva.getEstado()));
+        document.add(new Paragraph("Estado: " + reserva.getStatus()));
         document.close();
 
         return out.toByteArray();

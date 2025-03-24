@@ -28,7 +28,7 @@ import com.daw.daw.model.Ticket;
 import com.daw.daw.repository.EventRepository;
 import com.daw.daw.repository.TicketRepository;
 import com.daw.daw.repository.UserRepository;
-import com.daw.daw.repository.ReservaRepository;
+import com.daw.daw.repository.BookingRepository;
 import com.daw.daw.repository.ComentsRepository;
 
 @Controller
@@ -50,10 +50,10 @@ public class PageController {
     private ComentsRepository commentRepository;
 
     @Autowired
-    private ReservaRepository reservaRepository;
+    private BookingRepository reservaRepository;
 
     public PageController(UserRepository userRepository, EventRepository eventRepository,
-            UserMVCController userController, ReservaRepository reservaRepository) {
+            UserMVCController userController, BookingRepository reservaRepository) {
         this.userRepository = userRepository;
         this.eventRepository = eventRepository;
         this.userController = userController;

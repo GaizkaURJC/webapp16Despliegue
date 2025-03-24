@@ -21,7 +21,6 @@ import com.daw.daw.dto.EventDTO;
 import com.daw.daw.model.Event;
 import com.daw.daw.service.EventService;
 
-
 @RestController
 @RequestMapping("/api/v1/events")
 public class EventRestController {
@@ -31,32 +30,32 @@ public class EventRestController {
 
     @GetMapping("/")
     public Collection<EventDTO> getAllEvents() {
-        return (eventService.findAll()); 
+        return (eventService.findAll());
     }
 
     @GetMapping("/{id}")
-    public EventDTO getEvent(@PathVariable Long id){
-        return eventService.findById(id); 
+    public EventDTO getEvent(@PathVariable Long id) {
+        return eventService.findById(id);
     }
 
     @GetMapping("/type/{type}")
     public Collection<EventDTO> getAllEventsByType(@PathVariable String type) {
-        return eventService.findByType(type); 
+        return eventService.findByType(type);
     }
 
     @PostMapping("/")
-    public ResponseEntity<Event> createEvent(@RequestBody EventDTO event){
-        return eventService.createEvent(event); 
+    public ResponseEntity<Event> createEvent(@RequestBody EventDTO event) {
+        return eventService.createEvent(event);
     }
 
     @DeleteMapping("/{id}")
-    public EventDTO deleteEvent(@PathVariable Long id){
+    public EventDTO deleteEvent(@PathVariable Long id) {
         return eventService.deleteEvent(id);
     }
 
     @PutMapping("/{id}")
-    public EventDTO replaceEvent(@PathVariable Long id, @RequestBody Event updatedEvent){
+    public EventDTO replaceEvent(@PathVariable Long id, @RequestBody Event updatedEvent) {
         return eventService.replaceEvent(id, updatedEvent);
-        
+
     }
 }

@@ -26,9 +26,9 @@ import com.daw.daw.model.Event;
 import com.daw.daw.model.Image;
 import com.daw.daw.repository.EventRepository;
 import com.daw.daw.repository.ImageRepository;
-import com.daw.daw.repository.ReservaRepository;
+import com.daw.daw.repository.BookingRepository;
 import com.daw.daw.repository.TicketRepository;
-import com.daw.daw.model.Reserva;
+import com.daw.daw.model.Booking;
 import com.daw.daw.model.Ticket;
 
 @Service
@@ -52,7 +52,7 @@ public class DataBaseInitializer {
         private ComentsRepository comentsRepository;
 
         @Autowired
-        private ReservaRepository reservaRepository;
+        private BookingRepository reservaRepository;
 
         @PostConstruct
         public void init() throws IOException, URISyntaxException {
@@ -157,10 +157,10 @@ public class DataBaseInitializer {
 
                 }
                 if (reservaRepository.findAll().isEmpty()) {
-                        Reserva reserva1 = new Reserva("Amancio Ortega", "zara@zara.com", "Zara", 1200,
+                        Booking reserva1 = new Booking("Amancio Ortega", "zara@zara.com", "Zara", 1200,
                                         "Evento corporativo con barra libre de cerveza, vino y refrescos durante 4 horas",
                                         "pendiente");
-                        Reserva reserva2 = new Reserva("Florentino Perez", "cristiano@mbappe.es", "Real Madrid CF",
+                        Booking reserva2 = new Booking("Florentino Perez", "cristiano@mbappe.es", "Real Madrid CF",
                                         1500,
                                         "Evento para celebrar una champions", "pendiente");
                         reservaRepository.save(reserva1);

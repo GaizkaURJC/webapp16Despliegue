@@ -39,14 +39,14 @@ public class ComentsMVCController {
     private UserMVCController userController;
 
     @PostMapping("create")
-    public String addComent(@RequestParam("rate") int valoracion,
-                        @RequestParam("coment") String comentario,
+    public String addComent(@RequestParam("rate") int rating,
+                        @RequestParam("coment") String comment,
                         String userName,
                         HttpSession session,
                         @RequestParam("id") int eventId,
                         HttpServletResponse response) {
     
-    // Comprobar si el usuario está logueado
+    // Check if the user is logged
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     boolean isUserLogged = authentication.isAuthenticated();
     
@@ -60,10 +60,10 @@ public class ComentsMVCController {
     if (principal instanceof UserDetails) {
         username = ((UserDetails) principal).getUsername();
     } else if (principal instanceof User) {
-        username = ((User) principal).getEmail(); // Usa email si es lo que almacenas en User
+        username = ((User) principal).getEmail(); // Uses email if it's saved on user
         user = ((User) principal);
     }
-    Coments coments = new Coments(valoracion, comentario, username, eventId);
+    Coments coments = new Coments(rating, comment, username, eventId);
     comentsRepository.save(coments);
     return "redirect:/";
 }

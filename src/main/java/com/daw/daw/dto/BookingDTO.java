@@ -1,11 +1,11 @@
 package com.daw.daw.dto;
 
-public record ReservaDTO(
+public record BookingDTO(
                 Long id,
                 String userName,
                 String userEmail,
                 String bussinesName,
-                int num_personas,
+                int capacity,
                 String eventDescript,
-                String estado) {
+                String status) {
 }
