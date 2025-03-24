@@ -60,8 +60,10 @@ public class UserService {
         this.apiFilterChain = apiFilterChain;
     }
 
-    public UserDTO getMe(String name) {
-        return userMapper.toDTO(userRepository.findByName(name).orElseThrow());
+    public UserDTO getMe(String email) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new NoSuchElementException("Usuario no encontrado"));
+        return userMapper.toDTO(user);
     }
 
     public Collection<UserDTO> getAllUsers() {

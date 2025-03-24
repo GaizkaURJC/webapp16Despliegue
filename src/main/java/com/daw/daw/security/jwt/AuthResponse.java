@@ -1,56 +1,60 @@
 package com.daw.daw.security.jwt;
 
+import java.util.List;
+
 public class AuthResponse {
 
-	private Status status;
-	private String message;
-	private String error;
+    private List<String> roles;
+    private String token;
+    private Status status;
+    private String message;
 
-	public enum Status {
-		SUCCESS, FAILURE
-	}
+    public List<String> getRoles() {
+        return roles;
+    }
 
-	public AuthResponse() {
-	}
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
+    }
 
-	public AuthResponse(Status status, String message) {
-		this.status = status;
-		this.message = message;
-	}
+    public String getToken() {
+        return token;
+    }
 
-	public AuthResponse(Status status, String message, String error) {
-		this.status = status;
-		this.message = message;
-		this.error = error;
-	}
+    public void setToken(String token) {
+        this.token = token;
+    }
 
-	public Status getStatus() {
-		return status;
-	}
+    public Status getStatus() {
+        return status;
+    }
 
-	public void setStatus(Status status) {
-		this.status = status;
-	}
+    public void setStatus(Status status) {
+        this.status = status;
+    }
 
-	public String getMessage() {
-		return message;
-	}
+    public String getMessage() {
+        return message;
+    }
 
-	public void setMessage(String message) {
-		this.message = message;
-	}
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
-	public String getError() {
-		return error;
-	}
+    public enum Status {
+        SUCCESS, FAILURE
+    }
 
-	public void setError(String error) {
-		this.error = error;
-	}
+    public AuthResponse() {
+    }
 
-	@Override
-	public String toString() {
-		return "LoginResponse [status=" + status + ", message=" + message + ", error=" + error + "]";
-	}
+    public AuthResponse(String token, List<String> roles) {
+        this.token = token;
+        this.roles = roles;
+    }
 
+    public AuthResponse(Status status, String message) {
+        this.status = status;
+        this.message = message;
+    }
 }

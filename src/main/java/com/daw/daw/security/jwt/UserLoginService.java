@@ -1,6 +1,8 @@
 
 package com.daw.daw.security.jwt;
 
+
+import java.time.Duration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
@@ -13,6 +15,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
+import io.jsonwebtoken.Claims;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -34,17 +37,17 @@ public class UserLoginService {
 	public ResponseEntity<AuthResponse> login(HttpServletResponse response, LoginRequest loginRequest) {
 		
 		Authentication authentication = authenticationManager.authenticate(
-				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
+				new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
 
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 
 		
-		String username = loginRequest.getUsername();
+		String username = loginRequest.getEmail();
 		UserDetails user = userDetailsService.loadUserByUsername(username);
 
 		HttpHeaders responseHeaders = new HttpHeaders();
-		var newAccessToken = jwtTokenProvider.generateAccessToken(user);
-		var newRefreshToken = jwtTokenProvider.generateRefreshToken(user);
+		String newAccessToken = jwtTokenProvider.generateAccessToken(user);
+		String newRefreshToken = jwtTokenProvider.generateRefreshToken(user);
 
 		response.addCookie(buildTokenCookie(TokenType.ACCESS, newAccessToken));
 		response.addCookie(buildTokenCookie(TokenType.REFRESH, newRefreshToken));
@@ -54,25 +57,28 @@ public class UserLoginService {
 		return ResponseEntity.ok().headers(responseHeaders).body(loginResponse);
 	}
 
-	public ResponseEntity<AuthResponse> refresh(HttpServletResponse response, String refreshToken) {
-		try {
-			var claims = jwtTokenProvider.validateToken(refreshToken);
-			UserDetails user = userDetailsService.loadUserByUsername(claims.getSubject());
+	 public ResponseEntity<AuthResponse> refresh(HttpServletResponse response, String refreshToken) {
+        try {
+            Claims claims = jwtTokenProvider.validateTokens(refreshToken);
+            if (claims == null) {
+                throw new Exception("Invalid refresh token");
+            }
+            
+            String username = claims.getSubject();
+            UserDetails user = userDetailsService.loadUserByUsername(username);
 
-			var newAccessToken = jwtTokenProvider.generateAccessToken(user);
-			response.addCookie(buildTokenCookie(TokenType.ACCESS, newAccessToken));
+            String newAccessToken = jwtTokenProvider.generateAccessToken(user);
+            response.addCookie(buildTokenCookie(TokenType.ACCESS, newAccessToken));
 
-			AuthResponse loginResponse = new AuthResponse(AuthResponse.Status.SUCCESS,
-					"Auth successful. Tokens are created in cookie.");
-			return ResponseEntity.ok().body(loginResponse);
-
-		} catch (Exception e) {
-			log.error("Error while processing refresh token", e);
-			AuthResponse loginResponse = new AuthResponse(AuthResponse.Status.FAILURE,
-					"Failure while processing refresh token");
-			return ResponseEntity.ok().body(loginResponse);
-		}
-	}
+            return ResponseEntity.ok()
+                .body(new AuthResponse(AuthResponse.Status.SUCCESS, "New access token created"));
+                
+        } catch (Exception e) {
+            log.error("Refresh token error", e);
+            return ResponseEntity.status(401)
+                .body(new AuthResponse(AuthResponse.Status.FAILURE, "Invalid refresh token"));
+        }
+    }
 
 	public String logout(HttpServletResponse response) {
 		SecurityContextHolder.clearContext();
@@ -97,4 +103,17 @@ public class UserLoginService {
 		cookie.setPath("/");
 		return cookie;
 	}
+
+public enum TokenType {
+    ACCESS("access_token", Duration.ofHours(1)),
+    REFRESH("refresh_token", Duration.ofDays(7));
+
+    public final String cookieName;
+    public final Duration duration;
+
+    TokenType(String cookieName, Duration duration) {
+        this.cookieName = cookieName;
+        this.duration = duration;
+    }
+}
 }

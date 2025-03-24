@@ -3,6 +3,8 @@ package com.daw.daw.controller.API;
 import java.io.IOException;
 import java.net.URI;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+
 import java.security.Principal;
 import java.sql.SQLException;
 import java.util.NoSuchElementException;
@@ -54,17 +56,17 @@ public class UserRestController {
         this.userRepository = userRepository;
     }
 
-    @GetMapping("/me")
-    public UserDTO me(HttpServletRequest request) {
+   @GetMapping("/me")
+public ResponseEntity<UserDTO> me(HttpServletRequest request) {
+    Principal principal = request.getUserPrincipal();
 
-        Principal principal = request.getUserPrincipal();
-
-        if (principal != null) {
-            return userService.getMe(principal.getName());
-        } else {
-            throw new NoSuchElementException("usuario anonimo");
-        }
+    if (principal != null) {
+        UserDTO userDTO = userService.getMe(principal.getName());
+        return ResponseEntity.ok(userDTO);
+    } else {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
     }
+}
 
     @GetMapping("/")
 	public Page <UserDTO> getUsers(Pageable pageable) {

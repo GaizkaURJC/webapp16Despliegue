@@ -4,6 +4,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -64,33 +65,45 @@ public class Security {
     }
 
     @Bean
+    @Primary
     @Order(1)
     public SecurityFilterChain apiFilterChain(HttpSecurity http) throws Exception {
-        http.authenticationProvider(authenticationProvider());
-
-
-
         http
             .securityMatcher("/api/**")
+            .csrf(csrf -> csrf.disable())
+            .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .exceptionHandling(handling -> handling
-                .authenticationEntryPoint(unauthorizedHandlerJwt));
-
-        http
-            .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers(HttpMethod.POST, "/api/**").hasAnyRole("USER", "ADMIN")
-                .requestMatchers(HttpMethod.PUT, "/api/**").hasAnyRole("USER", "ADMIN")
-                .requestMatchers(HttpMethod.DELETE, "/api/**").hasAnyRole("USER", "ADMIN")
-                .anyRequest().permitAll()
-            );
-
-        http.formLogin(formLogin -> formLogin.disable());
-        http.csrf(csrf -> csrf.disable());
-        http.httpBasic(httpBasic -> httpBasic.disable());
-        http.sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-        http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
-
+                .authenticationEntryPoint(unauthorizedHandlerJwt))
+            .authorizeHttpRequests(auth -> auth
+                // Público
+                .requestMatchers("/api/auth/**").permitAll()
+                .requestMatchers(HttpMethod.POST, "/api/v1/users/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/v1/events/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/v1/comments/**").permitAll()
+                
+                // USER
+                .requestMatchers(HttpMethod.POST, "/api/v1/bookings/**").hasRole("USER")
+                .requestMatchers(HttpMethod.POST, "/api/v1/comments/**").hasRole("USER")
+                .requestMatchers(HttpMethod.POST, "/api/v1/tickets/**").hasRole("USER")
+                .requestMatchers(HttpMethod.GET, "/api/v1/users/me").hasRole("USER")
+                
+                // ADMIN
+                .requestMatchers(HttpMethod.POST, "/api/v1/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PUT, "/api/v1/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.POST, "/api/v1/events/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PUT, "/api/v1/events/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PUT, "/api/v1/comments/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PUT, "/api/v1/tickets/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PUT, "/api/v1/users/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.GET, "/api/v1/bookings/**").hasRole( "ADMIN")
+                .requestMatchers(HttpMethod.GET, "/api/v1/tickets/**").hasRole( "ADMIN")
+                .requestMatchers(HttpMethod.DELETE, "/api/**").hasRole("ADMIN") // Eliminaciones solo para ADMIN
+            )
+            .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+    
         return http.build();
     }
+
 
     @Bean
     @Order(2) // Cambia el orden para evitar conflictos
