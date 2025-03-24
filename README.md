@@ -462,6 +462,89 @@ https://raw.githack.com/CodeURJC-DAW-2024-25/webapp16/38fb87958e54e49f696da5a37e
 
 ------
 # Documentación para desplegar en la maquina virtual
+# Instalación de Paquetes Requeridos
+
+## 1. Instalar Docker CE y Docker Compose
+
+Primero, asegúrate de que los repositorios estén actualizados y luego instala Docker y Docker Compose:
+
+```bash
+# Actualizar repositorios
+sudo apt-get update
+
+# Instalar dependencias base
+sudo apt-get install ca-certificates curl
+
+# Agregar repositorio oficial de Docker
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+# Instalar Docker Engine y Compose
+sudo apt-get update
+sudo apt-get install docker-ce docker-compose-plugin
+
+# Verificar instalación
+sudo docker --version && sudo docker compose version
+```
+
+## 2. Instalar Maven
+
+Instala Maven para compilar el proyecto:
+
+```bash
+sudo apt-get install maven -y
+mvn -version
+```
+
+# Despliegue de la Aplicación
+
+## 1. Clonar el Repositorio
+
+Clona el repositorio de GitHub:
+
+```bash
+git clone https://github.com/CodeURJC-DAW-2024-25/webapp16
+cd webapp16
+```
+
+## 2. Construir el Proyecto Maven
+
+Compila el proyecto con Maven:
+
+```bash
+mvn clean package -DskipTests
+```
+
+## 3. Iniciar Contenedor MySQL
+
+Inicia un contenedor MySQL con Docker:
+
+```bash
+sudo docker run --rm \
+  -e MYSQL_ROOT_PASSWORD=password \
+  -e MYSQL_DATABASE=sala_DB \
+  -p 3306:3306 \
+  --name mySQL_sala \
+  -d mysql:8.0.33 \
+  --max-allowed-packet=256M
+```
+
+## 4. Construir Imagen Docker de la Aplicación
+
+Construye la imagen Docker de la aplicación:
+
+```bash
+sudo docker build -t webapp:latest .
+```
+
+## 5. Iniciar Servicios con Docker Compose
+
+Inicia los servicios con Docker Compose:
+
+```bash
+sudo docker compose up
+```
 
 
 ------
