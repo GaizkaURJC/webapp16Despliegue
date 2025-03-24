@@ -434,7 +434,7 @@ Algunos commits no tienen toda la lógica o les falta un poco, pero son los prin
 
 ------
 ## 📌 *Práctica 2:  Incorporación de una API REST a la aplicación web, despliegue con Docker y despliegue remoto*
-# Documentación de la API REST
+## *Documentación de la API REST*
 
 ### Especificación OPENAPI
 https://github.com/CodeURJC-DAW-2024-25/webapp16/blob/38fb87958e54e49f696da5a37ea94596412a490f/api-docs/api-docs.yaml
@@ -446,18 +446,18 @@ https://rawcdn.githack.com/CodeURJC-DAW-2024-25/webapp16/38fb87958e54e49f696da5a
 https://raw.githack.com/CodeURJC-DAW-2024-25/webapp16/38fb87958e54e49f696da5a37ea94596412a490f/api-docs/api-docs.html
 
 -----
-# Actualización de diagrama de clases
+## *Actualización de diagrama de clases*
 
 
 
 
 
 -----
-# Instrucciones de Ejecución de la Aplicación Dockerizada
+## *Instrucciones de Ejecución de la Aplicación Dockerizada*
 
 
 ------
-# Documentación para construcción de la imagen docker
+## *Documentación para construcción de la imagen docker*
 
 
 ------
@@ -548,10 +548,10 @@ sudo docker compose up
 
 
 ------
-# La URL de la aplicación desplegada en la maquina virtual
+## *La URL de la aplicación desplegada en la maquina virtual*
 
 
 ------
-# Participación de miembros
+## *Participación de miembros*
 
 
