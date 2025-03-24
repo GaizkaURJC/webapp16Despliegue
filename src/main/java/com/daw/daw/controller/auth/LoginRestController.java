@@ -19,7 +19,7 @@ import jakarta.servlet.http.HttpServletResponse;
 public class LoginRestController {
 
     @Autowired
-    private UserLoginService userDetailsService;
+    private UserService userService;
 
     @PostMapping("/login")
     public ResponseEntity <AuthResponse> login(@RequestBody LoginRequest loginRequest, HttpServletResponse response){
