@@ -12,6 +12,15 @@ import org.springframework.stereotype.Service;
 import com.daw.daw.model.User;
 import com.daw.daw.repository.UserRepository;
 
+/**
+ * This file defines the RepositoryUserDetailsService class, which is part of
+ * the security package.
+ * It is responsible for providing user details from the repository for
+ * authentication and authorization purposes.
+ * This service is typically used by the Spring Security framework to load
+ * user-specific data.
+ */
+
 @Service
 public class RepositoryUserDetailsService implements UserDetailsService {
     @Autowired

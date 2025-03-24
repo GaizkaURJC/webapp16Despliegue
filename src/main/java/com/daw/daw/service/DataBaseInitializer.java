@@ -5,19 +5,15 @@ import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.sql.Blob;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 
 import jakarta.annotation.PostConstruct;
 
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import java.util.Date;
 import com.daw.daw.model.Comment;
 import com.daw.daw.model.User;
 import com.daw.daw.repository.CommentRepository;
@@ -30,6 +26,17 @@ import com.daw.daw.repository.BookingRepository;
 import com.daw.daw.repository.TicketRepository;
 import com.daw.daw.model.Booking;
 import com.daw.daw.model.Ticket;
+
+/**
+ * This service class is responsible for initializing the database with default
+ * data.
+ * It populates the database with sample users, events, images, comments,
+ * tickets, and bookings
+ * if they do not already exist. This ensures that the application has some
+ * initial data to work with.
+ * The initialization process is triggered automatically after the bean's
+ * properties have been set.
+ */
 
 @Service
 public class DataBaseInitializer {
@@ -58,7 +65,7 @@ public class DataBaseInitializer {
         public void init() throws IOException, URISyntaxException {
                 Blob defUserImg = loadImage("img/defuser.webp");
                 User admin = new User("admin", "admin@admin.com", "00011122", passwordEncoder.encode("admin"),
-                                Arrays.asList("ADMIN","USER"), defUserImg);
+                                Arrays.asList("ADMIN", "USER"), defUserImg);
                 User user = new User("user", "user@user.com", "222111000", passwordEncoder.encode("user"),
                                 Arrays.asList("USER"), defUserImg);
                 LocalDateTime newDate = LocalDateTime.of(2025, 3, 15, 14, 30); // Año, Mes, Día, Hora, Minutos
@@ -125,7 +132,8 @@ public class DataBaseInitializer {
                                 loadImage("img/BubuRoom.avif"), "party");
 
                 if (comentsRepository.findAll().isEmpty()) {
-                        Comment coments1 = new Comment(5, "Me encanto el concierto, la mejor noche de mi vida", "user", 5);
+                        Comment coments1 = new Comment(5, "Me encanto el concierto, la mejor noche de mi vida", "user",
+                                        5);
                         Comment coments2 = new Comment(4, "La musica era buena, pero la bebida era cara", "user", 6);
                         Comment coments3 = new Comment(3, "No me gusto mucho, la musica era muy rara", "user", 3);
                         Comment coments4 = new Comment(5, "La mejor fiesta de mi vida, repetire seguro", "user", 4);
@@ -170,11 +178,11 @@ public class DataBaseInitializer {
 
         private Blob loadImage(String path) {
                 try (InputStream inputStream = new ClassPathResource("static/" + path).getInputStream()) {
-                    byte[] bytes = inputStream.readAllBytes();
-                    return BlobProxy.generateProxy(bytes);
+                        byte[] bytes = inputStream.readAllBytes();
+                        return BlobProxy.generateProxy(bytes);
                 } catch (IOException e) {
-                    System.err.println("⚠ No se pudo cargar la imagen: " + path + ". Usando imagen por defecto.");
-                    return BlobProxy.generateProxy(new byte[0]);
+                        System.err.println("⚠ No se pudo cargar la imagen: " + path + ". Usando imagen por defecto.");
+                        return BlobProxy.generateProxy(new byte[0]);
                 }
-            }
+        }
 }

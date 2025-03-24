@@ -35,6 +35,18 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
+/**
+ * This class serves as a controller for handling user-related requests in the
+ * MVC architecture.
+ * It is part of the web application project for the "Desarrollo de aplicaciones
+ * web" course.
+ * The controller is responsible for managing user interactions, processing user
+ * inputs,
+ * and returning appropriate views.
+ * 
+ * Note: This file is located in the "com.daw.daw.controller.MVC" package.
+ */
+
 @Controller
 @RequestMapping("/users/")
 public class UserMVCController {
@@ -179,22 +191,22 @@ public class UserMVCController {
     }
 
     @PostMapping("updateUser")
-public String updateUser(@RequestParam Long id, 
-                         @RequestParam("user") String name, 
-                         @RequestParam("email") String emailUser, 
-                         @RequestParam("password") String Password, 
-                         HttpServletRequest request) { 
-    Optional<User> optionalUser = userRepository.findById(id);
-    if (optionalUser.isPresent()) {
-        User user = optionalUser.get();
-        user.setName(name);
-        user.setEmail(emailUser);
-        user.setEncodedPassword(passwordEncoder.encode(Password));
-        userRepository.save(user);
-        return "redirect:/";
-    } else {
-        return "redirect:/admin?error=user_not_found";
+    public String updateUser(@RequestParam Long id,
+            @RequestParam("user") String name,
+            @RequestParam("email") String emailUser,
+            @RequestParam("password") String Password,
+            HttpServletRequest request) {
+        Optional<User> optionalUser = userRepository.findById(id);
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            user.setName(name);
+            user.setEmail(emailUser);
+            user.setEncodedPassword(passwordEncoder.encode(Password));
+            userRepository.save(user);
+            return "redirect:/";
+        } else {
+            return "redirect:/admin?error=user_not_found";
+        }
     }
-}
 
 }

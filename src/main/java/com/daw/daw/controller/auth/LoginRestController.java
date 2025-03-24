@@ -26,6 +26,22 @@ import java.util.Map;
 
 import jakarta.servlet.http.HttpServletResponse;
 
+/**
+ * This class is a REST controller for handling authentication-related requests.
+ * It provides endpoints for user login, token refresh, and logout.
+ * 
+ * - /api/auth/login: Authenticates a user based on the provided login request.
+ * - /api/auth/refresh: Refreshes the authentication token using a refresh token
+ * stored in a cookie.
+ * - /api/auth/logout: Logs out the user and invalidates the session.
+ * 
+ * The controller uses the UserLoginService to perform the actual authentication
+ * logic.
+ * 
+ * Note: The refresh token is expected to be provided as a cookie named
+ * "RefreshToken".
+ */
+
 @RestController
 @RequestMapping("/api/auth")
 public class LoginRestController {
@@ -61,5 +77,10 @@ public class LoginRestController {
         return userService.refresh(response, refreshToken);
     }
 
-    
+    @PostMapping("/logout")
+    public ResponseEntity<AuthResponse> logout(HttpServletResponse response) {
+
+        return ResponseEntity.ok(new AuthResponse(Status.SUCCESS, userService.logout(response)));
+
+    }
 }

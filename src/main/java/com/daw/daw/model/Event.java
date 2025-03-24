@@ -1,6 +1,5 @@
 package com.daw.daw.model;
 
-import java.util.List;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -8,6 +7,16 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 
 import java.sql.Blob;
+
+/**
+ * This file defines the Event entity class, which is mapped to the
+ * "event2_table" table in the database.
+ * The Event class represents an event with attributes such as id, title, type,
+ * description, imageFile, and category.
+ * It uses JPA annotations to specify how the class should be persisted in the
+ * database.
+ * The class includes constructors, getters, and setters for its attributes.
+ */
 
 @Entity(name = "event2_table")
 public class Event {

@@ -21,6 +21,21 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+/**
+ * This class is a filter that intercepts HTTP requests to validate JWT tokens.
+ * It extends the OncePerRequestFilter class to ensure that the filter is
+ * executed once per request.
+ * The filter extracts the JWT token from the request, validates it, and sets
+ * the authentication
+ * in the SecurityContext if the token is valid. If the token is not found or
+ * invalid, it logs the error
+ * except when no token is found in the request.
+ * 
+ * This filter is a crucial part of the security mechanism to ensure that only
+ * authenticated users
+ * can access protected resources.
+ */
+
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
 

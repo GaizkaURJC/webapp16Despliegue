@@ -5,6 +5,17 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+/**
+ * This file defines the Booking class (was colled "reserva") within the
+ * com.daw.daw.model package.
+ * The Booking class is used to represent a reservation or booking in the web
+ * application.
+ * It contains attributes and methods related to the booking details and
+ * operations.
+ * This class is a part of the web application project for the "Desarrollo de
+ * aplicaciones web" course.
+ */
+
 @Entity(name = "reserva_table")
 public class Booking {
 

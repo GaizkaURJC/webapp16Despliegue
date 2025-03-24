@@ -8,6 +8,13 @@ import com.daw.daw.dto.BookingMapper;
 import com.daw.daw.model.Booking;
 import com.daw.daw.repository.BookingRepository;
 
+/**
+ * This class is part of the service layer in the web application.
+ * It is responsible for handling the business logic related to bookings.
+ * The class provides methods to manage bookings, including creating, updating,
+ * and retrieving booking information.
+ */
+
 @Service
 public class BookingsService {
 

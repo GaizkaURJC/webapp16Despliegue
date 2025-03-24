@@ -1,5 +1,13 @@
 package com.daw.daw.security.jwt;
 
+/**
+ * This file defines the LoginRequest class, which is part of the JWT security
+ * package.
+ * It is used to handle login requests in the web application, capturing user
+ * credentials
+ * such as username and password for authentication purposes.
+ */
+
 public class LoginRequest {
 
 	private String email;

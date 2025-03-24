@@ -8,7 +8,6 @@ import java.util.NoSuchElementException;
 import com.daw.daw.security.CSRFHandlerConfiguration;
 
 import org.hibernate.engine.jdbc.BlobProxy;
-import org.mapstruct.control.MappingControl.Use;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
@@ -21,12 +20,20 @@ import com.daw.daw.model.User;
 import com.daw.daw.dto.*;
 import com.daw.daw.repository.UserRepository;
 
+/**
+ * UserService is a Spring Service class that provides various operations
+ * related to User management.
+ * It includes methods for creating, retrieving, updating, and deleting users,
+ * as well as handling user images.
+ * This service interacts with the UserRepository to perform database operations
+ * and uses mappers to convert between
+ * domain objects and DTOs.
+ */
+
 @Service
 public class UserService {
 
-
     private final SecurityFilterChain apiFilterChain;
-
 
     private final DaoAuthenticationProvider authenticationProvider;
 
@@ -51,7 +58,9 @@ public class UserService {
         return createUserMapper.toDomain(createRequestUserDTO);
     }
 
-    UserService(CSRFHandlerConfiguration CSRFHandlerConfiguration, AuthenticationManager authenticationManager, CreateUserMapperImpl createUserMapperImpl, PasswordEncoder passwordEncoder, DaoAuthenticationProvider authenticationProvider, SecurityFilterChain apiFilterChain) {
+    UserService(CSRFHandlerConfiguration CSRFHandlerConfiguration, AuthenticationManager authenticationManager,
+            CreateUserMapperImpl createUserMapperImpl, PasswordEncoder passwordEncoder,
+            DaoAuthenticationProvider authenticationProvider, SecurityFilterChain apiFilterChain) {
         this.authenticationManager = authenticationManager;
         this.CSRFHandlerConfiguration = CSRFHandlerConfiguration;
         this.createUserMapperImpl = createUserMapperImpl;
@@ -98,7 +107,7 @@ public class UserService {
         return userMapper.toDTOs(users);
     }
 
-    public UserDTO replaceUser (long id, CreateRequestUserDTO updateUserDTO){
+    public UserDTO replaceUser(long id, CreateRequestUserDTO updateUserDTO) {
 
         User updateUser = toDomain(updateUserDTO);
         updateUser.setId(id);
@@ -106,8 +115,8 @@ public class UserService {
         userRepository.save(updateUser);
         return userMapper.toDTO(updateUser);
     }
-    
-    public void createUserImage (long id, InputStream inputStream, long size){
+
+    public void createUserImage(long id, InputStream inputStream, long size) {
 
         User user = userRepository.findById(id).orElseThrow();
         user.setImage(true);
@@ -116,24 +125,24 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public Resource getUserImage(long id) throws SQLException{
+    public Resource getUserImage(long id) throws SQLException {
 
-        User user= userRepository.findById(id).orElseThrow();
+        User user = userRepository.findById(id).orElseThrow();
         if (user.getImageFile() != null) {
 
             return new InputStreamResource(user.getImageFile().getBinaryStream());
-            
+
         } else {
             throw new NoSuchElementException();
         }
     }
 
-    public void replaceUserImage (long id, InputStream inputStream, long size){
+    public void replaceUserImage(long id, InputStream inputStream, long size) {
 
         User user = userRepository.findById(id).orElseThrow();
         if (!user.getImage()) {
             throw new NoSuchElementException();
-            
+
         }
         user.setImageFile(BlobProxy.generateProxy(inputStream, size));
         userRepository.save(user);
@@ -142,7 +151,7 @@ public class UserService {
     public void deleteUserImage(long id) {
 
         User user = userRepository.findById(id).orElseThrow();
-        
+
         if (!user.getImage()) {
             throw new NoSuchElementException();
         }

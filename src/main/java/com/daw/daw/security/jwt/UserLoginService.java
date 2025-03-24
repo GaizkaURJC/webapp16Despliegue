@@ -1,4 +1,3 @@
-
 package com.daw.daw.security.jwt;
 
 
@@ -19,6 +18,19 @@ import io.jsonwebtoken.Claims;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 
+/**
+ * This service class handles user authentication and token management for the
+ * application.
+ * It provides methods for user login, token refresh, and logout
+ * functionalities.
+ * The login method authenticates the user and generates JWT tokens which are
+ * stored in cookies.
+ * The refresh method validates the refresh token and generates a new access
+ * token.
+ * The logout method clears the security context and removes the tokens from
+ * cookies.
+ */
+
 @Service
 public class UserLoginService {
 
@@ -28,14 +40,15 @@ public class UserLoginService {
 	private final UserDetailsService userDetailsService;
 	private final JwtTokenProvider jwtTokenProvider;
 
-	public UserLoginService(AuthenticationManager authenticationManager, UserDetailsService userDetailsService, JwtTokenProvider jwtTokenProvider) {
+	public UserLoginService(AuthenticationManager authenticationManager, UserDetailsService userDetailsService,
+			JwtTokenProvider jwtTokenProvider) {
 		this.authenticationManager = authenticationManager;
 		this.userDetailsService = userDetailsService;
 		this.jwtTokenProvider = jwtTokenProvider;
 	}
 
 	public ResponseEntity<AuthResponse> login(HttpServletResponse response, LoginRequest loginRequest) {
-		
+
 		Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
 
@@ -96,7 +109,7 @@ public class UserLoginService {
 		return cookie;
 	}
 
-	private Cookie removeTokenCookie(TokenType type){
+	private Cookie removeTokenCookie(TokenType type) {
 		Cookie cookie = new Cookie(type.cookieName, "");
 		cookie.setMaxAge(0);
 		cookie.setHttpOnly(true);

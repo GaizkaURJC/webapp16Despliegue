@@ -28,6 +28,33 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtBuilder;
+import io.jsonwebtoken.JwtParser;
+import io.jsonwebtoken.Jwts;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+
+
+/**
+ * This class is responsible for generating and validating JWT tokens for
+ * authentication purposes.
+ * It provides methods to generate access and refresh tokens, validate tokens
+ * from HTTP headers or cookies,
+ * and extract claims from the tokens. The tokens are signed using a secret key
+ * and include user details
+ * such as roles and username.
+ */
+
+/**
+ * This class is responsible for generating and validating JWT tokens for
+ * authentication purposes.
+ * It provides methods to generate access and refresh tokens, validate tokens
+ * from HTTP headers or cookies,
+ * and extract claims from the tokens. The tokens are signed using a secret key
+ * and include user details
+ * such as roles and username.
+ */
 
 @Component
 public class JwtTokenProvider {

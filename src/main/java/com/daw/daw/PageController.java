@@ -31,6 +31,15 @@ import com.daw.daw.repository.UserRepository;
 import com.daw.daw.repository.BookingRepository;
 import com.daw.daw.repository.CommentRepository;
 
+/**
+ * PageController is a Spring MVC controller that handles various web requests
+ * for the application. It manages the routing and data population for different
+ * pages such as the home page, login page, event detail page, admin page, and
+ * user profile page. The controller interacts with various repositories to
+ * fetch data related to events, users, tickets, bookings, and comments, and
+ * prepares the model attributes required for rendering the views.
+ */
+
 @Controller
 public class PageController {
 
@@ -82,7 +91,7 @@ public class PageController {
             if (principal instanceof UserDetails) {
                 username = ((UserDetails) principal).getUsername();
             } else if (principal instanceof User) {
-                username = ((User) principal).getEmail(); 
+                username = ((User) principal).getEmail();
                 user = ((User) principal);
             }
 
@@ -182,7 +191,7 @@ public class PageController {
             System.out.println("Usuario autenticado: " + username);
             model.addAttribute("userLogged", user);
         }
-        
+
         model.addAttribute("event", eventRepository.findById(id).get());
         model.addAttribute("coments", commentRepository.getComentsByEventId(id));
 
@@ -216,6 +225,7 @@ public class PageController {
         model.addAttribute("party", eventRepository.findAllByType("party"));
         model.addAttribute("concerts", eventRepository.findAllByType("concert"));
         model.addAttribute("reservas", reservaRepository.findAll());
+        model.addAttribute("coments", commentRepository.findAll());
         return "admin";
     }
 
@@ -238,7 +248,7 @@ public class PageController {
             if (principal instanceof UserDetails) {
                 username = ((UserDetails) principal).getUsername();
             } else if (principal instanceof User) {
-                username = ((User) principal).getEmail(); 
+                username = ((User) principal).getEmail();
                 user = ((User) principal);
             }
 
