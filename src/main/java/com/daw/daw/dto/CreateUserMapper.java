@@ -7,15 +7,20 @@ import org.mapstruct.Mapping;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * This file defines the CreateUserMapper class within the com.daw.daw.dto
+ * package.
+ * It is responsible for mapping data to create a new user in the application.
+ */
 
-@Mapper (componentModel = "spring") 
+@Mapper(componentModel = "spring")
 public interface CreateUserMapper {
-    
+
     CreateRequestUserDTO toDTO(User user);
-    List <CreateRequestUserDTO> toDTOs(Collection <User> user);
+
+    List<CreateRequestUserDTO> toDTOs(Collection<User> user);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "encodedPassword", source = "password")
     User toDomain(CreateRequestUserDTO userDTO);
-
 }

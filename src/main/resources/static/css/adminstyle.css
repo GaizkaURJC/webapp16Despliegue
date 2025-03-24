@@ -341,6 +341,10 @@ td {
     display: none;
 }
 
+#comentarios {
+    display: none;
+}
+
 .hidden {
     background: none;
     border: none;

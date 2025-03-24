@@ -1,5 +1,15 @@
 package com.daw.daw.security.jwt;
 
+/**
+ * This class represents an authentication response used in the web application.
+ * It contains the status of the authentication process, a message, and an
+ * optional error message.
+ * The status can be either SUCCESS or FAILURE, indicating the result of the
+ * authentication attempt.
+ * This class provides constructors to create an AuthResponse with different
+ * combinations of status, message, and error.
+ */
+
 public class AuthResponse {
 
 	private Status status;

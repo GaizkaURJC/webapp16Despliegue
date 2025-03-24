@@ -10,6 +10,14 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+/**
+ * This configuration class sets up a CSRF handler
+ * for a Spring-based web application. It registers an interceptor that adds
+ * the CSRF token to the model, making it available for use in views. This helps
+ * in protecting the application against CSRF attacks by ensuring that the token
+ * is included in forms and AJAX requests.
+ */
+
 @Configuration
 public class CSRFHandlerConfiguration implements WebMvcConfigurer {
 

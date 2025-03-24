@@ -14,6 +14,22 @@ import org.springframework.web.bind.annotation.RestController;
 import com.daw.daw.security.jwt.UserLoginService;
 import jakarta.servlet.http.HttpServletResponse;
 
+/**
+ * This class is a REST controller for handling authentication-related requests.
+ * It provides endpoints for user login, token refresh, and logout.
+ * 
+ * - /api/auth/login: Authenticates a user based on the provided login request.
+ * - /api/auth/refresh: Refreshes the authentication token using a refresh token
+ * stored in a cookie.
+ * - /api/auth/logout: Logs out the user and invalidates the session.
+ * 
+ * The controller uses the UserLoginService to perform the actual authentication
+ * logic.
+ * 
+ * Note: The refresh token is expected to be provided as a cookie named
+ * "RefreshToken".
+ */
+
 @RestController
 @RequestMapping("/api/auth")
 public class LoginRestController {
@@ -22,21 +38,22 @@ public class LoginRestController {
     private UserLoginService userService;
 
     @PostMapping("/login")
-    public ResponseEntity <AuthResponse> login(@RequestBody LoginRequest loginRequest, HttpServletResponse response){
+    public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest loginRequest, HttpServletResponse response) {
 
         return userService.login(response, loginRequest);
 
     }
 
     @PostMapping("/refresh")
-    public ResponseEntity <AuthResponse> refreshToken(@CookieValue (name="RefreshToken", required = false) String refreshToken, HttpServletResponse response){
+    public ResponseEntity<AuthResponse> refreshToken(
+            @CookieValue(name = "RefreshToken", required = false) String refreshToken, HttpServletResponse response) {
 
         return userService.refresh(response, refreshToken);
 
     }
 
     @PostMapping("/logout")
-    public ResponseEntity <AuthResponse> logout(HttpServletResponse response){
+    public ResponseEntity<AuthResponse> logout(HttpServletResponse response) {
 
         return ResponseEntity.ok(new AuthResponse(Status.SUCCESS, userService.logout(response)));
 

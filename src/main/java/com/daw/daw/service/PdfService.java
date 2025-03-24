@@ -8,6 +8,12 @@ import com.daw.daw.model.Ticket;
 
 import java.io.ByteArrayOutputStream;
 
+/**
+ * This class is part of the service layer in the web application.
+ * It provides functionalities related to PDF processing and management.
+ * The class is located in the package com.daw.daw.service.
+ */
+
 @Service
 public class PdfService {
 
@@ -29,11 +35,10 @@ public class PdfService {
         return out.toByteArray();
     }
 
-    public byte [] generarPdfTicket (Ticket ticket) throws DocumentException{
+    public byte[] generarPdfTicket(Ticket ticket) throws DocumentException {
         Document document = new Document();
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         PdfWriter.getInstance(document, out);
-        
 
         document.open();
         document.add(new Paragraph("Confirmación de Ticket", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 18)));
@@ -48,4 +53,3 @@ public class PdfService {
 
     }
 }
-

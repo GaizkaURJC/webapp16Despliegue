@@ -21,6 +21,14 @@ import org.springframework.security.web.context.SecurityContextRepository;
 import com.daw.daw.security.jwt.JwtRequestFilter;
 import com.daw.daw.security.jwt.UnauthorizedHandlerJwt;
 
+/**
+ * This file is part of the security package for the web application.
+ * It contains security-related configurations and settings to ensure
+ * the application is protected against various security threats.
+ * The configurations may include authentication, authorization,
+ * and other security measures.
+ */
+
 @Configuration
 @EnableWebSecurity
 public class Security {
@@ -37,7 +45,7 @@ public class Security {
     @Autowired
     private CSRFHandlerConfiguration CSRFHandlerConfiguration;
 
-    // Eliminar la inyección del AuthenticationManager en el constructor
+    // Remove the injection of the AuthenticationManager in the constructor
     public Security() {
     }
 
@@ -62,6 +70,8 @@ public class Security {
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
             throws Exception {
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
+            throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
 
@@ -71,6 +81,9 @@ public class Security {
         http.authenticationProvider(authenticationProvider());
 
         http
+                .securityMatcher("/api/**")
+                .exceptionHandling(handling -> handling
+                        .authenticationEntryPoint(unauthorizedHandlerJwt));
                 .securityMatcher("/api/**")
                 .exceptionHandling(handling -> handling
                         .authenticationEntryPoint(unauthorizedHandlerJwt));
@@ -95,15 +108,15 @@ public class Security {
     }
 
     @Bean
-    @Order(2) // Cambia el orden para evitar conflictos
+    @Order(2) // Change the order to avoid conflicts
     public SecurityFilterChain webFilterChain(HttpSecurity http) throws Exception {
         http.authenticationProvider(authenticationProvider());
         http.authorizeHttpRequests(authorize -> authorize
-                // Permitir acceso a la documentación
+                
                 .requestMatchers("/v3/api-docs*/**").permitAll()
                 .requestMatchers("/swagger-ui.html").permitAll()
                 .requestMatchers("/swagger-ui/**").permitAll()
-                // Otras configuraciones de autorización
+                
                 .requestMatchers("/", "/css/**", "/img/**", "/js/**", "/videos/**", "/imgEvent/**").permitAll()
                 .requestMatchers("/users/authenticate", "/users/create", "/favicon/**", "/events/**").permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
@@ -113,8 +126,14 @@ public class Security {
                 .loginPage("/login")
                 .defaultSuccessUrl("/", true)
                 .permitAll());
+                .loginPage("/login")
+                .defaultSuccessUrl("/", true)
+                .permitAll());
 
         http.logout(logout -> logout
+                .logoutUrl("/users/logout")
+                .logoutSuccessUrl("/")
+                .permitAll());
                 .logoutUrl("/users/logout")
                 .logoutSuccessUrl("/")
                 .permitAll());
