@@ -3,11 +3,15 @@ package com.daw.daw.controller.API;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.daw.daw.dto.TicketDTO;
+import com.daw.daw.dto.UserDTO;
 import com.daw.daw.service.TicketService;
 
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.servlet.http.HttpServletRequest;
 
+import java.security.Principal;
 import java.util.Collection;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -99,5 +103,27 @@ public class TicketRestController {
     @PostMapping("/")
     public TicketDTO createTicket(@RequestBody TicketDTO ticket) {
         return ticketService.createTicket(ticket);
+    }
+
+    @Operation(summary = "Get all tickets owned by user")
+    @GetMapping("/getMyTickets")
+    public Collection<TicketDTO> getMyTickets(HttpServletRequest request) {
+        Principal principal = request.getUserPrincipal();
+        if (principal != null) {
+            return ticketService.findByUserOwner(principal.getName());
+        } else {
+            throw new NoSuchElementException("usuario anonimo");
+        }
+    }
+
+    @Operation(summary = "Deleta a ticket owned by user")
+    @DeleteMapping("/deleteMyTicket/{id}")
+    public void deleteMyTicket(@PathVariable Long id, HttpServletRequest request) {
+        Principal principal = request.getUserPrincipal();
+        if (principal != null && ticketService.findById(id).userOwner().equals(principal.getName())) {
+            ticketService.deleteTicket(id);
+        } else {
+            throw new NoSuchElementException("usuario anonimo");
+        }
     }
 }
