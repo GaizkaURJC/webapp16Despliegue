@@ -30,7 +30,7 @@ public class User {
     @Column(unique = true)
     private String email;
 
-    private String telefono;
+    private String phone;
 
     private String encodedPassword;
 
@@ -47,10 +47,10 @@ public class User {
     public User() {
     }
     
-    public User(String name, String email, String telefono, String encodedPassword, List<String> roles, java.sql.Blob imageFile) {
+    public User(String name, String email, String phone, String encodedPassword, List<String> roles, java.sql.Blob imageFile) {
         this.name = name;
         this.email = email;
-        this.telefono = telefono;
+        this.phone = phone;
         this.encodedPassword = encodedPassword;
         this.roles = roles;
         this.imageFile = imageFile;
@@ -80,11 +80,11 @@ public class User {
     }
 
     public String getPhone() {
-        return telefono;
+        return phone;
     }
 
     public void setPhone (String telefono) {
-        this.telefono = telefono;
+        this.phone = telefono;
     }
 
     public String getEncodedPassword() {

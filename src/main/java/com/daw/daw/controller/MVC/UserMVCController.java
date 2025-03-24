@@ -82,7 +82,7 @@ public class UserMVCController {
     @PostMapping("create")
     public String createUser(@RequestParam("name") String nombre,
             @RequestParam("email") String correo,
-            @RequestParam("telefono") String telf,
+            @RequestParam("phone") String phone,
             @RequestParam("password") String contrasena,
             HttpServletRequest request) {
 
@@ -90,7 +90,7 @@ public class UserMVCController {
             return "redirect:/register?error=user_exists"; // Redirect error page
         }
         Blob defUserImg = loadImage("img/defuser.webp");
-        User user = new User(nombre, correo, telf, passwordEncoder.encode(contrasena), Arrays.asList("USER"),
+        User user = new User(nombre, correo, phone, passwordEncoder.encode(contrasena), Arrays.asList("USER"),
                 defUserImg);
         userRepository.save(user);
 

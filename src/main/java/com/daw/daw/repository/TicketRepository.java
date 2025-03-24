@@ -22,4 +22,6 @@ public interface TicketRepository extends JpaRepository<Ticket, Long> {
 
     List<Ticket> findByTitleAndGender(String title, String gender);
 
+    List<Ticket> findByCategory(String category);
+
 }
