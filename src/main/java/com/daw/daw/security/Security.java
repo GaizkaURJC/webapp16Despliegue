@@ -87,9 +87,10 @@ public class Security {
             .authorizeHttpRequests(auth -> auth
                 // Público
                 .requestMatchers("/api/auth/**").permitAll()
-                .requestMatchers(HttpMethod.POST, "/api/v1/users/**").permitAll()
+                .requestMatchers(HttpMethod.POST, "/api/v1/users/").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/v1/events/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/v1/comments/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/v1/users/").permitAll()
                 
                 // USER
                 .requestMatchers(HttpMethod.POST, "/api/v1/bookings/**").hasRole("USER")
@@ -128,7 +129,7 @@ public class Security {
                 .requestMatchers("/", "/css/**", "/img/**", "/js/**", "/videos/**", "/imgEvent/**").permitAll()
                 .requestMatchers("/users/authenticate", "/users/create", "/favicon/**", "/events/**").permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
-                .requestMatchers("/perfil/**", "/paginaperfil/**", "/users/**").hasAnyRole("USER", "ADMIN")
+                .requestMatchers("/perfil/**", "/paginaperfil/**", "/users/**","/comments/**").hasAnyRole("USER", "ADMIN")
                 .anyRequest().permitAll());
         http.formLogin(formLogin -> formLogin
                 .loginPage("/login")
