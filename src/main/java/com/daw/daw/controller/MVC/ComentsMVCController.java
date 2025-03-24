@@ -63,7 +63,7 @@ public class ComentsMVCController {
         username = ((User) principal).getEmail(); // Uses email if it's saved on user
         user = ((User) principal);
     }
-    Coments coments = new Coments(rating, comment, username, eventId);
+    Comment coments = new Comment(rating, comment, username, eventId);
     comentsRepository.save(coments);
     return "redirect:/";
 }

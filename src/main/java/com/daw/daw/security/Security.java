@@ -68,6 +68,8 @@ public class Security {
     public SecurityFilterChain apiFilterChain(HttpSecurity http) throws Exception {
         http.authenticationProvider(authenticationProvider());
 
+
+
         http
             .securityMatcher("/api/**")
             .exceptionHandling(handling -> handling
@@ -75,9 +77,9 @@ public class Security {
 
         http
             .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers(HttpMethod.POST, "/api/**").permitAll()
-                .requestMatchers(HttpMethod.PUT, "/api/**").permitAll()
-                .requestMatchers(HttpMethod.DELETE, "/api/**").permitAll()
+                .requestMatchers(HttpMethod.POST, "/api/**").hasAnyRole("USER", "ADMIN")
+                .requestMatchers(HttpMethod.PUT, "/api/**").hasAnyRole("USER", "ADMIN")
+                .requestMatchers(HttpMethod.DELETE, "/api/**").hasAnyRole("USER", "ADMIN")
                 .anyRequest().permitAll()
             );
 
