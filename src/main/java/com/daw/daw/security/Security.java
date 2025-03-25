@@ -97,6 +97,8 @@ public class Security {
                 .requestMatchers(HttpMethod.POST, "/api/v1/comments/**").hasRole("USER")
                 .requestMatchers(HttpMethod.POST, "/api/v1/tickets/**").hasRole("USER")
                 .requestMatchers(HttpMethod.GET, "/api/v1/users/me").hasRole("USER")
+                .requestMatchers(HttpMethod.GET,"/api/v1/tickets/getMyTickets").hasRole("USER")
+                .requestMatchers(HttpMethod.DELETE,"api/v1/tickets/deleteMyTicket/{id}").hasRole("USER")
                 
                 // ADMIN
                 .requestMatchers(HttpMethod.POST, "/api/v1/**").hasRole("ADMIN")
