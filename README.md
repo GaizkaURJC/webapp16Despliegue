@@ -573,7 +573,7 @@ sudo docker compose up
   4. Documentar y arreglar la indentacion del programa entero.
 
 ------
-- 5 commits más significativos :
+- 4 commits más significativos :
 Algunos commits no tienen toda la lógica o les falta un poco, pero son los principales.
   - [Commit 1](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/b737705ddd4a99314f5eea711add58b466ebec2d): API de resrvas (luego se cambió el nombre a booking).
   - [Commit 2](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/c2cf3f8d2e2b6a3f9f317b66cac0a45e2bd2dbb2): Arreglo de la API tickets.
