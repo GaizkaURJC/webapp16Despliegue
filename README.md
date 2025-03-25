@@ -569,20 +569,15 @@ Algunos commits no tienen toda la lógica o les falta un poco, pero son los prin
 -----
 - 5 ficheros en los que se ha participado:
 
-1. src/main/java/com/daw/daw/TicketController.java`
-   - Controlador que se encarga de las funciones de los tickets, en este caso en concrerto crear tickets y descargarlos.
+1. 'src/main/java/com/daw/daw/API/TicketRestController.java`
 
-2. `src/main/java/com/daw/daw/controller/Ticket.java`
-   - Modelo para las tablas de base de datos de los tickets con sus atributos y sus geters y seters.
+2. 'src/main/java/com/daw/daw/API/StatisticsController.java`
 
-3. 'src/main/java/com/daw/daw/EventController.java`
-   - Controlador de los eventos (conciertos y fiestas) con sus funciones como crearConcierto o crearFiesta.
+3. 'src/main/java/com/daw/daw/controller/MVC/ReservaMVCController.java`
 
-4. `src/main/resources/static/js/validaciones.js`
-   - Archivo con el código para la validación en tiempo real de los forms de login y singup.
+4. 'src/main/java/com/daw/daw/dto/BookingMapper.java`
 
-5. `src/main/resources/static/js/filtroConciertos.js`
-   - Archivo con el código para el filtro de elementos y el cargar más.
+5. `src/main/resources/static/js/main.js`
 
 ---
 
