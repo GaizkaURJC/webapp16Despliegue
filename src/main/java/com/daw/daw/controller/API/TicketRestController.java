@@ -3,7 +3,6 @@ package com.daw.daw.controller.API;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.daw.daw.dto.TicketDTO;
-import com.daw.daw.dto.UserDTO;
 import com.daw.daw.service.TicketService;
 
 import io.swagger.v3.oas.annotations.Operation;

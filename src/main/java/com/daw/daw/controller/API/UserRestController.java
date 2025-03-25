@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 
 import java.security.Principal;
 import java.sql.SQLException;
-import java.util.NoSuchElementException;
 import java.util.Collection;
 
 import jakarta.servlet.http.HttpServletRequest;

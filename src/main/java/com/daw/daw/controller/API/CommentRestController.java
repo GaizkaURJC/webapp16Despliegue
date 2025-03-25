@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.daw.daw.dto.CommentDTO;
-import com.daw.daw.repository.UserRepository;
 import com.daw.daw.security.CSRFHandlerConfiguration;
 import com.daw.daw.service.CommentService;
 
@@ -47,8 +46,7 @@ public class CommentRestController {
     @Autowired
     private CommentService commentService;
 
-    @Autowired
-    private UserRepository userRepository;
+    
 
     CommentRestController(CSRFHandlerConfiguration csrfHandlerConfiguration, SecurityFilterChain apiFilterChain,
             AuthenticationManager authenticationManager) {
