@@ -595,3 +595,30 @@ Algunos commits no tienen toda la lógica o les falta un poco, pero son los prin
 
 ---
 
+### Gaizka
+- Tareas:
+  1. API REST de los tickets.
+  2. Despliegue en maquina virtual
+  3. Añadir funcion de eliminar comments a admin.
+  4. Arreglo pagina detalle conciertos.
+
+------
+- 4 commits más significativos :
+Algunos commits no tienen toda la lógica o les falta un poco, pero son los principales.
+  - [Commit 1](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/b2e0c8db398f50bac71506c9ee2650f7cb42436b): Cambio de puertos para el despliegue.
+  - [Commit 2](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/7ae37c2351505eb07a95d0addb2358d8539a5a8f): API tickets.
+  - [Commit 3](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/d7175e2ab4aa51d0fb32345832efdddf6a8ab444): Añadido la eliminacion de comentarios.
+  - [Commit 4](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/aa8a5469b812e871567ea516984d30df8db871fc): Documentacion sobre como desplegar la pagina.
+  
+-----
+- 5 ficheros en los que se ha participado:
+
+1. 'src/main/java/com/daw/daw/API/TicketRestController.java`
+
+2. 'src/main/java/com/daw/daw/dto/TicketDTO.java`
+
+3. `src/main/resources/static/templates/paginaDetalleConcierto.html`
+
+4. `src/main/resources/static/templates/admin.html`
+
+5. `src/main/resources/static/js/AdminSection.js`
