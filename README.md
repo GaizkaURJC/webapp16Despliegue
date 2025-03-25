@@ -622,3 +622,59 @@ Algunos commits no tienen toda la lógica o les falta un poco, pero son los prin
 4. `src/main/resources/static/templates/admin.html`
 
 5. `src/main/resources/static/js/AdminSection.js`
+
+### Alberto
+- Tareas:
+  1. API REST de Usuarios y Comentarios.
+  2. Implementacion de Docker y Docker-Compose
+  3. Toda la gestion e implementacion de la seguridad de la API REST.
+  4. Importacion y eliminacion de imagenes, paginacion y limpieza de codigo.
+
+------
+- 4 commits más significativos :
+Algunos commits no tienen toda la lógica o les falta un poco, pero son los principales.
+  - [Commit 1](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/4d6fb12ad3c78439a916e3430aaaaa3ab5c33fa6): Seguridad de la API REST.
+  - [Commit 2](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/cd0d781672a062f57eb8e66fb00c1eed0ed58c2e): Paginacion Hecha.
+  - [Commit 3](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/d57f54e51ec81af709a94604499c16eebf1a76b9): API REST de Usuario.
+  - [Commit 4](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/8bd1afd4ea3a9efa422cdd3671039553e3edf0d4): Docker y Docker-Compose.
+  
+-----
+- 5 ficheros en los que se ha participado:
+
+1. 'src/main/java/com/daw/daw/controller/API/UserRestController.java`
+
+2. 'src/main/java/com/daw/daw/controller/API/CommentRestController.java.java`
+
+3. 'src/main/java/com/daw/daw/security/jwt`
+
+4. 'webapp16/docker-compose.yml`
+
+5. 'src/main/java/com/daw/daw/controller/auth/LoginRestController.java`
+
+### Jon
+- Tareas:
+  1. API REST de Eventos.
+  2. Pluggin de Maven para documentacion del PostMan,
+  3. Correccion de nombres de clases y variables.
+  4. Arreglo de los Comenatarios.
+
+------
+- 4 commits más significativos :
+Algunos commits no tienen toda la lógica o les falta un poco, pero son los principales.
+  - [Commit 1](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/d9ce944b06d7d4541e5f0623c57214e1d77fcca1): Restructuracion MVN.
+  - [Commit 2](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/9665de9872c769fc4f2457ae0af9d8d78e337d13): API REST evento.
+  - [Commit 3](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/21f14e8e7b7f58c20fef53e7085d0b6756f33789): Plugin MVN.
+  - [Commit 4](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/7c6dbb4bafc78a919c4d03448b8f0423e8ce661f): Varias correciones de errores.
+  
+-----
+- 5 ficheros en los que se ha participado:
+
+1. 'src/main/java/com/daw/daw/controller/API/EventRestController.java`
+
+2. 'webApp/api-docs`
+
+3. 'src/main/java/com/daw/daw/controller/API/ComentRestController.java`
+
+4. 'src/main/java/com/daw/daw/service/EventService.java`
+
+5. 'src/main/java/com/daw/daw/service/CommentService.java`
