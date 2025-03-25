@@ -2,6 +2,9 @@ package com.daw.daw.controller.API;
 
 import java.util.Collection;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,11 +14,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.daw.daw.dto.EventDTO;
 import com.daw.daw.model.Event;
 import com.daw.daw.service.EventService;
+import com.daw.daw.repository.EventRepository;
+import com.daw.daw.dto.EventMapper;
 
 import io.swagger.v3.oas.annotations.Operation;
 /**
@@ -31,13 +37,26 @@ import io.swagger.v3.oas.annotations.Operation;
 public class EventRestController {
 
     @Autowired
+    private EventMapper eventMapper;
+
+    
+    @Autowired
+    private final EventRepository eventRepository;
+
+    EventRestController(EventRepository eventRepository) {
+        this.eventRepository = eventRepository;
+    }
+
+    @Autowired
     private EventService eventService;
 
-    @Operation (summary = "Get all the events")
-    @GetMapping("/")
-    public Collection<EventDTO> getAllEvents() {
-        return (eventService.findAll());
-    }
+    @Operation(summary = "Get all the events")
+@GetMapping("/")
+public Page<EventDTO> getAllEvents(@RequestParam(defaultValue = "0") int page,
+                                   @RequestParam(defaultValue = "3") int size) {
+    Pageable pageable = PageRequest.of(page, size);
+    return eventRepository.findAll(pageable).map(eventMapper::toDTO);
+}
 
     @Operation(summary = "Get a single event by its id")
     @GetMapping("/{id}")

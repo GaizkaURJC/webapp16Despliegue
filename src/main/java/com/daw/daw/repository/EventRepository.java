@@ -2,6 +2,9 @@ package com.daw.daw.repository;
 
 import java.util.List;
 import java.util.Optional;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -34,5 +37,7 @@ public interface EventRepository extends JpaRepository<Event, Long> {
     boolean existsByTitle(String title);
 
     Optional<Event> findByCategory(String category);
+
+    Page <Event> findAll(Pageable pageable);
 
 }
