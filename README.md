@@ -451,8 +451,26 @@ https://raw.githack.com/CodeURJC-DAW-2024-25/webapp16/38fb87958e54e49f696da5a37e
 
 -----
 ## *Instrucciones de Ejecución de la Aplicación Dockerizada*
+Para ejecutar correctamente la aplicación utilizando docker-compose.yml, es necesario cumplir con los siguientes requisitos previos:
+Tener instalado Docker y Docker Compose en el sistema.
+Contar con el archivo docker-compose.yml correctamente configurado.
 
+1. Levantar el contenedor de la base de datos MySQL ejecutando el siguiente comando: 
+```bash
+docker run --rm -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=sala_DB -p 3306:3306 --name mySQL_sala -d mysql:8.0.33 --max-allowed-packet=256M
+```
 
+2. Construir la imagen de la aplicación web desde el Dockerfile:
+```bash
+docker build -t webapp:latest .
+```
+
+3. Ejecutar la aplicación completa (base de datos + backend/frontend) mediante Docker Compose:
+```bash
+docker-compose up
+```
+
+Una vez que todos los servicios estén en funcionamiento, se podrá acceder a la aplicación desde el navegador web. La URL dependerá del puerto configurado en el contenedor web: **https://localhost:8443/**
 ------
 ## *Documentación para construcción de la imagen docker*
 
