@@ -24,6 +24,7 @@ import com.daw.daw.repository.EventRepository;
 import com.daw.daw.dto.EventMapper;
 
 import io.swagger.v3.oas.annotations.Operation;
+
 /**
  * This class is a REST controller for handling API requests related to events.
  * It provides endpoints for creating, retrieving, updating, and deleting event
@@ -39,7 +40,6 @@ public class EventRestController {
     @Autowired
     private EventMapper eventMapper;
 
-    
     @Autowired
     private final EventRepository eventRepository;
 
@@ -51,12 +51,12 @@ public class EventRestController {
     private EventService eventService;
 
     @Operation(summary = "Get all the events")
-@GetMapping("/")
-public Page<EventDTO> getAllEvents(@RequestParam(defaultValue = "0") int page,
-                                   @RequestParam(defaultValue = "3") int size) {
-    Pageable pageable = PageRequest.of(page, size);
-    return eventRepository.findAll(pageable).map(eventMapper::toDTO);
-}
+    @GetMapping("/")
+    public Page<EventDTO> getAllEvents(@RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "3") int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return eventRepository.findAll(pageable).map(eventMapper::toDTO);
+    }
 
     @Operation(summary = "Get a single event by its id")
     @GetMapping("/{id}")

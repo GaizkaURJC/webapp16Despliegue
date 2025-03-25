@@ -110,7 +110,7 @@ public class Security {
                 .requestMatchers(HttpMethod.PUT, "/api/v1/users/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.GET, "/api/v1/bookings/**").hasRole( "ADMIN")
                 .requestMatchers(HttpMethod.GET, "/api/v1/tickets/**").hasRole( "ADMIN")
-                .requestMatchers(HttpMethod.DELETE, "/api/**").hasRole("ADMIN") // Eliminaciones solo para ADMIN
+                .requestMatchers(HttpMethod.DELETE, "/api/**").hasRole("ADMIN") // delete only for ADMIN
             )
             .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     

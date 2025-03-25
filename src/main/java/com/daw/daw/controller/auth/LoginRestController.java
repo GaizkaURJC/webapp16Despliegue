@@ -56,7 +56,7 @@ public class LoginRestController {
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private JwtTokenProvider jwtTokenProvider; // Asegúrate de inyectar el JwtTokenProvider
+    private JwtTokenProvider jwtTokenProvider; // Ensure the injection of the JwtTokenProvider
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest request) {
