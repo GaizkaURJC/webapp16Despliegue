@@ -450,19 +450,33 @@ https://raw.githack.com/CodeURJC-DAW-2024-25/webapp16/38fb87958e54e49f696da5a37e
 ![practica2_diagrama_clases](https://github.com/user-attachments/assets/ab61ede4-e5ea-42f5-ab99-9d0774136ca9)
 
 -----
-## *Instrucciones de Ejecución de la Aplicación Dockerizada*
+## *Instrucciones de Ejecución de la Aplicación Dockerizada y para construcción de la imagen docker*
+Para ejecutar correctamente la aplicación utilizando docker-compose.yml, es necesario cumplir con los siguientes requisitos previos:
+Tener instalado Docker y Docker Compose en el sistema.
+Contar con el archivo docker-compose.yml correctamente configurado.
 
+1. Levantar el contenedor de la base de datos MySQL ejecutando el siguiente comando: 
+```bash
+docker run --rm -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=sala_DB -p 3306:3306 --name mySQL_sala -d mysql:8.0.33 --max-allowed-packet=256M
+```
 
-------
-## *Documentación para construcción de la imagen docker*
+2. Construir la imagen de la aplicación web desde el Dockerfile:
+```bash
+docker build -t webapp:latest .
+```
 
+3. Ejecutar la aplicación completa (base de datos + backend/frontend) mediante Docker Compose:
+```bash
+docker-compose up
+```
+Una vez que todos los servicios estén en funcionamiento, se podrá acceder a la aplicación desde el navegador web. La URL dependerá del puerto configurado en el contenedor web: **https://localhost:8443/**
 
 ------
 ## *Documentación para desplegar en la maquina virtual*
 
-# Instalación de Paquetes Requeridos
+### Instalación de Paquetes Requeridos
 
-## 1. Instalar Docker CE y Docker Compose
+### 1. Instalar Docker CE y Docker Compose
 
 Primero, asegúrate de que los repositorios estén actualizados y luego instala Docker y Docker Compose:
 
@@ -486,7 +500,7 @@ sudo apt-get install docker-ce docker-compose-plugin
 sudo docker --version && sudo docker compose version
 ```
 
-## 2. Instalar Maven
+### 2. Instalar Maven
 
 Instala Maven para compilar el proyecto:
 
@@ -495,9 +509,9 @@ sudo apt-get install maven -y
 mvn -version
 ```
 
-# Despliegue de la Aplicación
+### Despliegue de la Aplicación
 
-## 1. Clonar el Repositorio
+### 1. Clonar el Repositorio
 
 Clona el repositorio de GitHub:
 
@@ -506,7 +520,7 @@ git clone https://github.com/CodeURJC-DAW-2024-25/webapp16
 cd webapp16
 ```
 
-## 2. Construir el Proyecto Maven
+### 2. Construir el Proyecto Maven
 
 Compila el proyecto con Maven:
 
@@ -514,7 +528,7 @@ Compila el proyecto con Maven:
 mvn clean package -DskipTests
 ```
 
-## 3. Iniciar Contenedor MySQL
+### 3. Iniciar Contenedor MySQL
 
 Inicia un contenedor MySQL con Docker:
 
@@ -528,7 +542,7 @@ sudo docker run --rm \
   --max-allowed-packet=256M
 ```
 
-## 4. Construir Imagen Docker de la Aplicación
+### 4. Construir Imagen Docker de la Aplicación
 
 Construye la imagen Docker de la aplicación:
 
@@ -536,7 +550,7 @@ Construye la imagen Docker de la aplicación:
 sudo docker build -t webapp:latest .
 ```
 
-## 5. Iniciar Servicios con Docker Compose
+### 5. Iniciar Servicios con Docker Compose
 
 Inicia los servicios con Docker Compose:
 
@@ -551,5 +565,33 @@ sudo docker compose up
 [Enlace a la web](https://appWeb16.dawgis.etsii.urjc.es:443)
 ------
 ## *Participación de miembros*
+### Alejandro
+- Tareas:
+  1. API REST de las reservas (bookings).
+  2. Arreglo de la API REST de tickets.
+  3. Controlador API para el gráfico del porcentaje de personas de cada sexo que van a una fiesta.
+  4. Documentar y arreglar la indentacion del programa entero.
 
+------
+- 4 commits más significativos :
+Algunos commits no tienen toda la lógica o les falta un poco, pero son los principales.
+  - [Commit 1](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/b737705ddd4a99314f5eea711add58b466ebec2d): API de resrvas (luego se cambió el nombre a booking).
+  - [Commit 2](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/c2cf3f8d2e2b6a3f9f317b66cac0a45e2bd2dbb2): Arreglo de la API tickets.
+  - [Commit 3](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/ef8f1a210b35d137470f60d996a1ba4a91c11654): Controlador de la gráfica.
+  - [Commit 4](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/8c08d759cc7edf060bba8edc91607ef5719dad71): Documentación de todo el programa con la indentacion y comentarios corregidos.
+  
+-----
+- 5 ficheros en los que se ha participado:
+
+1. 'src/main/java/com/daw/daw/API/TicketRestController.java`
+
+2. 'src/main/java/com/daw/daw/API/StatisticsController.java`
+
+3. 'src/main/java/com/daw/daw/controller/MVC/ReservaMVCController.java`
+
+4. 'src/main/java/com/daw/daw/dto/BookingMapper.java`
+
+5. `src/main/resources/static/js/main.js`
+
+---
 
