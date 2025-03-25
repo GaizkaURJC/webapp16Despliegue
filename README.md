@@ -450,7 +450,7 @@ https://raw.githack.com/CodeURJC-DAW-2024-25/webapp16/38fb87958e54e49f696da5a37e
 ![practica2_diagrama_clases](https://github.com/user-attachments/assets/ab61ede4-e5ea-42f5-ab99-9d0774136ca9)
 
 -----
-## *Instrucciones de Ejecución de la Aplicación Dockerizada*
+## *Instrucciones de Ejecución de la Aplicación Dockerizada y para construcción de la imagen docker*
 Para ejecutar correctamente la aplicación utilizando docker-compose.yml, es necesario cumplir con los siguientes requisitos previos:
 Tener instalado Docker y Docker Compose en el sistema.
 Contar con el archivo docker-compose.yml correctamente configurado.
@@ -469,11 +469,7 @@ docker build -t webapp:latest .
 ```bash
 docker-compose up
 ```
-
 Una vez que todos los servicios estén en funcionamiento, se podrá acceder a la aplicación desde el navegador web. La URL dependerá del puerto configurado en el contenedor web: **https://localhost:8443/**
-------
-## *Documentación para construcción de la imagen docker*
-
 
 ------
 ## *Documentación para desplegar en la maquina virtual*
