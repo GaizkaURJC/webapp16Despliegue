@@ -3,11 +3,14 @@ package com.daw.daw.controller.API;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.Map;
 import java.util.HashMap;
-import com.daw.daw.repository.TicketRepository;
+
+import com.daw.daw.dto.TicketDTO;
+import com.daw.daw.service.TicketService;
 
 /**
  * This class is a REST controller for managing statistics.
@@ -19,17 +22,29 @@ import com.daw.daw.repository.TicketRepository;
 public class StatisticsController {
 
     @Autowired
-    private TicketRepository ticketRepository; // O el repositorio adecuado
+    private TicketService ticketService;
 
-    @GetMapping("/gender")
-    public ResponseEntity<Map<String, Long>> getGenderDistribution() {
-        long maleCount = ticketRepository.countByGender("Hombre");
-        long femaleCount = ticketRepository.countByGender("Mujer");
+    
 
-        Map<String, Long> genderDistribution = new HashMap<>();
-        genderDistribution.put("Hombre", maleCount);
-        genderDistribution.put("Mujer", femaleCount);
+    @GetMapping("/gender/{id}")
+public ResponseEntity<Map<String, Long>> getGenderDistribution(@PathVariable Long id) {
+    // Obtén el ticket por ID
+    TicketDTO ticket = ticketService.findById(id);
 
-        return ResponseEntity.ok(genderDistribution);
-    }
+    // Filtra los tickets por género
+    long maleCount = ticketService.findAll().stream()
+            .filter(t -> ticket.getGender().equalsIgnoreCase("Hombre") && t.getId().equals(id))
+            .count();
+
+    long femaleCount = ticketService.findAll().stream()
+            .filter(t -> ticket.getGender().equalsIgnoreCase("Mujer") && t.getId().equals(id))
+            .count();
+
+    // Construye la respuesta
+    Map<String, Long> genderDistribution = new HashMap<>();
+    genderDistribution.put("Hombre", maleCount);
+    genderDistribution.put("Mujer", femaleCount);
+
+    return ResponseEntity.ok(genderDistribution);
+}
 }

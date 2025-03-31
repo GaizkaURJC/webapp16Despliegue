@@ -28,10 +28,10 @@ import com.daw.daw.model.Ticket;
 public class TicketService {
 
     @Autowired
-    private TicketRepository tickets;
+    private TicketMapper ticketMapper;
 
     @Autowired
-    private TicketMapper ticketMapper;
+    private TicketRepository tickets;
 
     private Ticket toDomain(TicketDTO createRequestTicketDTO) {
         return ticketMapper.toDomain(createRequestTicketDTO);
@@ -87,4 +87,9 @@ public class TicketService {
         ticket.setId(id);
         return ticketMapper.toDTO(tickets.save(ticket));
     }
+
+    public long countByGender(String gender) {
+        return tickets.countByGender(gender);
+    }
+
 }

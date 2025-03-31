@@ -25,4 +25,9 @@ public interface TicketMapper {
     @Mapping(target = "id", ignore = true)
     Ticket toDomain(TicketDTO TicketDTO);
 
+    @Mapping(target = "id", ignore = true)
+    Ticket toDomain(TicketDTO ticketDTO, Long id);
+    
+
+
 }

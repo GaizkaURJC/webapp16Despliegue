@@ -40,22 +40,20 @@ public class EventRestController {
     @Autowired
     private EventMapper eventMapper;
 
-    @Autowired
-    private final EventRepository eventRepository;
+    
+    private final EventService eventService;
 
-    EventRestController(EventRepository eventRepository) {
-        this.eventRepository = eventRepository;
+    EventRestController(EventService eventService) {
+        this.eventService = eventService;
     }
-
-    @Autowired
-    private EventService eventService;
 
     @Operation(summary = "Get all the events")
     @GetMapping("/")
     public Page<EventDTO> getAllEvents(@RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "3") int size) {
         Pageable pageable = PageRequest.of(page, size);
-        return eventRepository.findAll(pageable).map(eventMapper::toDTO);
+        Page<EventDTO> eventPage = eventService.findAll(pageable).map(eventMapper::toDTO);
+        return eventPage;
     }
 
     @Operation(summary = "Get a single event by its id")

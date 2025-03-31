@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.daw.daw.model.Ticket;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * TicketRepository is an interface that extends JpaRepository to provide CRUD
@@ -35,5 +36,7 @@ public interface TicketRepository extends JpaRepository<Ticket, Long> {
     List<Ticket> findByCategory(String category);
 
     long countByGender(String gender);
+
+    Optional <Ticket> findById (Long id);
 
 }

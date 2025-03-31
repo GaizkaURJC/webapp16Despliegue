@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
 import com.daw.daw.dto.UserDTO;
@@ -59,19 +60,18 @@ import org.springframework.web.bind.annotation.PutMapping;
 @RequestMapping("/api/v1/users")
 public class UserRestController {
 
-    private final UserRepository userRepository;
 
     @Autowired
     private UserMapper userMapper;
 
     private final CSRFHandlerConfiguration CSRFHandlerConfiguration;
 
-    @Autowired
-    private UserService userService;
+    
+    private final  UserService userService;
 
-    UserRestController(CSRFHandlerConfiguration CSRFHandlerConfiguration, UserRepository userRepository) {
+    UserRestController(CSRFHandlerConfiguration CSRFHandlerConfiguration, UserService userService) {
         this.CSRFHandlerConfiguration = CSRFHandlerConfiguration;
-        this.userRepository = userRepository;
+        this.userService = userService;
     }
 
     @Operation (summary = "Get all the users")
@@ -89,9 +89,12 @@ public ResponseEntity<UserDTO> me(HttpServletRequest request) {
 
     @Operation(summary = "Get all users")
     @GetMapping("/")
-    public Page<UserDTO> getUsers(Pageable pageable) {
+    public Page<UserDTO> getUsers(@RequestParam(defaultValue = "0") int page,
+    @RequestParam(defaultValue = "3") int size) {
 
-        return userRepository.findAll(pageable).map(userMapper::toDTO);
+        Pageable pageable = PageRequest.of(page, size);
+        Page<UserDTO> userPage = userService.findAll(pageable).map(userMapper::toDTO);
+        return userPage;
     }
 
     @Operation(summary = "Get a single user by its id")

@@ -5,6 +5,8 @@ import java.util.Collection;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -12,6 +14,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.daw.daw.dto.EventDTO;
 import com.daw.daw.dto.EventMapper;
 import com.daw.daw.model.Event;
+import com.daw.daw.model.User;
 import com.daw.daw.repository.EventRepository;
 
 /**
@@ -30,6 +33,9 @@ import com.daw.daw.repository.EventRepository;
 public class EventService {
 
   @Autowired
+  private EventRepository eventRepository;
+
+  @Autowired
   private EventRepository events;
 
   @Autowired
@@ -38,6 +44,10 @@ public class EventService {
   public Collection<EventDTO> findAll() {
     return eventMapper.toDTOs(events.findAll());
   }
+
+  public Page<Event> findAll(Pageable pageable) {
+        return eventRepository.findAll(pageable);
+    }
 
   public EventDTO findById(Long id) {
     return eventMapper.toDTO(events.findById(id).orElseThrow());

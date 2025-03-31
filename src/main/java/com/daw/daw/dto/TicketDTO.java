@@ -23,4 +23,13 @@ public record TicketDTO(
         String title,
         String gender,
         String category) {
+
+        public Long getId() {
+                return id;
+        }
+
+        public String getGender() {
+                return gender;
+        }
+       
 }
