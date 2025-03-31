@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const ctx = document.getElementById('genderChart').getContext('2d');
 
     // Fetch data from the API
-    fetch('/api/statistics/gender-distribution')
+    fetch('/api/v1/stats/gender')
         .then(response => response.json())
         .then(data => {
             const maleCount = data['Hombre'] || 0;

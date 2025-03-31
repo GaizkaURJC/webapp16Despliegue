@@ -112,7 +112,7 @@ public class Security {
                 .requestMatchers(HttpMethod.GET, "/api/v1/tickets/**").hasAnyRole( "ADMIN", "USER")
                 .requestMatchers(HttpMethod.POST,"/api/v1/users/{id}/image").hasAnyRole( "ADMIN", "USER")
                 .requestMatchers(HttpMethod.PUT,"/api/v1/users/{id}/image").hasAnyRole( "ADMIN", "USER")
-
+                .requestMatchers(HttpMethod.GET,"/api/v1/stats/gender").permitAll()
                 .requestMatchers(HttpMethod.GET,"/api/v1/users/{id}/image").hasRole("ADMIN")
 
                 .requestMatchers(HttpMethod.DELETE, "/api/**").hasRole("ADMIN") // delete only for ADMIN

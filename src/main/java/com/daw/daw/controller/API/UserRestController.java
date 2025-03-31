@@ -152,7 +152,7 @@ public ResponseEntity<UserDTO> me(HttpServletRequest request) {
 
     @Operation(summary = "Replace a user image")
     @PutMapping("{id}/image")
-    public ResponseEntity<Object> replaceUserImage(@PathVariable Long id, @RequestBody MultipartFile imageFile)
+    public ResponseEntity<Object> replaceUserImage(@PathVariable Long id, @RequestParam MultipartFile imageFile)
             throws IOException {
 
         userService.replaceUserImage(id, imageFile.getInputStream(), imageFile.getSize());

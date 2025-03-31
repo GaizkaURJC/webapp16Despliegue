@@ -1,17 +1,25 @@
-version: '3.1'
+version: '3.8'
 
 services:
   webapp:
-    image: webapp:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "443:8443"
     depends_on:
       db:
         condition: service_healthy
+      redis:
+        condition: service_started
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/sala_DB
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: password
+      SPRING_PROFILES_ACTIVE: prod
+    restart: unless-stopped
+    networks:
+      - backend
 
   db:
     image: mysql:8.0.33
@@ -20,9 +28,43 @@ services:
       MYSQL_DATABASE: sala_DB
     ports:
       - "3307:3306"
-    command: --max-allowed-packet=256M
+    command: --max-allowed-packet=256M --default-authentication-plugin=mysql_native_password
     healthcheck:
-      test: ["CMD-SHELL", "mysqladmin ping -h localhost"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 10s
       timeout: 5s
       retries: 5
+    volumes:
+      - mysql_data:/var/lib/mysql
+    restart: unless-stopped
+    networks:
+      - backend
+
+  redis:
+    image: redis:7.2-alpine
+    ports:
+      - "6379:6379"
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+    restart: unless-stopped
+    networks:
+      - backend
+
+  adminer:
+    image: adminer:latest
+    ports:
+      - "8081:8080"
+    restart: unless-stopped
+    networks:
+      - backend
+
+volumes:
+  mysql_data:
+  redis_data:
+
+networks:
+  backend:
+    driver: bridge

@@ -15,13 +15,13 @@ import com.daw.daw.repository.TicketRepository;
  */
 
 @RestController
-@RequestMapping("/api/statistics")
+@RequestMapping("/api/v1/stats")
 public class StatisticsController {
 
     @Autowired
     private TicketRepository ticketRepository; // O el repositorio adecuado
 
-    @GetMapping("/gender-distribution")
+    @GetMapping("/gender")
     public ResponseEntity<Map<String, Long>> getGenderDistribution() {
         long maleCount = ticketRepository.countByGender("Hombre");
         long femaleCount = ticketRepository.countByGender("Mujer");
