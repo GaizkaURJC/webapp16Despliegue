@@ -50,11 +50,13 @@ public class Ticket {
 
     private String category;
 
+    private Long eventId;
+
     public Ticket() {
     }
 
     public Ticket(String userEmail, String dni, String ticketName, String title, String gender,
-            String userOwner, String category, LocalDateTime ticketDate) {
+            String userOwner, String category, Long eventId, LocalDateTime ticketDate) {
         this.userEmail = userEmail;
         this.dni = dni;
         this.ticketName = ticketName;
@@ -62,6 +64,7 @@ public class Ticket {
         this.gender = gender;
         this.userOwner = userOwner;
         this.category = category;
+        this.eventId = eventId;
         this.ticketDate = ticketDate;
     }
 
@@ -79,6 +82,14 @@ public class Ticket {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getEventId() {
+        return eventId;
+    }
+
+    public void setEventId(Long eventId) {
+        this.eventId = eventId;
     }
 
     public String getUserEmail() {

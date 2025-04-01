@@ -35,7 +35,7 @@ public class TicketRestController {
 
     @Autowired
     private TicketService ticketService;
-    
+
     @Operation(summary = "Get all the tickets")
 
     @GetMapping("/")
@@ -48,7 +48,7 @@ public class TicketRestController {
     public TicketDTO getTicketById(@PathVariable Long id) {
         return ticketService.findById(id);
     }
-    
+
     @Operation(summary = "Get all the tickets of a certain category")
 
     @GetMapping("/category/{category}")

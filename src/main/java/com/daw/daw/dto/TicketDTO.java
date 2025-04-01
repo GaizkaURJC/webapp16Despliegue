@@ -14,15 +14,16 @@ import java.time.LocalDateTime;
  */
 
 public record TicketDTO(
-        Long id,
-        String userEmail,
-        String userOwner,
-        String dni,
-        String ticketName,
-        LocalDateTime ticketDate,
-        String title,
-        String gender,
-        String category) {
+                Long id,
+                String userEmail,
+                String userOwner,
+                String dni,
+                String ticketName,
+                LocalDateTime ticketDate,
+                String title,
+                String gender,
+                String category,
+                Long eventId) {
 
         public Long getId() {
                 return id;
@@ -31,5 +32,4 @@ public record TicketDTO(
         public String getGender() {
                 return gender;
         }
-       
 }

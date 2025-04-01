@@ -208,7 +208,7 @@
             <div class="container6">
                 <canvas id="genderChart" width="400" height="400"></canvas>
             </div>
-            
+
         </div>
     </section>
     <p id="separador"></p>
@@ -242,10 +242,11 @@
                         </div>
                         <input type="hidden" name="eventName" value="{{event.title}}">
                         <input type="hidden" name="category" value="{{event.category}}">
+                        <input type="hidden" name="eventId" value="{{event.id}}">
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-success">Terminar compra </button>
-                        <input type="hidden"  name="_csrf" value="{{token}}">
+                        <input type="hidden" name="_csrf" value="{{token}}">
 
                     </div>
                 </form>
@@ -263,30 +264,30 @@
                     labels: ['Hombre', 'Mujer'],
                     datasets: [{
                         data: [{{ maleCount }}, {{ femaleCount }}],
-                        backgroundColor: [
-                            '#f2f526',
-                            'black'
-                        ],
-                        borderColor: [
-                            '#f2f526',
-                            'black'
-                        ],
-                        borderWidth: 1
-                    }]
+                backgroundColor: [
+                    '#f2f526',
+                    'black'
+                ],
+                borderColor: [
+                    '#f2f526',
+                    'black'
+                ],
+                borderWidth: 1
+            }]
                 },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            position: 'bottom',
-                        },
-                        title: {
-                            display: true,
-                            text: 'Distribucion por genero'
-                        }
-                    }
+            options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                },
+                title: {
+                    display: true,
+                    text: 'Distribucion por genero'
                 }
+            }
+        }
             });
         });
     </script>

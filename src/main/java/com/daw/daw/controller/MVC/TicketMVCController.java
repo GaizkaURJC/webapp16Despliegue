@@ -39,6 +39,7 @@ public class TicketMVCController {
             @RequestParam("gender") String genero,
             @RequestParam("eventName") String nombreEvento,
             @RequestParam("category") String categoria,
+            @RequestParam("eventId") Long idEvent,
             HttpServletResponse response) throws IOException {
 
         // Is the user logged in?
@@ -61,7 +62,7 @@ public class TicketMVCController {
             user = ((User) principal);
         }
 
-        Ticket ticket = new Ticket(username, DNI, nombreTicket, nombreEvento, genero, username, categoria,
+        Ticket ticket = new Ticket(username, DNI, nombreTicket, nombreEvento, genero, username, categoria, idEvent,
                 LocalDateTime.now());
         ticketRepository.save(ticket);
 

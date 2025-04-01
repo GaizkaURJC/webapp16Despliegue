@@ -247,10 +247,11 @@
                                 </div>
                                 <input type="hidden" name="eventName" value="{{event.title}}">
                                 <input type="hidden" name="category" value="{{event.category}}">
+                                <input type="hidden" name="eventId" value="{{event.id}}">
                             </div>
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-success">Terminar compra</button>
-                                <input type="hidden"  name="_csrf" value="{{token}}">
+                                <input type="hidden" name="_csrf" value="{{token}}">
                             </div>
                         </form>
                     </div>
@@ -323,7 +324,7 @@
                             <textarea class="form-control" id="inputComentario" name="coment" rows="3"></textarea>
                         </div>
                         <button type="submit" class="btn btn-publicar">Publicar</button>
-                        <input type="hidden"  name="_csrf" value="{{token}}">
+                        <input type="hidden" name="_csrf" value="{{token}}">
 
                     </form>
                 </div>

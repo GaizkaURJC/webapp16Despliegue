@@ -24,27 +24,25 @@ public class StatisticsController {
     @Autowired
     private TicketService ticketService;
 
-    
-
     @GetMapping("/gender/{id}")
-public ResponseEntity<Map<String, Long>> getGenderDistribution(@PathVariable Long id) {
-    // Obtén el ticket por ID
-    TicketDTO ticket = ticketService.findById(id);
+    public ResponseEntity<Map<String, Long>> getGenderDistribution(@PathVariable Long id) {
+        // Obtén el ticket por ID
+        TicketDTO ticket = ticketService.findById(id);
 
-    // Filtra los tickets por género
-    long maleCount = ticketService.findAll().stream()
-            .filter(t -> ticket.getGender().equalsIgnoreCase("Hombre") && t.getId().equals(id))
-            .count();
+        // Filtra los tickets por género
+        long maleCount = ticketService.findAll().stream()
+                .filter(t -> ticket.getGender().equalsIgnoreCase("Hombre") && t.getId().equals(id))
+                .count();
 
-    long femaleCount = ticketService.findAll().stream()
-            .filter(t -> ticket.getGender().equalsIgnoreCase("Mujer") && t.getId().equals(id))
-            .count();
+        long femaleCount = ticketService.findAll().stream()
+                .filter(t -> ticket.getGender().equalsIgnoreCase("Mujer") && t.getId().equals(id))
+                .count();
 
-    // Construye la respuesta
-    Map<String, Long> genderDistribution = new HashMap<>();
-    genderDistribution.put("Hombre", maleCount);
-    genderDistribution.put("Mujer", femaleCount);
+        // Construye la respuesta
+        Map<String, Long> genderDistribution = new HashMap<>();
+        genderDistribution.put("Hombre", maleCount);
+        genderDistribution.put("Mujer", femaleCount);
 
-    return ResponseEntity.ok(genderDistribution);
-}
+        return ResponseEntity.ok(genderDistribution);
+    }
 }

@@ -70,6 +70,7 @@ public class DataBaseInitializer {
                                 Arrays.asList("USER"), defUserImg);
                 LocalDateTime newDate = LocalDateTime.of(2025, 3, 15, 14, 30); // Año, Mes, Día, Hora, Minutos
                 Ticket ticket = new Ticket("user@user.com", "12345678L", "Nombre", "Melendi", "Hombre", "user", "rock",
+                                2L,
                                 newDate);
 
                 if (ticketRepository.findAll().isEmpty()) {
