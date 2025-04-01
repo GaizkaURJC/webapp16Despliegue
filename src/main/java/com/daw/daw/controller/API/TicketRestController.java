@@ -105,7 +105,7 @@ public class TicketRestController {
     }
 
     @Operation(summary = "Get all tickets owned by user")
-    @GetMapping("/getMyTickets")
+    @GetMapping("/MyTickets")
     public Collection<TicketDTO> getMyTickets(HttpServletRequest request) {
         Principal principal = request.getUserPrincipal();
         if (principal != null) {
@@ -116,7 +116,7 @@ public class TicketRestController {
     }
 
     @Operation(summary = "Deleta a ticket owned by user")
-    @DeleteMapping("/deleteMyTicket/{id}")
+    @DeleteMapping("/MyTicket/{id}")
     public void deleteMyTicket(@PathVariable Long id, HttpServletRequest request) {
         Principal principal = request.getUserPrincipal();
         if (principal != null && ticketService.findById(id).userOwner().equals(principal.getName())) {
