@@ -41,7 +41,6 @@ public class UserService {
 
     private final PasswordEncoder passwordEncoder;
 
-    private final CreateUserMapperImpl createUserMapperImpl;
 
     private final AuthenticationManager authenticationManager;
 
@@ -61,11 +60,10 @@ public class UserService {
     }
 
     UserService(CSRFHandlerConfiguration CSRFHandlerConfiguration, AuthenticationManager authenticationManager,
-            CreateUserMapperImpl createUserMapperImpl, PasswordEncoder passwordEncoder,
+            PasswordEncoder passwordEncoder,
             DaoAuthenticationProvider authenticationProvider, SecurityFilterChain apiFilterChain) {
         this.authenticationManager = authenticationManager;
         this.CSRFHandlerConfiguration = CSRFHandlerConfiguration;
-        this.createUserMapperImpl = createUserMapperImpl;
         this.passwordEncoder = passwordEncoder;
         this.authenticationProvider = authenticationProvider;
         this.apiFilterChain = apiFilterChain;
