@@ -137,6 +137,8 @@ public class Security {
                 .requestMatchers("/users/authenticate", "/users/create", "/favicon/**", "/events/**").permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .requestMatchers("/perfil/**", "/paginaperfil/**", "/users/**","/comments/**").hasAnyRole("USER", "ADMIN")
+                //SPA
+                .requestMatchers("/spa/**").permitAll()
                 .anyRequest().permitAll());
         http.formLogin(formLogin -> formLogin
                 .loginPage("/login")
