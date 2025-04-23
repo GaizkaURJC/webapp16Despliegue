@@ -1,0 +1,18 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+router-outlet {
+    flex: 1; /* Esto asegura que el contenido ocupe el espacio restante */
+}
+
+app-footer {
+    margin-top: auto; /* Empuja el footer hacia abajo */
+}
