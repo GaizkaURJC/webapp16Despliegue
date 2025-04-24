@@ -10,10 +10,19 @@ a{
 h2{
     margin: 0;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    
+}
+h6{
+    margin: 0;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+}
+p{
+    font-size: 20px;
 }
 .subcontainer h6{
     margin: 0;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family:'Poppins', sans-serif;
 }
 .site-footer-top{
     margin-top: 0;
@@ -32,6 +41,12 @@ h2{
     border-top-right-radius: 20px;
 }
 
+.site-footer-top h2{
+    font-size: 40px;
+    margin: 0;
+    font-family:'Poppins', sans-serif;
+    color: #232323;
+}
 .social-icon {
     list-style: none;
     padding: 0;
@@ -84,12 +99,18 @@ h2{
     margin-top:15px;
 }
 .copyright{
-    margin: 0;
+    margin-top: 10px;
     padding: 0;
     font-size: 14px;
     color: #fff;
     text-align: center;
     margin-top: 5px;
+    background-color: black;
+    padding: 10px;
+}
+.copyright h6{
+    margin-top: 10px;
+    font-size: 10px;
 }
 .ratio{
     margin-top:10px
@@ -106,6 +127,7 @@ h2{
     text-align: left;
     font-size:14px ;
     color: #f2f526;
+    font-size: 15px;
 }
 .sub2 h6{
     color: #f2f526;
@@ -119,9 +141,9 @@ h2{
 
 }
 .sub2 ul li{
-    margin: 0;
+    margin: 5px;
     padding: 10;
-    font-size: 14px;
+    font-size: 20px;
     color: #fff;
     text-align: center;
     margin-top: 5px;
@@ -129,8 +151,10 @@ h2{
 .sub2 ul li a{
     text-decoration: none;
     color: #fff;
+    margin: 10px;
 }
 .sub3 h6{
     color: #f2f526;
     font-size: 14px;
+    font-size: 15px;
 }
