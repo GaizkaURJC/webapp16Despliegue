@@ -1,20 +1,21 @@
 <section class="header">
-    <video class="video"  src="../../../assets/videos/VIDEO-PARA-WEB_sin-musica.mp4" autoplay loop muted playsinline>
-    </video>
+    <video class="video" type="video" src="/assets/videos/VIDEO-PARA-WEB_sin-musica.mp4" autoplay loop muted playsinline></video>
     <div class="top-site-bar">
         <ul>
-        @for (item of items; track $index) {<li>
-            <a href="{{ item.link }}" target="_blank" rel="noopener noreferrer">
-                {{ item.name }}
-            </a>
-        </li>}
+            @for (item of items; track $index) {
+                <li>
+                    <a href="{{ item.link }}" target="_blank" rel="noopener noreferrer">
+                        {{ item.name }}
+                    </a>
+                </li>
+            }
         </ul>
     </div>
     <div class="container-titulo">
         <div class="texto-principal">
             <h1>TEATRO DAW</h1>
-            <hr class="line-title" href="#"/>
-            <p>El mejor lugar para disfrutar de la buena musica y noche madrileña</p>
+            <hr class="line-title" />
+            <p>El mejor lugar para disfrutar de la buena música y noche madrileña</p>
         </div>
     </div>
 </section>

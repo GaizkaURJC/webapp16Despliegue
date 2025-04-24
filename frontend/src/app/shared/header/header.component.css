@@ -25,6 +25,7 @@ a{
     align-items: center; 
     text-align: right;
     position: relative; /* Necesario para el posicionamiento absoluto del video */  
+    z-index: 1001; /* Asegura que esté por encima del video */
 }
 .top-site-bar a:hover {
     color: #f2f526;
@@ -34,19 +35,22 @@ a{
     position: absolute;
     top: 0;
     left: 0;
+    height: 90vh;
     width: 100%;
-    max-height: 85vh;
+    height: 95vh;
     object-fit: cover; /* Asegura que el video cubra todo el espacio */
     z-index: -1; /* Coloca el video detrás del contenido */
 }
 .header{
-    position: sticky;
+    position: relative;
     width: 100%;
     top: 0;
     left: 0;
-    height: 85vh;
+    height: 95vh;
     overflow: hidden;
-    z-index: 1;
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    padding:  0; /* Espaciado interno */
+    margin: 0; /* Elimina el margen */
 }
 .container-titulo{
     position: absolute;
@@ -54,6 +58,7 @@ a{
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
+    margin: 0;
 }
 .texto-principal {
     width: 100%;
