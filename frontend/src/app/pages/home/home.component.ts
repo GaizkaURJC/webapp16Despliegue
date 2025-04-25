@@ -19,8 +19,8 @@ export class HomeComponent implements OnInit {
   items = ['Item 1', 'Item 2', 'Item 3'];
   concerTypes = [
     "Todos", "Rock","Trap","Pop","Rap","Flamenco"]
-  parties: EventWhithImageDTO[] = [];
-  concerts: EventWhithImageDTO[] = [];
+  parties: EventWithImageDTO[] = [];
+  concerts: EventWithImageDTO[] = [];
   loading = true;
 
   constructor(private eventService: EventService) { }
