@@ -9,7 +9,7 @@
         <div class="party-container">
           <div class="party">
             <div class="party-img">
-              <img src="assets/img/ochoymedio.jpg" alt="Party 1" />
+              <img src="assets/img/ochoymedio.jpg" alt="Party 1" class="img"/>
             </div>
             <div class="party-desc">
               <h3>Ocho&Medio</h3>
@@ -22,7 +22,42 @@
         </div>
     </div>
     <div class="concert-container">
-        <!-- Contenido adicional -->
+          <div class="title">
+              <h2>Conciertos</h2>
+              <hr class="line-title" />
+              <p>Los mejores conciertos de la ciudad, en un solo lugar!</p>
+          </div>
+        <div class="concerts">
+            <div class="filter">
+              @for (type of concerTypes; track $index) {
+                <ul>
+                  <li class="filter-item" >
+                    <span>{{type}}</span>
+                  </li>
+                </ul>
+              }
+            </div>
+            <div class="concert-content">
+              <div class="available-concerts">
+                <div class="concert-content">
+                  <img src="assets/img/cruzcafune.jpg" alt="">
+                    <div class="concert-info">
+                      <a href="#">CRUZ CAFUNE</a>
+                      <a href="#">MORE DETAILS(icono enlace)</a>
+                    </div>
+                </div>
+                <div class="concert-content">
+                  <img src="assets/img/cruzcafune.jpg" alt="">
+                </div>
+                <div class="concert-content">
+                  <img src="assets/img/cruzcafune.jpg" alt="">
+                </div>
+                <div class="concert-content">
+                  <img src="assets/img/cruzcafune.jpg" alt="">
+                </div>
+              </div>
+            </div>
+        </div>
     </div>
     <div class="event-container">
         <!-- Contenido adicional -->

@@ -13,4 +13,7 @@ export class HomeComponent {
   // Por ejemplo, puedes tener un título o una lista de elementos para mostrar
   title2 = 'Home Page';
   items = ['Item 1', 'Item 2', 'Item 3'];
+  concerTypes = [
+    "Todos", "Rock","Trap","Pop","Rap","Flamenco"]
+
 }
