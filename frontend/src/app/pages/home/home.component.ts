@@ -14,6 +14,6 @@ export class HomeComponent {
   title2 = 'Home Page';
   items = ['Item 1', 'Item 2', 'Item 3'];
   concerTypes = [
-    "Todos", "Rock","Trap","Pop","Rap","Flamenco"]
+    "Todos", "Rock", "Trap", "Pop", "Rap", "Flamenco"]
 
 }

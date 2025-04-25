@@ -1,7 +1,10 @@
 .principal {
-    margin: 0px; /* Asegura que el contenido no se superponga con el header */
-    overflow: visible; /* Permite que el contenido fluya normalmente */
-    height: auto; /* Elimina la altura fija */
+    margin: 0px;
+    /* Asegura que el contenido no se superponga con el header */
+    overflow: visible;
+    /* Permite que el contenido fluya normalmente */
+    height: auto;
+    /* Elimina la altura fija */
     padding-top: 1px;
     padding: 0px;
 }
@@ -12,28 +15,33 @@
     display: flex;
     flex-direction: column;
 }
-.title{
+
+.title {
     background-color: rgb(12, 12, 12);
     margin: 0;
     padding: 10;
 }
+
 .title h2 {
     font-size: 36px;
     color: #ffffff;
     font-family: "Poppins", sans-serif;
     font-weight: 600;
 }
-.title p{
+
+.title p {
     font-size: 25px;
     color: #f2f526;
     font-family: "Poppins", sans-serif;
 }
+
 .line-title {
     width: 70px;
     border: 5px solid #f2f526;
     margin: 10px auto;
 }
-.party-container{
+
+.party-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -41,8 +49,10 @@
     gap: 20px;
 
     min-height: 100vh;
-    background-color: rgb(12, 12, 12);}
-.party{
+    background-color: rgb(12, 12, 12);
+}
+
+.party {
     display: row;
     justify-content: center;
     align-items: center;
@@ -51,11 +61,13 @@
     border-radius: 20px;
     color: white;
 }
-.party:hover{
+
+.party:hover {
     width: 405px;
     height: 590px;
 }
-.party-button{
+
+.party-button {
     color: black;
     border: none;
     padding: 10px 20px;
@@ -65,29 +77,33 @@
     font-family: "Poppins", sans-serif;
     margin-bottom: 20px;
 }
-.btn{
+
+.btn {
     background-color: #f2f526;
     color: black;
     height: 60px;
     width: 100px;
     border-radius: 15%;
 }
-.btn:hover{
+
+.btn:hover {
     background-color: #ffffff;
     color: #000000;
     transition: 0.3s;
     height: 61px;
     width: 110px;
 }
-.img{
+
+.img {
     border-radius: 10px;
     height: 80px;
     margin-top: 20px;
     width: 90%;
     height: 50%;
 }
+
 /* ------------CONCERT CSS ------------------ */
-.concert-container{
+.concert-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -98,7 +114,8 @@
     background-color: rgb(12, 12, 12);
     text-align: center;
 }
-.filter{
+
+.filter {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -116,54 +133,72 @@
     padding-right: 5%;
     max-height: 50px;
 }
-.filter span{
+
+.filter span {
     color: Black;
     font-size: 20px;
     font-weight: 500;
     text-decoration: none;
     transition: all 0.1s ease-in-out;
 }
-.filter span:hover{
+
+.filter span:hover {
     color: #989898e5;
-    text-decoration:solid;
+    text-decoration: solid;
 }
-.filter ul{
+
+.filter ul {
     list-style: none;
     padding: 10px;
     display: flex;
     justify-content: center;
     gap: 10px;
 }
-.filter li{
+
+.filter li {
     margin-right: 25px;
 }
+
 .concert-content {
-    display:flex; /* Activa Flexbox */
-    flex-direction: row; /* Alinea los elementos en una fila */
-    align-items: center; /* Centra los elementos verticalmente */
-    justify-content: center; /* Centra los elementos horizontalmente */
-    flex-wrap: wrap; /* Permite que los elementos se ajusten si no caben en una fila */
-    gap: 20px; /* Espaciado entre los elementos */
-    padding: 5px; /* Espaciado interno opcional */
+    display: flex;
+    /* Activa Flexbox */
+    flex-direction: row;
+    /* Alinea los elementos en una fila */
+    align-items: center;
+    /* Centra los elementos verticalmente */
+    justify-content: center;
+    /* Centra los elementos horizontalmente */
+    flex-wrap: wrap;
+    /* Permite que los elementos se ajusten si no caben en una fila */
+    gap: 20px;
+    /* Espaciado entre los elementos */
+    padding: 5px;
+    /* Espaciado interno opcional */
     background-color: #f2f526e5;
     border-radius: 20px;
-    margin: 0 auto; /* Centra el contenedor */
+    margin: 0 auto;
+    /* Centra el contenedor */
 }
-.concert-content img{
-    width: 100%; /* Ajusta el ancho de la imagen al 100% del contenedor */
-    height: auto; /* Mantiene la proporción de la imagen */
+
+.concert-content img {
+    width: 100%;
+    /* Ajusta el ancho de la imagen al 100% del contenedor */
+    height: auto;
+    /* Mantiene la proporción de la imagen */
     border-radius: 20px;
-    max-width: 300px; /* Ancho máximo para evitar que se estire demasiado */
-    max-height: 300px; /* Altura máxima para evitar que se estire demasiado */
+    max-width: 300px;
+    /* Ancho máximo para evitar que se estire demasiado */
+    max-height: 300px;
+    /* Altura máxima para evitar que se estire demasiado */
 }
-.concert-info{
+
+.concert-info {
     background: rgba(0, 0, 0, 0.5);
     color: #fff;
     text-align: center;
     opacity: 0;
     /* Inicialmente oculto */
-    position: absolute
-    ;
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
@@ -178,21 +213,28 @@
     /* Transición suave */
     z-index: 11111;
 }
-.concert-info a{
-    color:white;
+
+.concert-info a {
+    color: white;
     text-decoration: none;
 }
-.available-concerts:hover .concert-info{
+
+.available-concerts:hover .concert-info {
     opacity: 1;
 }
+
 .available-concerts {
-    position: relative; /* Asegura que los elementos hijos absolutos se posicionen dentro de este contenedor */
+    position: relative;
+    /* Asegura que los elementos hijos absolutos se posicionen dentro de este contenedor */
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden; /* Oculta cualquier contenido que sobresalga */
-    border-radius: 20px; /* Opcional: coincide con el borde de la imagen */
+    overflow: hidden;
+    /* Oculta cualquier contenido que sobresalga */
+    border-radius: 20px;
+    /* Opcional: coincide con el borde de la imagen */
 }
+
 .load-more {
     display: flex;
     align-items: center;
@@ -216,13 +258,15 @@
     text-decoration: none;
     font-family: "Poppins", sans-serif;
 }
+
 .load-more:hover {
     background-color: rgb(38, 35, 35);
     color: #f2f526;
     transform: scale(1.03);
 }
+
 /*------------------EVENT CSS------------------*/
-.event-container{
+.event-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -233,6 +277,7 @@
     min-height: 100vh;
     background-color: rgb(12, 12, 12);
 }
+
 .form {
     display: flex;
     flex-direction: column;
@@ -248,6 +293,7 @@
     min-width: 600px;
     margin-bottom: 150px;
 }
+
 .title2 {
     font-size: 28px;
     font-weight: 900;
@@ -258,6 +304,7 @@
     padding-left: 30px;
     color: #000000;
 }
+
 .title2::before {
     width: 18px;
     height: 18px;
@@ -279,6 +326,7 @@
     left: 0px;
     background-color: #000000;
 }
+
 .message,
 .signin {
     color: rgba(0, 0, 0, 0.7);
@@ -369,6 +417,7 @@
         opacity: 0;
     }
 }
+
 .form-control {
     display: block;
     width: 90%;
@@ -386,17 +435,19 @@
     background-color: #fff;
 
 }
-.date{
+
+.date {
     background-color: white;
     color: black;
     width: 30%;
     margin-left: 0px;
-    padding:  05px 05px ;
+    padding: 05px 05px;
     outline: 0;
     border: 1px solid rgba(105, 105, 105, 0.397);
     border-radius: 10px;
     text-align: center;
 }
+
 /*---------------------------------------
     css para el carrusel
 -----------------------------------------*/
@@ -426,6 +477,7 @@
         background-position: 0% 50%;
     }
 }
+
 /*---------------------------------------
     css para el formulario
 -----------------------------------------*/
@@ -485,5 +537,3 @@
 .form-label {
     color: white;
 }
-
-

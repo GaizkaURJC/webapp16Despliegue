@@ -1,0 +1,30 @@
+<div class="modal-header">
+    <h3 class="modal-title">Datos para la Entrada</h3>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss()"></button>
+</div>
+
+<div class="modal-body">
+    <form (ngSubmit)="submitForm()">
+        <div class="mb-3">
+            <label class="form-label">Nombre completo</label>
+            <input type="text" class="form-control" [(ngModel)]="ticketName" name="ticketName" required />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">DNI</label>
+            <input type="text" class="form-control" [(ngModel)]="dni" name="dni" required />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Género</label>
+            <select class="form-select" [(ngModel)]="gender" name="gender">
+                <option value="Hombre">Hombre</option>
+                <option value="Mujer">Mujer</option>
+                <option value="Otro">Otro</option>
+            </select>
+        </div>
+    </form>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss()">Cancelar</button>
+    <button type="submit" class="btn btn-success" (click)="submitForm()">Terminar compra</button>
+</div>
