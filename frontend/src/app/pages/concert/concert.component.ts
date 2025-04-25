@@ -12,7 +12,7 @@ import { HeaderComponent } from '../../shared/header/header.component';
     HeaderComponent
   ],
   templateUrl: './concert.component.html',
-  styleUrl: './concert.component.css'
+  styleUrls: ['./concert.component.css']
 })
 export class ConcertComponent {
   imgUrl = "assets/img/concertpek.jpg";

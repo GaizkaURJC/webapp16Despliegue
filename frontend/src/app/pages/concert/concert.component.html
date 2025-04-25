@@ -9,69 +9,7 @@
       </ul>
     </div>
   </nav>
-  
-  <!-- Login Modal -->
-  <div class="modal fade" id="modalLogin" tabindex="-1" aria-labelledby="modalLogin" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3 class="modal-title" id="titulo-login">Iniciar sesión</h3>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="mb-3">
-              <label class="form-label">Correo electrónico</label>
-              <input type="email" class="form-control" [(ngModel)]="loginData.email" name="emailLogin">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Contraseña</label>
-              <input type="password" class="form-control" [(ngModel)]="loginData.password" name="passwordLogin">
-            </div>
-            <div class="d-flex align-items-center margenGrande">
-              <button type="submit" class="btn btn-login me-2">Confirmar</button>
-              <p>
-                <a href="#" data-bs-toggle="modal" data-bs-target="#modalSingUp">
-                  <span style="color: white;">Si aún no tienes cuenta,</span> Regístrate aquí
-                </a>
-              </p>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Registro Modal -->
-  <div class="modal fade" id="modalSingUp" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3 class="modal-title">Registrarse</h3>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="mb-3"><label class="form-label">Nombre</label>
-              <input type="text" class="form-control" name="name">
-            </div>
-            <div class="mb-3"><label class="form-label">Correo electrónico</label>
-              <input type="email" class="form-control" name="email">
-            </div>
-            <div class="mb-3"><label class="form-label">Teléfono</label>
-              <input type="text" class="form-control" name="telefono">
-            </div>
-            <div class="mb-3"><label class="form-label">Contraseña</label>
-              <input type="password" class="form-control" name="password">
-            </div>
-            <input type="checkbox" name="terminos" required> Acepto los términos<br>
-            <input type="checkbox" name="datos"> Permito uso de mis datos
-            <p><button type="submit" class="btn btn-login">Confirmar</button></p>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
+ 
   
   <!-- CONCERT SECTION -->
   <section class="section-1">
@@ -92,6 +30,8 @@
     </div>
   </section>
   
+  <div class="content-container">
+    
   <!-- DETALLES DEL CONCIERTO -->
   <section class="section-2">
     <div class="container-section2">
@@ -127,10 +67,10 @@
         <div class="container-concert-description">
           <p>{{ event.description }}</p>
         </div>
-        <img class="imgconcert" [src]="'assets/imgEvent/' + event.id" alt="concierto1">
+        <img class="imgconcert" [src]="imgUrl" alt="concierto1">
       </div>
   
-      <!-- Modal compra -->
+      <!-- Modal compra 
       <div class="modal fade" id="modalCompra" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
@@ -163,7 +103,7 @@
             </form>
           </div>
         </div>
-      </div>
+      </div>-->
     </div>
   </section>
   
@@ -187,18 +127,4 @@
     </div>
   </section>
   
-  <!-- Modal comentario -->
-  <div class="modal fade" id="modalComentario" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3 class="modal-title">Añadir comentario</h3>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-        </div>
-        <div class="modal-body">
-          <!-- Aquí se colocará el formulario de comentario -->
-        </div>
-      </div>
-    </div>
   </div>
-  
