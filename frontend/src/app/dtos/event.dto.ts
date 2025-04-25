@@ -6,6 +6,6 @@ export interface EventDTO{
     category: string;
 
 }
-export interface EventWhithImageDTO extends EventDTO{
+export interface EventWithImageDTO extends EventDTO{
     image: string;
 }

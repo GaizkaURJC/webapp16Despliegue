@@ -2,6 +2,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { HomeComponent } from './pages/home/home.component'; // Ajusta esta ruta según tu estructura real
 import { ErrorComponent } from './shared/error/error.component'; //
+import {  HttpClientModule } from '@angular/common/http';
 //  Ajusta esta ruta según tu estructura real
 export const routes: Routes = [
 
@@ -10,13 +11,5 @@ export const routes: Routes = [
       { path: 'error', component: ErrorComponent }, // Respuesta a /new/error
   { path: '**', redirectTo: 'error' } // Redirige rutas no encontradas
 ];
-@NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true })],
-  exports: [RouterModule],
-  declarations:[
-                
-                ], // Asegúrate de declarar los componentes aquí si no son standalone
-  providers: [],
-  bootstrap:[] // Puedes agregar servicios aquí si es necesario
-})
+
 export class AppRoutingModule { }

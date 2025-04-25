@@ -1,14 +1,13 @@
-import { EventWhithImageDTO } from './../../dtos/event.dto';
+import { EventWithImageDTO } from './../../dtos/event.dto';
 import { Component, OnInit } from '@angular/core';
-import { HeaderComponent } from '../../shared/header/header.component';
 import { CommonModule } from '@angular/common';
 import {EventService} from '../../services/event.service';
 import { EventDTO } from '../../dtos/event.dto';
 import { RouterModule } from '@angular/router';
-
+import { HeaderComponent } from '../../shared/header/header.component';
 @Component({
   standalone: true,
-  imports: [HeaderComponent,CommonModule,RouterModule],
+  imports: [CommonModule,RouterModule,HeaderComponent],
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
@@ -20,8 +19,8 @@ export class HomeComponent implements OnInit {
   items = ['Item 1', 'Item 2', 'Item 3'];
   concerTypes = [
     "Todos", "Rock","Trap","Pop","Rap","Flamenco"]
-  parties: EventWhithImageDTO[] = [];
-  concerts: EventWhithImageDTO[] = [];
+  parties: EventWithImageDTO[] = [];
+  concerts: EventWithImageDTO[] = [];
   loading = true;
 
   constructor(private eventService: EventService) { }
