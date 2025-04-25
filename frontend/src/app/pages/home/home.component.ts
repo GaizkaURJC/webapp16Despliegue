@@ -2,13 +2,13 @@ import { EventWhithImageDTO } from './../../dtos/event.dto';
 import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../../shared/header/header.component';
 import { CommonModule } from '@angular/common';
-import {EventService} from '../../services/event.service';
+import { EventService } from '../../services/event.service';
 import { EventDTO } from '../../dtos/event.dto';
 import { RouterModule } from '@angular/router';
 
 @Component({
   standalone: true,
-  imports: [HeaderComponent,CommonModule,RouterModule],
+  imports: [HeaderComponent, CommonModule, RouterModule],
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   title2 = 'Home Page';
   items = ['Item 1', 'Item 2', 'Item 3'];
   concerTypes = [
-    "Todos", "Rock","Trap","Pop","Rap","Flamenco"]
+    "Todos", "Rock", "Trap", "Pop", "Rap", "Flamenco"]
   parties: EventWhithImageDTO[] = [];
   concerts: EventWhithImageDTO[] = [];
   loading = true;
@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit {
       }
     });
   }
-  
+
 
   getFilteredConcerts(category: string): EventDTO[] {
     if (category === 'Todos') {
