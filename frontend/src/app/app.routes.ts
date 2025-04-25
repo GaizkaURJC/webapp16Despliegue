@@ -1,13 +1,15 @@
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { HomeComponent } from './pages/home/home.component'; // Ajusta esta ruta según tu estructura real
+import { HomeComponent } from './pages/home/home.component';
 import { ErrorComponent } from './shared/error/error.component';
-import { ClubbingComponent } from './pages/clubbing/clubbing.component'; // Ajusta esta ruta según tu estructura real
-//  Ajusta esta ruta según tu estructura real
+import { ConcertComponent } from './pages/concert/concert.component';
+import { ClubbingComponent } from './pages/clubbing/clubbing.component';
+
 export const routes: Routes = [
 
   { path: '', component: HomeComponent },    // Respuesta a /new
   { path: 'home', component: HomeComponent }, // Respuesta a /new/home
+  { path: 'concerts', component: ConcertComponent },
   { path: 'clubbing', component: ClubbingComponent }, // Respuesta a /new/clubbing
   { path: 'error', component: ErrorComponent }, // Respuesta a /new/error
   { path: '**', redirectTo: 'error' } // Redirige rutas no encontradas
@@ -15,9 +17,7 @@ export const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule],
-  declarations: [
-
-  ], // Asegúrate de declarar los componentes aquí si no son standalone
+  declarations: [], // Asegúrate de declarar los componentes aquí si no son standalone
   providers: [],
   bootstrap: [] // Puedes agregar servicios aquí si es necesario
 })

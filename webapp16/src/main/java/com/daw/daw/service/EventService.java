@@ -1,17 +1,23 @@
 package com.daw.daw.service;
 
 import java.net.URI;
+import java.sql.Blob;
+import java.sql.SQLException;
+import java.util.Base64;
 import java.util.Collection;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.daw.daw.dto.EventDTO;
+import com.daw.daw.dto.EventWithImageDTO;
 import com.daw.daw.dto.EventMapper;
 import com.daw.daw.model.Event;
 import com.daw.daw.model.User;
@@ -40,6 +46,26 @@ public class EventService {
 
   @Autowired
   private EventMapper eventMapper;
+
+    public Page<EventWithImageDTO> findAllEventsWithImages(Pageable pageable) {
+        Page<Event> eventsPage = eventRepository.findAll(pageable);
+        
+        return new PageImpl<>(
+            eventsPage.getContent().stream()
+                .map(this::convertToEventWithImageDTO)
+                .collect(Collectors.toList()),
+            pageable,
+            eventsPage.getTotalElements()
+        );
+    }
+
+    // Método para obtener imagen de un evento específico
+    public byte[] getEventImage(Long id) throws SQLException {
+        Event event = eventRepository.findById(id).orElseThrow();
+        Blob imageBlob = event.getImageFile();
+        return imageBlob.getBytes(1, (int) imageBlob.length());
+    }
+
 
   public Collection<EventDTO> findAll() {
     return eventMapper.toDTOs(events.findAll());
@@ -82,6 +108,25 @@ public class EventService {
     } else {
       throw new NoSuchElementException();
     }
-
   }
+
+  // Método auxiliar para convertir Event a EventWithImageDTO
+  private EventWithImageDTO convertToEventWithImageDTO(Event event) {
+    try {
+        Blob imageBlob = event.getImageFile();
+        byte[] bytes = imageBlob.getBytes(1, (int) imageBlob.length());
+        String imageBase64 = Base64.getEncoder().encodeToString(bytes);
+        
+        return new EventWithImageDTO(
+            event.getId(),
+            event.getTitle(),
+            event.getType(),
+            event.getDescription(),
+            event.getCategory(),
+            imageBase64
+        );
+    } catch (SQLException e) {
+        throw new RuntimeException("Error processing image", e);
+    }
+}
 }

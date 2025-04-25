@@ -6,60 +6,28 @@
             <hr class="line-title" />
             <p>La mejor fiesta de la noche madrileña, en pleno centro!</p>
         </div>
+        @if (loading) {
+        <div class="loading-spinner">
+            Cargando Eventos...
+        </div>
+        } @else {
         <div class="party-container">
+            @for (party of parties; track party.id) {
             <div class="party">
-                <div class="party-img">
-                    <img src="assets/img/ochoymedio.jpg" alt="Party 1" class="img" />
-                </div>
+                <img [src]="'data:image/jpeg;base64,' + party.image" [alt]="party.title" class="img">
                 <div class="party-desc">
-                    <h3>Ocho&Medio</h3>
-                    <p>La mejor Musica Indie de la Ciudad</p>
+                    <h3>{{party.title}}</h3>
+                    <p>{{party.description.split('|')[0]}}</p>
                 </div>
                 <div class="party-button">
-                    <a [routerLink]="['/clubbing']" class="btn btn-primary">Comprar Entrada</a>
+                    <a [routerLink]="['/clubbing', party.id]" class="btn btn-primary">Comprar Entrada</a>
                 </div>
             </div>
+            }
         </div>
     </div>
-
-    <!-- Modal de login
-    <div class="modal fade" id="modalLogin" tabindex="-1" aria-labelledby="modalLogin" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-              <div class="modal-header">
-                  <h3 class="modal-title" id="titulo-login">Iniciar sesión</h3>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-
-              <div class="modal-body">
-                  <form action="/users/authenticate" method="post">
-                      <div class="mb-3">
-                          <label for="exampleInputEmail1" class="form-label">Correo electrónico</label>
-                          <input type="email" class="form-control" id="emailLogin" name="emailLogin"
-                              aria-describedby="emailHelp">
-                      </div>
-                      <div class="mb-3 ">
-                          <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-                          <input type="password" class="form-control" id="passwordLogin" name="passwordLogin">
-                      </div>
-                      <div class="d-flex align-items-center margenGrande">
-                          <button type="submit" class="btn btn-login me-2" id="submitLogin">Confirmar</button>
-                          <p>
-                              <a href="#" class="switch-modal" data-bs-toggle="modal" data-bs-target="#modalSingUp">
-                                  <span style="color: white;">
-                                      Si aún no tienes cuenta,
-                                  </span>
-                                  Regístrate aquí
-                              </a>
-                          </p>
-                      </div>
-                      <input type="hidden" name="_csrf">
-                  </form>
-              </div>
-          </div>
-      </div>
-  </div>
-  !-- Fin Modal de login-->
+    </div>
+    !-- Fin Modal de login-->
 
     <!-- Modal de sing up
   <div class="modal fade" id="modalSingUp" tabindex="-1" aria-labelledby="modalSingUp" aria-hidden="true">
