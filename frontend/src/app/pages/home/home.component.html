@@ -21,6 +21,88 @@
           </div>
         </div>
     </div>
+    
+    <!-- Modal de login
+    <div class="modal fade" id="modalLogin" tabindex="-1" aria-labelledby="modalLogin" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h3 class="modal-title" id="titulo-login">Iniciar sesión</h3>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+
+              <div class="modal-body">
+                  <form action="/users/authenticate" method="post">
+                      <div class="mb-3">
+                          <label for="exampleInputEmail1" class="form-label">Correo electrónico</label>
+                          <input type="email" class="form-control" id="emailLogin" name="emailLogin"
+                              aria-describedby="emailHelp">
+                      </div>
+                      <div class="mb-3 ">
+                          <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+                          <input type="password" class="form-control" id="passwordLogin" name="passwordLogin">
+                      </div>
+                      <div class="d-flex align-items-center margenGrande">
+                          <button type="submit" class="btn btn-login me-2" id="submitLogin">Confirmar</button>
+                          <p>
+                              <a href="#" class="switch-modal" data-bs-toggle="modal" data-bs-target="#modalSingUp">
+                                  <span style="color: white;">
+                                      Si aún no tienes cuenta,
+                                  </span>
+                                  Regístrate aquí
+                              </a>
+                          </p>
+                      </div>
+                      <input type="hidden" name="_csrf">
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+  !-- Fin Modal de login-->
+
+  <!-- Modal de sing up
+  <div class="modal fade" id="modalSingUp" tabindex="-1" aria-labelledby="modalSingUp" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h3 class="modal-title" id="titulo-singup">Registrarse</h3>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+
+              <div class="modal-body">
+                  <form action="/users/create" method="post">
+                      <div class="mb-3">
+                          <label for="exampleInputEmail1" class="form-label">Nombre</label>
+                          <input type="text" class="form-control" id="name" name="name" required>
+                      </div>
+                      <div class="mb-3">
+                          <label for="exampleInputEmail1" class="form-label">Correo electrónico</label>
+                          <input type="email" class="form-control" id="email" name="email"
+                              aria-describedby="emailHelp" required>
+                      </div>
+                      <div class="mb-3">
+                          <label for="exampleInputEmail1" class="form-label">Telefono</label>
+                          <input type="text" class="form-control" id="telefono" name="telefono" required>
+                      </div>
+                      <div class="mb-3">
+                          <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+                          <input type="password" class="form-control" name="password" id="password" required>
+                      </div>
+                      <input type="checkbox" id="terminos" name="terminos" value="terminos" required> Acepto los
+                      terminos y condiciones
+                      <br>
+                      <input type="checkbox" id="datos" name="datos" value="datos"> Permito el uso de mis datos
+                      personales para las estadisticas
+                      <p><button type="submit" class="btn btn-login" id="submitBtn">Confirmar</button></p>
+                      <input type="hidden" name="_csrf" value="#">
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+   Fin Modal de sing up-->
+
     <div class="concert-container">
           <div class="title">
               <h2>Conciertos</h2>
@@ -28,38 +110,104 @@
               <p>Los mejores conciertos de la ciudad, en un solo lugar!</p>
           </div>
         <div class="concerts">
-            <div class="filter">
-              @for (type of concerTypes; track $index) {
-                <ul>
-                  <li class="filter-item" >
-                    <span>{{type}}</span>
-                  </li>
-                </ul>
-              }
-            </div>
-            <div class="concert-content">
-              <div class="available-concerts">
-                <div class="concert-content">
-                  <img src="assets/img/cruzcafune.jpg" alt="">
-                    <div class="concert-info">
-                      <a href="#">CRUZ CAFUNE</a>
-                      <a href="#">MORE DETAILS(icono enlace)</a>
+                <div class="filter">
+                  @for (type of concerTypes; track $index) {
+                    <ul>
+                      <li class="filter-item" >
+                        <span>{{type}}</span>
+                      </li>
+                    </ul>
+                  }
+                </div>
+                    <div class="concert-content">
+                      <div class="available-concerts">
+                          <img src="assets/img/cruzcafune.jpg" alt="Concert Image">
+                          <div class="concert-info">
+                              <a href="#">CRUZ CAFUNE</a>
+                              <a href="#">MORE DETAILS (icono enlace)</a>
+                          </div>
+                      </div>
+                      <div class="available-concerts">
+                        <img src="assets/img/cruzcafune.jpg" alt="Concert Image">
+                        <div class="concert-info">
+                            <a href="#">CRUZ CAFUNE</a>
+                            <a href="#">MORE DETAILS (icono enlace)</a>
+                        </div>
                     </div>
-                </div>
-                <div class="concert-content">
-                  <img src="assets/img/cruzcafune.jpg" alt="">
-                </div>
-                <div class="concert-content">
-                  <img src="assets/img/cruzcafune.jpg" alt="">
-                </div>
-                <div class="concert-content">
-                  <img src="assets/img/cruzcafune.jpg" alt="">
-                </div>
+                    <div class="available-concerts">
+                      <img src="assets/img/cruzcafune.jpg" alt="Concert Image">
+                      <div class="concert-info">
+                          <a href="#">CRUZ CAFUNE</a>
+                          <a href="#">MORE DETAILS (icono enlace)</a>
+                      </div>
+                  </div>
+                  <div class="available-concerts">
+                    <img src="assets/img/cruzcafune.jpg" alt="Concert Image">
+                    <div class="concert-info">
+                        <a href="#">CRUZ CAFUNE</a>
+                        <a href="#">MORE DETAILS (icono enlace)</a>
+                    </div>
+                </div> 
               </div>
-            </div>
         </div>
+        <a href="#" class="load-more">
+            Cargar más
+          <span class="loading"></span>
+        </a>
     </div>
+
     <div class="event-container">
-        <!-- Contenido adicional -->
-    </div>
+      <div class="title">
+          <h2>Eventos Corporativos</h2>
+          <hr class="line-title" />
+          <p>El mejor espacio para celebrar tu evento</p>
+      </div>
+      <div class="container-eventos">
+          <div class="event-form">
+              <form class="form" action="/reserva/request" method="post" id="reservaForm">
+                  <p class="title2">Solicitar un evento </p>
+                  <p class="message">Rellena el formulario y solicita un presupuesto para tu evento </p>
+                  <div class="flex">
+                      <label>
+                          <input name="userName" class="input" type="text" placeholder="" required="">
+                          <span>Nombre</span>
+                      </label>
+                  </div>
+                  
+                  <label>
+                      <input name="userEmail" class="input" type="email" placeholder="" required="">
+                      <span>Email</span>
+                  </label>
+
+                  <label>
+                      <input name="bussinesName" class="input" type="text" placeholder="" required="">
+                      <span>Nombre de la empresa</span>
+                  </label>
+                  <label>
+                      <input name="num_personas" class="input" type="number" placeholder="" required="">
+                      <span>Numero de Personas</span>
+                  </label>
+                  <label for="">
+                      <input type="date" name="event_date" id="fecha_incio" class="date">
+                      <span>Fecha de inicio</span>
+                  </label>
+                  <label>
+                      <div class="form-group">
+                          <span>Descripcion del evento y peticiones especiales</span>
+                          <p>
+
+                          </p>
+                          <textarea name="eventDescript" id="evento" class="form-control" rows="4"
+                              placeholder="Indica el tipo de evento que deseas y peticiones especiales"
+                              required></textarea>
+                      </div>
+                  </label>
+                  <button class="submit">Solicitar Presupuesto</button>
+                  <p class="signin"> ¿Tienes alguna pregunta? <a href="#">Contactanos</a> </p>
+                  <input type="hidden" name="_csrf" >
+            </form>
+          </div>
+      </div>
+  </div>
+     
 </section>

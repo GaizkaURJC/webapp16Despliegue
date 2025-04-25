@@ -138,7 +138,7 @@
     margin-right: 25px;
 }
 .concert-content {
-    display: flex; /* Activa Flexbox */
+    display:flex; /* Activa Flexbox */
     flex-direction: row; /* Alinea los elementos en una fila */
     align-items: center; /* Centra los elementos verticalmente */
     justify-content: center; /* Centra los elementos horizontalmente */
@@ -156,21 +156,14 @@
     max-width: 300px; /* Ancho máximo para evitar que se estire demasiado */
     max-height: 300px; /* Altura máxima para evitar que se estire demasiado */
 }
-.available-concerts{
-    display: flex; /* Activa Flexbox */
-    flex-direction: row; /* Alinea los elementos en una fila */
-    align-items: center; /* Centra los elementos verticalmente */
-    justify-content: center; /* Centra los elementos horizontalmente */
-    flex-wrap: wrap; /* Permite que los elementos se ajusten si no caben en una fila */
-    gap: 20px; /* Espaciado entre los elementos */
-}
 .concert-info{
     background: rgba(0, 0, 0, 0.5);
     color: #fff;
     text-align: center;
     opacity: 0;
     /* Inicialmente oculto */
-    position: absolute;
+    position: absolute
+    ;
     top: 0;
     left: 0;
     right: 0;
@@ -179,13 +172,318 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-radius: 60px;
+    border-radius: 20px;
     /* Para que coincida con las esquinas redondeadas de la imagen */
     transition: opacity 0.3s ease-in-out;
     /* Transición suave */
-    border: 2px red solid;
     z-index: 11111;
+}
+.concert-info a{
+    color:white;
+    text-decoration: none;
 }
 .available-concerts:hover .concert-info{
     opacity: 1;
 }
+.available-concerts {
+    position: relative; /* Asegura que los elementos hijos absolutos se posicionen dentro de este contenedor */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Oculta cualquier contenido que sobresalga */
+    border-radius: 20px; /* Opcional: coincide con el borde de la imagen */
+}
+.load-more {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    width: 180px;
+    height: 52px;
+    text-transform: uppercase;
+    background-color: #f2f526;
+    border: 2px black solid;
+    color: rgb(0, 0, 0);
+    margin: 0 auto;
+    border-radius: 30px;
+    transition: all .3s ease-out;
+    margin-bottom: 10px;
+    text-align: center;
+    padding: 0;
+    line-height: 52px;
+    font-weight: 1000;
+    color: black;
+    text-decoration: none;
+    font-family: "Poppins", sans-serif;
+}
+.load-more:hover {
+    background-color: rgb(38, 35, 35);
+    color: #f2f526;
+    transform: scale(1.03);
+}
+/*------------------EVENT CSS------------------*/
+.event-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    min-height: 100vh;
+    background-color: rgb(12, 12, 12);
+}
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: auto;
+    padding: 20px;
+    border-radius: 20px;
+    position: relative;
+    background-color: #f2f526e5;
+    color: #000000;
+    border: 1px solid #333;
+    height: auto;
+    min-width: 600px;
+    margin-bottom: 150px;
+}
+.title2 {
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: -1px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+    color: #000000;
+}
+.title2::before {
+    width: 18px;
+    height: 18px;
+}
+
+.title2::after {
+    width: 18px;
+    height: 18px;
+    animation: pulse 1s linear infinite;
+}
+
+.title2::before,
+.title2::after {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    left: 0px;
+    background-color: #000000;
+}
+.message,
+.signin {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.signin {
+    text-align: center;
+}
+
+.signin a:hover {
+    text-decoration: underline rgb(0, 0, 0);
+}
+
+.signin a {
+    color: #000000;
+}
+
+.flex {
+    display: flex;
+    width: 100%;
+    gap: 6px;
+}
+
+.form label {
+    position: relative;
+}
+
+.form label .input {
+    background-color: white;
+    color: black;
+    width: 100%;
+    padding: 20px 05px 05px 10px;
+    outline: 0;
+    border: 1px solid rgba(105, 105, 105, 0.397);
+    border-radius: 10px;
+}
+
+.form label .input+span {
+    color: black;
+    position: absolute;
+    left: 10px;
+    top: 0px;
+    cursor: text;
+    transition: 0.3s ease;
+}
+
+.form label .input:placeholder-shown+span {
+    top: 12.5px;
+    font-size: 0.9em;
+}
+
+.form label .input:focus+span,
+.form label .input:valid+span {
+    color: white;
+    top: 0px;
+    font-size: 0.7em;
+    font-weight: 600;
+}
+
+.input {
+    font-size: medium;
+}
+
+.submit {
+    border: none;
+    outline: none;
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+    font-size: 16px;
+    transform: .3s ease;
+    background-color: black;
+}
+
+.submit:hover {
+    background-color: #d5e33e;
+    color: black;
+}
+
+@keyframes pulse {
+    from {
+        transform: scale(0.9);
+        opacity: 1;
+    }
+
+    to {
+        transform: scale(1.8);
+        opacity: 0;
+    }
+}
+.form-control {
+    display: block;
+    width: 90%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.55rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    background-color: #fff;
+
+}
+.date{
+    background-color: white;
+    color: black;
+    width: 30%;
+    margin-left: 0px;
+    padding:  05px 05px ;
+    outline: 0;
+    border: 1px solid rgba(105, 105, 105, 0.397);
+    border-radius: 10px;
+    text-align: center;
+}
+/*---------------------------------------
+    css para el carrusel
+-----------------------------------------*/
+.carrusel-container {
+    align-items: center;
+    justify-content: center;
+    color: white;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: moverFondo 10s infinite linear;
+}
+
+/* Animación del fondo */
+@keyframes moverFondo {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+/*---------------------------------------
+    css para el formulario
+-----------------------------------------*/
+/* Hace el fondo del modal translúcido */
+.modal-content {
+    margin-top: 25px;
+    background: transparent;
+    backdrop-filter: blur(12px);
+    color: white;
+    min-height: 500px;
+    border: 1px solid #000000;
+    background-color: rgb(0, 0, 0, 0.7);
+
+}
+
+.modal-dialog {
+    max-width: 500px;
+    margin-top: -1vh;
+}
+
+.modal-backdrop {
+    background-color: #f2f526 !important;
+    display: none !important;
+}
+
+
+.modal-header {
+    background: #f2f526;
+    color: black;
+    font-weight: 900;
+}
+
+.btn-login {
+    background-color: #d5e33e;
+    color: black;
+}
+
+.header {
+    border: solid 5px yellow
+}
+
+.btn-login:hover {
+    background-color: black;
+    color: #d5e33e;
+    border-color: #d5e33e;
+}
+
+.btn-close {
+    width: 20px;
+    height: 20px;
+    filter: invert(1);
+    color: black;
+    background: transparent;
+}
+
+
+.form-label {
+    color: white;
+}
+
+
