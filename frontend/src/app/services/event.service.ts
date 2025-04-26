@@ -8,6 +8,7 @@ import { EventDTO, EventWithImageDTO} from "../dtos/event.dto";
 })
 export class EventService{
     private apiURL= 'api/v1/events';
+    private apiURLType= 'https://localhost:8443/api/v1/events';
 
     constructor(private http: HttpClient) { }
 
@@ -18,11 +19,11 @@ export class EventService{
         return this.http.get(`${this.apiURL}/images/${id}`, { responseType: 'blob' });
     }
     getEventsByType(type:string): Observable<EventDTO[]>{
-        return this.http.get<EventDTO[]>(`${this.apiURL}/type/${type}`);
+        return this.http.get<EventDTO[]>(`${this.apiURLType}/type/${type}`);
     }
     getEventById(id: number): Observable<EventDTO> {
-        return this.http.get<EventDTO>(`${this.apiURL}/${id}`);
-    }
+        return this.http.get<EventDTO>(`${this.apiURLType}/${id}`);
+      }
 }
 interface PageResponse<T> {
     content: T[];

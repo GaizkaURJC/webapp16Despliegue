@@ -2,6 +2,7 @@ package com.daw.daw.service;
 
 import java.util.Collection;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 import com.daw.daw.security.CSRFHandlerConfiguration;
 
@@ -68,6 +69,14 @@ public class CommentService {
 
     private Collection<CommentDTO> toDTOs(Collection<Comment> comments) {
         return commentMapper.toDTOs(comments);
+    }
+
+    public Collection<CommentDTO> findCommentsByEventId(Long eventId) {
+
+        return commentRepository.getComentsByEventId(eventId)
+                .stream()
+                .map(comment -> commentMapper.toDTO(comment)) 
+                .collect(Collectors.toList());
     }
 
     public Collection<CommentDTO> getAllComments() {

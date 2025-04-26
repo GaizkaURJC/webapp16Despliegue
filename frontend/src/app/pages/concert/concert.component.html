@@ -33,77 +33,28 @@
   <div class="content-container">
     
   <!-- DETALLES DEL CONCIERTO -->
-  <section class="section-2">
+  <section class="section-2" *ngIf="event">
     <div class="container-section2">
       <div class="container-concert-fields">
         <div class="field field--name">
           <h1>{{ event.title }}</h1>
         </div>
-        <div class="field field--subtitle"><span>Concierto</span></div>
+        <div class="field field--subtitle"><span>{{ event.category }}</span></div>
         <div class="field field--info">
           <div class="field field--infoizq">
             <div class="field field--date">
-              <div class="label1">Fecha</div>
-              <div class="content1"><p>{{ event.date || '10 de Diciembre 2025' }}</p></div>
-            </div>
-            <div class="field field--price">
-              <div class="label1">Precio</div>
-              <div class="content1"><p>{{ event.price || '20€' }}</p></div>
-            </div>
-            <div class="field field--type">
-              <div class="label1">Tipo</div>
-              <div class="btn-change82">
-                <div class="content1">{{ event.type }}</div>
-              </div>
+              <div class="label1">Descripción</div>
+              <div class="content1"><p>{{ event.description }}</p></div>
             </div>
           </div>
         </div>
-        <div class="btn-change8" data-bs-toggle="modal" data-bs-target="#modalCompra" style="cursor: pointer;">
+        <div class="btn-change8" style="cursor: pointer;">
           <div class="buytickets">COMPRAR ENTRADAS</div>
         </div>
       </div>
-  
       <div class="container-concert-img">
-        <div class="container-concert-description">
-          <p>{{ event.description }}</p>
-        </div>
         <img class="imgconcert" [src]="imgUrl" alt="concierto1">
       </div>
-  
-      <!-- Modal compra 
-      <div class="modal fade" id="modalCompra" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h3 class="modal-title">Datos para la Entrada</h3>
-              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <form>
-              <div class="modal-body">
-                <div class="mb-3">
-                  <label class="form-label">Nombre completo</label>
-                  <input type="text" class="form-control" [(ngModel)]="ticket.name" name="ticketName">
-                </div>
-                <div class="mb-3">
-                  <label class="form-label">DNI</label>
-                  <input type="text" class="form-control" [(ngModel)]="ticket.dni" name="dni">
-                </div>
-                <div class="mb-3">
-                  <label class="form-label">Género</label>
-                  <select class="form-select" [(ngModel)]="ticket.gender" name="gender">
-                    <option value="Hombre">Hombre</option>
-                    <option value="Mujer">Mujer</option>
-                    <option value="Otro">Otro</option>
-                  </select>
-                </div>
-              </div>
-              <div class="modal-footer">
-                <button type="submit" class="btn btn-success">Terminar compra</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>-->
     </div>
   </section>
   
@@ -118,10 +69,11 @@
           data-bs-target="#modalComentario">Añadir comentario</button>
       </div>
       <div class="container-comments">
-        <div class="comment-post" *ngFor="let c of coments">
-          <div class="comment-post_user">{{ c.username }}</div>
-          <div class="comment-post_content"><p>{{ c.comentario }}</p></div>
-          <div class="comment-post_valoration"><p>{{ c.rate }}</p></div>
+        <!-- Iterar sobre los comentarios -->
+        <div class="comment-post" *ngFor="let comment of comments">
+          <div class="comment-post_user">{{ comment.username }}</div>
+          <div class="comment-post_content"><p>{{ comment.comentario }}</p></div>
+          <div class="comment-post_valoration"><p>{{ comment.rate }}</p></div>
         </div>
       </div>
     </div>

@@ -46,8 +46,6 @@ public class CommentRestController {
     @Autowired
     private CommentService commentService;
 
-    
-
     CommentRestController(CSRFHandlerConfiguration csrfHandlerConfiguration, SecurityFilterChain apiFilterChain,
             AuthenticationManager authenticationManager) {
         this.csrfHandlerConfiguration = csrfHandlerConfiguration;
@@ -62,7 +60,7 @@ public class CommentRestController {
         return commentService.getAllComments();
     }
 
-    @Operation(summary  = "Get a comment by its id")
+    @Operation(summary = "Get a comment by its id")
     @GetMapping("/{id}")
     public CommentDTO getCommentById(@PathVariable Long id) {
         return commentService.getCommentById(id);
@@ -91,7 +89,7 @@ public class CommentRestController {
         return ResponseEntity.created(location).body(commentDTO);
     }
 
-    @Operation (summary = "Delete a comment by its id")
+    @Operation(summary = "Delete a comment by its id")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteComment(@PathVariable Long id) {
         commentService.deleteComment(id);
@@ -103,6 +101,12 @@ public class CommentRestController {
     @DeleteMapping("/")
     public Collection<CommentDTO> deleteAllComments() {
         return commentService.deleteAllComments();
+    }
+
+    @Operation(summary = "Get all comments for a specific event")
+    @GetMapping("/event/{eventId}")
+    public Collection<CommentDTO> getCommentsByEventId(@PathVariable Long eventId) {
+        return commentService.findCommentsByEventId(eventId);
     }
 
     @Operation(summary = "Update a comment by its id")
