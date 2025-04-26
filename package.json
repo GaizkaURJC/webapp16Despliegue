@@ -3,6 +3,7 @@
     "@fortawesome/angular-fontawesome": "^1.0.0",
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/free-brands-svg-icons": "^6.7.2",
-    "@ionic/angular": "^8.5.5"
+    "@ionic/angular": "^8.5.5",
+    "@ng-bootstrap/ng-bootstrap": "^18.0.0"
   }
 }
