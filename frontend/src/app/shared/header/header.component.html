@@ -1,23 +1,32 @@
 <section class="header">
-    <video class="video" type="video/mp4"  src="/assets/videos/VIDEO-PARA-WEB_sin-musica.mp4"  autoplay loop muted >
-        <source src="/assets/videos/VIDEO-PARA-WEB_sin-musica.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-
-    </video>
-    <div class="top-site-bar">
-        <ul>
-        @for (item of items; track $index) {<li>
-            <a href="{{ item.link }}" target="_blank" rel="noopener noreferrer">
-                {{ item.name }}
-            </a>
-        </li>}
-        </ul>
+  <video class="video" type="video/mp4" src="/assets/videos/VIDEO-PARA-WEB_sin-musica.mp4" autoplay loop muted>
+    <source src="/assets/videos/VIDEO-PARA-WEB_sin-musica.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div class="top-site-bar">
+    <ul>
+      <li *ngFor="let item of items">
+        <a
+          *ngIf="item.name !== 'Login'; else loginTemplate"
+          [href]="item.link"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {{ item.name }}
+        </a>
+        <ng-template #loginTemplate>
+          <a href="#" (click)="openLoginModal($event)">
+            {{ item.name }}
+          </a>
+        </ng-template>
+      </li>
+    </ul>
+  </div>
+  <div class="container-titulo">
+    <div class="texto-principal">
+      <h1>TEATRO DAW</h1>
+      <hr class="line-title" href="#" />
+      <p>El mejor lugar para disfrutar de la buena música y noche madrileña</p>
     </div>
-    <div class="container-titulo">
-        <div class="texto-principal">
-            <h1>TEATRO DAW</h1>
-            <hr class="line-title" href="#"/>
-            <p>El mejor lugar para disfrutar de la buena musica y noche madrileña</p>
-        </div>
-    </div>
+  </div>
 </section>

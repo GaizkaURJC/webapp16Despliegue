@@ -1,0 +1,40 @@
+<div class="modal-header">
+  <h3 class="modal-title" id="titulo-login">Iniciar sesión</h3>
+  <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+</div>
+<div class="modal-body">
+  <form (ngSubmit)="submitLogin()">
+      <div class="mb-3">
+          <label for="emailLogin" class="form-label">Correo electrónico</label>
+          <input
+              type="email"
+              class="form-control"
+              id="emailLogin"
+              name="emailLogin"
+              [(ngModel)]="emailLogin"
+              required
+              aria-describedby="emailHelp"
+          />
+      </div>
+      <div class="mb-3">
+          <label for="passwordLogin" class="form-label">Contraseña</label>
+          <input
+              type="password"
+              class="form-control"
+              id="passwordLogin"
+              name="passwordLogin"
+              [(ngModel)]="passwordLogin"
+              required
+          />
+      </div>
+      <div class="d-flex align-items-center margenGrande">
+          <button type="submit" class="btn btn-login me-2" id="submitLogin">Confirmar</button>
+          <p>
+              <a href="#" class="switch-modal">
+                  <span style="color: white;">Si aún no tienes cuenta,</span>
+                  Regístrate aquí
+              </a>
+          </p>
+      </div>
+  </form>
+</div>

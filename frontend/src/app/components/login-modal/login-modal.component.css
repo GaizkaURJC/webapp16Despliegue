@@ -1,0 +1,93 @@
+/* Fondo translúcido del modal */
+.modal-content {
+    margin-top: 25px;
+    background: rgba(0, 0, 0, 0.9); /* Fondo oscuro translúcido */
+    backdrop-filter: blur(12px); /* Efecto de desenfoque */
+    color: white; /* Color de texto por defecto */
+    min-height: 500px;
+    border: 1px solid #f2f526; /* Borde amarillo */
+    border-radius: 8px;
+    padding: 20px;
+}
+
+/* Centrar el modal */
+.modal-dialog {
+    max-width: 500px;
+    margin: auto;
+}
+
+/* Fondo oscuro detrás del modal */
+.modal-backdrop {
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro */
+}
+
+/* Estilo del encabezado del modal */
+.modal-header {
+    background: #f2f526; /* Fondo amarillo */
+    color: black; /* Texto negro */
+    font-weight: bold;
+    border-bottom: 1px solid #000; /* Línea de separación */
+}
+
+/* Botón de cierre del modal */
+.btn-close {
+    filter: none;
+    color: black;
+    background: transparent; 
+    border: none; 
+    font-size: 1.2rem; 
+    opacity: 1; 
+}
+
+.btn-close:hover {
+    color: #333; /* Color ligeramente más oscuro al pasar el ratón */
+}
+
+/* Estilo de las etiquetas */
+.form-label {
+    color: black; /* Cambia el color a negro */
+    font-weight: bold;
+}
+
+/* Estilo de los campos de entrada */
+.form-control {
+    background-color: #333; /* Fondo oscuro */
+    color: white; /* Texto blanco */
+    border: 1px solid #f2f526; /* Borde amarillo */
+    border-radius: 5px;
+}
+
+/* Cambiar el color del texto al escribir */
+.form-control:focus {
+    background-color: #444; /* Fondo ligeramente más claro */
+    color: white;
+    border-color: #f2f526; /* Mantener el borde amarillo */
+    box-shadow: none;
+}
+
+/* Botón de confirmar */
+.btn-login {
+    background-color: #f2f526; /* Fondo amarillo */
+    color: black; /* Texto negro */
+    font-weight: bold;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-login:hover {
+    background-color: black; /* Fondo negro al pasar el ratón */
+    color: #f2f526; /* Texto amarillo */
+}
+
+/* Enlace de registro */
+.switch-modal a {
+    color: #f2f526; /* Amarillo */
+    text-decoration: none;
+}
+
+.switch-modal a:hover {
+    text-decoration: underline;
+    color: white; /* Blanco al pasar el ratón */
+}
