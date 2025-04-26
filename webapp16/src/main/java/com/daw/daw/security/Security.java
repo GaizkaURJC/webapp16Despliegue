@@ -1,6 +1,9 @@
 package com.daw.daw.security;
 
 import org.springframework.http.HttpMethod;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -79,65 +82,74 @@ public class Security {
     @Order(1)
     public SecurityFilterChain apiFilterChain(HttpSecurity http) throws Exception {
         http
-            .securityMatcher("/api/**")
-            .csrf(csrf -> csrf.disable())
-            .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            .exceptionHandling(handling -> handling
-                .authenticationEntryPoint(unauthorizedHandlerJwt))
-            .authorizeHttpRequests(auth -> auth
-                // Público
-                .requestMatchers("/api/auth/**").permitAll()
-                .requestMatchers(HttpMethod.POST, "/api/v1/users/").permitAll()
-                .requestMatchers(HttpMethod.GET, "/api/v1/events/**").permitAll()
-                .requestMatchers(HttpMethod.GET, "/api/v1/comments/**").permitAll()
-                .requestMatchers(HttpMethod.GET, "/api/v1/users/").permitAll()
-                
-                // USER
-                .requestMatchers(HttpMethod.POST, "/api/v1/bookings/**").hasRole("USER")
-                .requestMatchers(HttpMethod.POST, "/api/v1/comments/**").hasRole("USER")
-                .requestMatchers(HttpMethod.POST, "/api/v1/tickets/**").hasRole("USER")
-                .requestMatchers(HttpMethod.GET, "/api/v1/users/me").hasRole("USER")
-                .requestMatchers(HttpMethod.GET,"/api/v1/tickets/MyTickets").hasRole("USER")
-                .requestMatchers(HttpMethod.DELETE,"api/v1/tickets/MyTicket/{id}").hasRole("USER")
-                
-                // ADMIN
-                .requestMatchers(HttpMethod.POST, "/api/v1/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.PUT, "/api/v1/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.POST, "/api/v1/events/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.PUT, "/api/v1/events/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.PUT, "/api/v1/comments/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.PUT, "/api/v1/tickets/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.PUT, "/api/v1/users/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.GET, "/api/v1/bookings/**").hasRole( "ADMIN")
-                .requestMatchers(HttpMethod.GET, "/api/v1/tickets/**").hasAnyRole( "ADMIN", "USER")
-                .requestMatchers(HttpMethod.POST,"/api/v1/users/{id}/image").hasAnyRole( "ADMIN", "USER")
-                .requestMatchers(HttpMethod.PUT,"/api/v1/users/{id}/image").hasAnyRole( "ADMIN", "USER")
-                .requestMatchers(HttpMethod.GET,"/api/v1/stats/gender/{id}").permitAll()
-                .requestMatchers(HttpMethod.GET,"/api/v1/users/{id}/image").hasRole("ADMIN")
+                .securityMatcher("/api/**")
+                .cors(cors -> cors.configurationSource(request -> {
+                    var corsConfig = new org.springframework.web.cors.CorsConfiguration();
+                    corsConfig.setAllowedOrigins(List.of("http://localhost:4200")); // Permite solicitudes desde el
+                                                                                    // frontend
+                    corsConfig.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS")); // Métodos
+                                                                                                      // permitidos
+                    corsConfig.setAllowedHeaders(List.of("*")); // Permite todos los encabezados
+                    corsConfig.setAllowCredentials(true); // Permite credenciales (cookies, etc.)
+                    return corsConfig;
+                }))
+                .csrf(csrf -> csrf.disable())
+                .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .exceptionHandling(handling -> handling
+                        .authenticationEntryPoint(unauthorizedHandlerJwt))
+                .authorizeHttpRequests(auth -> auth
+                        // Público
+                        .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/v1/users/").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/v1/events/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/v1/comments/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/v1/users/").permitAll()
 
-                .requestMatchers(HttpMethod.DELETE, "/api/**").hasRole("ADMIN") // delete only for ADMIN
-            )
-            .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
-    
+                        // USER
+                        .requestMatchers(HttpMethod.POST, "/api/v1/bookings/**").hasRole("USER")
+                        .requestMatchers(HttpMethod.POST, "/api/v1/comments/**").hasRole("USER")
+                        .requestMatchers(HttpMethod.POST, "/api/v1/tickets/**").hasRole("USER")
+                        .requestMatchers(HttpMethod.GET, "/api/v1/users/me").hasRole("USER")
+                        .requestMatchers(HttpMethod.GET, "/api/v1/tickets/MyTickets").hasRole("USER")
+                        .requestMatchers(HttpMethod.DELETE, "api/v1/tickets/MyTicket/{id}").hasRole("USER")
+
+                        // ADMIN
+                        .requestMatchers(HttpMethod.POST, "/api/v1/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/v1/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/v1/events/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/v1/events/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/v1/comments/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/v1/tickets/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/v1/users/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/v1/bookings/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/v1/tickets/**").hasAnyRole("ADMIN", "USER")
+                        .requestMatchers(HttpMethod.POST, "/api/v1/users/{id}/image").hasAnyRole("ADMIN", "USER")
+                        .requestMatchers(HttpMethod.PUT, "/api/v1/users/{id}/image").hasAnyRole("ADMIN", "USER")
+                        .requestMatchers(HttpMethod.GET, "/api/v1/stats/gender/{id}").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/v1/users/{id}/image").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/**").hasRole("ADMIN") // delete only for ADMIN
+                )
+                .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+
         return http.build();
     }
-
 
     @Bean
     @Order(2) // Change the order to avoid conflicts
     public SecurityFilterChain webFilterChain(HttpSecurity http) throws Exception {
         http.authenticationProvider(authenticationProvider());
         http.authorizeHttpRequests(authorize -> authorize
-                
+
                 .requestMatchers("/v3/api-docs*/**").permitAll()
                 .requestMatchers("/swagger-ui.html").permitAll()
                 .requestMatchers("/swagger-ui/**").permitAll()
-                
+
                 .requestMatchers("/", "/css/**", "/img/**", "/js/**", "/videos/**", "/imgEvent/**").permitAll()
                 .requestMatchers("/users/authenticate", "/users/create", "/favicon/**", "/events/**").permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
-                .requestMatchers("/perfil/**", "/paginaperfil/**", "/users/**","/comments/**").hasAnyRole("USER", "ADMIN")
-                //SPA
+                .requestMatchers("/perfil/**", "/paginaperfil/**", "/users/**", "/comments/**")
+                .hasAnyRole("USER", "ADMIN")
+                // SPA
                 .requestMatchers("/spa/**").permitAll()
                 .anyRequest().permitAll());
         http.formLogin(formLogin -> formLogin

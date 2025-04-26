@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 import { FormsModule } from '@angular/forms'; 
 import { CommonModule } from '@angular/common'; 
+import { CommentModalComponent } from '../../components/comment-modal/comment-modal.component';
 import { HeaderComponent } from '../../shared/header/header.component';
 import { EventService } from '../../services/event.service'; 
 import { CommentService } from '../../services/comment.service'; // Importa el servicio de comentarios
@@ -26,6 +29,8 @@ export class ConcertComponent implements OnInit {
   comments: CommentDTO[] = [];
 
   constructor(
+    private modalService: NgbModal,
+
     private eventService: EventService,
     private commentService: CommentService 
   ) {}
@@ -62,6 +67,24 @@ export class ConcertComponent implements OnInit {
     });
   }
   
+  openCommentModal() {
+    const modalRef = this.modalService.open(CommentModalComponent, {
+      centered: true,
+      backdrop: 'static'
+    });
+  
+    modalRef.componentInstance.eventId = 6;
+  
+    modalRef.result.then(
+      (result) => {
+        console.log('Comentario enviado:', result);
+      },
+      (reason) => {
+        console.log('Modal cerrado sin enviar comentario');
+      }
+    );
+  }
+
   loginData = {
     email: '',
     password: ''

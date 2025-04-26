@@ -65,8 +65,9 @@
         <h1>Comentarios</h1>
       </div>
       <div class="container-btn-comment">
-        <button class="btn-change8 btn-comentario" type="button" data-bs-toggle="modal"
-          data-bs-target="#modalComentario">Añadir comentario</button>
+        <div class="container-btn-comment">
+          <button class="btn-change8 btn-comentario" type="button" (click)="openCommentModal()">Añadir comentario</button>
+        </div>
       </div>
       <div class="container-comments">
         <!-- Iterar sobre los comentarios -->

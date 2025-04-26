@@ -4,5 +4,4 @@ export interface CommentDTO{
     comentario: string;
     eventId: number;
     rate: number;
-
 }
