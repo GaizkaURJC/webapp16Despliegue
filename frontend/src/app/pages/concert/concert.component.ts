@@ -49,6 +49,17 @@ export class ConcertComponent implements OnInit {
         console.error('Error al obtener los comentarios:', err);
       }
     });
+
+    // Cargar la imagen del evento
+    this.eventService.getEventImage(eventId).subscribe({
+      next: (blob) => {
+        const objectURL = URL.createObjectURL(blob); // Crear una URL para el Blob
+        this.imgUrl = objectURL; // Asignar la URL a imgUrl
+      },
+      error: (err) => {
+        console.error('Error al obtener la imagen del evento:', err);
+      }
+    });
   }
   
   loginData = {

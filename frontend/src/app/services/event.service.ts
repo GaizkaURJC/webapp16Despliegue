@@ -16,7 +16,7 @@ export class EventService{
         return this.http.get<PageResponse<EventWithImageDTO>>(`${this.apiURL}/images?page=${page}&size=${size}`);
     }
     getEventImage(id: number): Observable <Blob> {
-        return this.http.get(`${this.apiURL}/images/${id}`, { responseType: 'blob' });
+        return this.http.get(`${this.apiURLType}/${id}/image`, { responseType: 'blob' });
     }
     getEventsByType(type:string): Observable<EventDTO[]>{
         return this.http.get<EventDTO[]>(`${this.apiURLType}/type/${type}`);
