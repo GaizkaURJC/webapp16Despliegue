@@ -1,11 +1,18 @@
-export interface EventDTO{
+// event.dto.ts
+export interface EventDTO {
     id: number;
     title: string;
     type: string;
     description: string;
     category: string;
-
 }
-export interface EventWithImageDTO extends EventDTO{
-    image: string;
+
+// event-with-image.dto.ts
+export interface EventWithImageDTO {
+    id: number;
+    title: string;
+    type: string;
+    description: string;
+    category: string;
+    imageBase64: string;
 }

@@ -30,7 +30,6 @@ export class ConcertComponent implements OnInit {
 
   constructor(
     private modalService: NgbModal,
-
     private eventService: EventService,
     private commentService: CommentService 
   ) {}

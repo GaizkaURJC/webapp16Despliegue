@@ -24,6 +24,14 @@ export class EventService{
     getEventById(id: number): Observable<EventDTO> {
         return this.http.get<EventDTO>(`${this.apiURLType}/${id}`);
       }
+      getAllEventsWithImages(): Observable<EventWithImageDTO[]> {
+        return this.http.get<EventWithImageDTO[]>(`${this.apiURLType}/with-images`);
+      }
+      getEventsWithImagesPaginated(page: number = 0, size: number = 4): Observable<PageResponse<EventWithImageDTO>> {
+        return this.http.get<PageResponse<EventWithImageDTO>>(
+          `${this.apiURL}/with-images?page=${page}&size=${size}`
+        );
+      }
 }
 interface PageResponse<T> {
     content: T[];

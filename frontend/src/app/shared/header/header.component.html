@@ -6,19 +6,22 @@
   <div class="top-site-bar">
     <ul>
       <li *ngFor="let item of items">
-        <a
-          *ngIf="item.name !== 'Login'; else loginTemplate"
-          [href]="item.link"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a *ngIf="item.name !== 'Login' && item.name !== 'Logout'" 
+          [href]="item.link" 
+          target="_blank" 
+          rel="noopener noreferrer">
           {{ item.name }}
         </a>
-        <ng-template #loginTemplate>
-          <a href="#" (click)="openLoginModal($event)">
-            {{ item.name }}
-          </a>
-        </ng-template>
+        <a *ngIf="item.name === 'Login' && !isAuthenticated" 
+          href="#" 
+          (click)="openLoginModal($event)">
+          {{ item.name }}
+        </a>
+        <a *ngIf="isAuthenticated" 
+          href="#" 
+          (click)="logout($event)">
+          Logout
+        </a>
       </li>
     </ul>
   </div>

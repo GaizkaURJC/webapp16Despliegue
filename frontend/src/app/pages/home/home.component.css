@@ -27,6 +27,7 @@
     color: #ffffff;
     font-family: "Poppins", sans-serif;
     font-weight: 600;
+    margin-top: 50px;
 }
 
 .title p {
@@ -57,14 +58,13 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    background-color: #2f2e2e;
+    background-color: #222121;
     border-radius: 20px;
     color: white;
 }
 
 .party:hover {
-    width: 405px;
-    height: 590px;
+    scale: 1.05;
 }
 
 .party-button {
@@ -77,7 +77,19 @@
     font-family: "Poppins", sans-serif;
     margin-bottom: 20px;
 }
+.party img{
+    border-radius: 20px;
+    width: 350px;
+    height: 350px;
+    margin: 20px;
+    
+}
 
+.img-fluid {
+    width: 330px;
+    height: 330px;
+    border-radius: 10px;
+}
 .btn {
     background-color: #f2f526;
     color: black;
@@ -85,6 +97,12 @@
     width: 100px;
     border-radius: 15%;
 }
+ 
+.concert-content .available-concerts img {
+    width: 280px; /* Ajusta el ancho deseado */
+    height: 280px; /* Ajusta la altura deseada */
+    object-fit: cover; /* Asegura que la imagen se recorte proporcionalmente */
+  }
 
 .btn:hover {
     background-color: #ffffff;
@@ -101,7 +119,11 @@
     width: 90%;
     height: 50%;
 }
-
+.party-img{
+    height: 200px;
+    width: 200px;
+    border: 2px solid red;
+}
 /* ------------CONCERT CSS ------------------ */
 .concert-container {
     display: flex;
