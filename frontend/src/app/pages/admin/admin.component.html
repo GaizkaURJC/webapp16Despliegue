@@ -1,1 +1,80 @@
-<p>admin works!</p>
+<div class="grid-container">
+    <div class="sidevar">
+        <div class="logo">
+            <h3>DEGRADEV</h3>
+        </div>
+        <div class="elements-container">
+            <button (click)="showSection('clubbing')" class="item-container">
+                <div class="inicio-icon">
+                    <ion-icon name="wine"></ion-icon>
+                </div>
+                <div class="inicio-title">
+                    <h2>CLUBBING</h2>
+                </div>
+            </button>
+            <button (click)="showSection('conciertos')" class="item-container">
+                <div class="inicio-icon">
+                    <ion-icon name="musical-notes"></ion-icon>
+                </div>
+                <div class="inicio-title">
+                    <h2>CONCIERTOS</h2>
+                </div>
+            </button>
+            <button (click)="showSection('eventos')" class="item-container">
+                <div class="inicio-icon">
+                    <ion-icon name="people"></ion-icon>
+                </div>
+                <div class="inicio-title">
+                    <h2>EVENTOS</h2>
+                </div>
+            </button>
+            <button (click)="showSection('usuarios')" class="item-container">
+                <div class="inicio-icon">
+                    <ion-icon name="construct"></ion-icon>
+                </div>
+                <div class="inicio-title">
+                    <h2>USUARIOS</h2>
+                </div>
+            </button>
+            <button (click)="showSection('comentarios')" class="item-container">
+                <div class="inicio-icon">
+                    <ion-icon name="chatbubble"></ion-icon>
+                </div>
+                <div class="inicio-title">
+                    <h2>COMENTARIOS</h2>
+                </div>
+            </button>
+            <a href="/users/logout">
+                <div class="logout-container">
+                    <div class="logout-icon">
+                        <ion-icon name="log-in" style="font-size: 30px;"></ion-icon>
+                    </div>
+                    <div class="logout-title">
+                        <h2>CERRAR SESION</h2>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="topvar">
+        <!-- ...top navigation content unchanged... -->
+    </div>
+    <section class="inicio-section">
+        <div class="container1" *ngIf="activeSection === 'clubbing'">
+            <p class="title">CLUBBING</p>
+        </div>
+        <div class="container1" *ngIf="activeSection === 'conciertos'">
+            <p class="title">CONCIERTOS</p>
+        </div>
+        <div class="container1" *ngIf="activeSection === 'eventos'">
+            <p class="title">EVENTOS</p>
+        </div>
+        <div class="container1" *ngIf="activeSection === 'comentarios'">
+            <p class="title">COMENTARIOS</p>
+            
+        </div>
+        <div class="container1" *ngIf="activeSection === 'usuarios'">
+            <p class="title">USUARIOS</p>
+        </div>
+    </section>
+</div>

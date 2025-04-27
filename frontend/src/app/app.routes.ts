@@ -4,6 +4,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { ErrorComponent } from './shared/error/error.component';
 import { ConcertComponent } from './pages/concert/concert.component';
 import { ClubbingComponent } from './pages/clubbing/clubbing.component';
+import { AdminComponent } from './pages/admin/admin.component'; // Asegúrate de importar el componente AdminComponent
 import {  HttpClientModule } from '@angular/common/http';
 
 export const routes: Routes = [
@@ -13,7 +14,9 @@ export const routes: Routes = [
   { path: 'concerts', component: ConcertComponent },
   { path: 'clubbing', component: ClubbingComponent }, // Respuesta a /new/clubbing
   { path: 'error', component: ErrorComponent }, // Respuesta a /new/error
-  { path: '**', redirectTo: 'error' } // Redirige rutas no encontradas
+  { path: 'admin', component: AdminComponent }, // Respuesta a /new/admin
+  { path: '**', redirectTo: 'error' }, // Redirige rutas no encontradas
+  
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes, { useHash: true })],
