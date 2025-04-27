@@ -44,6 +44,11 @@ export class BookingService {
       headers: this.getAuthHeaders() });
   }
 
+  rejectBooking(id: number): Observable<void> {
+    return this.http.put<void>(`${this.apiUrl}/reject/${id}`, null, {
+      headers: this.getAuthHeaders() });
+  }
+
   private getAuthHeaders(): HttpHeaders {
     const token = localStorage.getItem('token');
     if (!token) {

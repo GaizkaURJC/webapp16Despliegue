@@ -713,7 +713,9 @@ Sigue estos pasos para configurar y ejecutar la aplicación Angular en tu entorn
    http://localhost:4200
 ---
 ### Diagrama de clases y templates de SPA
+![@](https://github.com/user-attachments/assets/a5e86c8f-fb19-4949-8b15-1ff5ef434b47)
 
+---
 ### Contribución del equipo
 **Albero Acebes Sánchez**
 - Tareas Realizadas
@@ -760,24 +762,24 @@ Sigue estos pasos para configurar y ejecutar la aplicación Angular en tu entorn
 ----
 **Alejandro Rico González**
 - Tareas Realizadas
-  1. tarea 1
-  2. tarea 2
-  3. tarea 3
-  4. tarea n
+  1. Migración de la página de clubbing
+  2. Diseño y funcionamiento de modales de login, singup y compra
+  3. Implementación gráfica
+  4. Documentación
 
 - Commits más significativos :
-  - [Commit 1](enlace):
-  - [Commit 2](enlace):
-  - [Commit 3](enlace):
-  - [Commit 4](enlace):
-  - [Commit 5](enlace):
+  - [Commit 1]([enlace](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/4f3cbdad22344bff0d1f9fee90c951ada71d4d74))
+  - [Commit 2]([enlace](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/8be18655d26aed0fa527b5dc6ce4c440f6d469b0))
+  - [Commit 3]([enlace](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/62a589abb0d60d265ed9bb2a717c46dcf7d049b9))
+  - [Commit 4]([enlace](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/1370f39a06bd91b46876eeb647d19e31a3168216))
+  - [Commit 5]([enlace](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/8773e2349336ade1eeff974f9f74e7f62cab8823))
 
 - Ficheros en los que se ha participado :
-  1. '`
-  2. '`
-  3. '`
-  4. '`
-  5. ``
+  1. 'frontend/src/app/components/buy-modal/buy-modal.component.ts`
+  2. 'frontend/src/app/pages/clubbing/clubbing.component.ts`
+  3. 'frontend/src/app/components/singup-modal/singup-modal.component.ts`
+  4. 'frontend/src/app/pages/clubbing/clubbing.component.html`
+  5. `frontend/src/app/app.routes.ts`
 ---
 **Gaizka Aranbarri Berasaluze**
 - Tareas Realizadas
