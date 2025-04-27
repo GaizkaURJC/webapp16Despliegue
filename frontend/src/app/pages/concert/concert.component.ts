@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
+import { ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms'; 
 import { CommonModule } from '@angular/common'; 
 import { CommentModalComponent } from '../../components/comment-modal/comment-modal.component';
@@ -29,14 +29,15 @@ export class ConcertComponent implements OnInit {
   comments: CommentDTO[] = [];
 
   constructor(
+    private route: ActivatedRoute,
     private modalService: NgbModal,
     private eventService: EventService,
     private commentService: CommentService 
   ) {}
 
   ngOnInit() {   // Por ejemplo se coge 6, cuando este todo se asigna el numero que haga falta
-    const eventId = 6; 
-    this.eventService.getEventById(eventId).subscribe({
+    const concertId = Number(this.route.snapshot.paramMap.get('id'));
+    this.eventService.getEventById(concertId).subscribe({
       next: (data) => {
         this.event = data;
       },
@@ -45,7 +46,7 @@ export class ConcertComponent implements OnInit {
       }
     });
 
-    this.commentService.getCommentsByEventId(eventId).subscribe({
+    this.commentService.getCommentsByEventId(concertId).subscribe({
       next: (data) => {
         this.comments = data;
       },
@@ -55,7 +56,7 @@ export class ConcertComponent implements OnInit {
     });
 
     // Cargar la imagen del evento
-    this.eventService.getEventImage(eventId).subscribe({
+    this.eventService.getEventImage(concertId).subscribe({
       next: (blob) => {
         const objectURL = URL.createObjectURL(blob); // Crear una URL para el Blob
         this.imgUrl = objectURL; // Asignar la URL a imgUrl
