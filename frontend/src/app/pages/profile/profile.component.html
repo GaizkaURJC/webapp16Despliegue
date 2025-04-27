@@ -17,14 +17,8 @@
         <p class="profile-username">{{userLogged.username}}</p>
         <p class="profile-email">{{userLogged.email}}</p>
         <div class="butcontainer">
-          <button class="btn btn-dark rounded-pill px-4 py-2" data-bs-toggle="modal"
-            data-bs-target="#modalEditProfile">
-            Editar perfil
-          </button>
-        </div>
-        <div class="butcontainer">
           <a href="#" (click)="logout($event)" class="btn btn-dark rounded-pill px-4 py-2">Cerrar sesión
-            
+
           </a>
         </div>
       </div>
@@ -63,39 +57,4 @@
 <!--PAGINA PERSONALIZACION-->
 <div id="personalizacion" class="content-tab" *ngIf="activeTab === 'personalizacion'">
   <h2>Personalización</h2>
-</div>
-
-<!-- Modal de edición de perfil -->
-<div class="modal fade" id="modalEditProfile" tabindex="-1" aria-labelledby="modalEditProfileLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 class="modal-title" id="modalEditProfileLabel">Editar cuenta</h3>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <input type="hidden" name="id" [value]="userLogged.id">
-          <div class="form-group">
-            <label for="exampleInputEmail1">Nombre De Usuario</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" 
-              name="user" [placeholder]="userLogged.name" required>
-          </div>
-          <div class="form-group">
-            <label for="exampleInputEmail1">Email</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" 
-              name="email" [placeholder]="userLogged.email" required>
-          </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Contraseña</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" name="password" required>
-          </div>
-          <div class="modal-footer">
-            <button type="submit" class="btn btn-success">Guardar cambios</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
 </div>

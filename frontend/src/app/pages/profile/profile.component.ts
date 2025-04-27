@@ -10,15 +10,27 @@ import { UserDTO } from '../../dtos/user.dto';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { AuthService } from '../../services/login.service';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule  } from '@angular/forms';
+import { CreateRequestUserDTO } from '../../dtos/requestUser.dto';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [HeaderComponent, CommonModule, RouterModule],
+  imports: [
+    HeaderComponent,
+    CommonModule,
+    RouterModule,
+    ReactiveFormsModule // ¡Añade esto!
+  ],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
+
 export class ProfileComponent implements OnInit {
+  editProfileForm: FormGroup;
+  isSubmitting = false;
+  editSuccess = false;
+  editError = false;
   activeTab: string = 'perfil';
   userLogged: UserDTO = {
     id: 0,
@@ -47,13 +59,19 @@ export class ProfileComponent implements OnInit {
   ];
 
   constructor(
+    private fb: FormBuilder,
+    private userService: UserService,
     private eventService: EventService,
     private authStateService: AuthStateService,
-    private userService: UserService,
     private sanitizer: DomSanitizer,
     private authService: AuthService,
     private router: Router
-  ) {}
+  ) {
+    this.editProfileForm = this.fb.group({
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+    });
+  }
 
   ngOnInit(): void {
     this.loadUserData();
@@ -130,10 +148,53 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  private loadTickets(): void {
-    // this.ticketService.getUserTickets().subscribe(tickets => {
-    //   this.tickets = tickets;
-    // });
+  initEditForm(): void {
+    this.editProfileForm.patchValue({
+      name: this.userLogged.name,
+      email: this.userLogged.email,
+    });
+    this.editSuccess = false;
+    this.editError = false;
+  }
+
+  // Envía el formulario de edición
+  onSubmitEditProfile(): void {
+    if (this.editProfileForm.invalid) {
+      return;
+    }
+  
+    const token = localStorage.getItem('token');
+    if (!token) {
+      this.router.navigate(['/login']); // Redirige si no hay token
+      return;
+    }
+  
+    this.isSubmitting = true;
+    const userData: CreateRequestUserDTO = {
+      name: this.editProfileForm.value.name,
+      email: this.editProfileForm.value.email,
+      password: this.editProfileForm.value.password || undefined,
+      id: null,
+      phone: '',
+      roles: ["ROLE_USER"] 
+    };
+  
+    this.userService.editUser(this.userLogged.id, userData).subscribe({
+      next: (updatedUser) => {
+        // ... resto del código existente
+      },
+      error: (err) => {
+        console.error('Error updating profile:', err);
+        this.isSubmitting = false;
+        this.editError = true;
+        
+        // Manejo específico para error 401
+        if (err.status === 401) {
+          this.authService.logout();
+          this.router.navigate(['/login']);
+        }
+      }
+    });
   }
 
   logout(event: Event) {
