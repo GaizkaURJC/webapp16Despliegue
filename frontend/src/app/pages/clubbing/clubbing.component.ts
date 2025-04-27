@@ -6,12 +6,11 @@ import { BuyModalComponent } from '../../components/buy-modal/buy-modal.componen
 import { FooterComponent } from '../../shared/footer/footer.component';
 import { EventService } from '../../services/event.service';
 import { EventDTO } from '../../dtos/event.dto';
-import { GenderChartComponent } from '../../components/gender-chart/gender-chart.component'
 
 @Component({
   selector: 'app-clubbing',
   standalone: true,
-  imports: [FooterComponent, GenderChartComponent, NgIf],
+  imports: [FooterComponent, NgIf],
   templateUrl: './clubbing.component.html',
   styleUrls: ['./clubbing.component.css']
 })

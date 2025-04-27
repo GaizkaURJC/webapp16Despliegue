@@ -9,6 +9,10 @@ import { BookingService } from '../../services/booking.service';
 import { wine, musicalNotes, people, construct, chatbubble, logIn } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 
+import { AuthStateService } from '../../services/auth-state.service'; // Añadir este import
+import { HttpHeaders } from '@angular/common/http';
+
+
 @Component({
   selector: 'app-admin',
   standalone: true,
@@ -24,6 +28,8 @@ export class AdminComponent implements OnInit {
   bookings: any[] = [];
   comments: any[] = [];
   users: any[] = [];
+  username: string = '';
+  userId!: number;
 
   showSection(section: string): void {
     console.log('Changing section to:', section);
@@ -35,7 +41,8 @@ export class AdminComponent implements OnInit {
     private eventService: EventService,
     private userService: UserService,
     private commentService: CommentService,
-    private bookingService: BookingService
+    private bookingService: BookingService,
+    private authStateService: AuthStateService
   ) {
     addIcons({
       wine,
@@ -48,11 +55,89 @@ export class AdminComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loadUserData();
     this.eventService.getEventsByType("party").subscribe(data => this.parties = data);
     this.eventService.getEventsByType("concert").subscribe(data => this.concerts = data);
     this.userService.getAllUsers().subscribe(data => this.users = data);
     this.commentService.getAllComments().subscribe(data => this.comments = data);
     this.bookingService.getAllBookings().subscribe(data => this.bookings = data);
     
+  }
+
+  
+  private loadUserData(): void {
+    // Obtener el usuario autenticado en lugar de por ID
+    this.authStateService.getAuthenticatedUser().subscribe({
+      next: (user) => {
+        this.userId = user.id; // Asignar el ID del usuario
+        this.username = user.name; // Asignar el nombre directamente
+      },
+      error: (err) => {
+        console.error('Error al obtener datos del usuario:', err);
+        alert('No se pudo obtener la información del usuario. Por favor, inicia sesión.');
+        
+      }
+    });
+  }
+
+  deletebooking(bookingId: number): void {
+    if (confirm('¿Estás seguro de que deseas eliminar este booking?')) {
+      this.bookingService.deleteBooking(bookingId).subscribe({
+        next: () => {
+          // Update the bookings array to remove the deleted booking
+          this.bookings = this.bookings.filter(booking => booking.id !== bookingId);
+        },
+        error: (error) => {
+          console.error('Error deleting booking:', error);
+          alert('No se pudo eliminar el booking.');
+        }
+      });
+    }
+  }
+
+  deleteEvent(partyId: number): void {
+    if (confirm('¿Estás seguro de que deseas eliminar esta fiesta?')) {
+      this.eventService.deleteEvent(partyId).subscribe({
+        next: () => {
+          // Update the parties array to remove the deleted party
+          this.parties = this.parties.filter(party => party.id !== partyId);
+          this.concerts = this.concerts.filter(concert => concert.id !== partyId); // Assuming you want to remove from concerts as well
+        },
+        error: (error) => {
+          console.error('Error deleting party:', error);
+          alert('No se pudo eliminar la fiesta.');
+        }
+      });
+    }
+  }
+
+  deleteUser(userId: number): void {
+    if (confirm('¿Estás seguro de que deseas eliminar este usuario?')) {
+      this.userService.deleteUser(userId).subscribe({
+        next: () => {
+          // Update the users array to remove the deleted user
+          this.users = this.users.filter(user => user.id !== userId);
+        },
+        error: (error) => {
+          console.error('Error deleting user:', error);
+          alert('No se pudo eliminar el usuario.');
+        }
+      });
+    }
+  }
+
+  deleteComment(commentId: number): void {
+    if (confirm('¿Estás seguro de que deseas eliminar este comentario?')) {
+      this.commentService.deleteComment(commentId).subscribe({
+        next: () => {
+          // Update the comments array to remove the deleted comment
+          this.comments = this.comments.filter(comment => comment.id !== commentId);
+        },
+        error: (error) => {
+          console.error('Error deleting comment:', error);
+          alert('No se pudo eliminar el comentario.');
+        }
+      });
+    }
   }
 }
