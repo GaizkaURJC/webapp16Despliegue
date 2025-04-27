@@ -40,6 +40,11 @@ export class BookingService {
       headers: this.getAuthHeaders() });
   }
 
+  acceptBooking(id: number): Observable<void> {
+    return this.http.put<void>(`${this.apiUrl}/accept/${id}`, null, {
+      headers: this.getAuthHeaders() });
+  }
+
   private getAuthHeaders(): HttpHeaders {
     const token = localStorage.getItem('token');
     if (!token) {
@@ -49,4 +54,6 @@ export class BookingService {
       Authorization: `Bearer ${token}`
     });
   }
+
+  
 }

@@ -64,4 +64,10 @@ public class BookingsRestController {
     public void deleteBooking(@PathVariable Long id) {
         bookingsService.deleteBooking(id);
     }
+
+    @Operation(summary = "accept a booking by its id")
+    @PutMapping("/accept/{id}")
+    public BookingDTO acceptBooking(@PathVariable Long id) {
+        return bookingsService.acceptBooking(id);
+    }
 }

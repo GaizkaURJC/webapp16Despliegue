@@ -7,7 +7,8 @@ import { Observable, catchError, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'https://localhost:8443/api/auth'; // Ajusta según tu backend
+  private apiUrl = 'https://localhost:8443/api/auth'; 
+  private URL= 'https://localhost:8443/api/v1/users'// Ajusta según tu backend
 
   constructor(private http: HttpClient) { }
 
@@ -15,6 +16,18 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/login`, { email, password }).pipe(
       catchError(error => {
         // Puedes manejar errores específicos aquí si lo deseas
+        return throwError(() => error);
+      })
+    );
+  }
+
+  loginAfterRegister(email: string, password: string): Observable<any> {
+    return this.login(email, password);
+  }
+
+  register(userData: any): Observable<any> {
+    return this.http.post(`${this.URL}/`, userData).pipe(
+      catchError(error => {
         return throwError(() => error);
       })
     );

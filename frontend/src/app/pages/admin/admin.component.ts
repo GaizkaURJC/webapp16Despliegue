@@ -6,11 +6,13 @@ import { EventService } from '../../services/event.service';
 import { UserService } from '../../services/user.service';
 import { CommentService } from '../../services/comment.service';
 import { BookingService } from '../../services/booking.service'; 
+import {AuthService} from '../../services/login.service'; // Asegúrate de que la ruta sea correcta
 import { wine, musicalNotes, people, construct, chatbubble, logIn } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 
 import { AuthStateService } from '../../services/auth-state.service'; // Añadir este import
-import { HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router'; // Importar Router
+import { BookingDTO } from '../../dtos/booking.dto';
 
 
 @Component({
@@ -42,7 +44,10 @@ export class AdminComponent implements OnInit {
     private userService: UserService,
     private commentService: CommentService,
     private bookingService: BookingService,
-    private authStateService: AuthStateService
+    private authStateService: AuthStateService,
+    private authService: AuthService,
+    private router: Router // Añadir el router aquí
+
   ) {
     addIcons({
       wine,
@@ -136,6 +141,23 @@ export class AdminComponent implements OnInit {
         error: (error) => {
           console.error('Error deleting comment:', error);
           alert('No se pudo eliminar el comentario.');
+        }
+      });
+    }
+  }
+  logout(): void {
+    this.authService.logout();
+    alert('Has cerrado sesión correctamente.');
+    this.router.navigate(['/']);
+  }
+
+  acceptBooking(bookingId: number): void {
+    if (confirm('¿Estás seguro de que deseas aceptar esta reserva?')) {
+      this.bookingService.acceptBooking(bookingId).subscribe({
+        
+        error: (error) => {
+          console.error('Error accepting booking:', error);
+          alert('No se pudo aceptar la reserva.');
         }
       });
     }

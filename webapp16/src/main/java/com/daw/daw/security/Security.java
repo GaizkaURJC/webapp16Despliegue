@@ -120,6 +120,7 @@ public class Security {
                         .requestMatchers(HttpMethod.PUT, "/api/v1/tickets/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/api/v1/users/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/api/v1/bookings/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/v1/bookings/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/api/v1/tickets/**").hasAnyRole("ADMIN", "USER")
                         .requestMatchers(HttpMethod.POST, "/api/v1/users/{id}/image").hasAnyRole("ADMIN", "USER")
                         .requestMatchers(HttpMethod.PUT, "/api/v1/users/{id}/image").hasAnyRole("ADMIN", "USER")

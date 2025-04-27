@@ -46,4 +46,10 @@ public class BookingsService {
         reserva.setId(id);
         return bookingMapper.toDTO(this.booking.save(reserva));
     }
+
+    public BookingDTO acceptBooking(Long id) {
+        Booking reserva = booking.findById(id).orElseThrow();
+        reserva.setStatus("aceptada");
+        return bookingMapper.toDTO(this.booking.save(reserva));
+    }
 }
