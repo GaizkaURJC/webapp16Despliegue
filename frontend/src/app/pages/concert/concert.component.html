@@ -24,28 +24,28 @@
     </ul>
   </div>
 </nav>
-  
-  <!-- CONCERT SECTION -->
-  <section class="section-1">
-    <div class="container-section1">
-      <div class="row">
-        <div class="texto-principal">
-          <h1>CONCIERTOS</h1>
-          <hr class="line-title">
-          <p>Los mejores conciertos de la mano de nuestra sala, para vivir una experiencia completa!</p>
-        </div>
+
+<!-- CONCERT SECTION -->
+<section class="section-1">
+  <div class="container-section1">
+    <div class="row">
+      <div class="texto-principal">
+        <h1>CONCIERTOS</h1>
+        <hr class="line-title">
+        <p>Los mejores conciertos de la mano de nuestra sala, para vivir una experiencia completa!</p>
       </div>
     </div>
-    <div class="img">
-      <video autoplay muted loop id="bg-video">
-        <source src="assets/videos/CONCERT.mp4" type="video/mp4">
-      </video>
-      <div class="overlay"></div>
-    </div>
-  </section>
-  
-  <div class="content-container">
-    
+  </div>
+  <div class="img">
+    <video autoplay muted loop id="bg-video">
+      <source src="assets/videos/CONCERT.mp4" type="video/mp4">
+    </video>
+    <div class="overlay"></div>
+  </div>
+</section>
+
+<div class="content-container">
+
   <!-- DETALLES DEL CONCIERTO -->
   <section class="section-2" *ngIf="event">
     <div class="container-section2">
@@ -58,7 +58,9 @@
           <div class="field field--infoizq">
             <div class="field field--date">
               <div class="label1">Descripción</div>
-              <div class="content1"><p>{{ event.description }}</p></div>
+              <div class="content1">
+                <p>{{ event.description }}</p>
+              </div>
             </div>
           </div>
         </div>
@@ -71,7 +73,7 @@
       </div>
     </div>
   </section>
-  
+
   <!-- COMENTARIOS -->
   <section class="section_3">
     <div class="container-section3">
@@ -86,11 +88,15 @@
         <!-- Iterar sobre los comentarios -->
         <div class="comment-post" *ngFor="let comment of comments">
           <div class="comment-post_user">{{ comment.username }}</div>
-          <div class="comment-post_content"><p>{{ comment.comentario }}</p></div>
-          <div class="comment-post_valoration"><p>{{ comment.rate }}</p></div>
+          <div class="comment-post_content">
+            <p>{{ comment.comentario }}</p>
+          </div>
+          <div class="comment-post_valoration">
+            <p>{{ comment.rate }}</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
-  
-  </div>
+
+</div>
