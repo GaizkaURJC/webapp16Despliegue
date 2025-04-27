@@ -24,6 +24,16 @@ import { CommentDTO } from '../../dtos/comment.dto';
 })
 
 export class ConcertComponent implements OnInit {
+  menuItems = [
+    { name: 'Home', link: '/' },
+    { name: 'Clubbing', link: '/clubbing' },
+    { name: 'Conciertos', link: '/concerts' },
+    { name: 'Eventos', link: '/events' },
+    { name: 'Contáctanos', link: '/contact' }
+  ];
+
+  isAuthenticated = false;
+
   imgUrl = "assets/img/concertpek.jpg";
   event: EventDTO | null = null; 
   comments: CommentDTO[] = [];
@@ -96,5 +106,16 @@ export class ConcertComponent implements OnInit {
     gender: ''
   };
   
+  openLoginModal(event: Event): void {
+    event.preventDefault();
+    console.log('Abrir modal de login');
+    // Aquí puedes abrir un modal de login usando un servicio como NgbModal
+  }
+  
+  logout(event: Event): void {
+    event.preventDefault();
+    console.log('Cerrar sesión');
+    this.isAuthenticated = false; // Cambia el estado de autenticación
+  }
 
 }
