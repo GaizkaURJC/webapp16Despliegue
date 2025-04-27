@@ -7,5 +7,8 @@
     "@ng-bootstrap/ng-bootstrap": "^18.0.0",
     "chart.js": "^4.4.9",
     "ng2-charts": "^8.0.0"
+  },
+  "devDependencies": {
+    "@types/chart.js": "^2.9.41"
   }
 }

@@ -59,12 +59,20 @@ export class ConcertComponent implements OnInit {
       this.updateMenuItems();
     });
   }
+  
+  ngOnInit() {
+    this.loadEventData();
+  }
 
-
-
-  ngOnInit() {   // Por ejemplo se coge 6, cuando este todo se asigna el numero que haga falta
+  private loadEventData(): void {
     const concertId = Number(this.route.snapshot.paramMap.get('id'));
-    this.eventService.getEventById(concertId).subscribe({
+    this.loadEvent(concertId);
+    this.loadComments(concertId);
+    this.loadEventImage(concertId);
+  }
+
+  private loadEvent(eventId: number): void {
+    this.eventService.getEventById(eventId).subscribe({
       next: (data) => {
         this.event = data;
       },
@@ -72,8 +80,10 @@ export class ConcertComponent implements OnInit {
         console.error('Error al obtener el evento:', err);
       }
     });
+  }
 
-    this.commentService.getCommentsByEventId(concertId).subscribe({
+  private loadComments(eventId: number): void {
+    this.commentService.getCommentsByEventId(eventId).subscribe({
       next: (data) => {
         this.comments = data;
       },
@@ -81,30 +91,34 @@ export class ConcertComponent implements OnInit {
         console.error('Error al obtener los comentarios:', err);
       }
     });
+  }
 
-    // Cargar la imagen del evento
-    this.eventService.getEventImage(concertId).subscribe({
+  private loadEventImage(eventId: number): void {
+    this.eventService.getEventImage(eventId).subscribe({
       next: (blob) => {
-        const objectURL = URL.createObjectURL(blob); // Crear una URL para el Blob
-        this.imgUrl = objectURL; // Asignar la URL a imgUrl
+        const objectURL = URL.createObjectURL(blob);
+        this.imgUrl = objectURL;
       },
       error: (err) => {
         console.error('Error al obtener la imagen del evento:', err);
       }
     });
   }
-  
+
   openCommentModal() {
+    const concertId = Number(this.route.snapshot.paramMap.get('id'));
     const modalRef = this.modalService.open(CommentModalComponent, {
       centered: true,
       backdrop: 'static'
     });
   
-    modalRef.componentInstance.eventId = 6;
+    modalRef.componentInstance.eventId = concertId; // Usar el ID real del evento
   
     modalRef.result.then(
       (result) => {
         console.log('Comentario enviado:', result);
+        // Actualizar la lista de comentarios después de añadir uno nuevo
+        this.loadComments(concertId);
       },
       (reason) => {
         console.log('Modal cerrado sin enviar comentario');
