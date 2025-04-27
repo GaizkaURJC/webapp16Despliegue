@@ -12,6 +12,7 @@ import { addIcons } from 'ionicons';
 
 import { AuthStateService } from '../../services/auth-state.service'; // Añadir este import
 import { Router } from '@angular/router'; // Importar Router
+import { BookingDTO } from '../../dtos/booking.dto';
 
 
 @Component({
@@ -148,5 +149,17 @@ export class AdminComponent implements OnInit {
     this.authService.logout();
     alert('Has cerrado sesión correctamente.');
     this.router.navigate(['/']);
+  }
+
+  acceptBooking(bookingId: number): void {
+    if (confirm('¿Estás seguro de que deseas aceptar esta reserva?')) {
+      this.bookingService.acceptBooking(bookingId).subscribe({
+        
+        error: (error) => {
+          console.error('Error accepting booking:', error);
+          alert('No se pudo aceptar la reserva.');
+        }
+      });
+    }
   }
 }
