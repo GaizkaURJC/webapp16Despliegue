@@ -17,7 +17,6 @@ interface PageResponse<T> {
   providedIn: 'root'
 })
 export class UserService {
-  // Base URL for user-related endpoints. Adjust according to your backend API.
   private apiURL: string = 'https://localhost:8443/api/v1/users';
   
 

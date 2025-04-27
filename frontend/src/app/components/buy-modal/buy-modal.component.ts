@@ -14,7 +14,7 @@ import { TicketService } from '../../services/ticket.service';
 export class BuyModalComponent {
   @Input() event: any;
   @Input() token: string = '';
-  @Input() currentUser?: { name: string };  // Añade esta línea para recibir el usuario actual
+  @Input() currentUser?: { name: string }; 
 
   ticketName = '';
   dni = '';
@@ -39,9 +39,9 @@ export class BuyModalComponent {
   }
 
   submitForm() {
-    console.log('Datos del usuario:', this.currentUser); // Para depuración
+    console.log('Datos del usuario:', this.currentUser); 
   
-    if (!this.currentUser?.name) { // Cambia username por name
+    if (!this.currentUser?.name) {
       this.errorMessage = 'No se pudo identificar al usuario';
       console.error('Usuario no definido:', this.currentUser);
       return;
@@ -54,10 +54,10 @@ export class BuyModalComponent {
       title: this.event?.title,
       category: this.event?.category,
       eventId: this.event?.id,
-      userOwner: this.currentUser.name, // Asume que currentUser tiene username
+      userOwner: this.currentUser.name,
       dni: this.dni,
       gender: this.gender,
-      ticketDate: new Date().toISOString(), // Fecha actual como string
+      ticketDate: new Date().toISOString(),
       ticketName: this.ticketName,
       _csrf: this.token
     };

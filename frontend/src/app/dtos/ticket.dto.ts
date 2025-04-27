@@ -6,6 +6,5 @@ export interface TicketDTO {
     category: string;
     ticketDate: Date;
     eventId: number;
-    eventImage?: SafeUrl; // Campo para almacenar la imagen del evento
-    // ... otros campos que ya tengas
+    eventImage?: SafeUrl; 
   }

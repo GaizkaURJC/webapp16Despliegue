@@ -23,7 +23,7 @@ import { HttpErrorResponse } from '@angular/common/http';
     HeaderComponent,
     CommonModule,
     RouterModule,
-    ReactiveFormsModule // ¡Añade esto!
+    ReactiveFormsModule
   ],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
@@ -66,8 +66,7 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadUserData(); // Primero carga el usuario
-    // loadUserTickets() se llamará después dentro de loadUserData()
+    this.loadUserData(); 
   }
 
   showTab(tabId: string): void {
@@ -79,7 +78,7 @@ private loadUserData(): void {
     next: (user: UserDTO) => {
       this.userLogged = user;
       this.loadProfileImage();
-      this.loadUserTickets(); // <-- Ahora se llama aquí, después de tener el usuario
+      this.loadUserTickets();
       this.isLoading = false;
     },
     error: (err) => {
@@ -102,7 +101,6 @@ private loadUserData(): void {
         }
       });
     } else {
-      // Use default image if user has no image
       this.profileImage = this.getDefaultImagePath();
     }
   }
@@ -111,7 +109,6 @@ private loadUserData(): void {
     return 'assets/img/ferias.png';
   }
 
-// En profile.component.ts
 private loadUserTickets(): void {
   if (!this.userLogged?.name) {
     console.error('Nombre de usuario no disponible');
@@ -125,7 +122,6 @@ private loadUserTickets(): void {
   this.ticketService.getTicketsByUserOwner(this.userLogged.name).subscribe({
     next: (tickets: TicketDTO[]) => {
       this.tickets = tickets;
-      // Cargar imágenes para cada ticket
       this.loadEventImagesForTickets();
       this.loadingTickets = false;
     },
@@ -164,17 +160,15 @@ private loadUserTickets(): void {
       formData.append('image', file);
       
       if (this.userLogged.image) {
-        // Replace existing image
         this.userService.replaceUserImage(this.userLogged.id, formData).subscribe({
           next: () => {
-            this.loadProfileImage(); // Refresh the image
+            this.loadProfileImage();
           },
           error: (err) => {
             console.error('Error updating profile image:', err);
           }
         });
       } else {
-        // Create new image
         this.userService.createUserImage(this.userLogged.id, formData).subscribe({
           next: () => {
             this.userLogged.image = true;
@@ -197,7 +191,6 @@ private loadUserTickets(): void {
     this.editError = false;
   }
 
-  // Envía el formulario de edición
   onSubmitEditProfile(): void {
     if (this.editProfileForm.invalid) {
       return;
@@ -205,7 +198,7 @@ private loadUserTickets(): void {
   
     const token = localStorage.getItem('token');
     if (!token) {
-      this.router.navigate(['/login']); // Redirige si no hay token
+      this.router.navigate(['/login']);
       return;
     }
   
@@ -221,14 +214,12 @@ private loadUserTickets(): void {
   
     this.userService.editUser(this.userLogged.id, userData).subscribe({
       next: (updatedUser) => {
-        // ... resto del código existente
       },
       error: (err) => {
         console.error('Error updating profile:', err);
         this.isSubmitting = false;
         this.editError = true;
         
-        // Manejo específico para error 401
         if (err.status === 401) {
           this.authService.logout();
           this.router.navigate(['/login']);
@@ -255,23 +246,19 @@ private loadUserTickets(): void {
           },
           error: (err) => {
             console.error('Error loading event image for ticket:', ticket.id, err);
-            // Si falla, asignamos una imagen por defecto basada en la categoría
             ticket.eventImage = this.getDefaultTicketImage(ticket.category);
           }
         });
       } else {
-        // Si no hay eventId, asignamos imagen por defecto
         ticket.eventImage = this.getDefaultTicketImage(ticket.category);
       }
     });
   }
 
   getTicketImage(ticket: TicketDTO): SafeUrl | string {
-    // Si ya tenemos la imagen del evento, la devolvemos
     if (ticket.eventImage) {
       return ticket.eventImage;
     }
-    // Si no, devolvemos una imagen por defecto mientras se carga
     return this.getDefaultTicketImage(ticket.category);
   }
 

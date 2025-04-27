@@ -134,12 +134,11 @@ export class ConcertComponent implements OnInit {
       backdrop: 'static'
     });
   
-    modalRef.componentInstance.eventId = concertId; // Usar el ID real del evento
+    modalRef.componentInstance.eventId = concertId; 
   
     modalRef.result.then(
       (result) => {
         console.log('Comentario enviado:', result);
-        // Actualizar la lista de comentarios después de añadir uno nuevo
         this.loadComments(concertId);
       },
       (reason) => {
@@ -162,10 +161,8 @@ export class ConcertComponent implements OnInit {
 
   private updateMenuItems(): void {
     if (this.isAuthenticated) {
-      // Filtra Login y Logout
       this.items = this.items.filter(item => item.name !== 'Login' && item.name !== 'Logout');
     } else {
-      // Filtra Logout y añade Login si no existe
       this.items = this.items.filter(item => item.name !== 'Logout');
       if (!this.items.some(item => item.name === 'Login')) {
         this.items.push({ name: 'Login', icon: 'people', link: '' });
@@ -196,7 +193,7 @@ export class ConcertComponent implements OnInit {
         return;
       }
     
-      if (!this.userLogged?.name) { // Verifica name en lugar de username
+      if (!this.userLogged?.name) { 
         console.error('User data not available');
         return;
       }
@@ -208,7 +205,7 @@ export class ConcertComponent implements OnInit {
     
       modalRef.componentInstance.event = this.event;
       modalRef.componentInstance.currentUser = {
-        name: this.userLogged.name // Pasa name en lugar de username
+        name: this.userLogged.name 
       };
     }
 }

@@ -7,7 +7,6 @@ import { BookingDTO } from '../dtos/booking.dto';
   providedIn: 'root'
 })
 export class BookingService {
-  // Base URL for the bookings endpoints defined in your REST controller
   private apiUrl: string = 'https://localhost:8443/api/v1/bookings';
 
   constructor(private http: HttpClient) {}

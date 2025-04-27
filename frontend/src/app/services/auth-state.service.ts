@@ -1,7 +1,7 @@
-// auth-state.service.ts
+
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http'; // Importa HttpClient
+import { HttpClient, HttpHeaders } from '@angular/common/http'; 
 import { UserDTO } from '../dtos/user.dto';
 
 @Injectable({
@@ -9,9 +9,9 @@ import { UserDTO } from '../dtos/user.dto';
 })
 export class AuthStateService {
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
-  private apiURL = 'https://localhost:8443/api/v1/users/me'; // Asegúrate de definir esta URL
+  private apiURL = 'https://localhost:8443/api/v1/users/me'; 
 
-  constructor(private http: HttpClient) { // Inyecta HttpClient aquí
+  constructor(private http: HttpClient) {
     this.checkInitialAuthState();
   }
 

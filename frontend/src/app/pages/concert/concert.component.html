@@ -1,4 +1,3 @@
-<!-- concert.component.html -->
 <nav class="top-navbar">
   <div class="container-topnav">
     <ul class="elementos-header align-items-lg-center ms-auto me-lg-5" id="elementos-cabecera">
@@ -15,7 +14,7 @@
           {{ item.name }}
         </a>
       </li>
-      <!-- Mostrar nombre de usuario y opciones si está autenticado -->
+
       <li *ngIf="isAuthenticated" class="nav-item user-menu">
         <div class="dropdown">
           <a href="#" class="dropdown-toggle" (click)="goToProfile($event)">
@@ -31,7 +30,6 @@
   </div>
 </nav>
 
-<!-- CONCERT SECTION -->
 <section class="section-1">
   <div class="container-section1">
     <div class="row">
@@ -51,8 +49,6 @@
 </section>
 
 <div class="content-container">
-
-  <!-- DETALLES DEL CONCIERTO -->
   <section class="section-2" *ngIf="event">
     <div class="container-section2">
       <div class="container-concert-fields">
@@ -80,7 +76,6 @@
     </div>
   </section>
 
-  <!-- COMENTARIOS -->
   <section class="section_3">
     <div class="container-section3">
       <div class="comments-title">
@@ -91,7 +86,6 @@
           <button class="btn-change8 btn-comentario" type="button" (click)="openCommentModal()">Añadir comentario</button>        </div>
       </div>
       <div class="container-comments">
-        <!-- Iterar sobre los comentarios -->
         <div class="comment-post" *ngFor="let comment of comments">
           <div class="comment-post_user">{{ comment.username }}</div>
           <div class="comment-post_content">

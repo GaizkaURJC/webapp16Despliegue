@@ -34,11 +34,11 @@ export class CommentModalComponent implements OnInit {
   }
 
   private loadUserData(): void {
-    // Obtener el usuario autenticado en lugar de por ID
+
     this.authStateService.getAuthenticatedUser().subscribe({
       next: (user) => {
-        this.userId = user.id; // Asignar el ID del usuario
-        this.username = user.name; // Asignar el nombre directamente
+        this.userId = user.id; 
+        this.username = user.name; 
       },
       error: (err) => {
         console.error('Error al obtener datos del usuario:', err);
@@ -49,10 +49,9 @@ export class CommentModalComponent implements OnInit {
   }
   
   loadUsername(): void {
-    // Llama al backend para obtener el usuario por ID
     this.userService.getUserById(this.userId).subscribe({
       next: (user) => {
-        this.username = user.name; // Asigna el nombre del usuario
+        this.username = user.name;
       },
       error: (err) => {
         console.error('Error al obtener el nombre de usuario:', err);
