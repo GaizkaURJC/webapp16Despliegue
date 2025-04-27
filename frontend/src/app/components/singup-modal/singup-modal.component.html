@@ -22,7 +22,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="phoneSingup" class="form-label">Telefono</label>
+                <label for="phoneSingup" class="form-label">Teléfono</label>
                 <input type="text" class="form-control" id="telefono" name="telefono" required [(ngModel)]="telefono"
                     [disabled]="isLoading">
             </div>
@@ -33,15 +33,27 @@
                     [(ngModel)]="password" [disabled]="isLoading">
             </div>
 
-            <input type="checkbox" id="terminos" name="terminos" value="terminos" required> Acepto los
-            terminos y condiciones
-            <br>
-            <input type="checkbox" id="datos" name="datos" value="datos"> Permito el uso de mis datos
-            personales para las estadisticas
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="terminos" name="terminos" 
+                    [(ngModel)]="acceptTerms" required>
+                <label class="form-check-label" for="terminos">Acepto los términos y condiciones</label>
+            </div>
 
-            <p><button type="submit" class="btn btn-login" id="submitBtn" (click)="submitSingup()">Confirmar</button>
-            </p>
-            <!-- <input type="hidden" name="_csrf" value="{{token}}"> -->
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="datos" name="datos" 
+                    [(ngModel)]="acceptData">
+                <label class="form-check-label" for="datos">Permito el uso de mis datos personales para estadísticas</label>
+            </div>
+
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-login" id="submitBtn" [disabled]="isLoading">
+                    <span *ngIf="!isLoading">Confirmar</span>
+                    <span *ngIf="isLoading">
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        Procesando...
+                    </span>
+                </button>
+            </div>
         </form>
     </div>
 </div>
