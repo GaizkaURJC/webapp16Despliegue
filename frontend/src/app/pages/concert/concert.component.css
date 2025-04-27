@@ -16,6 +16,12 @@
 }
 
 
+.nav-item a {
+    text-decoration: none;
+    color: white;
+    cursor: pointer; /* Asegura que el cursor sea un puntero */
+}
+
 /* TOP NAVBAR ..... */
 html, body {
     margin: 0;

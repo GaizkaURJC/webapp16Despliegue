@@ -11,7 +11,7 @@ export const routes: Routes = [
 
   { path: '', component: HomeComponent },    // Respuesta a /new
   { path: 'home', component: HomeComponent }, // Respuesta a /new/home
-  { path: 'concerts', component: ConcertComponent },
+  { path: 'concerts/:id', component: ConcertComponent },
   { path: 'clubbing', component: ClubbingComponent }, // Respuesta a /new/clubbing
   { path: 'error', component: ErrorComponent }, // Respuesta a /new/error
   { path: 'admin', component: AdminComponent }, // Respuesta a /new/admin
