@@ -578,3 +578,98 @@ small {
     height: 200px;
     margin: auto;
 }
+
+section,
+div {
+    margin: 0;
+    padding: 0;
+}
+
+.container-section1 {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+    overflow: hidden;
+    padding-top: 100px;
+    min-height: calc(100vh - 92px);
+    background-image: url("/assets/videos/CONCERT.mp4");
+    background-size: cover;
+    z-index: 2;
+}
+
+.top-navbar {
+    position: fixed;
+    top: 0;
+    right: 06px;
+    background: transparent;
+    z-index: 9;
+    min-height: 80px;
+    align-items: center;
+    background-color: transparent;
+    display: grid;
+}
+
+.top-navbar .container-topnav {
+    justify-content: space-between;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 5px;
+}
+
+.top-navbar .elementos-header {
+    align-items: center !important;
+    justify-content: space-between;
+    padding: 0 20px;
+    display: flex;
+    margin-top: 10px;
+    z-index: 3;
+}
+
+.nav-item {
+    padding: 10px;
+    color: white;
+}
+
+.nav-item-login {
+    color: white;
+}
+
+.nav-item-login a:hover {
+    color: #d5e33e;
+}
+
+.nav-item-login .btn svg {
+    fill: white !important;
+    min-width: 20px;
+}
+
+.line-title {
+    width: 100%;
+    border: 5px#d5e33e solid;
+    background-color: #f2f526;
+    width: 50px;
+    margin: 0 auto;
+    opacity: 1;
+    margin-bottom: 5px;
+    font-size: 50px;
+}
+
+.texto-principal {
+    width: 100%;
+    margin-top: auto !important;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.texto-principal h1 {
+    font-size: 50px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.titulo {
+    margin-top: 250px;
+}
