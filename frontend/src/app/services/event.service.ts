@@ -32,6 +32,17 @@ export class EventService{
           `${this.apiURL}/with-images?page=${page}&size=${size}`
         );
       }
+
+      loginUser(name:string, email:string, telefono: String, password: string): Observable<any> {
+        const body = {
+          name: name,
+          email: email,
+          telefono: telefono,
+          password: password
+        };
+        return this.http.post<any>(`${this.apiURL}/`, body)
+
+      }
 }
 interface PageResponse<T> {
     content: T[];

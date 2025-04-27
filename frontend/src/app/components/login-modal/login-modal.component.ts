@@ -47,6 +47,9 @@ export class LoginModalComponent {
           localStorage.setItem('token', response.token);
           this.activeModal.close();
           window.location.reload();
+          if(response.role && response.roles.includes('ADMIN')){
+            this.router.navigate(['/admin']);
+          }
         } else {
           this.errorMessage = 'Respuesta inesperada del servidor';
         }
