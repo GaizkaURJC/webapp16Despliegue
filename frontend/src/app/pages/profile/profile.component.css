@@ -550,3 +550,122 @@ input[type="file"] {
   .text-danger {
     color: #dc3545 !important;
   }
+
+  /* Estilos para el selector de pestañas */
+.nav-tabs {
+    border-bottom: 1px solid #444;
+    margin-bottom: 30px;
+  }
+  
+  .nav-tabs .nav-link {
+    color: #aaa;
+    background-color: transparent;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+  }
+  
+  .nav-tabs .nav-link:hover {
+    color: #d5e33e;
+    border-color: transparent;
+  }
+  
+  .nav-tabs .nav-link.active {
+    color: #d5e33e;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid #d5e33e;
+    font-weight: bold;
+  }
+  
+  /* Efecto hover para las pestañas */
+  .nav-tabs .nav-item {
+    position: relative;
+    margin: 0 10px;
+  }
+  
+  .nav-tabs .nav-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #d5e33e;
+    transition: width 0.3s ease;
+  }
+  
+  .nav-tabs .nav-item:hover::after {
+    width: 100%;
+  }
+  
+  .nav-tabs .nav-item.active::after {
+    width: 100%;
+  }
+  
+  /* Contenedor principal */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+
+  /* src/app/pages/profile/profile.component.css */
+/* ... estilos existentes ... */
+
+/* Estilos para los tickets */
+.ticket-card {
+    transition: all 0.3s ease;
+    border: 1px solid #333;
+    max-height: 250px;
+  }
+  
+  .ticket-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(213, 227, 62, 0.2);
+    border-color: #d5e33e;
+  }
+  
+  .badge {
+    font-size: 0.8em;
+    padding: 5px 10px;
+  }
+  
+  .btn-warning {
+    background-color: #d5e33e;
+    color: #000;
+    border: none;
+  }
+  
+  .btn-warning:hover {
+    background-color: #c4d136;
+  }
+  
+  .btn-outline-danger {
+    color: #dc3545;
+    border-color: #dc3545;
+  }
+  
+  .btn-outline-danger:hover {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  /* Spinner de carga */
+  .spinner-border {
+    width: 3rem;
+    height: 3rem;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .ticket-card {
+      max-height: none;
+      height: auto;
+    }
+    
+    .card-img-overlay {
+      padding: 1rem;
+    }
+  }

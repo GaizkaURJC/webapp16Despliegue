@@ -64,7 +64,7 @@ public class TicketRestController {
 
     @Operation(summary = "Get all the tickets of a certain userOwner")
     @GetMapping("/userOwner/{userOwner}")
-    public Collection<TicketDTO> getTicketsByUserOwner(@RequestParam String userOwner) {
+    public Collection<TicketDTO> getTicketsByUserOwner(@PathVariable String userOwner) {
         return ticketService.findByUserOwner(userOwner);
     }
 

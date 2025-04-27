@@ -46,7 +46,7 @@ export class HeaderComponent {
   private loadUserData(): void {
     this.authState.getAuthenticatedUser().subscribe({
       next: (user: UserDTO) => {
-        this.userName = user.name || user.username;
+        this.userName = user.name || user.name;
       },
       error: (err) => {
         console.error('Error loading user data:', err);

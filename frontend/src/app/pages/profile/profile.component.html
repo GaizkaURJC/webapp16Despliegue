@@ -1,5 +1,26 @@
 <app-header></app-header>
 
+<!-- Selector de pestañas -->
+<div class="container">
+  <ul class="nav nav-tabs justify-content-center mt-4">
+    <li class="nav-item">
+      <a class="nav-link" 
+         [class.active]="activeTab === 'perfil'" 
+         (click)="showTab('perfil')">Perfil</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" 
+         [class.active]="activeTab === 'activity'" 
+         (click)="showTab('activity')">Activity</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" 
+         [class.active]="activeTab === 'personalizacion'" 
+         (click)="showTab('personalizacion')">Personalización</a>
+    </li>
+  </ul>
+</div>
+
 <!-- PAGINA PERFIL -->
 <div id="perfil" class="content-tab" *ngIf="activeTab === 'perfil'">
     <div class="container-profile-info">
@@ -14,7 +35,7 @@
       </div>
       <div class="container-profile-data">
         <h1 class="profile-name">{{userLogged.name}}</h1>
-        <p class="profile-username">{{userLogged.username}}</p>
+        <p class="profile-username">{{userLogged.name}}</p>
         <p class="profile-email">{{userLogged.email}}</p>
         <div class="butcontainer">
           <a href="#" (click)="logout($event)" class="btn btn-dark rounded-pill px-4 py-2">Cerrar sesión
@@ -29,26 +50,46 @@
 <!--PAGINA ACTIVIDAD-->
 <div class="container-tickets">
   <div id="activity" class="content-tab activity" *ngIf="activeTab === 'activity'">
-    <div class="row">
-      <div class="col-12 mb-3" *ngFor="let ticket of tickets">
-        <div class="card text-white">
-          <img class="card-img" src="/assets/images/melendiTicket.jpg" alt="Card image">
+    <div *ngIf="loadingTickets" class="text-center py-5">
+      <div class="spinner-border text-warning" role="status">
+        <span class="visually-hidden">Cargando...</span>
+      </div>
+      <p class="text-white mt-3">Cargando tus tickets...</p>
+    </div>
+
+    <div *ngIf="ticketError" class="alert alert-danger text-center">
+      {{ ticketError }}
+    </div>
+
+    <div *ngIf="!userLogged?.name" class="alert alert-warning">
+      <p>Estado de depuración:</p>
+      <p>Usuario logueado: {{userLogged | json}}</p>
+    </div>
+
+    <div *ngIf="!loadingTickets && tickets.length === 0" class="text-center py-5">
+      <p class="text-white">No tienes tickets comprados aún.</p>
+      <a href="/events" class="btn btn-warning mt-3">Explorar eventos</a>
+    </div>
+
+    <div class="row" *ngIf="!loadingTickets && tickets.length > 0">
+      <div class="col-12 mb-4" *ngFor="let ticket of tickets">
+        <div class="card text-white ticket-card">
+          <img class="card-img" [src]="getTicketImage(ticket)" alt="Ticket image">
           <div class="card-img-overlay d-flex flex-column justify-content-between">
             <div>
-              <h5 class="card-title">{{ticket.title}}</h5>
-              <p class="card-text">{{ticket.ticketDate}}</p>
-              <p class="card-text"><small>{{ticket.category}}</small></p>
+              <h5 class="card-title">{{ ticket.title }}</h5>
+              <p class="card-text">
+                <i class="bi bi-calendar-event me-2"></i>
+                {{ ticket.ticketDate | date:'mediumDate' }}
+              </p>
+              <p class="card-text">
+                <span class="badge bg-warning text-dark">{{ ticket.category }}</span>
+              </p>
             </div>
-            <div class="d-flex">
-              <a [href]="'/tickets/download/' + ticket.id" class="btn btn-dark btn-sm rounded-pill d-flex align-items-center ms-auto">
-                <i class="fas fa-download me-2"></i> Descargar
-              </a>
+            <div class="d-flex justify-content-between align-items-center">
             </div>
           </div>
         </div>
-      </div>
-      <div *ngIf="tickets.length === 0">
-        <p>No tienes tickets comprados aún.</p>
       </div>
     </div>
   </div>
