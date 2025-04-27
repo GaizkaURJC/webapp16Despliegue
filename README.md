@@ -713,7 +713,9 @@ Sigue estos pasos para configurar y ejecutar la aplicación Angular en tu entorn
    http://localhost:4200
 ---
 ### Diagrama de clases y templates de SPA
+![@](https://github.com/user-attachments/assets/a5e86c8f-fb19-4949-8b15-1ff5ef434b47)
 
+---
 ### Contribución del equipo
 **Albero Acebes Sánchez**
 - Tareas Realizadas
