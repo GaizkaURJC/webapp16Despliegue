@@ -6,13 +6,14 @@ import { CommonModule } from '@angular/common';
 import { CommentModalComponent } from '../../components/comment-modal/comment-modal.component';
 import { HeaderComponent } from '../../shared/header/header.component';
 import { EventService } from '../../services/event.service'; 
-import { CommentService } from '../../services/comment.service'; // Importa el servicio de comentarios
+import { CommentService } from '../../services/comment.service';
 import { EventDTO } from '../../dtos/event.dto';
 import { CommentDTO } from '../../dtos/comment.dto';
 import { AuthService } from '../../services/login.service';
 import { AuthStateService } from '../../services/auth-state.service';
 import { LoginModalComponent } from '../../components/login-modal/login-modal.component';
 import { Router } from '@angular/router';
+import { UserDTO } from '../../dtos/user.dto'; 
 
 @Component({
   selector: 'app-concert',
@@ -30,16 +31,16 @@ import { Router } from '@angular/router';
 export class ConcertComponent implements OnInit {
   items = [
     { name: 'Home', icon: 'home', link: '/' },
-    { name: 'Clubbing', icon: 'information-circle', link: '/spa/clubbing' },
-    { name: 'Conciertos', icon: 'musical-notes', link: '/spa/concerts' },
+    { name: 'Clubbing', icon: 'information-circle', link: '/' },
+    { name: 'Conciertos', icon: 'musical-notes', link: '/' },
     { name: 'Eventos', icon: 'mail', link: '/events' },
-    { name: 'Contactanos', icon: 'party', link: '/contact' },
+    { name: 'Contactanos', icon: 'party', link: '/' },
     { name: 'Login', icon: 'people', link: '' }
   ];
 
   
   isAuthenticated = false;
-
+  userName: string = '';
 
   imgUrl = "assets/img/concertpek.jpg";
   event: EventDTO | null = null; 
@@ -56,6 +57,11 @@ export class ConcertComponent implements OnInit {
   ) {
     this.authState.isAuthenticated$.subscribe(auth => {
       this.isAuthenticated = auth;
+      if (auth) {
+        this.loadUserData(); // Llamar a loadUserData cuando esté autenticado
+      } else {
+        this.userName = '';
+      }
       this.updateMenuItems();
     });
   }
@@ -69,6 +75,17 @@ export class ConcertComponent implements OnInit {
     this.loadEvent(concertId);
     this.loadComments(concertId);
     this.loadEventImage(concertId);
+  }
+
+  private loadUserData(): void {
+    this.authState.getAuthenticatedUser().subscribe({
+      next: (user: UserDTO) => {
+        this.userName = user.name || user.username;
+      },
+      error: (err) => {
+        console.error('Error loading user data:', err);
+      }
+    });
   }
 
   private loadEvent(eventId: number): void {
@@ -140,11 +157,8 @@ export class ConcertComponent implements OnInit {
 
   private updateMenuItems(): void {
     if (this.isAuthenticated) {
-      // Filtra Login y añade Logout si no existe
-      this.items = this.items.filter(item => item.name !== 'Login');
-      if (!this.items.some(item => item.name === 'Logout')) {
-        this.items.push({ name: 'Logout', icon: 'log-out', link: '' });
-      }
+      // Filtra Login y Logout
+      this.items = this.items.filter(item => item.name !== 'Login' && item.name !== 'Logout');
     } else {
       // Filtra Logout y añade Login si no existe
       this.items = this.items.filter(item => item.name !== 'Logout');
@@ -153,7 +167,7 @@ export class ConcertComponent implements OnInit {
       }
     }
   }
-  
+
     openLoginModal(event: Event) {
       event.preventDefault();
       this.modalService.open(LoginModalComponent, { centered: true });
@@ -165,5 +179,11 @@ export class ConcertComponent implements OnInit {
       this.authState.setAuthenticated(false);
       this.router.navigate(['/']);
     }
+
+    goToProfile(event: Event) {
+      event.preventDefault();
+      this.router.navigate(['/profile']);
+    }
+  
 
 }

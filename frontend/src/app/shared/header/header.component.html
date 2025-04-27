@@ -5,23 +5,27 @@
   </video>
   <div class="top-site-bar">
     <ul>
+      <!-- Mostrar todos los items -->
       <li *ngFor="let item of items">
-        <a *ngIf="item.name !== 'Login' && item.name !== 'Logout'" 
-          [href]="item.link" 
-          target="_blank" 
-          rel="noopener noreferrer">
+        <a [href]="item.link" target="_blank" rel="noopener noreferrer">
           {{ item.name }}
         </a>
-        <a *ngIf="item.name === 'Login' && !isAuthenticated" 
-          href="#" 
-          (click)="openLoginModal($event)">
-          {{ item.name }}
-        </a>
-        <a *ngIf="isAuthenticated" 
-          href="#" 
-          (click)="logout($event)">
-          Logout
-        </a>
+      </li>
+      <!-- Mostrar nombre de usuario y opciones si está autenticado -->
+      <li *ngIf="isAuthenticated" class="user-menu">
+        <div class="dropdown">
+          <a href="#" class="dropdown-toggle" (click)="goToProfile($event)">
+            {{ userName }}
+          </a>
+          <div class="dropdown-content">
+            <a href="#" (click)="goToProfile($event)">Perfil</a>
+            <a href="#" (click)="logout($event)">Cerrar sesión</a>
+          </div>
+        </div>
+      </li>
+      <!-- Mostrar Login si no está autenticado -->
+      <li *ngIf="!isAuthenticated">
+        <a href="#" (click)="openLoginModal($event)">Login</a>
       </li>
     </ul>
   </div>

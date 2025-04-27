@@ -3,7 +3,7 @@
   <div class="container-topnav">
     <ul class="elementos-header align-items-lg-center ms-auto me-lg-5" id="elementos-cabecera">
       <li class="nav-item" *ngFor="let item of items">
-        <a *ngIf="item.name !== 'Login' && item.name !== 'Logout'" 
+        <a *ngIf="item.name !== 'Login'" 
            [href]="item.link" 
            class="top-nav-section">
           {{ item.name }}
@@ -14,12 +14,18 @@
            class="top-nav-section">
           {{ item.name }}
         </a>
-        <a *ngIf="item.name === 'Logout'" 
-           href="#" 
-           (click)="logout($event)" 
-           class="top-nav-section">
-          {{ item.name }}
-        </a>
+      </li>
+      <!-- Mostrar nombre de usuario y opciones si está autenticado -->
+      <li *ngIf="isAuthenticated" class="nav-item user-menu">
+        <div class="dropdown">
+          <a href="#" class="dropdown-toggle" (click)="goToProfile($event)">
+            {{ userName }}
+          </a>
+          <div class="dropdown-content">
+            <a href="#" (click)="goToProfile($event)">Perfil</a>
+            <a href="#" (click)="logout($event)">Cerrar sesión</a>
+          </div>
+        </div>
       </li>
     </ul>
   </div>
