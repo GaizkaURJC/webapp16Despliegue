@@ -103,10 +103,58 @@
             <!---  <a href="#" (click)="openCreateConcertModal()">Añadir Concierto</a> -->
         </div>
         <div class="container1" *ngIf="activeSection === 'eventos'">
-            <p class="title">EVENTOS</p>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th>Usuario</th>
+                    <th>Descripción</th>
+                    <th>Estado</th>
+                    <th>Aceptar</th>
+                    <th>Rechazar</th>
+                    <th>Eliminar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let booking of bookings">
+                    <td>{{ booking.userName }}</td>
+                    <td>{{ booking.eventDescript }}</td>
+                    <td>{{ booking.status }}</td>
+                    <td>
+               <!--       <button (click)="acceptbooking(booking.id)">Aceptar</button> -->
+                    </td>
+                    <td>
+                   <!--   <button (click)="rejectbooking(booking.id)">Rechazar</button> -->
+                    </td>
+                    <td>
+                      <!-- <button (click)="deletebooking(booking.id)">Eliminar</button> -->
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
         </div>
         <div class="container1" *ngIf="activeSection === 'comentarios'">
-            <p class="title">COMENTARIOS</p>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th>Usuario</th>
+                    <th>Evento</th>
+                    <th>Comentario</th>
+                    <th>Rating</th>
+                    <th>Eliminar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let comment of comments">
+                    <td>{{ comment.username }}</td>
+                    <td>{{ comment.eventId }}</td>
+                    <td>{{ comment.comentario }}</td>
+                    <td>{{ comment.rate }}</td>
+                    <td>
+                     <!-- <button (click)="deleteComment(comment.id)">Eliminar</button>  -->
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             
         </div>
         <div class="container1" *ngIf="activeSection === 'usuarios'">
