@@ -30,7 +30,8 @@ export class CommentService {
 
   // Método para eliminar un comentario por ID
   deleteComment(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiURL}/${id}`);
+    return this.http.delete<void>(`${this.apiURL}/${id}`, {
+      headers: this.getAuthHeaders()});
   }
 
   // Método para reemplazar un comentario existente

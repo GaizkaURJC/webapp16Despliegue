@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { UserDTO } from '../dtos/user.dto';
@@ -51,7 +51,8 @@ export class UserService {
 
   // Delete a user by ID
   deleteUser(id: number): Observable<any> {
-    return this.http.delete(`${this.apiURL}/${id}`);
+    return this.http.delete(`${this.apiURL}/${id}`, {
+      headers: this.getAuthHeaders()});
   }
 
   // Delete all users having a specific role, if applicable
@@ -76,7 +77,18 @@ export class UserService {
 
   // Delete a user image
   deleteUserImage(id: number): Observable<any> {
-    return this.http.delete(`${this.apiURL}/${id}/image`);
+    return this.http.delete(`${this.apiURL}/${id}/image`, {
+      headers: this.getAuthHeaders()});
   }
+
+  private getAuthHeaders(): HttpHeaders {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        throw new Error('No authentication token found');
+      }
+      return new HttpHeaders({
+        Authorization: `Bearer ${token}`
+      });
+    }
   
 }

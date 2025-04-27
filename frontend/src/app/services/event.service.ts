@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { EventDTO, EventWithImageDTO} from "../dtos/event.dto";
 
@@ -32,6 +32,21 @@ export class EventService{
           `${this.apiURL}/with-images?page=${page}&size=${size}`
         );
       }
+
+      deleteEvent(id: number): Observable<void> {
+        return this.http.delete<void>(`${this.apiURLType}/${id}`, {
+          headers: this.getAuthHeaders()});
+      }
+
+      private getAuthHeaders(): HttpHeaders {
+          const token = localStorage.getItem('token');
+          if (!token) {
+            throw new Error('No authentication token found');
+          }
+          return new HttpHeaders({
+            Authorization: `Bearer ${token}`
+          });
+        }
 }
 interface PageResponse<T> {
     content: T[];
