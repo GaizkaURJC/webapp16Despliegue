@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { TicketService } from '../../services/ticket.service';
 
 @Component({
   selector: 'app-buy-modal',
@@ -13,12 +14,17 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class BuyModalComponent {
   @Input() event: any;
   @Input() token: string = '';
+  @Input() currentUser?: { name: string };  // Añade esta línea para recibir el usuario actual
 
   ticketName = '';
   dni = '';
   gender = 'Hombre';
-
-  constructor(public activeModal: NgbActiveModal) { }
+  isLoading = false;
+  errorMessage = '';
+  constructor(
+    public activeModal: NgbActiveModal,
+    private ticketService: TicketService
+  ) { }
 
   closeModal() {
     this.activeModal.dismiss();
@@ -33,17 +39,40 @@ export class BuyModalComponent {
   }
 
   submitForm() {
+    console.log('Datos del usuario:', this.currentUser); // Para depuración
+  
+    if (!this.currentUser?.name) { // Cambia username por name
+      this.errorMessage = 'No se pudo identificar al usuario';
+      console.error('Usuario no definido:', this.currentUser);
+      return;
+    }
+
+    this.isLoading = true;
+    this.errorMessage = '';
+
     const ticketData = {
-      ticketName: this.ticketName,
-      dni: this.dni,
-      gender: this.gender,
-      eventName: this.event?.title,
+      title: this.event?.title,
       category: this.event?.category,
       eventId: this.event?.id,
+      userOwner: this.currentUser.name, // Asume que currentUser tiene username
+      dni: this.dni,
+      gender: this.gender,
+      ticketDate: new Date().toISOString(), // Fecha actual como string
+      ticketName: this.ticketName,
       _csrf: this.token
     };
 
-    console.log('Ticket enviado:', ticketData);
-    this.activeModal.close(ticketData);
+    this.ticketService.createTicket(ticketData).subscribe({
+      next: (createdTicket) => {
+        console.log('Ticket creado:', createdTicket);
+        this.isLoading = false;
+        this.activeModal.close(createdTicket);
+      },
+      error: (err) => {
+        console.error('Error creando ticket:', err);
+        this.isLoading = false;
+        this.errorMessage = 'Error al comprar el ticket. Por favor intente nuevamente.';
+      }
+    });
   }
 }
