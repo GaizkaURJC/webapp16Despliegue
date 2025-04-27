@@ -1,0 +1,101 @@
+<app-header></app-header>
+
+<!-- PAGINA PERFIL -->
+<div id="perfil" class="content-tab" *ngIf="activeTab === 'perfil'">
+    <div class="container-profile-info">
+      <div class="container-profile-img">
+        <img [src]="profileImage" alt="Imagen de perfil" class="profile-img">
+        <div class="mt-2">
+          <input type="file" id="profileImageInput" accept="image/*" (change)="onFileSelected($event)" style="display: none;">
+          <label for="profileImageInput" class="btn btn-sm btn-outline-light rounded-pill">
+            <i class="bi bi-camera me-1"></i> Cambiar foto
+          </label>
+        </div>
+      </div>
+      <div class="container-profile-data">
+        <h1 class="profile-name">{{userLogged.name}}</h1>
+        <p class="profile-username">{{userLogged.username}}</p>
+        <p class="profile-email">{{userLogged.email}}</p>
+        <div class="butcontainer">
+          <button class="btn btn-dark rounded-pill px-4 py-2" data-bs-toggle="modal"
+            data-bs-target="#modalEditProfile">
+            Editar perfil
+          </button>
+        </div>
+        <div class="butcontainer">
+          <a href="#" (click)="logout($event)" class="btn btn-dark rounded-pill px-4 py-2">Cerrar sesión
+            
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+<!--PAGINA ACTIVIDAD-->
+<div class="container-tickets">
+  <div id="activity" class="content-tab activity" *ngIf="activeTab === 'activity'">
+    <div class="row">
+      <div class="col-12 mb-3" *ngFor="let ticket of tickets">
+        <div class="card text-white">
+          <img class="card-img" src="/assets/images/melendiTicket.jpg" alt="Card image">
+          <div class="card-img-overlay d-flex flex-column justify-content-between">
+            <div>
+              <h5 class="card-title">{{ticket.title}}</h5>
+              <p class="card-text">{{ticket.ticketDate}}</p>
+              <p class="card-text"><small>{{ticket.category}}</small></p>
+            </div>
+            <div class="d-flex">
+              <a [href]="'/tickets/download/' + ticket.id" class="btn btn-dark btn-sm rounded-pill d-flex align-items-center ms-auto">
+                <i class="fas fa-download me-2"></i> Descargar
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="tickets.length === 0">
+        <p>No tienes tickets comprados aún.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--PAGINA PERSONALIZACION-->
+<div id="personalizacion" class="content-tab" *ngIf="activeTab === 'personalizacion'">
+  <h2>Personalización</h2>
+</div>
+
+<!-- Modal de edición de perfil -->
+<div class="modal fade" id="modalEditProfile" tabindex="-1" aria-labelledby="modalEditProfileLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modalEditProfileLabel">Editar cuenta</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <input type="hidden" name="id" [value]="userLogged.id">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Nombre De Usuario</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" 
+              name="user" [placeholder]="userLogged.name" required>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" 
+              name="email" [placeholder]="userLogged.email" required>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Contraseña</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" name="password" required>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-success">Guardar cambios</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
