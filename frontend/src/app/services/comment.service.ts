@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient , HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CommentDTO } from '../dtos/comment.dto';
 
@@ -23,12 +23,15 @@ export class CommentService {
 
   // Método para crear un nuevo comentario
   createComment(comment: CommentDTO): Observable<CommentDTO> {
-    return this.http.post<CommentDTO>(`${this.apiURL}/`, comment);
+    return this.http.post<CommentDTO>(`${this.apiURL}/`, comment, { 
+      headers: this.getAuthHeaders() 
+    });
   }
 
   // Método para eliminar un comentario por ID
   deleteComment(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiURL}/${id}`);
+    return this.http.delete<void>(`${this.apiURL}/${id}`, {
+      headers: this.getAuthHeaders()});
   }
 
   // Método para reemplazar un comentario existente
@@ -39,6 +42,16 @@ export class CommentService {
   // Método para obtener comentarios por el ID del evento
   getCommentsByEventId(eventId: number): Observable<CommentDTO[]> {
     return this.http.get<CommentDTO[]>(`${this.apiURL}/event/${eventId}`);
+  }
+
+  private getAuthHeaders(): HttpHeaders {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      throw new Error('No authentication token found');
+    }
+    return new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
   }
 
   

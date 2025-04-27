@@ -1,42 +1,34 @@
 import { Component } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BuyModalComponent } from '../../components/buy-modal/buy-modal.component'; // Ajusta ruta si es necesario
 
-import { HeaderComponent } from '../../shared/header/header.component';
 import { FooterComponent } from '../../shared/footer/footer.component';
+import { EventService } from '../../services/event.service';
+import { EventDTO } from '../../dtos/event.dto';
 
 @Component({
   selector: 'app-clubbing',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent],
+  imports: [FooterComponent, NgIf],
   templateUrl: './clubbing.component.html',
   styleUrls: ['./clubbing.component.css']
 })
+
 export class ClubbingComponent {
+  imgUrl = "assets/img/ochoymedio.jpg";
+  event: EventDTO | null = null;
 
-  event = {
-    id: 1,
-    title: 'ocho&medio',
-    category: 'Fiesta',
-    descLinea1: 'Una experiencia sonora increíble.',
-    descLinea2: 'Con los mejores DJs de la escena.'
-  };
-
-  token = '1234567890abcdef'; // Reemplaza con el valor real si lo tienes
-  userLogged = {
-    name: 'Alejandro'
-  };
-
-  constructor(private modalService: NgbModal) { }
+  constructor(
+    private modalService: NgbModal,
+    private eventService: EventService
+  ) { }
 
   abrirModalCompra(): void {
     const modalRef = this.modalService.open(BuyModalComponent, {
       centered: true,
       backdrop: 'static'
     });
-
-    modalRef.componentInstance.event = this.event;
-    modalRef.componentInstance.token = this.token;
 
     modalRef.result.then(
       result => {
@@ -47,4 +39,28 @@ export class ClubbingComponent {
       }
     );
   }
+
+  ngOnInit() {
+    const eventId = 1;
+    this.eventService.getEventById(eventId).subscribe({
+      next: (data) => {
+        this.event = data;
+      },
+      error: (err) => {
+        console.error('Error al obtener el evento:', err);
+      }
+    });
+
+    // Cargar la imagen del evento
+    this.eventService.getEventImage(eventId).subscribe({
+      next: (blob) => {
+        const objectURL = URL.createObjectURL(blob); // Crear una URL para el Blob
+        this.imgUrl = objectURL; // Asignar la URL a imgUrl
+      },
+      error: (err) => {
+        console.error('Error al obtener la imagen del evento:', err);
+      }
+    });
+  }
+
 }

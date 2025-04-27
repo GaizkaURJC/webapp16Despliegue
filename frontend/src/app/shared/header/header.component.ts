@@ -6,6 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '../../services/login.service';
 import { AuthStateService } from '../../services/auth-state.service';
 import { Router } from '@angular/router';
+import { UserDTO } from '../../dtos/user.dto';
 
 @Component({
   standalone: true,
@@ -20,11 +21,11 @@ export class HeaderComponent {
     { name: 'Clubbing', icon: 'information-circle', link: '/spa/clubbing' },
     { name: 'Conciertos', icon: 'musical-notes', link: '/spa/concerts' },
     { name: 'Eventos', icon: 'mail', link: '/events' },
-    { name: 'Contactanos', icon: 'party', link: '/contact' },
-    { name: 'Login', icon: 'people', link: '' }
+    { name: 'Contactanos', icon: 'party', link: '/contact' }
   ];
 
   isAuthenticated = false;
+  userName: string = '';
 
   constructor(
     private modalService: NgbModal,
@@ -34,25 +35,33 @@ export class HeaderComponent {
   ) {
     this.authState.isAuthenticated$.subscribe(auth => {
       this.isAuthenticated = auth;
-      // Actualiza el menú según el estado de autenticación
-      this.updateMenuItems();
+      if (auth) {
+        this.loadUserData();
+      } else {
+        this.userName = '';
+      }
     });
   }
 
-  private updateMenuItems(): void {
-    if (this.isAuthenticated) {
-      this.items = this.items.filter(item => item.name !== 'Login');
-      // Puedes añadir más lógica aquí para actualizar el menú
-    } else {
-      if (!this.items.some(item => item.name === 'Login')) {
-        this.items.push({ name: 'Login', icon: 'people', link: '' });
+  private loadUserData(): void {
+    this.authState.getAuthenticatedUser().subscribe({
+      next: (user: UserDTO) => {
+        this.userName = user.name || user.username;
+      },
+      error: (err) => {
+        console.error('Error loading user data:', err);
       }
-    }
+    });
   }
 
   openLoginModal(event: Event) {
     event.preventDefault();
     this.modalService.open(LoginModalComponent, { centered: true });
+  }
+
+  goToProfile(event: Event) {
+    event.preventDefault();
+    this.router.navigate(['/profile']);
   }
 
   logout(event: Event) {

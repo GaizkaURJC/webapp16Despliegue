@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { EventDTO, EventWithImageDTO} from "../dtos/event.dto";
 
@@ -33,16 +33,20 @@ export class EventService{
         );
       }
 
-      loginUser(name:string, email:string, telefono: String, password: string): Observable<any> {
-        const body = {
-          name: name,
-          email: email,
-          telefono: telefono,
-          password: password
-        };
-        return this.http.post<any>(`${this.apiURL}/`, body)
-
+      deleteEvent(id: number): Observable<void> {
+        return this.http.delete<void>(`${this.apiURLType}/${id}`, {
+          headers: this.getAuthHeaders()});
       }
+
+      private getAuthHeaders(): HttpHeaders {
+          const token = localStorage.getItem('token');
+          if (!token) {
+            throw new Error('No authentication token found');
+          }
+          return new HttpHeaders({
+            Authorization: `Bearer ${token}`
+          });
+        }
 }
 interface PageResponse<T> {
     content: T[];

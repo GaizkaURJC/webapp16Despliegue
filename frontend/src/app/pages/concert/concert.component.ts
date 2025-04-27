@@ -6,10 +6,14 @@ import { CommonModule } from '@angular/common';
 import { CommentModalComponent } from '../../components/comment-modal/comment-modal.component';
 import { HeaderComponent } from '../../shared/header/header.component';
 import { EventService } from '../../services/event.service'; 
-import { CommentService } from '../../services/comment.service'; // Importa el servicio de comentarios
+import { CommentService } from '../../services/comment.service';
 import { EventDTO } from '../../dtos/event.dto';
 import { CommentDTO } from '../../dtos/comment.dto';
-
+import { AuthService } from '../../services/login.service';
+import { AuthStateService } from '../../services/auth-state.service';
+import { LoginModalComponent } from '../../components/login-modal/login-modal.component';
+import { Router } from '@angular/router';
+import { UserDTO } from '../../dtos/user.dto'; 
 
 @Component({
   selector: 'app-concert',
@@ -17,22 +21,26 @@ import { CommentDTO } from '../../dtos/comment.dto';
   imports: [
     CommonModule,
     FormsModule,     
-    HeaderComponent
+    HeaderComponent,
+    LoginModalComponent
   ],
   templateUrl: './concert.component.html',
   styleUrls: ['./concert.component.css']
 })
 
 export class ConcertComponent implements OnInit {
-  menuItems = [
-    { name: 'Home', link: '/' },
-    { name: 'Clubbing', link: '/clubbing' },
-    { name: 'Conciertos', link: '/concerts' },
-    { name: 'Eventos', link: '/events' },
-    { name: 'Contáctanos', link: '/contact' }
+  items = [
+    { name: 'Home', icon: 'home', link: '/' },
+    { name: 'Clubbing', icon: 'information-circle', link: '/' },
+    { name: 'Conciertos', icon: 'musical-notes', link: '/' },
+    { name: 'Eventos', icon: 'mail', link: '/events' },
+    { name: 'Contactanos', icon: 'party', link: '/' },
+    { name: 'Login', icon: 'people', link: '' }
   ];
 
+  
   isAuthenticated = false;
+  userName: string = '';
 
   imgUrl = "assets/img/concertpek.jpg";
   event: EventDTO | null = null; 
@@ -42,12 +50,46 @@ export class ConcertComponent implements OnInit {
     private route: ActivatedRoute,
     private modalService: NgbModal,
     private eventService: EventService,
-    private commentService: CommentService 
-  ) {}
+    private commentService: CommentService ,
+    private authService: AuthService,
+    private authState: AuthStateService,
+    private router: Router
+  ) {
+    this.authState.isAuthenticated$.subscribe(auth => {
+      this.isAuthenticated = auth;
+      if (auth) {
+        this.loadUserData(); // Llamar a loadUserData cuando esté autenticado
+      } else {
+        this.userName = '';
+      }
+      this.updateMenuItems();
+    });
+  }
+  
+  ngOnInit() {
+    this.loadEventData();
+  }
 
-  ngOnInit() {   // Por ejemplo se coge 6, cuando este todo se asigna el numero que haga falta
+  private loadEventData(): void {
     const concertId = Number(this.route.snapshot.paramMap.get('id'));
-    this.eventService.getEventById(concertId).subscribe({
+    this.loadEvent(concertId);
+    this.loadComments(concertId);
+    this.loadEventImage(concertId);
+  }
+
+  private loadUserData(): void {
+    this.authState.getAuthenticatedUser().subscribe({
+      next: (user: UserDTO) => {
+        this.userName = user.name || user.username;
+      },
+      error: (err) => {
+        console.error('Error loading user data:', err);
+      }
+    });
+  }
+
+  private loadEvent(eventId: number): void {
+    this.eventService.getEventById(eventId).subscribe({
       next: (data) => {
         this.event = data;
       },
@@ -55,8 +97,10 @@ export class ConcertComponent implements OnInit {
         console.error('Error al obtener el evento:', err);
       }
     });
+  }
 
-    this.commentService.getCommentsByEventId(concertId).subscribe({
+  private loadComments(eventId: number): void {
+    this.commentService.getCommentsByEventId(eventId).subscribe({
       next: (data) => {
         this.comments = data;
       },
@@ -64,30 +108,34 @@ export class ConcertComponent implements OnInit {
         console.error('Error al obtener los comentarios:', err);
       }
     });
+  }
 
-    // Cargar la imagen del evento
-    this.eventService.getEventImage(concertId).subscribe({
+  private loadEventImage(eventId: number): void {
+    this.eventService.getEventImage(eventId).subscribe({
       next: (blob) => {
-        const objectURL = URL.createObjectURL(blob); // Crear una URL para el Blob
-        this.imgUrl = objectURL; // Asignar la URL a imgUrl
+        const objectURL = URL.createObjectURL(blob);
+        this.imgUrl = objectURL;
       },
       error: (err) => {
         console.error('Error al obtener la imagen del evento:', err);
       }
     });
   }
-  
+
   openCommentModal() {
+    const concertId = Number(this.route.snapshot.paramMap.get('id'));
     const modalRef = this.modalService.open(CommentModalComponent, {
       centered: true,
       backdrop: 'static'
     });
   
-    modalRef.componentInstance.eventId = 6;
+    modalRef.componentInstance.eventId = concertId; // Usar el ID real del evento
   
     modalRef.result.then(
       (result) => {
         console.log('Comentario enviado:', result);
+        // Actualizar la lista de comentarios después de añadir uno nuevo
+        this.loadComments(concertId);
       },
       (reason) => {
         console.log('Modal cerrado sin enviar comentario');
@@ -106,16 +154,36 @@ export class ConcertComponent implements OnInit {
     gender: ''
   };
   
-  openLoginModal(event: Event): void {
-    event.preventDefault();
-    console.log('Abrir modal de login');
-    // Aquí puedes abrir un modal de login usando un servicio como NgbModal
+
+  private updateMenuItems(): void {
+    if (this.isAuthenticated) {
+      // Filtra Login y Logout
+      this.items = this.items.filter(item => item.name !== 'Login' && item.name !== 'Logout');
+    } else {
+      // Filtra Logout y añade Login si no existe
+      this.items = this.items.filter(item => item.name !== 'Logout');
+      if (!this.items.some(item => item.name === 'Login')) {
+        this.items.push({ name: 'Login', icon: 'people', link: '' });
+      }
+    }
   }
+
+    openLoginModal(event: Event) {
+      event.preventDefault();
+      this.modalService.open(LoginModalComponent, { centered: true });
+    }
   
-  logout(event: Event): void {
-    event.preventDefault();
-    console.log('Cerrar sesión');
-    this.isAuthenticated = false; // Cambia el estado de autenticación
-  }
+    logout(event: Event) {
+      event.preventDefault();
+      this.authService.logout();
+      this.authState.setAuthenticated(false);
+      this.router.navigate(['/']);
+    }
+
+    goToProfile(event: Event) {
+      event.preventDefault();
+      this.router.navigate(['/profile']);
+    }
+  
 
 }

@@ -1,9 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { CommentService } from '../../services/comment.service';
+import { UserService } from '../../services/user.service';
 import { CommentDTO } from '../../dtos/comment.dto';
+import { AuthStateService } from '../../services/auth-state.service'; // Añadir este import
+import { UserDTO } from '../../dtos/user.dto';
 
 @Component({
   selector: 'app-comment-modal',
@@ -12,15 +15,51 @@ import { CommentDTO } from '../../dtos/comment.dto';
   templateUrl: './comment-modal.component.html',
   styleUrls: ['./comment-modal.component.css']
 })
-export class CommentModalComponent {
+export class CommentModalComponent implements OnInit {
   comentario: string = '';
   rate: number = 0;
-  eventId: number = 0; // Asegúrate de pasar el ID del evento al abrir el modal
+  eventId: number = 0;
+  username: string = '';
+  userId!: number; // Recibirá el ID del usuario
 
   constructor(
     public activeModal: NgbActiveModal,
-    private commentService: CommentService // Inyecta el servicio
+    private commentService: CommentService,
+    private userService: UserService,
+    private authStateService: AuthStateService
   ) {}
+
+  ngOnInit(): void {
+    this.loadUserData();
+  }
+
+  private loadUserData(): void {
+    // Obtener el usuario autenticado en lugar de por ID
+    this.authStateService.getAuthenticatedUser().subscribe({
+      next: (user) => {
+        this.userId = user.id; // Asignar el ID del usuario
+        this.username = user.name; // Asignar el nombre directamente
+      },
+      error: (err) => {
+        console.error('Error al obtener datos del usuario:', err);
+        alert('No se pudo obtener la información del usuario. Por favor, inicia sesión.');
+        this.activeModal.dismiss();
+      }
+    });
+  }
+  
+  loadUsername(): void {
+    // Llama al backend para obtener el usuario por ID
+    this.userService.getUserById(this.userId).subscribe({
+      next: (user) => {
+        this.username = user.name; // Asigna el nombre del usuario
+      },
+      error: (err) => {
+        console.error('Error al obtener el nombre de usuario:', err);
+        alert('No se pudo obtener el nombre de usuario. Por favor, verifica tu sesión.');
+      }
+    });
+  }
 
   closeModal() {
     this.activeModal.dismiss();
@@ -28,20 +67,20 @@ export class CommentModalComponent {
 
   submitComment() {
     const newComment: CommentDTO = {
-      id: 0, 
-      username: 'UsuarioActual', 
+      username: this.username, 
       comentario: this.comentario,
       eventId: this.eventId,
       rate: this.rate
     };
-
+  
     this.commentService.createComment(newComment).subscribe({
       next: (response) => {
         console.log('Comentario publicado:', response);
-        this.activeModal.close(response); // Cierra el modal y devuelve el comentario creado
+        this.activeModal.close(response); 
       },
       error: (err) => {
         console.error('Error al publicar el comentario:', err);
+        alert('Hubo un error al publicar el comentario. Por favor, inténtalo de nuevo.');
       }
     });
   }

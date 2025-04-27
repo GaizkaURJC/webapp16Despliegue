@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { BookingDTO } from '../dtos/booking.dto';
 
@@ -14,7 +14,9 @@ export class BookingService {
 
   // GET /api/v1/bookings/
   getAllBookings(): Observable<BookingDTO[]> {
-    return this.http.get<BookingDTO[]>(`${this.apiUrl}/`);
+    return this.http.get<BookingDTO[]>(`${this.apiUrl}/`, { 
+      headers: this.getAuthHeaders() 
+    });
   }
 
   // GET /api/v1/bookings/{id}
@@ -34,6 +36,17 @@ export class BookingService {
 
   // DELETE /api/v1/bookings/{id}
   deleteBooking(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+    return this.http.delete<void>(`${this.apiUrl}/${id}`, {
+      headers: this.getAuthHeaders() });
+  }
+
+  private getAuthHeaders(): HttpHeaders {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      throw new Error('No authentication token found');
+    }
+    return new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
   }
 }
