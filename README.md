@@ -711,16 +711,91 @@ Sigue estos pasos para configurar y ejecutar la aplicación Angular en tu entorn
    La url del proyecto en local es la siguiente:
    ```bash
    http://localhost:4200
+---
+### Diagrama de clases y templates de SPA
 
+### Contribución del equipo
+**Albero Acebes Sánchez**
+- Tareas Realizadas
+  1. tarea 1
+  2. tarea 2
+  3. tarea 3
+  4. tarea n
 
+- Commits más significativos :
+  - [Commit 1](enlace):
+  - [Commit 2](enlace):
+  - [Commit 3](enlace):
+  - [Commit 4](enlace):
+  - [Commit 5](enlace):
 
+- Ficheros en los que se ha participado :
+  1. '`
+  2. '`
+  3. '`
+  4. '`
+  5. ``
 
+---
+**Gaizka Aranbarri Berasaluze**
+- Tareas Realizadas
+  1. tarea 1
+  2. tarea 2
+  3. tarea 3
+  4. tarea n
 
+- Commits más significativos :
+  - [Commit 1](enlace):
+  - [Commit 2](enlace):
+  - [Commit 3](enlace):
+  - [Commit 4](enlace):
+  - [Commit 5](enlace):
 
+- Ficheros en los que se ha participado :
+  1. '`
+  2. '`
+  3. '`
+  4. '`
+  5. ``
+----
+**Alejandro Rico González**
+- Tareas Realizadas
+  1. tarea 1
+  2. tarea 2
+  3. tarea 3
+  4. tarea n
 
+- Commits más significativos :
+  - [Commit 1](enlace):
+  - [Commit 2](enlace):
+  - [Commit 3](enlace):
+  - [Commit 4](enlace):
+  - [Commit 5](enlace):
 
+- Ficheros en los que se ha participado :
+  1. '`
+  2. '`
+  3. '`
+  4. '`
+  5. ``
+---
+**Gaizka Aranbarri Berasaluze**
+- Tareas Realizadas
+  1. tarea 1
+  2. tarea 2
+  3. tarea 3
+  4. tarea n
 
+- Commits más significativos :
+  - [Commit 1](enlace):
+  - [Commit 2](enlace):
+  - [Commit 3](enlace):
+  - [Commit 4](enlace):
+  - [Commit 5](enlace):
 
-
-
-
+- Ficheros en los que se ha participado :
+  1. '`
+  2. '`
+  3. '`
+  4. '`
+  5. ``
