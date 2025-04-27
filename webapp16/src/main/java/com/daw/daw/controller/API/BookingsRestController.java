@@ -70,4 +70,10 @@ public class BookingsRestController {
     public BookingDTO acceptBooking(@PathVariable Long id) {
         return bookingsService.acceptBooking(id);
     }
+
+    @Operation(summary = "reject a booking by its id")
+    @PutMapping("/reject/{id}")
+    public BookingDTO rejectBooking(@PathVariable Long id) {
+        return bookingsService.rejectBooking(id);
+    }
 }
