@@ -1,15 +1,17 @@
 import { Component } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BuyModalComponent } from '../../components/buy-modal/buy-modal.component'; // Ajusta ruta si es necesario
 
 import { FooterComponent } from '../../shared/footer/footer.component';
 import { EventService } from '../../services/event.service';
 import { EventDTO } from '../../dtos/event.dto';
+import { GenderChartComponent } from '../../components/gender-chart/gender-chart.component'
 
 @Component({
   selector: 'app-clubbing',
   standalone: true,
-  imports: [FooterComponent],
+  imports: [FooterComponent, GenderChartComponent, NgIf],
   templateUrl: './clubbing.component.html',
   styleUrls: ['./clubbing.component.css']
 })

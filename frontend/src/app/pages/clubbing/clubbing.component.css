@@ -140,13 +140,8 @@ li:hover {
     background-repeat: no-repeat;
 }
 
-.site-footer-top h2 {
-    font-weight: 1000;
-    color: black;
-}
-
-.site-footer h2 {
-    margin: 0;
+.texto-detalles {
+    color: #ffffff;
 }
 
 .social-icon {
@@ -293,6 +288,7 @@ h6 {
     border-radius: 20px;
     min-width: 700px;
     margin-bottom: 30px;
+    color: white;
 
 }
 
@@ -352,6 +348,10 @@ small {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     margin-top: 20px;
     margin-bottom: 20px;
+}
+
+h2.event-title {
+    color: white !important;
 }
 
 .icono-detalle {
