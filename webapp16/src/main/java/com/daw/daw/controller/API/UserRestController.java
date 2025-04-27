@@ -76,7 +76,7 @@ public class UserRestController {
 
     @Operation (summary = "Get all the users")
     @GetMapping("/me")
-public ResponseEntity<UserDTO> me(HttpServletRequest request) {
+    public ResponseEntity<UserDTO> me(HttpServletRequest request) {
     Principal principal = request.getUserPrincipal();
 
     if (principal != null) {

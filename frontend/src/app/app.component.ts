@@ -11,4 +11,6 @@ import { RouterModule } from '@angular/router';
 })
 export class AppComponent {
   public isCollapsed = true;
+
+  
 }

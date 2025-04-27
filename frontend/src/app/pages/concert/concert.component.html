@@ -1,16 +1,25 @@
+<!-- concert.component.html -->
 <nav class="top-navbar">
   <div class="container-topnav">
     <ul class="elementos-header align-items-lg-center ms-auto me-lg-5" id="elementos-cabecera">
-      <li *ngFor="let item of menuItems" class="nav-item">
-        <a [href]="item.link" target="_self" rel="noopener noreferrer">
+      <li class="nav-item" *ngFor="let item of items">
+        <a *ngIf="item.name !== 'Login' && item.name !== 'Logout'" 
+           [href]="item.link" 
+           class="top-nav-section">
           {{ item.name }}
         </a>
-      </li>
-      <li *ngIf="!isAuthenticated" class="nav-item">
-        <a href="#" (click)="openLoginModal($event)">Login</a>
-      </li>
-      <li *ngIf="isAuthenticated" class="nav-item">
-        <a href="#" (click)="logout($event)">Logout</a>
+        <a *ngIf="item.name === 'Login'" 
+           href="#" 
+           (click)="openLoginModal($event)" 
+           class="top-nav-section">
+          {{ item.name }}
+        </a>
+        <a *ngIf="item.name === 'Logout'" 
+           href="#" 
+           (click)="logout($event)" 
+           class="top-nav-section">
+          {{ item.name }}
+        </a>
       </li>
     </ul>
   </div>
@@ -71,8 +80,7 @@
       </div>
       <div class="container-btn-comment">
         <div class="container-btn-comment">
-          <button class="btn-change8 btn-comentario" type="button" (click)="openCommentModal()">Añadir comentario</button>
-        </div>
+          <button class="btn-change8 btn-comentario" type="button" (click)="openCommentModal()">Añadir comentario</button>        </div>
       </div>
       <div class="container-comments">
         <!-- Iterar sobre los comentarios -->

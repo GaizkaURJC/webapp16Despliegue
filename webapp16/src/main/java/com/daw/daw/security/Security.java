@@ -85,12 +85,10 @@ public class Security {
                 .securityMatcher("/api/**")
                 .cors(cors -> cors.configurationSource(request -> {
                     var corsConfig = new org.springframework.web.cors.CorsConfiguration();
-                    corsConfig.setAllowedOrigins(List.of("http://localhost:4200")); // Permite solicitudes desde el
-                                                                                    // frontend
-                    corsConfig.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS")); // Métodos
-                                                                                                      // permitidos
-                    corsConfig.setAllowedHeaders(List.of("*")); // Permite todos los encabezados
-                    corsConfig.setAllowCredentials(true); // Permite credenciales (cookies, etc.)
+                    corsConfig.setAllowedOrigins(List.of("http://localhost:4200"));
+                    corsConfig.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+                    corsConfig.setAllowedHeaders(List.of("*"));
+                    corsConfig.setAllowCredentials(true);
                     return corsConfig;
                 }))
                 .csrf(csrf -> csrf.disable())
