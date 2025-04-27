@@ -15,13 +15,13 @@ import { EventWithImageDTO } from '../../dtos/event.dto';
 export class HomeComponent implements OnInit {
   concertTypes = ["Todos", "Rock", "Trap", "Pop", "Rap", "Flamenco"];
   parties: EventWithImageDTO[] = [];
-  allConcerts: EventWithImageDTO[] = []; // Todos los conciertos cargados
-  displayedConcerts: EventWithImageDTO[] = []; // Conciertos mostrados actualmente
-  filteredConcerts: EventWithImageDTO[] = []; // Conciertos después de filtrar
+  allConcerts: EventWithImageDTO[] = [];
+  displayedConcerts: EventWithImageDTO[] = [];
+  filteredConcerts: EventWithImageDTO[] = [];
   selectedCategory: string = "Todos";
   loading = true;
   currentPage = 0;
-  concertsPerPage = 4;
+  concertsPerPage = 4; // Mostrar 4 conciertos por página
   hasMoreConcerts = true;
 
   constructor(private eventService: EventService) { }
@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
         const events = response.content || response;
         this.parties = events.filter((e: any) => e.type === 'party');
         this.allConcerts = events.filter((e: any) => e.type === 'concert');
-        this.applyFilter(); // Aplica el filtro inicial y carga los primeros conciertos
+        this.applyFilter();
         this.loading = false;
       },
       error: (error) => {
@@ -48,7 +48,6 @@ export class HomeComponent implements OnInit {
   }
 
   applyFilter(): void {
-    // Aplicar filtro según categoría seleccionada
     if (this.selectedCategory === 'Todos') {
       this.filteredConcerts = [...this.allConcerts];
     } else {
@@ -57,11 +56,9 @@ export class HomeComponent implements OnInit {
       );
     }
     
-    // Resetear paginación
+    // Resetear paginación al cambiar filtro
     this.currentPage = 0;
     this.displayedConcerts = [];
-    
-    // Cargar primeros conciertos
     this.loadMoreConcerts();
   }
 
@@ -69,17 +66,15 @@ export class HomeComponent implements OnInit {
     const startIndex = this.currentPage * this.concertsPerPage;
     const endIndex = startIndex + this.concertsPerPage;
     
-    // Obtener el siguiente lote de conciertos
     const newConcerts = this.filteredConcerts.slice(startIndex, endIndex);
     this.displayedConcerts = [...this.displayedConcerts, ...newConcerts];
     
-    // Actualizar estado
     this.currentPage++;
     this.hasMoreConcerts = endIndex < this.filteredConcerts.length;
   }
 
   filterConcerts(category: string): void {
     this.selectedCategory = category;
-    this.applyFilter(); // Reaplicar el filtro cuando cambia la categoría
+    this.applyFilter();
   }
 }

@@ -41,20 +41,20 @@
             </div>
             
             <div class="concert-content">
-                <div class="available-concerts" *ngFor="let concert of filteredConcerts">
+                <div class="available-concerts" *ngFor="let concert of displayedConcerts">
                   <img [src]="'data:image/jpeg;base64,' + concert.imageBase64" [alt]="concert.title" class="img-fluid">
                   <div class="concert-info">
                     <a [routerLink]="['/concerts', concert.id]">{{concert.title}}</a> 
                     <a [routerLink]="['/concerts', concert.id]">MORE DETAILS</a>
                   </div>
                 </div>
-              </div>
+            </div>
+            
+            <a *ngIf="hasMoreConcerts" href="#" class="load-more" (click)="loadMoreConcerts()">
+                Cargar más
+                <span class="loading"></span>
+            </a>
         </div>
-        
-        <a href="#" class="load-more">
-            Cargar más
-            <span class="loading"></span>
-        </a>
     </div>
 
     <!-- Sección Eventos Corporativos -->
