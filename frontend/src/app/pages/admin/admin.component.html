@@ -61,10 +61,46 @@
     </div>
     <section class="inicio-section">
         <div class="container1" *ngIf="activeSection === 'clubbing'">
-            <p class="title">CLUBBING</p>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th>Título</th>
+                    <th>Descripción</th>
+                    <th>Eliminar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let party of parties">
+                    <td>{{ party.title }}</td>
+                    <td>{{ party.description }}</td>
+                    <td>
+                      <!-- <button (click)="deleteParty(party.id)">Eliminar</button> -->
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            <!-- <a href="#" (click)="openCreatePartyModal()">Añadir Fiesta</a> -->
         </div>
         <div class="container1" *ngIf="activeSection === 'conciertos'">
-            <p class="title">CONCIERTOS</p>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th>Título</th>
+                    <th>Descripción</th>
+                    <th>Eliminar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let concert of concerts">
+                    <td>{{ concert.title }}</td>
+                    <td>{{ concert.description }}</td>
+                    <td>
+                     <!-- <button (click)="deleteConcert(concert.id)">Eliminar</button> -->
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            <!---  <a href="#" (click)="openCreateConcertModal()">Añadir Concierto</a> -->
         </div>
         <div class="container1" *ngIf="activeSection === 'eventos'">
             <p class="title">EVENTOS</p>
@@ -74,7 +110,24 @@
             
         </div>
         <div class="container1" *ngIf="activeSection === 'usuarios'">
-            <p class="title">USUARIOS</p>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Eliminar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let user of users">
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>
+                     <!-- <button (click)="deleteUser(user.id)">Eliminar</button> -->
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
         </div>
     </section>
 </div>
