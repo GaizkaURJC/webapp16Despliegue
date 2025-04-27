@@ -781,23 +781,23 @@ Sigue estos pasos para configurar y ejecutar la aplicación Angular en tu entorn
   4. 'frontend/src/app/pages/clubbing/clubbing.component.html`
   5. `frontend/src/app/app.routes.ts`
 ---
-**Gaizka Aranbarri Berasaluze**
+**Jon Mazcuñan Hernandez**
 - Tareas Realizadas
-  1. tarea 1
-  2. tarea 2
-  3. tarea 3
-  4. tarea n
+  1. Realización de la página de conciertos
+  2. Realización de la página de perfil, y añadido en cabecera
+  3. Implementación de las peticiones relacionadas con tickets
+  4. Implementación de la funcion de cargar más
 
 - Commits más significativos :
-  - [Commit 1](enlace):
-  - [Commit 2](enlace):
-  - [Commit 3](enlace):
-  - [Commit 4](enlace):
-  - [Commit 5](enlace):
+  - [Commit 1]([enlace](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/650872b12c67c4344e2466e25794a4004d9c7e56)):
+  - [Commit 2]([enlace](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/7e491fec6f4647b482566c3eb2a5dee0be5a9ac3)):
+  - [Commit 3]([enlace](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/4e5bb3d2e52fcb4f25f2dcb2a6b77d2572693443)):
+  - [Commit 4]([enlace](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/b87728a86190e0348a1383901835119fea1cc7a4)):
+  - [Commit 5]([enlace](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/25be1b92f41f0e71271e1dece097dba3dd9038a0)):
 
 - Ficheros en los que se ha participado :
-  1. '`
-  2. '`
-  3. '`
-  4. '`
-  5. ``
+  1. 'comment.service.ts`
+  2. 'profile.component.ts`
+  3. 'concert.component.ts`
+  4. 'comment-modal.component.ts`
+  5. `buy-modal.component.ts`
