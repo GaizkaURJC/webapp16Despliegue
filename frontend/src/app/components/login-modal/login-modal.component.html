@@ -1,35 +1,21 @@
 <div class="modal-header">
     <h3 class="modal-title" id="titulo-login">Iniciar sesión</h3>
-    <button style="background-color:black" type="button" class="btn-close" aria-label="Close" (click)="closeModal()">X</button>
+    <button style="background-color:black" type="button" class="btn-close" aria-label="Close"
+        (click)="closeModal()">X</button>
 </div>
 <div class="modal-body">
     <form (ngSubmit)="submitLogin()">
         <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
-        
+
         <div class="mb-3">
             <label for="emailLogin" class="form-label">Correo electrónico</label>
-            <input
-                type="email"
-                class="form-control"
-                id="emailLogin"
-                name="emailLogin"
-                [(ngModel)]="emailLogin"
-                required
-                aria-describedby="emailHelp"
-                [disabled]="isLoading"
-            />
+            <input type="email" class="form-control" id="emailLogin" name="emailLogin" [(ngModel)]="emailLogin" required
+                aria-describedby="emailHelp" [disabled]="isLoading" />
         </div>
         <div class="mb-3">
             <label for="passwordLogin" class="form-label">Contraseña</label>
-            <input
-                type="password"
-                class="form-control"
-                id="passwordLogin"
-                name="passwordLogin"
-                [(ngModel)]="passwordLogin"
-                required
-                [disabled]="isLoading"
-            />
+            <input type="password" class="form-control" id="passwordLogin" name="passwordLogin"
+                [(ngModel)]="passwordLogin" required [disabled]="isLoading" />
         </div>
         <div class="d-flex align-items-center margenGrande">
             <button type="submit" class="btn btn-login me-2" id="submitLogin" [disabled]="isLoading">
@@ -40,7 +26,7 @@
                 </span>
             </button>
             <p>
-                <a href="#" class="switch-modal" (click)="closeModal()">
+                <a href="#" class="switch-modal" (click)="openSignUpModal()">
                     <span style="color: white;">Si aún no tienes cuenta,</span>
                     Regístrate aquí
                 </a>

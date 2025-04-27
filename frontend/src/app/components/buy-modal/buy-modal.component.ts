@@ -9,7 +9,6 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   imports: [CommonModule, FormsModule],
   templateUrl: './buy-modal.component.html',
   styleUrls: ['./buy-modal.component.css'],
-  providers: [NgbActiveModal]
 })
 export class BuyModalComponent {
   @Input() event: any;
@@ -20,6 +19,18 @@ export class BuyModalComponent {
   gender = 'Hombre';
 
   constructor(public activeModal: NgbActiveModal) { }
+
+  closeModal() {
+    this.activeModal.dismiss();
+  }
+
+  ngAfterViewInit() {
+    const modalContent = document.querySelector('.modal-content') as HTMLElement;
+    if (modalContent) {
+      modalContent.style.backgroundColor = 'rgba(0,0,0,0.7)';
+      modalContent.style.backdropFilter = 'blur(12px)';
+    }
+  }
 
   submitForm() {
     const ticketData = {

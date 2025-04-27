@@ -1,12 +1,12 @@
 /* Hace el fondo del modal translúcido */
-.modal-content {
+.modal.show .modal-dialog .modal-content {
     margin-top: 25px;
-    background: transparent;
-    backdrop-filter: blur(12px);
-    color: black;
-    min-height: 500px;
-    border: 1px solid #000000;
-    background-color: rgb(0, 0, 0, 0.7);
+    background: transparent !important;
+    backdrop-filter: blur(12px) !important;
+    color: black !important;
+    min-height: 500px !important;
+    border: 1px solid #000000 !important;
+    background-color: rgba(0, 0, 0, 0.7) !important;
 }
 
 .modal-dialog {
@@ -43,6 +43,7 @@
     overflow: hidden;
     z-index: 1;
     font-family: inherit;
+    transition: color 0.3s ease;
 }
 
 .btn-entrad {
@@ -62,14 +63,15 @@
     height: 100%;
     background-color: #f2f526;
     transform: translateX(-100%);
-    transition: all .3s;
+    transition: all 0.3s ease;
     z-index: -1;
-    color: #000000;
-
 }
 
 .btn:hover::before {
     transform: translateX(0);
+}
+
+.btn:hover {
     color: black;
 }
 

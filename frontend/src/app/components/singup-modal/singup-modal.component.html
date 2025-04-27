@@ -1,0 +1,47 @@
+<div class="modal-content modal-content-custom">
+    <div class="modal-header">
+        <h3 class="modal-title" id="titulo-singup">Registrarse</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+            (click)="closeModal()"></button>
+    </div>
+
+    <div class="modal-body">
+        <form (ngSubmit)="submitSingup()">
+            <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+
+            <div class="mb-3">
+                <label for="nameSingup" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="name" name="name" required [(ngModel)]="name"
+                    [disabled]="isLoading">
+            </div>
+
+            <div class="mb-3">
+                <label for="emailSingup" class="form-label">Correo electrónico</label>
+                <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" required
+                    [(ngModel)]="email" [disabled]="isLoading">
+            </div>
+
+            <div class="mb-3">
+                <label for="phoneSingup" class="form-label">Telefono</label>
+                <input type="text" class="form-control" id="telefono" name="telefono" required [(ngModel)]="telefono"
+                    [disabled]="isLoading">
+            </div>
+
+            <div class="mb-3">
+                <label for="passwordSingup" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" name="password" id="password" required
+                    [(ngModel)]="password" [disabled]="isLoading">
+            </div>
+
+            <input type="checkbox" id="terminos" name="terminos" value="terminos" required> Acepto los
+            terminos y condiciones
+            <br>
+            <input type="checkbox" id="datos" name="datos" value="datos"> Permito el uso de mis datos
+            personales para las estadisticas
+
+            <p><button type="submit" class="btn btn-login" id="submitBtn" (click)="submitSingup()">Confirmar</button>
+            </p>
+            <!-- <input type="hidden" name="_csrf" value="{{token}}"> -->
+        </form>
+    </div>
+</div>
