@@ -678,3 +678,49 @@ Algunos commits no tienen toda la lógica o les falta un poco, pero son los prin
 4. 'src/main/java/com/daw/daw/service/EventService.java`
 
 5. 'src/main/java/com/daw/daw/service/CommentService.java`
+
+
+---
+## 📌 *Práctica 3: Implementación de la web con arquitectura SPA*
+### **Guía de Ejecución para la Aplicación Angular**
+
+Sigue estos pasos para configurar y ejecutar la aplicación Angular en tu entorno local.
+
+### Requisitos Previos
+- Node.js
+- npm (viene incluido con Node.js)
+- Angular v17.x.x
+
+### Instalación
+
+1. **Clonar el repositorio**  
+   Ve a la carpeta donde deseas guardar el proyecto y ejecuta:
+   ```bash
+   git clone [[URL_DEL_REPOSITORIO]](https://github.com/CodeURJC-DAW-2024-25/webapp16)
+
+2. **Dirigirse a la carpeta de frontend**
+   ```bash
+   cd \webapp16\frontend
+3. **Instalar dependencias**
+   ```bash
+   npm install
+4. **Iniciar el servidor**
+   ```bash
+   ng serve
+5. **Abrir el proyecto en un buscador**
+   La url del proyecto en local es la siguiente:
+   ```bash
+   http://localhost:4200
+
+
+
+
+
+
+
+
+
+
+
+
+
