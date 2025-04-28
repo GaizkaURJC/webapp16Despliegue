@@ -7,7 +7,6 @@ import { BookingDTO } from '../dtos/booking.dto';
   providedIn: 'root'
 })
 export class BookingService {
-  // Base URL for the bookings endpoints defined in your REST controller
   private apiUrl: string = 'https://localhost:8443/api/v1/bookings';
 
   constructor(private http: HttpClient) {}
@@ -42,6 +41,11 @@ export class BookingService {
 
   acceptBooking(id: number): Observable<void> {
     return this.http.put<void>(`${this.apiUrl}/accept/${id}`, null, {
+      headers: this.getAuthHeaders() });
+  }
+
+  rejectBooking(id: number): Observable<void> {
+    return this.http.put<void>(`${this.apiUrl}/reject/${id}`, null, {
       headers: this.getAuthHeaders() });
   }
 

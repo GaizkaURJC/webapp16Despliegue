@@ -14,6 +14,7 @@ import { AuthStateService } from '../../services/auth-state.service';
 import { LoginModalComponent } from '../../components/login-modal/login-modal.component';
 import { Router } from '@angular/router';
 import { UserDTO } from '../../dtos/user.dto'; 
+import { BuyModalComponent } from '../../components/buy-modal/buy-modal.component';
 
 @Component({
   selector: 'app-concert',
@@ -38,7 +39,8 @@ export class ConcertComponent implements OnInit {
     { name: 'Login', icon: 'people', link: '' }
   ];
 
-  
+  userLogged: UserDTO | null = null;
+  isLoadingUser = false;
   isAuthenticated = false;
   userName: string = '';
 
@@ -58,7 +60,7 @@ export class ConcertComponent implements OnInit {
     this.authState.isAuthenticated$.subscribe(auth => {
       this.isAuthenticated = auth;
       if (auth) {
-        this.loadUserData(); // Llamar a loadUserData cuando esté autenticado
+        this.loadUserData(); 
       } else {
         this.userName = '';
       }
@@ -78,12 +80,15 @@ export class ConcertComponent implements OnInit {
   }
 
   private loadUserData(): void {
+    this.isLoadingUser = true;
     this.authState.getAuthenticatedUser().subscribe({
       next: (user: UserDTO) => {
-        this.userName = user.name || user.username;
+        this.userLogged = user;
+        this.isLoadingUser = false;
       },
       error: (err) => {
         console.error('Error loading user data:', err);
+        this.isLoadingUser = false;
       }
     });
   }
@@ -129,12 +134,11 @@ export class ConcertComponent implements OnInit {
       backdrop: 'static'
     });
   
-    modalRef.componentInstance.eventId = concertId; // Usar el ID real del evento
+    modalRef.componentInstance.eventId = concertId; 
   
     modalRef.result.then(
       (result) => {
         console.log('Comentario enviado:', result);
-        // Actualizar la lista de comentarios después de añadir uno nuevo
         this.loadComments(concertId);
       },
       (reason) => {
@@ -157,10 +161,8 @@ export class ConcertComponent implements OnInit {
 
   private updateMenuItems(): void {
     if (this.isAuthenticated) {
-      // Filtra Login y Logout
       this.items = this.items.filter(item => item.name !== 'Login' && item.name !== 'Logout');
     } else {
-      // Filtra Logout y añade Login si no existe
       this.items = this.items.filter(item => item.name !== 'Logout');
       if (!this.items.some(item => item.name === 'Login')) {
         this.items.push({ name: 'Login', icon: 'people', link: '' });
@@ -184,6 +186,26 @@ export class ConcertComponent implements OnInit {
       event.preventDefault();
       this.router.navigate(['/profile']);
     }
-  
 
+    openBuyModal() {
+      if (!this.isAuthenticated) {
+        this.openLoginModal(new Event('click'));
+        return;
+      }
+    
+      if (!this.userLogged?.name) { 
+        console.error('User data not available');
+        return;
+      }
+    
+      const modalRef = this.modalService.open(BuyModalComponent, {
+        centered: true,
+        backdrop: 'static'
+      });
+    
+      modalRef.componentInstance.event = this.event;
+      modalRef.componentInstance.currentUser = {
+        name: this.userLogged.name 
+      };
+    }
 }

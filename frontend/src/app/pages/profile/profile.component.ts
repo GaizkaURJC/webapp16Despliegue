@@ -12,6 +12,9 @@ import { AuthService } from '../../services/login.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule  } from '@angular/forms';
 import { CreateRequestUserDTO } from '../../dtos/requestUser.dto';
+import { TicketService } from '../../services/ticket.service';
+import { TicketDTO } from '../../dtos/ticket.dto';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-profile',
@@ -20,7 +23,7 @@ import { CreateRequestUserDTO } from '../../dtos/requestUser.dto';
     HeaderComponent,
     CommonModule,
     RouterModule,
-    ReactiveFormsModule // ¡Añade esto!
+    ReactiveFormsModule
   ],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
@@ -36,27 +39,15 @@ export class ProfileComponent implements OnInit {
     id: 0,
     name: '',
     email: '',
-    username: '',
     roles: [],
     phone: '',
     image: false
   };
   isLoading: boolean = true;
   profileImage: SafeUrl = '/assets/images/default-profile.png';
-  tickets = [
-    {
-      id: 1,
-      title: 'Concierto de Melendi',
-      ticketDate: '15 Junio 2023',
-      category: 'Concierto'
-    },
-    {
-      id: 2,
-      title: 'Festival de Verano',
-      ticketDate: '20 Julio 2023',
-      category: 'Festival'
-    }
-  ];
+  tickets: TicketDTO[] = [];
+  loadingTickets = false;
+  ticketError = '';
 
   constructor(
     private fb: FormBuilder,
@@ -65,7 +56,8 @@ export class ProfileComponent implements OnInit {
     private authStateService: AuthStateService,
     private sanitizer: DomSanitizer,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private ticketService: TicketService
   ) {
     this.editProfileForm = this.fb.group({
       name: ['', Validators.required],
@@ -74,26 +66,27 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadUserData();
+    this.loadUserData(); 
   }
 
   showTab(tabId: string): void {
     this.activeTab = tabId;
   }
 
-  private loadUserData(): void {
-    this.authStateService.getAuthenticatedUser().subscribe({
-      next: (user: UserDTO) => {
-        this.userLogged = user;
-        this.loadProfileImage();
-        this.isLoading = false;
-      },
-      error: (err) => {
-        console.error('Error loading user data:', err);
-        this.isLoading = false;
-      }
-    });
-  }
+private loadUserData(): void {
+  this.authStateService.getAuthenticatedUser().subscribe({
+    next: (user: UserDTO) => {
+      this.userLogged = user;
+      this.loadProfileImage();
+      this.loadUserTickets();
+      this.isLoading = false;
+    },
+    error: (err) => {
+      console.error('Error loading user data:', err);
+      this.isLoading = false;
+    }
+  });
+}
 
   private loadProfileImage(): void {
     if (this.userLogged.image) {
@@ -108,13 +101,56 @@ export class ProfileComponent implements OnInit {
         }
       });
     } else {
-      // Use default image if user has no image
       this.profileImage = this.getDefaultImagePath();
     }
   }
 
   private getDefaultImagePath(): string {
     return 'assets/img/ferias.png';
+  }
+
+private loadUserTickets(): void {
+  if (!this.userLogged?.name) {
+    console.error('Nombre de usuario no disponible');
+    this.ticketError = 'No se pudo identificar al usuario';
+    return;
+  }
+
+  this.loadingTickets = true;
+  this.ticketError = '';
+
+  this.ticketService.getTicketsByUserOwner(this.userLogged.name).subscribe({
+    next: (tickets: TicketDTO[]) => {
+      this.tickets = tickets;
+      this.loadEventImagesForTickets();
+      this.loadingTickets = false;
+    },
+    error: (err: HttpErrorResponse) => {
+      console.error('Error cargando tickets:', err);
+      this.loadingTickets = false;
+      this.ticketError = err.status === 404 
+        ? 'No se encontraron tickets' 
+        : 'Error al cargar los tickets';
+    }
+  });
+}
+
+
+  deleteTicket(id: number, event: Event): void {
+    event.preventDefault();
+    event.stopPropagation();
+    
+    if (confirm('¿Estás seguro de que quieres eliminar este ticket?')) {
+      this.ticketService.deleteTicket(id).subscribe({
+        next: () => {
+          this.tickets = this.tickets.filter(ticket => ticket.id !== id);
+        },
+        error: (err: any) => {
+          console.error('Error deleting ticket:', err);
+          alert('No se pudo eliminar el ticket');
+        }
+      });
+    }
   }
 
   onFileSelected(event: any): void {
@@ -124,17 +160,15 @@ export class ProfileComponent implements OnInit {
       formData.append('image', file);
       
       if (this.userLogged.image) {
-        // Replace existing image
         this.userService.replaceUserImage(this.userLogged.id, formData).subscribe({
           next: () => {
-            this.loadProfileImage(); // Refresh the image
+            this.loadProfileImage();
           },
           error: (err) => {
             console.error('Error updating profile image:', err);
           }
         });
       } else {
-        // Create new image
         this.userService.createUserImage(this.userLogged.id, formData).subscribe({
           next: () => {
             this.userLogged.image = true;
@@ -157,7 +191,6 @@ export class ProfileComponent implements OnInit {
     this.editError = false;
   }
 
-  // Envía el formulario de edición
   onSubmitEditProfile(): void {
     if (this.editProfileForm.invalid) {
       return;
@@ -165,7 +198,7 @@ export class ProfileComponent implements OnInit {
   
     const token = localStorage.getItem('token');
     if (!token) {
-      this.router.navigate(['/login']); // Redirige si no hay token
+      this.router.navigate(['/login']);
       return;
     }
   
@@ -181,14 +214,12 @@ export class ProfileComponent implements OnInit {
   
     this.userService.editUser(this.userLogged.id, userData).subscribe({
       next: (updatedUser) => {
-        // ... resto del código existente
       },
       error: (err) => {
         console.error('Error updating profile:', err);
         this.isSubmitting = false;
         this.editError = true;
         
-        // Manejo específico para error 401
         if (err.status === 401) {
           this.authService.logout();
           this.router.navigate(['/login']);
@@ -202,5 +233,36 @@ export class ProfileComponent implements OnInit {
     this.authService.logout();
     this.authStateService.setAuthenticated(false);
     this.router.navigate(['/']);
+  }
+
+  // En profile.component.ts
+  private loadEventImagesForTickets(): void {
+    this.tickets.forEach(ticket => {
+      if (ticket.eventId) {
+        this.eventService.getEventImage(ticket.eventId).subscribe({
+          next: (imageBlob: Blob) => {
+            const objectUrl = URL.createObjectURL(imageBlob);
+            ticket.eventImage = this.sanitizer.bypassSecurityTrustUrl(objectUrl);
+          },
+          error: (err) => {
+            console.error('Error loading event image for ticket:', ticket.id, err);
+            ticket.eventImage = this.getDefaultTicketImage(ticket.category);
+          }
+        });
+      } else {
+        ticket.eventImage = this.getDefaultTicketImage(ticket.category);
+      }
+    });
+  }
+
+  getTicketImage(ticket: TicketDTO): SafeUrl | string {
+    if (ticket.eventImage) {
+      return ticket.eventImage;
+    }
+    return this.getDefaultTicketImage(ticket.category);
+  }
+
+  private getDefaultTicketImage(category: string): string {
+    return category === 'Conciertos' ? '/assets/img/concertpek.jpg' : '/assets/img/ferias.png';
   }
 }

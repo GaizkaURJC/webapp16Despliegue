@@ -154,10 +154,34 @@ export class AdminComponent implements OnInit {
   acceptBooking(bookingId: number): void {
     if (confirm('¿Estás seguro de que deseas aceptar esta reserva?')) {
       this.bookingService.acceptBooking(bookingId).subscribe({
-        
+        next: () => {
+          // Update the bookings array to reflect the accepted booking
+          const booking = this.bookings.find(b => b.id === bookingId);
+          if (booking) {
+            booking.status = 'aceptada'; // Assuming the booking object has a status property
+          }
+        },
         error: (error) => {
           console.error('Error accepting booking:', error);
           alert('No se pudo aceptar la reserva.');
+        }
+      });
+    }
+  }
+
+  rejectBooking(bookingId: number): void {
+    if (confirm('¿Estás seguro de que deseas rechazar esta reserva?')) {
+      this.bookingService.rejectBooking(bookingId).subscribe({
+        next: () => {
+          // Update the bookings array to reflect the accepted booking
+          const booking = this.bookings.find(b => b.id === bookingId);
+          if (booking) {
+            booking.status = 'rechazada'; // Assuming the booking object has a status property
+          }
+        },
+        error: (error) => {
+          console.error('Error rejecting booking:', error);
+          alert('No se pudo rechazar la reserva.');
         }
       });
     }

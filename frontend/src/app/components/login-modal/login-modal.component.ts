@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';  // Añadido NgbModal para abrir otros modales
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';  
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/login.service';
 import { Router } from '@angular/router';
-import { SingupModalComponent } from '../singup-modal/singup-modal.component';  // Importamos el componente de SignUp
+import { SingupModalComponent } from '../singup-modal/singup-modal.component';  
 
 @Component({
   selector: 'app-login-modal',
@@ -23,7 +23,7 @@ export class LoginModalComponent {
     public activeModal: NgbActiveModal,
     private authService: AuthService,
     private router: Router,
-    private modalService: NgbModal  // Inyectamos NgbModal
+    private modalService: NgbModal 
   ) { }
 
   closeModal() {
@@ -69,21 +69,16 @@ export class LoginModalComponent {
     });
   }
 
-  // Método para abrir el modal de SignUp
   openSignUpModal() {
-    const modalRef = this.modalService.open(SingupModalComponent); // Abrimos el modal de SignUp
+    const modalRef = this.modalService.open(SingupModalComponent); 
     modalRef.result.then(
       (result) => {
-        // Si el modal de SignUp se cierra con éxito
         console.log('Modal cerrado con resultado:', result);
       },
       (reason) => {
-        // Si el modal de SignUp se cierra por error
         console.log('Modal cerrado por:', reason);
       }
     );
-
-    // Cerramos el modal de Login
     this.activeModal.dismiss();
   }
 }

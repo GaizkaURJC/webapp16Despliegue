@@ -8,14 +8,13 @@ import { Observable, catchError, throwError } from 'rxjs';
 })
 export class AuthService {
   private apiUrl = 'https://localhost:8443/api/auth'; 
-  private URL= 'https://localhost:8443/api/v1/users'// Ajusta según tu backend
+  private URL= 'https://localhost:8443/api/v1/users'
 
   constructor(private http: HttpClient) { }
 
   login(email: string, password: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, { email, password }).pipe(
       catchError(error => {
-        // Puedes manejar errores específicos aquí si lo deseas
         return throwError(() => error);
       })
     );

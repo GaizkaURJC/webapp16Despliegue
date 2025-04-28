@@ -52,4 +52,10 @@ public class BookingsService {
         reserva.setStatus("aceptada");
         return bookingMapper.toDTO(this.booking.save(reserva));
     }
+
+    public BookingDTO rejectBooking(Long id) {
+        Booking reserva = booking.findById(id).orElseThrow();
+        reserva.setStatus("rechazada");
+        return bookingMapper.toDTO(this.booking.save(reserva));
+    }
 }
