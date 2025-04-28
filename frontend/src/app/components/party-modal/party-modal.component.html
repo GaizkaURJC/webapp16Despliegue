@@ -1,0 +1,22 @@
+<div class="modal-header">
+    <h3 class="modal-title">Añadir fiesta</h3>
+    <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+  </div>
+  
+  <div class="modal-body">
+    <form (ngSubmit)="submitParty()">
+      
+      <div class="mb-3">
+        <label for="title" class="form-label">Titulo</label>
+        <textarea class="form-control" [(ngModel)]="title" name="title" rows="1" required></textarea>
+      </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Descripción</label>
+            <textarea class="form-control" [(ngModel)]="description" name="description" rows="3" required></textarea>
+
+        </div>
+        
+        
+      <button type="submit" class="btn btn-primary">Publicar</button>
+    </form>
+  </div>

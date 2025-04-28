@@ -7,6 +7,7 @@ import { EventDTO, EventWithImageDTO} from "../dtos/event.dto";
     providedIn: 'root'
 })
 export class EventService{
+    
     private apiURL= 'api/v1/events';
     private apiURLType= 'https://localhost:8443/api/v1/events';
 
@@ -47,11 +48,20 @@ export class EventService{
             Authorization: `Bearer ${token}`
           });
         }
-}
-interface PageResponse<T> {
-    content: T[];
-    totalElements: number;
-    totalPages: number;
-    number: number;
-    size: number;
-}
+
+        createEvent(party: EventDTO): Observable<EventDTO> {
+            return this.http.post<EventDTO>(`${this.apiURLType}/`, party, { 
+              headers: this.getAuthHeaders() 
+            });
+          }
+      
+            
+      }
+
+      interface PageResponse<T> {
+          content: T[];
+          totalElements: number;
+          totalPages: number;
+          number: number;
+          size: number;
+      }

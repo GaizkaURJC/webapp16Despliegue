@@ -1,0 +1,33 @@
+<div class="modal-header">
+    <h3 class="modal-title">Añadir concierto</h3>
+    <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+  </div>
+  
+  <div class="modal-body">
+    <form (ngSubmit)="submitConcert()">
+      
+      <div class="mb-3">
+        <label for="title" class="form-label">Titulo</label>
+        <textarea class="form-control" [(ngModel)]="title" name="title" rows="1" required></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="category" class="form-label">Categoría Musical</label>
+        <select class="form-select" [(ngModel)]="category" name="category" required>
+          <option value="" disabled selected>Seleccione una categoría</option>
+          <option value="rock">Rock</option>
+          <option value="trap">Trap</option>
+          <option value="pop">Pop</option>
+          <option value="rap">Rap</option>
+          <option value="flamenco">Flamenco</option>
+        </select>
+      </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Descripción</label>
+            <textarea class="form-control" [(ngModel)]="description" name="description" rows="3" required></textarea>
+
+        </div>
+        
+        
+      <button type="submit" class="btn btn-primary">Publicar</button>
+    </form>
+  </div>
