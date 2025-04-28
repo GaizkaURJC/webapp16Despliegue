@@ -1,9 +1,7 @@
 export interface BookingDTO {
-    id: number;
     userName: string;
     userEmail: string;
     bussinesName: string;
-    capacity: number;
+    num_personas: number;
     eventDescript: string;
-    status: string;
 }

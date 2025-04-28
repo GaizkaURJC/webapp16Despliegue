@@ -50,11 +50,12 @@
                 </div>
             </div>
             
-            <a *ngIf="hasMoreConcerts" href="#" class="load-more" (click)="loadMoreConcerts()">
-                Cargar más
-                <span class="loading"></span>
+            <a *ngIf="hasMoreConcerts" class="load-more" (click)="loadMoreConcerts()">
+                Cargar más 
             </a>
+            
         </div>
+        <span class="loading"></span>
     </div>
 
     <!-- Sección Eventos Corporativos -->
@@ -67,29 +68,36 @@
         
         <div class="container-eventos">
             <div class="event-form">
-                <form class="form" action="/reserva/request" method="post" id="reservaForm">
+                <form class="form" (ngSubmit)="submitBooking()" method="post" id="reservaForm">
                     <p class="title2">Solicitar un evento</p>
                     <p class="message">Rellena el formulario y solicita un presupuesto para tu evento</p>
+                    <!-- Mensajes de feedback -->
+                    <div *ngIf="bookingSuccess" class="alert alert-success">
+                        ¡Reserva realizada con éxito!
+                    </div>
+                    <div *ngIf="bookingError" class="alert alert-danger">
+                        {{bookingErrorMessage}}
+                    </div>
                     
                     <div class="flex">
                         <label>
-                            <input name="userName" class="input" type="text" placeholder="" required="">
+                            <input [(ngModel)]="userName" name="userName" class="input" type="text" placeholder="" required="">
                             <span>Nombre</span>
                         </label>
                     </div>
 
                     <label>
-                        <input name="userEmail" class="input" type="email" placeholder="" required="">
+                        <input [(ngModel)]="userEmail" name="userEmail" class="input" type="email" placeholder="" required="">
                         <span>Email</span>
                     </label>
 
                     <label>
-                        <input name="bussinesName" class="input" type="text" placeholder="" required="">
+                        <input [(ngModel)]="bussinesName" name="bussinesName" class="input" type="text" placeholder="" required="">
                         <span>Nombre de la empresa</span>
                     </label>
                     
                     <label>
-                        <input name="num_personas" class="input" type="number" placeholder="" required="">
+                        <input [(ngModel)]="num_personas" name="num_personas" class="input" type="number" placeholder="" required="">
                         <span>Numero de Personas</span>
                     </label>
                     
@@ -102,7 +110,7 @@
                         <div class="form-group">
                             <span>Descripcion del evento y peticiones especiales</span>
                             <p></p>
-                            <textarea name="eventDescript" id="evento" class="form-control" rows="4"
+                            <textarea [(ngModel)]="eventDescript" name="eventDescript" id="evento" class="form-control" rows="4"
                                 placeholder="Indica el tipo de evento que deseas y peticiones especiales"
                                 required></textarea>
                         </div>
