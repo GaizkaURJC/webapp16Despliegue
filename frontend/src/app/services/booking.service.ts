@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { BookingDTO } from '../dtos/booking.dto';
 
 @Injectable({
@@ -58,6 +58,30 @@ export class BookingService {
       Authorization: `Bearer ${token}`
     });
   }
-
+  book(bookingData: any): Observable<BookingDTO> {
+    const requestBody = {
+      userName: bookingData.userName,
+      userEmail: bookingData.userEmail,
+      bussinesName: bookingData.bussinesName,
+      capacity: bookingData.capacity,
+      eventDescript: bookingData.eventDescript,
+      status: "pendiente"
+    };
   
-}
+    // Configuración especial para endpoints públicos
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        // No incluir el header de Authorization
+      }),
+      withCredentials: true // Importante para CORS
+    };
+  
+    return this.http.post<BookingDTO>(`${this.apiUrl}/`, requestBody, httpOptions).pipe(
+      catchError(error => {
+        console.error('Error en la solicitud:', error);
+        return throwError(() => error);
+      })
+    );
+  }
+  }

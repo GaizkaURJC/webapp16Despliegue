@@ -70,4 +70,6 @@ export class HeaderComponent {
     this.authState.setAuthenticated(false);
     this.router.navigate(['/']);
   }
+
+  
 }
