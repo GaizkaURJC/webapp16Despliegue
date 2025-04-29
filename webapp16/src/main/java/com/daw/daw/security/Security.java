@@ -21,6 +21,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.security.web.context.SecurityContextRepository;
+import org.springframework.web.cors.CorsConfiguration;
 
 import com.daw.daw.security.jwt.JwtRequestFilter;
 import com.daw.daw.security.jwt.UnauthorizedHandlerJwt;
@@ -82,34 +83,39 @@ public class Security {
     @Order(1)
     public SecurityFilterChain apiFilterChain(HttpSecurity http) throws Exception {
         http
-                .securityMatcher("/api/**")
-                .cors(cors -> cors.configurationSource(request -> {
-                    var corsConfig = new org.springframework.web.cors.CorsConfiguration();
-                    corsConfig.setAllowedOrigins(List.of("http://localhost:4200"));
-                    corsConfig.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-                    corsConfig.setAllowedHeaders(List.of("*"));
-                    corsConfig.setAllowCredentials(true);
-                    return corsConfig;
-                }))
-                .csrf(csrf -> csrf.disable())
-                .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .exceptionHandling(handling -> handling
-                        .authenticationEntryPoint(unauthorizedHandlerJwt))
-                .authorizeHttpRequests(auth -> auth
-                        // Público
-                        .requestMatchers("/api/auth/**").permitAll()
+            .securityMatcher("/api/**")
+            .cors(cors -> cors.configurationSource(request -> {
+                CorsConfiguration config = new CorsConfiguration();
+                config.setAllowedOrigins(List.of(
+                    "http://localhost:4200",
+                    "https://localhost",
+                    "http://localhost"
+                ));
+                config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+                config.setAllowedHeaders(List.of("*"));
+                config.setAllowCredentials(true);
+                config.setExposedHeaders(List.of("Authorization"));
+                return config;
+            }))
+            .csrf(csrf -> csrf.disable())
+            .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/v1/users/").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/v1/events/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/v1/comments/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/v1/users/").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/csrf-token").permitAll()
 
                         // USER
-                        .requestMatchers(HttpMethod.POST, "/api/v1/bookings/").permitAll() // Cambio específico aquí
+                        .requestMatchers(HttpMethod.POST, "/api/v1/bookings/").authenticated() // Cambio específico aquí
                         .requestMatchers(HttpMethod.POST, "/api/v1/comments/**").hasRole("USER")
                         .requestMatchers(HttpMethod.POST, "/api/v1/tickets/**").hasRole("USER")
                         .requestMatchers(HttpMethod.GET, "/api/v1/users/me").hasRole("USER")
                         .requestMatchers(HttpMethod.GET, "/api/v1/tickets/MyTickets").hasRole("USER")
                         .requestMatchers(HttpMethod.DELETE, "api/v1/tickets/MyTicket/{id}").hasRole("USER")
+                        .requestMatchers("/new/**").permitAll() // Permitir acceso público a /new/**
+
 
                         // ADMIN
                         .requestMatchers(HttpMethod.POST, "/api/v1/**").hasRole("ADMIN")

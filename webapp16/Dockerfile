@@ -3,12 +3,10 @@ FROM node:18-slim AS angular-builder
 WORKDIR /app
 RUN npm install -g @angular/cli@19.2.8
 # Copia solo los archivos necesarios para instalar dependencias
-COPY frontend/package.json frontend/package-lock.json ./frontend/
-RUN cd frontend && npm install
-COPY frontend/ ./frontend/
+COPY . .
+RUN npm install --legacy-peer-deps --force
 # Construye la aplicación Angular
-RUN cd frontend && \
-    ng build --configuration=production --base-href=/spa/ --output-path=dist/frontend
+RUN npm run build --configuration=production --base-href=/new/ 
 
 # Etapa 2: Construcción del proyecto
 FROM maven:3.9.4-eclipse-temurin-21 AS build
@@ -26,7 +24,7 @@ WORKDIR /app
 # Copia solo el JAR necesario
 COPY --from=build /app/target/app.jar app.jar
 # Copia los archivos de Angular construidos
-COPY --from=angular-builder /app/frontend/dist/frontend/browser/ /app/static/spa
+COPY --from=angular-builder /app/dist/frontend/browser/browser/ /app/static/new
 # Asegura que el puerto esté expuesto
 EXPOSE 8443
 # Mejor entrypoint para manejar señales de terminación

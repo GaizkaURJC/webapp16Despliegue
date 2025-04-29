@@ -1,0 +1,121 @@
+/* Hace el fondo del modal translúcido */
+.modal.show .modal-dialog .modal-content {
+    margin-top: 25px;
+    background: transparent !important;
+    backdrop-filter: blur(12px) !important;
+    color: black !important;
+    min-height: 500px !important;
+    border: 1px solid #000000 !important;
+    background-color: rgba(0, 0, 0, 0.7) !important;
+}
+
+.modal-dialog {
+    max-width: 500px;
+    margin-top: -1vh;
+}
+
+.modal-backdrop {
+    background-color: #f2f526 !important;
+    display: none !important;
+}
+
+
+.modal-header {
+    background: #f2f526;
+    color: black;
+}
+
+/*---------------------------------------
+    btn
+-----------------------------------------*/
+/* From Uiverse.io by ernestnash */
+.btn {
+    display: inline-block;
+    padding: 0.9rem 1.8rem;
+    font-size: 16px;
+    font-weight: 700;
+    color: white;
+    border: 3px solid #f2f526;
+    cursor: pointer;
+    position: relative;
+    background-color: transparent;
+    text-decoration: none;
+    overflow: hidden;
+    z-index: 1;
+    font-family: inherit;
+    transition: color 0.3s ease;
+}
+
+.btn-entrad {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    color: #000000;
+}
+
+.btn::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f2f526;
+    transform: translateX(-100%);
+    transition: all 0.3s ease;
+    z-index: -1;
+}
+
+.btn:hover::before {
+    transform: translateX(0);
+}
+
+.btn:hover {
+    color: black;
+}
+
+.btn-close {
+    width: 20px;
+    height: 20px;
+    filter: invert(1);
+}
+
+.form-label {
+    color: white;
+}
+
+.spinner-border {
+    vertical-align: middle;
+  }
+  
+  .btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+  
+  .alert-danger {
+    background-color: rgba(220, 53, 69, 0.8);
+    color: white;
+    border: 1px solid #dc3545;
+  }
+
+  ::placeholder {
+    color: #aaa;
+    opacity: 1;
+  }
+  
+  /* Estilos para el select */
+  .form-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 1em;
+  }
+  
+  /* Estilos para accesibilidad en focus */
+  input:focus, select:focus, button:focus {
+    outline: 2px solid #f2f526;
+    outline-offset: 2px;
+  }

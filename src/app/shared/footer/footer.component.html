@@ -1,0 +1,57 @@
+<div class="site-footer-top">
+    <h2 >{{ getTituloContent('titulo') ? getTituloContent('titulo') : '' }}</h2>
+    <ul>
+        @for (item of socialIcon; track $index) {
+            <li class="social-icon-item">
+                <a href="#" class="social-icon-link">
+                    {{item.name}}
+                </a>
+            </li>
+        }
+    </ul>
+</div>
+<section class="foot">
+    <div class="footer-container">
+        <div class="subcontainer">
+            <div class="sub1">
+                <h6>{{ getTituloContent('sala') ? getTituloContent('sala') : '' }}</h6>
+                <p>{{ getTituloContent('texto') ? getTituloContent('texto') : '' }}</p>
+            </div>
+        </div>
+        <div class="subcontainer">
+            <div class="sub2">
+                <h6>Links</h6>
+                <ul>
+                    @for (link of links; track $index) {
+                        <li >
+                            <a href="#">
+                                {{link}}
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+        <div class="subcontainer">
+    
+            <div class="sub3">
+                <h6>Contatc</h6>
+                
+                <ul>
+                    @for (info of aditionalInfo; track $index) {
+                    <li>{{info}}</li>
+            }
+        </ul>
+            <div class="ratio ratio-16x9">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3037.6278563288365!2d-3.708406099138649!3d40.41709424043224!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd42287e9746e7dd%3A0x99807c2312ccc88!2sTeatro%20Eslava!5e0!3m2!1ses!2ses!4v1739357621449!5m2!1ses!2ses"
+                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div></div>
+            
+        </div>
+    </div>
+    <div class="copyright">
+        <h6>© 2026 Copyright:</h6>
+        <p style="color:#f2f526 ;">DregraDEV</p>
+    </div>
+</section>

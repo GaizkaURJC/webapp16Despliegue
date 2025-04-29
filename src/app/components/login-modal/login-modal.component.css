@@ -1,0 +1,171 @@
+/* Fondo translúcido del modal */
+.modal-content {
+    margin-top: 25px;
+    background: rgba(0, 0, 0, 0.9); /* Fondo oscuro translúcido */
+    backdrop-filter: blur(12px); /* Efecto de desenfoque */
+    color: white; /* Color de texto por defecto */
+    min-height: 500px;
+    border: 1px solid #f2f526; /* Borde amarillo */
+    border-radius: 8px;
+    padding: 20px;
+    
+}
+
+/* Centrar el modal */
+.modal-dialog {
+    max-width: 500px;
+    margin: auto;
+}
+
+/* Estilo del fondo del modal */
+.modal-backdrop {
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro */
+}
+.modal{
+    background: transparent; /* Fondo transparente */
+    
+}
+
+/* Fondo oscuro detrás del modal */
+.modal-backdrop {
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro */
+}
+
+/* Estilo del encabezado del modal */
+.modal-header {
+    background: #f2f526; /* Fondo amarillo */
+    color: black; /* Texto negro */
+    font-weight: bold;
+    border-bottom: 1px solid #000; /* Línea de separación */
+}
+/*---------------------------------------
+    css para el formulario
+-----------------------------------------*/
+/* Hace el fondo del modal translúcido */
+
+
+.modal-dialog {
+    max-width: 500px;
+    border: 2px red solid;
+}
+
+.modal-backdrop {
+    background-color: #f2f526 !important;
+    display: none !important;
+}
+
+
+.modal-header {
+    background: #f2f526;
+    color: black;
+    font-weight: 900;
+}
+
+.btn-login {
+    background-color: #d5e33e;
+    color: black;
+}
+
+.header {
+    border: solid 5px yellow
+}
+
+.btn-login:hover {
+    background-color: black;
+    color: #d5e33e;
+    border-color: #d5e33e;
+}
+
+.btn-close {
+    width: 20px;
+    height: 20px;
+    filter: invert(1);
+    color: black;
+    background: transparent;
+}
+
+.modal-body form{
+    background: rgb(40, 40, 40);
+    color: white;
+    padding: 20px;
+    color: white;
+    min-height: 500px;
+    border: 1px solid #000000;
+}
+.modal-body{
+    background: rgb(40, 40, 40);
+}
+.form-label {
+    color: white;
+}
+.modal-body {
+    background: rgb(44, 44, 44);
+    color: white;
+    padding: 20px;
+    min-height: 500px;
+    border: 1px solid #000000;
+}
+/* Botón de cierre del modal */
+.btn-close {
+    filter: none;
+    color: white;
+    background: transparent; 
+    border: none; 
+    font-size: 1.2rem; 
+    opacity: 1;
+    border: 2px blue solid;
+}
+.modal-header button{
+    color: #000;
+}
+.btn-close:hover {
+    color: #333; /* Color ligeramente más oscuro al pasar el ratón */
+}
+
+/* Estilo de las etiquetas */
+.form-label {
+    font-weight: bold;
+}
+
+/* Estilo de los campos de entrada */
+.form-control {
+    color: black; /* Texto blanco */
+    border: 1px solid #f2f526; /* Borde amarillo */
+    border-radius: 5px;
+
+}
+
+/* Cambiar el color del texto al escribir */
+.form-control:focus {
+    background-color: #444; /* Fondo ligeramente más claro */
+    color: white;
+    border-color: #f2f526; /* Mantener el borde amarillo */
+    box-shadow: none;
+}
+
+/* Botón de confirmar */
+.btn-login {
+    background-color: #f2f526; /* Fondo amarillo */
+    color: black; /* Texto negro */
+    font-weight: bold;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-login:hover {
+    background-color: black; /* Fondo negro al pasar el ratón */
+    color: #f2f526; /* Texto amarillo */
+}
+
+/* Enlace de registro */
+.switch-modal a {
+    color: #f2f526; /* Amarillo */
+    text-decoration: none;
+}
+
+.switch-modal a:hover {
+    text-decoration: underline;
+    color: white; /* Blanco al pasar el ratón */
+}

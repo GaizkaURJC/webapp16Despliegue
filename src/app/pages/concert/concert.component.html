@@ -1,0 +1,102 @@
+<nav class="top-navbar">
+  <div class="container-topnav">
+    <ul class="elementos-header align-items-lg-center ms-auto me-lg-5" id="elementos-cabecera">
+      <li class="nav-item" *ngFor="let item of items">
+        <a *ngIf="item.name !== 'Login'" 
+           [href]="item.link" 
+           class="top-nav-section">
+          {{ item.name }}
+        </a>
+        <a *ngIf="item.name === 'Login'" 
+           href="#" 
+           (click)="openLoginModal($event)" 
+           class="top-nav-section">
+          {{ item.name }}
+        </a>
+      </li>
+
+      <li *ngIf="isAuthenticated" class="nav-item user-menu">
+        <div class="dropdown">
+          <a href="#" class="dropdown-toggle" (click)="goToProfile($event)">
+            {{ userName }}
+          </a>
+          <div class="dropdown-content">
+            <a href="#" (click)="goToProfile($event)">Perfil</a>
+            <a href="#" (click)="logout($event)">Cerrar sesión</a>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<section class="section-1">
+  <div class="container-section1">
+    <div class="row">
+      <div class="texto-principal">
+        <h1>CONCIERTOS</h1>
+        <hr class="line-title">
+        <p>Los mejores conciertos de la mano de nuestra sala, para vivir una experiencia completa!</p>
+      </div>
+    </div>
+  </div>
+  <div class="img">
+    <video autoplay muted loop id="bg-video">
+      <source src="assets/videos/CONCERT.mp4" type="video/mp4">
+    </video>
+    <div class="overlay"></div>
+  </div>
+</section>
+
+<div class="content-container">
+  <section class="section-2" *ngIf="event">
+    <div class="container-section2">
+      <div class="container-concert-fields">
+        <div class="field field--name">
+          <h1>{{ event.title }}</h1>
+        </div>
+        <div class="field field--subtitle"><span>{{ event.category }}</span></div>
+        <div class="field field--info">
+          <div class="field field--infoizq">
+            <div class="field field--date">
+              <div class="label1">Descripción</div>
+              <div class="content1">
+                <p>{{ event.description }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="btn-change8" style="cursor: pointer;" (click)="openBuyModal()">
+          <div class="buytickets">COMPRAR ENTRADAS</div>
+        </div>
+      </div>
+      <div class="container-concert-img">
+        <img class="imgconcert" [src]="imgUrl" alt="concierto1">
+      </div>
+    </div>
+  </section>
+
+  <section class="section_3">
+    <div class="container-section3">
+      <div class="comments-title">
+        <h1>Comentarios</h1>
+      </div>
+      <div class="container-btn-comment">
+        <div class="container-btn-comment">
+          <button class="btn-change8 btn-comentario" type="button" (click)="openCommentModal()">Añadir comentario</button>        </div>
+      </div>
+      <div class="container-comments">
+        <div class="comment-post" *ngFor="let comment of comments">
+          <div class="comment-post_user">{{ comment.username }}</div>
+          <div class="comment-post_content">
+            <p>{{ comment.comentario }}</p>
+          </div>
+          <div class="comment-post_valoration">
+            <p>{{ comment.rate }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
