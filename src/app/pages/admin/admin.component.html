@@ -84,7 +84,8 @@
                   </tr>
                 </tbody>
               </table>
-            <!-- <a href="#" (click)="openCreatePartyModal()">Añadir Fiesta</a> -->
+              <p></p>
+              <button (click)="openPartyModal()" class="AnadirConcierto">Añadir Fiesta</button>
         </div>
         <div class="container1" *ngIf="activeSection === 'conciertos'">
             <table class="table">
@@ -110,7 +111,7 @@
                   </tr>
                 </tbody>
               </table>
-            <!---  <a href="#" (click)="openCreateConcertModal()">Añadir Concierto</a> -->
+              <button (click)="openConcertModal()" class="AnadirConcierto">Añadir Concierto</button>
         </div>
         <div class="container1" *ngIf="activeSection === 'eventos'">
             <table class="table">

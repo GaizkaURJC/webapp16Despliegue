@@ -1,0 +1,66 @@
+:host {
+    display: block;
+    width: 100%;
+}
+
+/* Modal container styling to match admin theme */
+.modal-content {
+    margin-top: 25px;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(12px);
+    color: white;
+    border: 1px solid #000;
+    width: 100%;
+    max-width: 500px; /* Limiting width to match admin modal dialog */
+    border-radius: 10px;
+}
+
+/* Header matching admin header style */
+.modal-header {
+    background: #f2f526;
+    color: black;
+    font-weight: 900;
+    padding: 10px 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+/* Body styling */
+.modal-body {
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+/* Darker textboxes */
+.modal-body input,
+.modal-body textarea {
+    background-color: #333; /* darker background */
+    border: 1px solid #555;
+    color: white;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+/* Modified submit button styling */
+.modal-body button[type="submit"] {
+    background-color: #d5e33e;
+    color: black;
+    border: 1px solid #d5e33e;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.modal-body button[type="submit"]:hover {
+    background-color: #000;
+    color: white;
+    border-color: #000;
+}
+
+/* Optional close button styling */
+.btn-close {
+    filter: invert(1);
+    background: transparent;
+    border: none;
+}
