@@ -7,6 +7,8 @@ import { UserService } from '../../services/user.service';
 import { CommentService } from '../../services/comment.service';
 import { BookingService } from '../../services/booking.service'; 
 import {AuthService} from '../../services/login.service'; // Asegúrate de que la ruta sea correcta
+import { PartyModalComponent } from '../../components/party-modal/party-modal.component';
+import { ConcertModalComponent } from '../../components/concert-modal/concert-modal.component';
 import { wine, musicalNotes, people, construct, chatbubble, logIn } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 
@@ -46,7 +48,7 @@ export class AdminComponent implements OnInit {
     private bookingService: BookingService,
     private authStateService: AuthStateService,
     private authService: AuthService,
-    private router: Router // Añadir el router aquí
+    private router: Router,
 
   ) {
     addIcons({
@@ -191,7 +193,7 @@ export class AdminComponent implements OnInit {
       });
     }
   }
- /*
+ 
   openPartyModal() {
       
       const modalRef = this.modalService.open(PartyModalComponent, {
@@ -226,5 +228,5 @@ export class AdminComponent implements OnInit {
           console.log('Modal cerrado sin crear concierto');
         }
       );
-    }*/
+    }
 }
