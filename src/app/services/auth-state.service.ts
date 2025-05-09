@@ -40,6 +40,14 @@ export class AuthStateService {
   }
 
   getCurrentUser(): UserDTO | null {
-    return this.currentUserSubject.value;
+    const data = localStorage.getItem('currentUser');
+    if (!data) return null;
+
+    try {
+      return JSON.parse(data) as UserDTO;
+    } catch (e) {
+      console.error('Error parsing currentUser from storage:', e);
+      return null;
+    }
   }
 }
