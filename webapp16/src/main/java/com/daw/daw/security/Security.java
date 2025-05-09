@@ -99,44 +99,43 @@ public SecurityFilterChain apiFilterChain(HttpSecurity http) throws Exception {
         }))            .csrf(csrf -> csrf.disable())
             .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
+                // Público
                 .requestMatchers("/api/auth/**").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/v1/users/").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/v1/events/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/v1/comments/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/v1/users/").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/csrf-token").permitAll()
+                .requestMatchers(HttpMethod.POST, "/api/v1/users/").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/v1/events/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/v1/comments/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/v1/users/").permitAll()
+                
+                // USER
+                .requestMatchers(HttpMethod.POST, "/api/v1/bookings/**").hasRole("USER")
+                .requestMatchers(HttpMethod.POST, "/api/v1/comments/**").hasRole("USER")
+                .requestMatchers(HttpMethod.POST, "/api/v1/tickets/**").hasRole("USER")
+                .requestMatchers(HttpMethod.GET, "/api/v1/users/me").hasRole("USER")
+                .requestMatchers(HttpMethod.GET,"/api/v1/tickets/getMyTickets").hasRole("USER")
+                .requestMatchers(HttpMethod.DELETE,"api/v1/tickets/deleteMyTicket/{id}").hasRole("USER")
+                
+                // ADMIN
+                .requestMatchers(HttpMethod.POST, "/api/v1/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PUT, "/api/v1/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.POST, "/api/v1/events/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PUT, "/api/v1/events/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PUT, "/api/v1/comments/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PUT, "/api/v1/tickets/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PUT, "/api/v1/users/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.GET, "/api/v1/bookings/**").hasRole( "ADMIN")
+                .requestMatchers(HttpMethod.GET, "/api/v1/tickets/**").hasAnyRole( "ADMIN", "USER")
+                .requestMatchers(HttpMethod.POST,"/api/v1/users/{id}/image").hasAnyRole( "ADMIN", "USER")
+                .requestMatchers(HttpMethod.PUT,"/api/v1/users/{id}/image").hasAnyRole( "ADMIN", "USER")
 
-                        // USER
-                        .requestMatchers(HttpMethod.POST, "/api/v1/bookings/").authenticated() // Cambio específico aquí
-                        .requestMatchers(HttpMethod.POST, "/api/v1/comments/**").hasRole("USER")
-                        .requestMatchers(HttpMethod.POST, "/api/v1/tickets/**").hasRole("USER")
-                        .requestMatchers(HttpMethod.GET, "/api/v1/users/me").hasRole("USER")
-                        .requestMatchers(HttpMethod.GET, "/api/v1/tickets/MyTickets").hasRole("USER")
-                        .requestMatchers(HttpMethod.DELETE, "api/v1/tickets/MyTicket/{id}").hasRole("USER")
-                        .requestMatchers("/new/**").permitAll() // Permitir acceso público a /new/**
+                .requestMatchers(HttpMethod.GET,"/api/v1/users/{id}/image").hasRole("ADMIN")
 
-
-                        // ADMIN
-                        .requestMatchers(HttpMethod.POST, "/api/v1/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/api/v1/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/api/v1/events/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/api/v1/events/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/api/v1/comments/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/api/v1/tickets/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/api/v1/users/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/api/v1/bookings/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/api/v1/bookings/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/api/v1/tickets/**").hasAnyRole("ADMIN", "USER")
-                        .requestMatchers(HttpMethod.POST, "/api/v1/users/{id}/image").hasAnyRole("ADMIN", "USER")
-                        .requestMatchers(HttpMethod.PUT, "/api/v1/users/{id}/image").hasAnyRole("ADMIN", "USER")
-                        .requestMatchers(HttpMethod.GET, "/api/v1/stats/gender/{id}").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/v1/users/{id}/image").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/api/**").hasRole("ADMIN") // delete only for ADMIN
-                )
-                .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
-
+                .requestMatchers(HttpMethod.DELETE, "/api/**").hasRole("ADMIN") // delete only for ADMIN
+            )
+            .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+    
         return http.build();
     }
+
 
     @Bean
     @Order(2) // Change the order to avoid conflicts

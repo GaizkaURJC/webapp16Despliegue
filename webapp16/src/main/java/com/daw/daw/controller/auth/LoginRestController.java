@@ -1,9 +1,7 @@
 package com.daw.daw.controller.auth;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -23,7 +21,6 @@ import com.daw.daw.security.jwt.UserLoginService;
 import java.util.Map;
 
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.Cookie;
 
 /**
  * This class is a REST controller for handling authentication-related requests.
@@ -56,31 +53,17 @@ public class LoginRestController {
     private JwtTokenProvider jwtTokenProvider; // Ensure the injection of the JwtTokenProvider
 
     @PostMapping("/login")
-public ResponseEntity<?> login(@RequestBody LoginRequest request, HttpServletResponse response) {
-    try {
+    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
         Authentication authentication = authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
         
         SecurityContextHolder.getContext().setAuthentication(authentication);
+        
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         String token = jwtTokenProvider.generateAccessToken(userDetails);
         
-        // Configura cookie segura
-        Cookie cookie = new Cookie("AuthToken", token);
-        cookie.setHttpOnly(true);
-        cookie.setSecure(true); // Cambiar a true en producción con HTTPS
-        cookie.setPath("/");
-        cookie.setMaxAge(24 * 60 * 60); // 1 día
-        response.addCookie(cookie);
-        
-        return ResponseEntity.ok(Map.of(
-            "token", token,
-            "user", userDetails
-        ));
-    } catch (BadCredentialsException e) {
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales inválidas");
+        return ResponseEntity.ok(Map.of("token", token));
     }
-}
 
 
     @PostMapping("/refresh")

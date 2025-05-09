@@ -77,15 +77,15 @@ public class UserRestController {
     @Operation (summary = "Get all the users")
     @GetMapping("/me")
     public ResponseEntity<UserDTO> me(HttpServletRequest request) {
-    Principal principal = request.getUserPrincipal();
+        Principal principal = request.getUserPrincipal();
 
-    if (principal != null) {
-        UserDTO userDTO = userService.getMe(principal.getName());
-        return ResponseEntity.ok(userDTO);
-    } else {
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+        if (principal != null) {
+            UserDTO userDTO = userService.getMe(principal.getName());
+            return ResponseEntity.ok(userDTO);
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+        }
     }
-}
 
     @Operation(summary = "Get all users")
     @GetMapping("/")
