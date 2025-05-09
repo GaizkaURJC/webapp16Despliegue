@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 export class SingupModalComponent {
   name = '';
   email = '';
-  telefono = '';
+  phone = '';
   password = '';
   errorMessage = '';
   isLoading = false;
@@ -42,7 +42,7 @@ export class SingupModalComponent {
 
   submitSingup() {
     // Validación de campos
-    if (!this.name || !this.email || !this.telefono || !this.password) {
+    if (!this.name || !this.email || !this.phone || !this.password) {
       this.errorMessage = 'Por favor, completa todos los campos obligatorios.';
       return;
     }
@@ -64,8 +64,9 @@ export class SingupModalComponent {
     const userData = {
       name: this.name,
       email: this.email,
-      telefono: this.telefono,
+      phone: this.phone,
       password: this.password,
+      roles: ['USER'], // Asignar rol por defecto
     };
 
     this.authService.register(userData).subscribe({
@@ -74,14 +75,12 @@ export class SingupModalComponent {
         this.authService.loginAfterRegister(this.email, this.password).subscribe({
           next: (loginResponse) => {
             
-            if (loginResponse && loginResponse.token) {
+            
               localStorage.setItem('token', loginResponse.token);
               this.activeModal.close();
               // Recargar para actualizar el estado de autenticación
               window.location.reload();
-            } else {
-              this.errorMessage = 'Registro completado, pero no se pudo iniciar sesión automáticamente. Por favor, inicia sesión manualmente.';
-            }
+             
             this.isLoading = false;
           },
           error: (loginError) => {
