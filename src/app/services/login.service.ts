@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable, catchError, throwError } from 'rxjs';
 import { AuthStateService } from './auth-state.service'; // Importa el servicio de estado de autenticación
-import { tap } from 'rxjs/operators'; // O esta alternativa
+import { switchMap, tap } from 'rxjs/operators'; // O esta alternativa
 import { UserDTO } from '../dtos/user.dto';
 
 interface LoginResponse {
@@ -32,25 +32,25 @@ export class AuthService {
     return this.http.get('/api/csrf-token');
   }
 
-  login(email: string, password: string): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(`${this.apiUrl}/login`, { email, password }, {
-        withCredentials: true // Esto es crucial para manejar cookies/sesiones
-    }).pipe(
-        tap(response => {
-            if (response?.token) {
-                localStorage.setItem('token', response.token);
-                this.authState.setAuthenticated(true, response.user);
-            }
-        }),
-        catchError(error => {
-            console.error('Error en el login:', error);
-            return throwError(() => error);
-        })
+  login(email: string, password: string): Observable<UserDTO> {
+  return this.http
+    .post<LoginResponse>(`${this.apiUrl}/login`, { email, password }, { withCredentials: true })
+    .pipe(
+      tap(response => {
+        if (response.token) {
+          localStorage.setItem('token', response.token);        // only store the token here
+        }
+      }),
+      switchMap(() => this.fetchCurrentUser()),                 // now fetchCurrentUser() runs
+      catchError(error => {
+        console.error('Error en el login:', error);
+        return throwError(() => error);
+      })
     );
 }
 
   private fetchCurrentUser(): Observable<UserDTO> {
-    return this.http.get<UserDTO>(`${this.userUrl}/me`).pipe(
+    return this.http.get<UserDTO>(`${this.URL}/me`).pipe(
       tap((user: UserDTO) => {
         localStorage.setItem('currentUser', JSON.stringify(user));
         this.authState.setAuthenticated(true, user);
