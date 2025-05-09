@@ -49,7 +49,9 @@ export class LoginModalComponent {
         // El AuthStateService ya fue actualizado por el tap() en el servicio
         if (this.authState.getCurrentUser()?.roles?.includes('ADMIN')) {
           this.router.navigate(['/admin']);
-        } 
+        } else {
+          window.location.reload();
+        }
       },
       error: (error) => {
         this.isLoading = false;
