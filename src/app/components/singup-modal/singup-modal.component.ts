@@ -73,7 +73,6 @@ export class SingupModalComponent {
         // Después de registrar, hacemos login automático
         this.authService.loginAfterRegister(this.email, this.password).subscribe({
           next: (loginResponse) => {
-            this.isLoading = false;
             
             if (loginResponse && loginResponse.token) {
               localStorage.setItem('token', loginResponse.token);
@@ -83,6 +82,7 @@ export class SingupModalComponent {
             } else {
               this.errorMessage = 'Registro completado, pero no se pudo iniciar sesión automáticamente. Por favor, inicia sesión manualmente.';
             }
+            this.isLoading = false;
           },
           error: (loginError) => {
             this.isLoading = false;
