@@ -16,7 +16,8 @@ interface LoginResponse {
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = '/api/auth'; 
+  private apiUrl = 'https://localhost:8443/api/auth'; 
+  //private apiUrl = '/api/auth'; 
   private URL= 'https://localhost:8443/api/v1/users';
   private readonly API_URL = '/api/auth';
   private userUrl = '/api/v1/users';
@@ -32,26 +33,21 @@ export class AuthService {
   }
 
   login(email: string, password: string): Observable<LoginResponse> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-    return this.http.post<LoginResponse>(`${this.apiUrl}/login`, { email, password },{headers}).pipe(
-      tap((response: LoginResponse) => {
-        console.log('Respuesta del login:', response);
-        if (response?.token) {
-          localStorage.setItem('token', response.token);
-          if (response?.user) {
-            localStorage.setItem('currentUser', JSON.stringify(response.user));
-            this.authState.setAuthenticated(true, response.user);
-          }
-        }
-      }),
-      catchError(error => {
-        console.error('Error en el login:', error);
-        return throwError(() => error);
-      })
+    return this.http.post<LoginResponse>(`${this.apiUrl}/login`, { email, password }, {
+        withCredentials: true // Esto es crucial para manejar cookies/sesiones
+    }).pipe(
+        tap(response => {
+            if (response?.token) {
+                localStorage.setItem('token', response.token);
+                this.authState.setAuthenticated(true, response.user);
+            }
+        }),
+        catchError(error => {
+            console.error('Error en el login:', error);
+            return throwError(() => error);
+        })
     );
-  }
+}
 
   private fetchCurrentUser(): Observable<UserDTO> {
     return this.http.get<UserDTO>(`${this.userUrl}/me`).pipe(

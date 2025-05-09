@@ -8,7 +8,6 @@ import { AdminComponent } from './pages/admin/admin.component'; // Asegúrate de
 import { HttpClientModule } from '@angular/common/http';
 import { ProfileComponent } from './pages/profile/profile.component';
 export const routes: Routes = [
-
   { path: '', component: HomeComponent },    // Respuesta a /new
   { path: 'home', component: HomeComponent }, // Respuesta a /new/home
   { path: 'concerts/:id', component: ConcertComponent },

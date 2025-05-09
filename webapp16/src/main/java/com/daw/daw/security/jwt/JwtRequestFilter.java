@@ -2,6 +2,8 @@ package com.daw.daw.security.jwt;
 
 import java.io.IOException;
 
+import jakarta.servlet.http.Cookie;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -48,31 +50,37 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     }
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
-            throws ServletException, IOException {
-        
-        final String token = extractToken(request);
-        
-        if (token != null) {
-            try {
-                if (jwtTokenProvider.validateToken(token)) {
-                    Claims claims = jwtTokenProvider.parseToken(token);
-                    String username = claims.getSubject();
-                    UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-                    
-                    UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(
-                            userDetails, null, userDetails.getAuthorities());
-                    auth.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                    SecurityContextHolder.getContext().setAuthentication(auth);
-                }
-            } catch (Exception e) {
-                log.error("No se pudo establecer la autenticación: {}", e.getMessage());
+protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
+        throws ServletException, IOException {
+    
+    // 1. Intentar obtener el token de la cookie
+    Cookie[] cookies = request.getCookies();
+    String token = null;
+    
+    if (cookies != null) {
+        for (Cookie cookie : cookies) {
+            if ("AuthToken".equals(cookie.getName())) {
+                token = cookie.getValue();
+                break;
             }
         }
-        
-        chain.doFilter(request, response);
     }
-
+    
+    // 2. Si no está en cookies, intentar del header Authorization
+    if (token == null) {
+        String bearerToken = request.getHeader("Authorization");
+        if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
+            token = bearerToken.substring(7);
+        }
+    }
+    
+    // 3. Validar el token
+    if (token != null && jwtTokenProvider.validateToken(token)) {
+        // ... establecer autenticación
+    }
+    
+    chain.doFilter(request, response);
+}
 
     private String extractToken(HttpServletRequest request) {
         String header = request.getHeader("Authorization");
