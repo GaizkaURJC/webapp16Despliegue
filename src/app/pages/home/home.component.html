@@ -53,6 +53,11 @@
             <a *ngIf="hasMoreConcerts" class="load-more" (click)="loadMoreConcerts()">
                 Cargar más 
             </a>
+
+            <div *ngIf="isLoading" class="loader">
+                <div class="spinner"></div>
+                <p>Cargando más conciertos...</p>
+            </div>
             
         </div>
         <span class="loading"></span>

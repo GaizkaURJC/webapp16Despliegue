@@ -37,6 +37,7 @@ export class HomeComponent implements OnInit {
   currentPage = 0;
   concertsPerPage = 4;
   hasMoreConcerts = true;
+  isLoading: boolean = false;
   
   // Variables para el formulario de reserva
   userName = '';
@@ -93,15 +94,21 @@ export class HomeComponent implements OnInit {
   }
 
   loadMoreConcerts(): void {
+    this.isLoading = true; // Mostrar el loader
     const startIndex = this.currentPage * this.concertsPerPage;
     const endIndex = startIndex + this.concertsPerPage;
-    
-    const newConcerts = this.filteredConcerts.slice(startIndex, endIndex);
-    this.displayedConcerts = [...this.displayedConcerts, ...newConcerts];
-    
-    this.currentPage++;
-    this.hasMoreConcerts = endIndex < this.filteredConcerts.length;
-  }
+
+    // Simular un retraso para mostrar el loader (puedes reemplazar esto con una llamada real al backend)
+    setTimeout(() => {
+        const newConcerts = this.filteredConcerts.slice(startIndex, endIndex);
+        this.displayedConcerts = [...this.displayedConcerts, ...newConcerts];
+
+        this.currentPage++;
+        this.hasMoreConcerts = endIndex < this.filteredConcerts.length;
+
+        this.isLoading = false; // Ocultar el loader
+    }, 500); // Simula un retraso de 2 segundos
+}
 
   filterConcerts(category: string): void {
     this.selectedCategory = category;
