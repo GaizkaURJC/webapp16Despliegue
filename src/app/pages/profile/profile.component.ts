@@ -224,7 +224,7 @@ private loadUserTickets(): void {
           next: (response) => {
             localStorage.setItem('currentUser', JSON.stringify(response));
             this.authStateService.setAuthenticated(true, response);
-            this.router.navigate(['/perfil']); 
+            this.router.navigate(['/']); 
           },
           error: (err) => {
             console.error('Error reautenticando después de editar:', err);
