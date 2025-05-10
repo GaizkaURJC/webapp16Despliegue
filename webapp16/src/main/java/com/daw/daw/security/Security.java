@@ -113,6 +113,7 @@ public SecurityFilterChain apiFilterChain(HttpSecurity http) throws Exception {
                 .requestMatchers(HttpMethod.GET, "/api/v1/users/me").hasRole("USER")
                 .requestMatchers(HttpMethod.GET,"/api/v1/tickets/getMyTickets").hasRole("USER")
                 .requestMatchers(HttpMethod.DELETE,"api/v1/tickets/deleteMyTicket/{id}").hasRole("USER")
+                .requestMatchers(HttpMethod.PUT, "/api/v1/users/me").hasRole("USER")
                 
                 // ADMIN
                 .requestMatchers(HttpMethod.POST, "/api/v1/**").hasRole("ADMIN")

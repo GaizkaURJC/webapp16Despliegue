@@ -86,6 +86,32 @@ public class UserRestController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }
     }
+    
+    @Operation(summary = "Update my own user")
+    @PutMapping("/me")
+    public ResponseEntity<UserDTO> updateMe(@RequestBody CreateRequestUserDTO updateUserDTO, HttpServletRequest request) {
+    Principal principal = request.getUserPrincipal();
+
+    if (principal.getName() != null) {
+        UserDTO currentUser = userService.getMe(principal.getName());
+
+        CreateRequestUserDTO safeUpdateDTO = new CreateRequestUserDTO(
+            userService.getMe(principal.getName()).id(), 
+            updateUserDTO.name(),
+            updateUserDTO.email(),
+            userService.getUserPassword(userService.getMe(principal.getName()).id()), 
+            updateUserDTO.phone(),
+            updateUserDTO.roles()
+        );
+
+        System.out.println("Current user: " + safeUpdateDTO);
+
+        UserDTO userDTO = userService.replaceUser(currentUser.id(), safeUpdateDTO);
+        return ResponseEntity.ok(userDTO);
+    } else {
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+    }
+}
 
     @Operation(summary = "Get all users")
     @GetMapping("/")

@@ -193,25 +193,27 @@ export class ConcertComponent implements OnInit {
       this.router.navigate(['/profile']);
     }
 
-    openBuyModal() {
-      if (!this.isAuthenticated) {
-        this.openLoginModal(new Event('click'));
-        return;
-      }
+    openBuyModal(): void {
+      this.authState.getAuthenticatedUser().subscribe((user) => {
+        const modalRef = this.modalService.open(BuyModalComponent, {
+          centered: true,
+          backdrop: 'static'
+        });
     
-      if (!this.userLogged?.name) { 
-        console.error('User data not available');
-        return;
-      }
+        modalRef.componentInstance.event = this.event;
+        modalRef.componentInstance.token = this.authService.getToken();
+        modalRef.componentInstance.currentUser = user;
     
-      const modalRef = this.modalService.open(BuyModalComponent, {
-        centered: true,
-        backdrop: 'static'
+        modalRef.result.then(
+          result => {
+            console.log('Compra confirmada:', result);
+          },
+          reason => {
+            console.log('Modal cerrado sin comprar');
+          }
+        );
       });
-    
-      modalRef.componentInstance.event = this.event;
-      modalRef.componentInstance.currentUser = {
-        name: this.userLogged.name 
-      };
     }
+    
+    
 }

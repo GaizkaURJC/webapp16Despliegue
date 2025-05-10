@@ -23,4 +23,8 @@ public interface CreateUserMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "encodedPassword", source = "password")
     User toDomain(CreateRequestUserDTO userDTO);
+
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "encodedPassword", ignore = true)
+    User toDomainWithoutPassword(CreateRequestUserDTO userDTO);
 }

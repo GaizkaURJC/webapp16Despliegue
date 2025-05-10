@@ -2,10 +2,12 @@ import { Component } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BuyModalComponent } from '../../components/buy-modal/buy-modal.component'; // Ajusta ruta si es necesario
-
+import { UserDTO } from '../../dtos/user.dto';
 import { FooterComponent } from '../../shared/footer/footer.component';
 import { EventService } from '../../services/event.service';
 import { EventDTO } from '../../dtos/event.dto';
+import { AuthStateService } from '../../services/auth-state.service';
+import { AuthService } from '../../services/login.service';
 
 @Component({
   selector: 'app-clubbing',
@@ -22,6 +24,8 @@ export class ClubbingComponent {
   constructor(
     private modalService: NgbModal,
     private eventService: EventService
+    , private authState: AuthStateService,
+    private auth: AuthService
   ) { }
 
   abrirModalCompra(): void {
@@ -29,7 +33,22 @@ export class ClubbingComponent {
       centered: true,
       backdrop: 'static'
     });
-
+  
+    modalRef.componentInstance.event = this.event;
+    modalRef.componentInstance.token = this.auth.getToken(); 
+    this.authState.getAuthenticatedUser().subscribe({
+      next: (user: UserDTO | null) => {
+        if (user) {
+          modalRef.componentInstance.currentUser = { name: user.name }; // Reemplaza con el usuario real
+        } else {
+          console.error('No authenticated user found');
+        }
+      },
+      error: (err) => {
+        console.error('Error fetching authenticated user:', err);
+      }
+    });
+  
     modalRef.result.then(
       result => {
         console.log('Compra confirmada:', result);
@@ -39,6 +58,7 @@ export class ClubbingComponent {
       }
     );
   }
+  
 
   ngOnInit() {
     const eventId = 1;

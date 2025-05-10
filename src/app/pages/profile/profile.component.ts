@@ -16,6 +16,7 @@ import { TicketService } from '../../services/ticket.service';
 import { TicketDTO } from '../../dtos/ticket.dto';
 import { HttpErrorResponse } from '@angular/common/http';
 
+
 @Component({
   selector: 'app-profile',
   standalone: true,
@@ -62,6 +63,7 @@ export class ProfileComponent implements OnInit {
     this.editProfileForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
+      currentPassword: ['', [Validators.required]], // Para reloguear al usuario
     });
   }
 
@@ -199,7 +201,6 @@ private loadUserTickets(): void {
     if (this.editProfileForm.invalid) {
       return;
     }
-  
     const token = localStorage.getItem('token');
     if (!token) {
       this.router.navigate(['/login']);
@@ -210,20 +211,32 @@ private loadUserTickets(): void {
     const userData: CreateRequestUserDTO = {
       name: this.editProfileForm.value.name,
       email: this.editProfileForm.value.email,
-      password: this.editProfileForm.value.password || undefined,
+      password: '',
       id: null,
       phone: '',
-      roles: ["ROLE_USER"] 
+      roles: ["USER"] 
     };
   
     this.userService.editUser(this.userLogged.id, userData).subscribe({
       next: (updatedUser) => {
+        const currentPassword = this.editProfileForm.value.currentPassword;
+        this.authService.login(updatedUser.email, currentPassword).subscribe({
+          next: (response) => {
+            localStorage.setItem('currentUser', JSON.stringify(response));
+            this.authStateService.setAuthenticated(true, response);
+            this.router.navigate(['/']); 
+          },
+          error: (err) => {
+            console.error('Error reautenticando después de editar:', err);
+            this.authService.logout(); 
+            this.router.navigate(['/login']);
+          }
+        });
       },
       error: (err) => {
         console.error('Error updating profile:', err);
         this.isSubmitting = false;
         this.editError = true;
-        
         if (err.status === 401) {
           this.authService.logout();
           this.router.navigate(['/login']);
