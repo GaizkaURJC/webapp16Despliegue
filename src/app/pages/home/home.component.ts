@@ -1,5 +1,7 @@
 import { BookingService } from './../../services/booking.service';
 import { BookingDTO } from './../../dtos/booking.dto';
+import { UserDTO } from '../../dtos/user.dto';
+import { TicketDTO } from '../../dtos/ticket.dto';
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -11,6 +13,9 @@ import { FormsModule } from '@angular/forms';
 import { linkOutline } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 import jsPDF from 'jspdf'
+import {AuthStateService} from '../../services/auth-state.service'; 
+import { TicketService } from '../../services/ticket.service';            // <-- import añadido
+
 
 interface BookingRequest {
   userName: string;
@@ -52,7 +57,9 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private eventService: EventService,
-    private bookingService: BookingService
+    private bookingService: BookingService,
+    private authState: AuthStateService,    // <-- inyección añadida
+    private ticketService: TicketService    // <-- inyección añadida
   ) {
     addIcons({
       linkOutline
@@ -78,6 +85,56 @@ export class HomeComponent implements OnInit {
         this.loading = false;
       }
     });
+  }
+
+    private aplicarRecomendaciones(): void {
+    this.authState.getAuthenticatedUser().subscribe((user: UserDTO | null) => {
+      if (user?.name) {
+        this.ticketService.getTicketsByUserOwner(user.name)
+          .subscribe((tickets: TicketDTO[]) => {
+            const conteo = new Map<string, number>();
+            tickets.forEach(t => {
+              const cat = t.category || 'Otros';
+              conteo.set(cat, (conteo.get(cat) || 0) + 1);
+            });
+            const prefs = Array.from(conteo.entries())
+              .sort(([, a], [, b]) => b - a)
+              .map(([cat]) => cat);
+            this.filteredConcerts = this.reordenarConciertos(this.allConcerts, prefs);
+            this.iniciarPaginacion();
+          });
+      } else {
+        this.filteredConcerts = [...this.allConcerts];
+        this.iniciarPaginacion();
+      }
+    });
+  }
+
+  /** Reordena lista: primero categorías preferidas */
+  private reordenarConciertos(
+    todos: EventWithImageDTO[],
+    prefs: string[]
+  ): EventWithImageDTO[] {
+    const ordenado: EventWithImageDTO[] = [];
+    const usados = new Set<number>();
+    prefs.forEach(cat => {
+      todos.filter(e => e.category === cat).forEach(e => {
+        ordenado.push(e);
+        usados.add(e.id);
+      });
+    });
+    todos.forEach(e => {
+      if (!usados.has(e.id)) ordenado.push(e);
+    });
+    return ordenado;
+  }
+
+  /** Inicializa paginación */
+  private iniciarPaginacion(): void {
+    this.currentPage = 0;
+    this.displayedConcerts = [];
+    this.hasMoreConcerts = this.filteredConcerts.length > this.concertsPerPage;
+    this.loadMoreConcerts();
   }
 
   applyFilter(): void {
