@@ -10,6 +10,7 @@ import { EventWithImageDTO } from '../../dtos/event.dto';
 import { FormsModule } from '@angular/forms';
 import { linkOutline } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
+import jsPDF from 'jspdf'
 
 interface BookingRequest {
   userName: string;
@@ -118,13 +119,13 @@ export class HomeComponent implements OnInit {
   submitBooking(): void {
     this.bookingSuccess = false;
     this.bookingError = false;
-  
+
     if (!this.validateBookingForm()) {
       this.bookingError = true;
       this.bookingErrorMessage = 'Por favor complete todos los campos requeridos';
       return;
     }
-  
+
     // Verifica si el usuario está autenticado
     const token = localStorage.getItem('token');
     if (!token) {
@@ -134,7 +135,7 @@ export class HomeComponent implements OnInit {
       // this.router.navigate(['/login']);
       return;
     }
-  
+
     const bookingData = {
       userName: this.userName,
       userEmail: this.userEmail,
@@ -142,11 +143,14 @@ export class HomeComponent implements OnInit {
       capacity: this.num_personas,
       eventDescript: this.eventDescript
     };
-  
+
     this.bookingService.book(bookingData).subscribe({
       next: (response) => {
         this.bookingSuccess = true;
         this.resetBookingForm();
+
+        // Generar el PDF después de una reserva exitosa
+        this.generatePDF(bookingData);
       },
       error: (error) => {
         if (error.status === 401) {
@@ -159,7 +163,25 @@ export class HomeComponent implements OnInit {
         this.bookingError = true;
       }
     });
-  }
+}
+
+generatePDF(bookingData: any): void {
+    const doc = new jsPDF();
+
+    doc.setFontSize(18);
+    doc.text('Confirmación de Reserva', 10, 10);
+
+    doc.setFontSize(12);
+    doc.text(`Nombre: ${bookingData.userName}`, 10, 30);
+    doc.text(`Email: ${bookingData.userEmail}`, 10, 40);
+    doc.text(`Empresa: ${bookingData.bussinesName}`, 10, 50);
+    doc.text(`Número de personas: ${bookingData.capacity}`, 10, 60);
+    doc.text('Descripción del evento:', 10, 70);
+    doc.text(bookingData.eventDescript, 10, 80, { maxWidth: 180 });
+
+    // Descargar el PDF
+    doc.save(`reserva_${bookingData.userName}.pdf`);
+}
 
   private validateBookingForm(): boolean {
     return !!this.userName && 

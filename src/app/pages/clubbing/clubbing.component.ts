@@ -12,6 +12,7 @@ import { RouterModule } from '@angular/router';
 import { menuOutline, timeOutline ,locationOutline, phonePortraitSharp, add } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 import { IonIcon } from '@ionic/angular/standalone';
+import JsPDF from 'jspdf'
 
 @Component({
   selector: 'app-clubbing',
@@ -64,12 +65,33 @@ export class ClubbingComponent {
     modalRef.result.then(
       result => {
         console.log('Compra confirmada:', result);
+        this.generatePDF(result)
       },
       reason => {
         console.log('Modal cerrado sin comprar');
       }
     );
   }
+
+  generatePDF(ticketData: any): void {
+  const doc = new JsPDF();
+
+  doc.setFontSize(18);
+  doc.text('Confirmación de Compra de Entrada', 10, 10);
+
+  doc.setFontSize(12);
+  doc.text(`Nombre: ${ticketData.ticketName}`, 10, 30);
+  doc.text(`DNI: ${ticketData.dni}`, 10, 40);
+  doc.text(`Género: ${ticketData.gender}`, 10, 50);
+  doc.text(`Evento: ${this.event?.title}`, 10, 60);
+  doc.text(`Categoría: ${this.event?.category}`, 10, 70);
+  doc.text(`Fecha de Compra: ${new Date().toLocaleDateString()}`, 10, 80);
+
+  // Descargar el PDF
+  doc.save(`entrada_${ticketData.ticketName}.pdf`);
+}
+
+
   
 
   ngOnInit() {

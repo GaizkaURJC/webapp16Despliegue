@@ -152,6 +152,7 @@ public SecurityFilterChain apiFilterChain(HttpSecurity http) throws Exception {
                 .requestMatchers("/", "/css/**", "/img/**", "/js/**", "/videos/**", "/imgEvent/**").permitAll()
                 .requestMatchers("/users/authenticate", "/users/create", "/favicon/**", "/events/**").permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
+                .requestMatchers("/admin").hasRole("ADMIN")
                 .requestMatchers("/perfil/**", "/paginaperfil/**", "/users/**", "/comments/**")
                 .hasAnyRole("USER", "ADMIN")
                 // SPA
