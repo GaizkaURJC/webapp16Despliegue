@@ -9,11 +9,14 @@ import { EventDTO } from '../../dtos/event.dto';
 import { AuthStateService } from '../../services/auth-state.service';
 import { AuthService } from '../../services/login.service';
 import { RouterModule } from '@angular/router';
+import { menuOutline, timeOutline ,locationOutline, phonePortraitSharp, add } from 'ionicons/icons';
+import { addIcons } from 'ionicons';
+import { IonIcon } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-clubbing',
   standalone: true,
-  imports: [FooterComponent, NgIf,RouterModule],
+  imports: [FooterComponent, NgIf, RouterModule, IonIcon],
   templateUrl: './clubbing.component.html',
   styleUrls: ['./clubbing.component.css']
 })
@@ -27,7 +30,15 @@ export class ClubbingComponent {
     private eventService: EventService
     , private authState: AuthStateService,
     private auth: AuthService
-  ) { }
+  ) { 
+    addIcons({
+      menuOutline,
+      timeOutline,
+      locationOutline,
+      phonePortraitSharp,
+      
+  });
+}
 
   abrirModalCompra(): void {
     const modalRef = this.modalService.open(BuyModalComponent, {
