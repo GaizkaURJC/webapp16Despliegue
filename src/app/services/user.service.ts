@@ -97,7 +97,7 @@ export class UserService {
       'Authorization': `Bearer ${token}`
     });
   
-    return this.http.put<UserDTO>(`${this.apiURL}/${id}`, user, { headers });
+    return this.http.put<UserDTO>(`${this.apiURL}/me`, user, { headers });
   }
   
 }

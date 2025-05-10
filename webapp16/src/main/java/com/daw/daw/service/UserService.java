@@ -114,9 +114,9 @@ public class UserService {
 
     public UserDTO replaceUser(long id, CreateRequestUserDTO updateUserDTO) {
 
-        User updateUser = toDomain(updateUserDTO);
+        User updateUser = createUserMapper.toDomainWithoutPassword(updateUserDTO);
         updateUser.setId(id);
-        updateUser.setEncodedPassword(passwordEncoder.encode(updateUserDTO.password()));
+        updateUser.setEncodedPassword(userRepository.findById(id).orElseThrow().getEncodedPassword());
         userRepository.save(updateUser);
         return userMapper.toDTO(updateUser);
     }
@@ -164,5 +164,10 @@ public class UserService {
         user.setImage(false);
 
         userRepository.save(user);
+    }
+
+    public String getUserPassword(long id) {
+        User user = userRepository.findById(id).orElseThrow();
+        return user.getEncodedPassword();
     }
 }

@@ -37,6 +37,7 @@
         <h1 class="profile-name">{{userLogged.name}}</h1>
         <p class="profile-username">{{userLogged.name}}</p>
         <p class="profile-email">{{userLogged.email}}</p>
+
         <div class="butcontainer">
           <a href="#" (click)="logout($event)" class="btn btn-dark rounded-pill px-4 py-2">Cerrar sesión
 
@@ -98,4 +99,29 @@
 <!--PAGINA PERSONALIZACION-->
 <div id="personalizacion" class="content-tab" *ngIf="activeTab === 'personalizacion'">
   <h2>Personalización</h2>
+
+  <div class="container-profile-info">
+    <div class="container-profile-data">
+      <h1 class="profile-name">Personaliza tu experiencia</h1>
+      <div class="butcontainer">
+          <form [formGroup]="editProfileForm" (ngSubmit)="onSubmitEditProfile()">
+            <div class="mb-3">
+              <label for="name" class="form-label">Nombre</label>
+              <input type="text" id="name" formControlName="name" class="form-control" placeholder="Nombre">
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" id="email" formControlName="email" class="form-control" placeholder="Email">
+            </div>
+            <div>
+              <label for="currentPassword">Contraseña actual</label>
+              <input id="currentPassword" formControlName="currentPassword" type="password" required />
+              <div *ngIf="editProfileForm.get('currentPassword')?.invalid && editProfileForm.get('currentPassword')?.touched">
+                Necesitamos tu contraseña actual para confirmar los cambios.
+              </div>
+            </div>
+            <button type="submit" [disabled]="isSubmitting" class="btn btn-primary">Guardar cambios</button>
+            </form>
+      </div>
+      </div>
 </div>

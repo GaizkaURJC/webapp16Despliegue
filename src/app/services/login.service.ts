@@ -33,21 +33,22 @@ export class AuthService {
   }
 
   login(email: string, password: string): Observable<UserDTO> {
-  return this.http
-    .post<LoginResponse>(`${this.apiUrl}/login`, { email, password }, { withCredentials: true })
-    .pipe(
-      tap(response => {
-        if (response.token) {
-          localStorage.setItem('token', response.token);        // only store the token here
-        }
-      }),
-      switchMap(() => this.fetchCurrentUser()),                 // now fetchCurrentUser() runs
-      catchError(error => {
-        console.error('Error en el login:', error);
-        return throwError(() => error);
-      })
-    );
-}
+    return this.http
+      .post<LoginResponse>(`${this.apiUrl}/login`, { email, password }, { withCredentials: true })
+      .pipe(
+        tap(response => {
+          if (response.token) {
+            localStorage.setItem('token', response.token);
+          }
+        }),
+        switchMap(() => this.fetchCurrentUser()), // <- devuelve un UserDTO
+        catchError(error => {
+          console.error('Error en el login:', error);
+          return throwError(() => error);
+        })
+      );
+  }
+  
 
   private fetchCurrentUser(): Observable<UserDTO> {
     return this.http.get<UserDTO>(`${this.URL}/me`).pipe(
