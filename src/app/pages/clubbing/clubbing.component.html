@@ -94,9 +94,12 @@
             </div>
         </div>
 
-        <!-- <div class="container6">
-            <canvas id="genderChart" width="400" height="400"></canvas>
-        </div> -->
+        <div class="container6">
+            <canvas baseChart
+                [data]="pieChartData"
+                [type]="pieChartType">
+            </canvas>
+        </div>
 
     </div>
 

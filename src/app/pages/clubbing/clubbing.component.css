@@ -109,6 +109,13 @@ li:hover {
     animation-range: entry 25% cover 50%;
 }
 
+
+
+.container6 canvas[baseChart] {
+  max-width: 400px;
+  width: 100%;
+}
+
 /*---------------------------------------
     FOOTER
 -----------------------------------------*/
@@ -427,14 +434,15 @@ h2.event-title {
 
 .container6 {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    width: 100%;
+    width: auto;
     border-radius: 20px;
     margin-top: 20px;
     margin-bottom: 20px;
     background-color: rgb(22, 22, 22);
     padding: 10px;
+    height: 400px;
 }
 
 .horario-reserva {
