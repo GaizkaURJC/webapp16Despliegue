@@ -8,11 +8,12 @@ import { EventService } from '../../services/event.service';
 import { EventDTO } from '../../dtos/event.dto';
 import { AuthStateService } from '../../services/auth-state.service';
 import { AuthService } from '../../services/login.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-clubbing',
   standalone: true,
-  imports: [FooterComponent, NgIf],
+  imports: [FooterComponent, NgIf,RouterModule],
   templateUrl: './clubbing.component.html',
   styleUrls: ['./clubbing.component.css']
 })
