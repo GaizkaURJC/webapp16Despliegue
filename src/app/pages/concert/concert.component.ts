@@ -16,6 +16,7 @@ import { Router } from '@angular/router';
 import { UserDTO } from '../../dtos/user.dto'; 
 import { BuyModalComponent } from '../../components/buy-modal/buy-modal.component';
 
+
 @Component({
   selector: 'app-concert',
   standalone: true, 

@@ -4,9 +4,12 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HeaderComponent } from '../../shared/header/header.component';
+import { IonIcon } from '@ionic/angular/standalone';
 import { EventService } from '../../services/event.service';
 import { EventWithImageDTO } from '../../dtos/event.dto';
 import { FormsModule } from '@angular/forms';
+import { linkOutline } from 'ionicons/icons';
+import { addIcons } from 'ionicons';
 
 interface BookingRequest {
   userName: string;
@@ -18,7 +21,7 @@ interface BookingRequest {
 
 @Component({
   standalone: true,
-  imports: [HeaderComponent, CommonModule, RouterModule,FormsModule],
+  imports: [HeaderComponent, CommonModule, RouterModule,FormsModule, IonIcon],
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
@@ -48,7 +51,11 @@ export class HomeComponent implements OnInit {
   constructor(
     private eventService: EventService,
     private bookingService: BookingService
-  ) { }
+  ) {
+    addIcons({
+      linkOutline
+    });
+   }
 
   ngOnInit() {
     this.loadInitialData();
