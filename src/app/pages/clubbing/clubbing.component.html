@@ -1,11 +1,9 @@
 <nav class="top-navbar">
     <div class="container-topnav">
         <ul class="elementos-header align-items-lg-center ms-auto me-lg-5" id="elementos-cabecera">
-            <li class="nav-item"><a class="top-nav-section_1" routerLink="/home">Home</a></li>
-            <li class="nav-item"><a class="top-nav-section_2" routerLink="/clubbing">Clubbing</a></li>
-            <li class="nav-item"><a class="top-nav-section_3" routerLink="/concert">Conciertos</a></li>
-            <li class="nav-item"><a class="top-nav-section_4" routerLink="/eventos">Eventos</a></li>
-            <li class="nav-item"><a class="top-nav-section_5" routerLink="/contact">Contáctanos</a></li>
+            <li class="nav-item"><a class="top-nav-section_1" [routerLink]="['/home']" fragment="home" >Home</a></li>
+            <li class="nav-item"><a class="top-nav-section_3" [routerLink]="['/home']" fragment="concerts">Conciertos</a></li>
+            <li class="nav-item"><a class="top-nav-section_4" [routerLink]="['/home']" fragment="eventos">Eventos</a></li>
         </ul>
     </div>
 </nav>

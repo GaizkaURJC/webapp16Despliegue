@@ -11,7 +11,6 @@ export const routes: Routes = [
   { path: '', component: HomeComponent },    // Respuesta a /new
   { path: 'home', component: HomeComponent }, // Respuesta a /new/home
   { path: 'concerts/:id', component: ConcertComponent },
-  {path:'concerts/1', component: ConcertComponent}, // Respuesta a /new/concerts
   {path:  'clubbing/:id', component: ClubbingComponent}, // Respuesta a /new/clubbing/:id
   { path: 'clubbing', component: ClubbingComponent }, // Respuesta a /new/clubbing
   { path: 'error', component: ErrorComponent }, // Respuesta a /new/error
@@ -21,7 +20,7 @@ export const routes: Routes = [
 
 ];
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true })],
+  imports: [RouterModule.forRoot(routes, { useHash: true , scrollPositionRestoration: 'enabled', anchorScrolling: 'enabled' })],
   exports: [RouterModule],
   declarations: [
 

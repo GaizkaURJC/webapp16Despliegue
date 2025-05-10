@@ -8,6 +8,7 @@ import { EventService } from '../../services/event.service';
 import { EventDTO } from '../../dtos/event.dto';
 import { AuthStateService } from '../../services/auth-state.service';
 import { AuthService } from '../../services/login.service';
+import { RouterModule } from '@angular/router';
 import { menuOutline, timeOutline ,locationOutline, phonePortraitSharp, add } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 import { IonIcon } from '@ionic/angular/standalone';
@@ -15,7 +16,7 @@ import { IonIcon } from '@ionic/angular/standalone';
 @Component({
   selector: 'app-clubbing',
   standalone: true,
-  imports: [FooterComponent, NgIf, IonIcon],
+  imports: [FooterComponent, NgIf, RouterModule, IonIcon],
   templateUrl: './clubbing.component.html',
   styleUrls: ['./clubbing.component.css']
 })
