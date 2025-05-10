@@ -22,6 +22,7 @@ import com.daw.daw.model.Event;
 import com.daw.daw.service.EventService;
 import com.daw.daw.repository.EventRepository;
 import com.daw.daw.dto.EventMapper;
+import com.daw.daw.dto.EventWithImageDTO;
 
 import io.swagger.v3.oas.annotations.Operation;
 
@@ -70,8 +71,8 @@ public class EventRestController {
 
     @Operation(summary = "Create a new event")
     @PostMapping("/")
-    public ResponseEntity<Event> createEvent(@RequestBody EventDTO event) {
-        return eventService.createEvent(event);
+    public ResponseEntity<Event> createEvent(@RequestBody EventWithImageDTO event) {
+        return eventService.createEventWithImage(event);
     }
 
     @Operation(summary = "Delete an event by its id")

@@ -39,14 +39,25 @@ export class ConcertModalComponent implements OnInit {
   closeModal() {
     this.activeModal.dismiss();
   }
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+            this.imageBase64 = reader.result as string;
+        };
+    }
+}
 
   submitConcert() {
-    const newConcert: EventDTO = {
+    const newConcert: EventWithImageDTO = {
       id: 0,
       title: this.title, 
       type: 'concert',
       description: this.description,
       category: this.category,
+      imageBase64: this.imageBase64
     };
   
     this.eventService.createEvent(newConcert).subscribe({
