@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BuyModalComponent } from '../../components/buy-modal/buy-modal.component'; // Ajusta ruta si es necesario
@@ -12,21 +12,35 @@ import { RouterModule } from '@angular/router';
 import { menuOutline, timeOutline ,locationOutline, phonePortraitSharp, add } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 import { IonIcon } from '@ionic/angular/standalone';
+import { BaseChartDirective,  } from 'ng2-charts';
+import { ChartData, ChartType, Chart, ArcElement, Tooltip, Legend, PieController } from 'chart.js';
+import { HttpClient } from '@angular/common/http';
+import { forkJoin } from 'rxjs';
+import { TicketDTO } from '../../dtos/ticket.dto';
+Chart.register(ArcElement, Tooltip, Legend, PieController);
+
 import JsPDF from 'jspdf'
 
 @Component({
   selector: 'app-clubbing',
   standalone: true,
-  imports: [FooterComponent, NgIf, RouterModule, IonIcon],
+  imports: [FooterComponent, NgIf, RouterModule, IonIcon, BaseChartDirective],
   templateUrl: './clubbing.component.html',
   styleUrls: ['./clubbing.component.css']
 })
 
-export class ClubbingComponent {
+export class ClubbingComponent implements OnInit {
   imgUrl = "assets/img/ochoymedio.jpg";
   event: EventDTO | null = null;
 
+  public pieChartType: ChartType = 'pie';
+  public pieChartData: ChartData<'pie', number[], string> = {
+    labels: [],
+    datasets: [{ data: [] }]
+  };
+
   constructor(
+    private http: HttpClient,
     private modalService: NgbModal,
     private eventService: EventService
     , private authState: AuthStateService,
@@ -99,6 +113,7 @@ export class ClubbingComponent {
     this.eventService.getEventById(eventId).subscribe({
       next: (data) => {
         this.event = data;
+        this.loadGenderDistribution(data.title); // Cargar la distribución de género
       },
       error: (err) => {
         console.error('Error al obtener el evento:', err);
@@ -115,6 +130,24 @@ export class ClubbingComponent {
         console.error('Error al obtener la imagen del evento:', err);
       }
     });
+  }
+
+  private loadGenderDistribution(title: string): void {
+    const t = encodeURIComponent(title);
+    forkJoin({
+      male: this.http.get<TicketDTO[]>(`https://localhost:8443/api/v1/tickets/gender/Hombre/${t}`),
+      female: this.http.get<TicketDTO[]>(`https://localhost:8443/api/v1/tickets/gender/Mujer/${t}`)
+    }).subscribe(
+      ({ male, female }) => {
+        this.pieChartData = {
+          labels: ['Hombres', 'Mujeres'],
+          datasets: [{ data: [male.length, female.length],
+            backgroundColor: ['yellow', 'black'],
+           }]
+        };
+      },
+      err => console.error('Error loading gender distribution', err)
+    );
   }
 
 }
