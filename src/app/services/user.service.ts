@@ -17,7 +17,7 @@ interface PageResponse<T> {
   providedIn: 'root'
 })
 export class UserService {
-  private apiURL: string = 'https://localhost:8443/api/v1/users';
+  private apiURL: string = 'https://localhost:443/api/v1/users';
   
 
   constructor(private http: HttpClient) {}

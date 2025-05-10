@@ -9,7 +9,7 @@ import { EventDTO, EventWithImageDTO} from "../dtos/event.dto";
 export class EventService{
     
     private apiURL= 'api/v1/events';
-    private apiURLType= 'https://localhost:8443/api/v1/events';
+    private apiURLType= 'https://localhost:443/api/v1/events';
 
     constructor(private http: HttpClient) { }
 
