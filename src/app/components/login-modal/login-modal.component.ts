@@ -50,7 +50,7 @@ export class LoginModalComponent {
         if (this.authState.getCurrentUser()?.roles?.includes('ADMIN')) {
           this.router.navigate(['/admin']);
         } else {
-          window.location.reload();
+          this.router.navigate(['/']);
         }
       },
       error: (error) => {
