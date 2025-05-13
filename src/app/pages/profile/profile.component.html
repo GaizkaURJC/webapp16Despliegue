@@ -26,12 +26,6 @@
     <div class="container-profile-info">
       <div class="container-profile-img">
         <img [src]="profileImage" alt="Imagen de perfil" class="profile-img">
-        <div class="mt-2">
-          <input type="file" id="profileImageInput" accept="image/*" (change)="onFileSelected($event)" style="display: none;">
-          <label for="profileImageInput" class="btn btn-sm btn-outline-light rounded-pill">
-            <i class="bi bi-camera me-1"></i> Cambiar foto
-          </label>
-        </div>
       </div>
       <div class="container-profile-data">
         <h1 class="profile-name">{{userLogged.name}}</h1>
@@ -39,7 +33,7 @@
         <p class="profile-email">{{userLogged.email}}</p>
 
         <div class="butcontainer">
-          <a href="#" (click)="logout($event)" class="btn btn-dark rounded-pill px-4 py-2">Cerrar sesión
+          <a [routerLink]="['/home']" (click)="logout($event)" class="btn btn-dark rounded-pill px-4 py-2">Cerrar sesión
 
           </a>
         </div>
@@ -69,7 +63,7 @@
 
     <div *ngIf="!loadingTickets && tickets.length === 0" class="text-center py-5">
       <p class="text-white">No tienes tickets comprados aún.</p>
-      <a href="/events" class="btn btn-warning mt-3">Explorar eventos</a>
+      <a [routerLink]="['/events']" class="btn btn-warning mt-3">Explorar eventos</a>
     </div>
 
     <div class="row" *ngIf="!loadingTickets && tickets.length > 0">

@@ -6,6 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '../../services/login.service';
 import { AuthStateService } from '../../services/auth-state.service';
 import { Router } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { UserDTO } from '../../dtos/user.dto';
 
 @Component({
@@ -13,15 +14,14 @@ import { UserDTO } from '../../dtos/user.dto';
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
-  imports: [CommonModule, LoginModalComponent]
+  imports: [CommonModule, LoginModalComponent,RouterModule]
 })
 export class HeaderComponent {
   items = [
-    { name: 'Home', icon: 'home', link: '/' },
-    { name: 'Clubbing', icon: 'information-circle', link: './clubbing' },
-    { name: 'Conciertos', icon: 'musical-notes', link: './concerts' },
-    { name: 'Eventos', icon: 'mail', link: './events' },
-    { name: 'Contactanos', icon: 'party', link: './contact' }
+    { name: 'Home', icon: 'home', link: '/home', fragmennt:'home' },
+    { name: 'Clubbing', icon: 'information-circle', link: '/home', fragment:'clubbing'},
+    { name: 'Conciertos', icon: 'musical-notes', link: '/home', fragment:'concerts' },
+    { name: 'Eventos', icon: 'mail', link: '/home' , fragment: 'events'},
   ];
 
   isAuthenticated = false;

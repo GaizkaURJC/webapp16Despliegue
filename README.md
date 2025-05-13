@@ -690,6 +690,10 @@ Sigue estos pasos para configurar y ejecutar la aplicación Angular en tu entorn
 - Node.js
 - npm (viene incluido con Node.js)
 - Angular v17.x.x
+- Docker & Docker-Desktop
+- Java 21
+- JDK 21
+
 
 ### Instalación
 
@@ -700,17 +704,24 @@ Sigue estos pasos para configurar y ejecutar la aplicación Angular en tu entorn
 
 2. **Dirigirse a la carpeta de frontend**
    ```bash
-   cd \webapp16\frontend
+   cd \webapp16\
 3. **Instalar dependencias**
    ```bash
    npm install
-4. **Iniciar el servidor**
+4. **Ejecutar el docker-compose**
    ```bash
-   ng serve
-5. **Abrir el proyecto en un buscador**
+   docker-compose Build
+5. **Levantar el docker-compose**
+   ```bash
+   docker-compose up
+6. **Acceder a la url**
    La url del proyecto en local es la siguiente:
    ```bash
-   http://localhost:4200
+   https://localhost:433
+6. **Acceder a la url de angular**
+   La url del proyecto en local de la parte de angular es la siguiente:
+   ```bash
+   https://localhost:433/new
 ---
 ### Diagrama de clases y templates de SPA
 ![@](https://github.com/user-attachments/assets/a5e86c8f-fb19-4949-8b15-1ff5ef434b47)
@@ -719,24 +730,24 @@ Sigue estos pasos para configurar y ejecutar la aplicación Angular en tu entorn
 ### Contribución del equipo
 **Albero Acebes Sánchez**
 - Tareas Realizadas
-  1. tarea 1
-  2. tarea 2
-  3. tarea 3
-  4. tarea n
+  1. Migracion a angular.
+  2. Login y Registro de Usuarios.
+  3. Implemenatcion de Angular en la pagina Principal.
+  4. Solicitud de Reservas y tecnologia PDF.
 
 - Commits más significativos :
-  - [Commit 1](enlace):
-  - [Commit 2](enlace):
-  - [Commit 3](enlace):
-  - [Commit 4](enlace):
-  - [Commit 5](enlace):
+  - [Migracion Angular ](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/687c391d24180b1d9a3dcbd47286ca1dd9371ce4):
+  - [Login](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/82c59566a01ad7b4bbdaef7a4fe9987ee991445f):
+  - [Tecnologia PDF](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/4154eb8582bc4e5903464af32d9308a777391667):
+  - [Conectado Cliente a Backend](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/1da65e21208ca8407e16a72136eb5c404299e2cc):
+  - [Reserva De Eventos](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/bd67d712c045df6aa093cc12478e50d0b29ac4ed):
 
 - Ficheros en los que se ha participado :
-  1. '`
-  2. '`
-  3. '`
-  4. '`
-  5. ``
+  1.  `/webapp16/src/app/services/login.service.ts`
+  2.  `/webapp16/docker-compose.yml`
+  3.  `webapp16/src/app/components/singup-modal`
+  4.  `/webapp16/src/app/pages/home`
+  5.  `/webapp16/angular.json`
 
 ---
 **Gaizka Aranbarri Berasaluze**
@@ -768,11 +779,11 @@ Sigue estos pasos para configurar y ejecutar la aplicación Angular en tu entorn
   4. Documentación
 
 - Commits más significativos :
-  - [Commit 1]([enlace](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/4f3cbdad22344bff0d1f9fee90c951ada71d4d74))
-  - [Commit 2]([enlace](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/8be18655d26aed0fa527b5dc6ce4c440f6d469b0))
-  - [Commit 3]([enlace](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/62a589abb0d60d265ed9bb2a717c46dcf7d049b9))
-  - [Commit 4]([enlace](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/1370f39a06bd91b46876eeb647d19e31a3168216))
-  - [Commit 5]([enlace](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/8773e2349336ade1eeff974f9f74e7f62cab8823))
+  - [Commit 1](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/4f3cbdad22344bff0d1f9fee90c951ada71d4d74)
+  - [Commit 2](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/8be18655d26aed0fa527b5dc6ce4c440f6d469b0)
+  - [Commit 3](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/62a589abb0d60d265ed9bb2a717c46dcf7d049b9)
+  - [Commit 4](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/1370f39a06bd91b46876eeb647d19e31a3168216)
+  - [Commit 5](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/8773e2349336ade1eeff974f9f74e7f62cab8823)
 
 - Ficheros en los que se ha participado :
   1. 'frontend/src/app/components/buy-modal/buy-modal.component.ts`
@@ -801,3 +812,6 @@ Sigue estos pasos para configurar y ejecutar la aplicación Angular en tu entorn
   3. 'concert.component.ts`
   4. 'comment-modal.component.ts`
   5. `buy-modal.component.ts`
+
+---
+### Link al video de youtube
