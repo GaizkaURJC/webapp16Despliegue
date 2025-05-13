@@ -719,24 +719,24 @@ Sigue estos pasos para configurar y ejecutar la aplicación Angular en tu entorn
 ### Contribución del equipo
 **Albero Acebes Sánchez**
 - Tareas Realizadas
-  1. tarea 1
-  2. tarea 2
-  3. tarea 3
-  4. tarea n
+  1. Migracion a angular.
+  2. Login y Registro de Usuarios.
+  3. Implemenatcion de Angular en la pagina Principal.
+  4. Solicitud de Reservas y tecnologia PDF.
 
 - Commits más significativos :
-  - [Commit 1](enlace):
-  - [Commit 2](enlace):
-  - [Commit 3](enlace):
-  - [Commit 4](enlace):
-  - [Commit 5](enlace):
+  - [Migracion Angular ](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/687c391d24180b1d9a3dcbd47286ca1dd9371ce4):
+  - [Login](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/82c59566a01ad7b4bbdaef7a4fe9987ee991445f):
+  - [Tecnologia PDF](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/4154eb8582bc4e5903464af32d9308a777391667):
+  - [Conectado Cliente a Backend](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/1da65e21208ca8407e16a72136eb5c404299e2cc):
+  - [Reserva De Eventos](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/bd67d712c045df6aa093cc12478e50d0b29ac4ed):
 
 - Ficheros en los que se ha participado :
-  1. '`
-  2. '`
-  3. '`
-  4. '`
-  5. ``
+  1.  `/webapp16/src/app/services/login.service.ts`
+  2.  `/webapp16/docker-compose.yml`
+  3.  `webapp16/src/app/components/singup-modal`
+  4.  `/webapp16/src/app/pages/home`
+  5.  `/webapp16/angular.json`
 
 ---
 **Gaizka Aranbarri Berasaluze**

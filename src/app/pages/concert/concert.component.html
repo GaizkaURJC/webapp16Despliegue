@@ -1,18 +1,22 @@
 <nav class="top-navbar" id=""inicio>
   <div class="container-topnav">
     <ul class="elementos-header align-items-lg-center ms-auto me-lg-5" id="elementos-cabecera">
-      <li class="nav-item" *ngFor="let item of items">
-        <a *ngIf="item.name !== 'Login'" 
-           [href]="item.link" 
-           class="top-nav-section">
-          {{ item.name }}
-        </a>
-        <a *ngIf="item.name === 'Login'" 
-           href="#" 
-           (click)="openLoginModal($event)" 
-           class="top-nav-section">
-          {{ item.name }}
-        </a>
+       <li class="nav-item" *ngFor="let item of items">
+        <!-- navegación normal -->
+        <ng-container *ngIf="item.name !== 'Login'">
+          <a
+            [routerLink]="item.link"
+            [fragment]="item.fragment"
+            class="top-nav-section">
+            {{ item.name }}
+          </a>
+        </ng-container>
+        <!-- login abre modal -->
+        <ng-container *ngIf="item.name === 'Login'">
+          <a href="#" (click)="openLoginModal($event)" class="top-nav-section">
+            {{ item.name }}
+          </a>
+        </ng-container>
       </li>
 
       <li *ngIf="isAuthenticated" class="nav-item user-menu">

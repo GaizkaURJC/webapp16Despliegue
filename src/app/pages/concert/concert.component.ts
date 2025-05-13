@@ -15,6 +15,7 @@ import { LoginModalComponent } from '../../components/login-modal/login-modal.co
 import { Router } from '@angular/router';
 import { UserDTO } from '../../dtos/user.dto'; 
 import { BuyModalComponent } from '../../components/buy-modal/buy-modal.component';
+import { RouterModule } from '@angular/router';
 
 
 @Component({
@@ -24,7 +25,8 @@ import { BuyModalComponent } from '../../components/buy-modal/buy-modal.componen
     CommonModule,
     FormsModule,     
     HeaderComponent,
-    LoginModalComponent
+    LoginModalComponent, 
+    RouterModule
   ],
   templateUrl: './concert.component.html',
   styleUrls: ['./concert.component.css']
@@ -32,12 +34,11 @@ import { BuyModalComponent } from '../../components/buy-modal/buy-modal.componen
 
 export class ConcertComponent implements OnInit {
   items = [
-    { name: 'Home', icon: 'home', link: '/' },
-    { name: 'Clubbing', icon: 'information-circle', link: '/' },
-    { name: 'Conciertos', icon: 'musical-notes', link: '/' },
-    { name: 'Eventos', icon: 'mail', link: '/events' },
-    { name: 'Contactanos', icon: 'party', link: '/' },
-    { name: 'Login', icon: 'people', link: '' }
+  { name: 'Home',      icon: 'home',               link: '/home' },
+  { name: 'Clubbing',  icon: 'information-circle', link: '/home', fragment: 'clubbing' },
+  { name: 'Conciertos',icon: 'musical-notes',      link: '/home', fragment: 'concerts' },
+  { name: 'Eventos',   icon: 'mail',               link: '/home', fragment: 'events' },
+  { name: 'Login',     icon: 'people',             link: '' }
   ];
 
   userLogged: UserDTO | null = null;
