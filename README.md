@@ -690,6 +690,10 @@ Sigue estos pasos para configurar y ejecutar la aplicación Angular en tu entorn
 - Node.js
 - npm (viene incluido con Node.js)
 - Angular v17.x.x
+- Docker & Docker-Desktop
+- Java 21
+- JDK 21
+
 
 ### Instalación
 
@@ -700,17 +704,24 @@ Sigue estos pasos para configurar y ejecutar la aplicación Angular en tu entorn
 
 2. **Dirigirse a la carpeta de frontend**
    ```bash
-   cd \webapp16\frontend
+   cd \webapp16\
 3. **Instalar dependencias**
    ```bash
    npm install
-4. **Iniciar el servidor**
+4. **Ejecutar el docker-compose**
    ```bash
-   ng serve
-5. **Abrir el proyecto en un buscador**
+   docker-compose Build
+5. **Levantar el docker-compose**
+   ```bash
+   docker-compose up
+6. **Acceder a la url**
    La url del proyecto en local es la siguiente:
    ```bash
-   http://localhost:4200
+   https://localhost:433
+6. **Acceder a la url de angular**
+   La url del proyecto en local de la parte de angular es la siguiente:
+   ```bash
+   https://localhost:433/new
 ---
 ### Diagrama de clases y templates de SPA
 ![@](https://github.com/user-attachments/assets/a5e86c8f-fb19-4949-8b15-1ff5ef434b47)
@@ -801,3 +812,6 @@ Sigue estos pasos para configurar y ejecutar la aplicación Angular en tu entorn
   3. 'concert.component.ts`
   4. 'comment-modal.component.ts`
   5. `buy-modal.component.ts`
+
+---
+### Link al video de youtube
