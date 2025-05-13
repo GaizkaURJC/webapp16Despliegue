@@ -758,11 +758,11 @@ Sigue estos pasos para configurar y ejecutar la aplicación Angular en tu entorn
   4. Modales de creacion de eventos
 
 - Commits más significativos :
-  - [Commit 1]([enlace](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/d8e2bb38abdcb33bdf899a3b6fc2401eee1773cf))
-  - [Commit 2]([enlace](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/f9944a6d6e426fc49daa798b125db2584cbc46cd))
-  - [Commit 3]([enlace](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/419f856f1d740fbc1e0bb85bcc23535bf05fe277))
-  - [Commit 4]([enlace](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/bd8a58a9f769667a36dad6fff44b526132d40b46))
-  - [Commit 5]([enlace](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/2e7977b40f0a1f206cffd29bb92fa324f239e978))
+  - [Commit 1](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/d8e2bb38abdcb33bdf899a3b6fc2401eee1773cf)
+  - [Commit 2](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/f9944a6d6e426fc49daa798b125db2584cbc46cd)
+  - [Commit 3](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/419f856f1d740fbc1e0bb85bcc23535bf05fe277)
+  - [Commit 4](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/bd8a58a9f769667a36dad6fff44b526132d40b46)
+  - [Commit 5](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/2e7977b40f0a1f206cffd29bb92fa324f239e978)
 
 - Ficheros en los que se ha participado :
   1. 'frontend/src/app/pages/admin/admin.component.ts`
@@ -800,11 +800,11 @@ Sigue estos pasos para configurar y ejecutar la aplicación Angular en tu entorn
   4. Implementación de la funcion de cargar más
 
 - Commits más significativos :
-  - [Commit 1]([enlace](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/650872b12c67c4344e2466e25794a4004d9c7e56)):
-  - [Commit 2]([enlace](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/7e491fec6f4647b482566c3eb2a5dee0be5a9ac3)):
-  - [Commit 3]([enlace](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/4e5bb3d2e52fcb4f25f2dcb2a6b77d2572693443)):
-  - [Commit 4]([enlace](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/b87728a86190e0348a1383901835119fea1cc7a4)):
-  - [Commit 5]([enlace](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/25be1b92f41f0e71271e1dece097dba3dd9038a0)):
+  - [Commit 1](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/650872b12c67c4344e2466e25794a4004d9c7e56):
+  - [Commit 2](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/7e491fec6f4647b482566c3eb2a5dee0be5a9ac3):
+  - [Commit 3](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/4e5bb3d2e52fcb4f25f2dcb2a6b77d2572693443):
+  - [Commit 4](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/b87728a86190e0348a1383901835119fea1cc7a4):
+  - [Commit 5](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/25be1b92f41f0e71271e1dece097dba3dd9038a0):
 
 - Ficheros en los que se ha participado :
   1. 'comment.service.ts`
@@ -815,4 +815,4 @@ Sigue estos pasos para configurar y ejecutar la aplicación Angular en tu entorn
 
 ---
 ### Link al video de youtube
-  - [VideoYT]([enlace](https://www.youtube.com/watch?v=Bd_F_oJSTfc)):
+  - [VideoYT](https://www.youtube.com/watch?v=Bd_F_oJSTfc):
