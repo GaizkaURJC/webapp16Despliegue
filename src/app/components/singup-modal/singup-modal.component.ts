@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -12,25 +12,22 @@ import { Router } from '@angular/router';
   templateUrl: './singup-modal.component.html',
   styleUrls: ['./singup-modal.component.css']
 })
-export class SingupModalComponent {
+export class SingupModalComponent implements AfterViewInit {
   name = '';
   email = '';
   phone = '';
   password = '';
-  errorMessage = '';
-  isLoading = false;
   acceptTerms = false;
   acceptData = false;
+
+  errorMessage = '';
+  isLoading = false;
 
   constructor(
     public activeModal: NgbActiveModal,
     private authService: AuthService,
     private router: Router
-  ) { }
-
-  closeModal() {
-    this.activeModal.dismiss();
-  }
+  ) {}
 
   ngAfterViewInit() {
     const modalContent = document.querySelector('.modal-content-custom') as HTMLElement;
@@ -40,19 +37,20 @@ export class SingupModalComponent {
     }
   }
 
-  submitSingup() {
-    // Validación de campos
+  closeModal() {
+    this.activeModal.dismiss();
+  }
+
+  submitSingup(): void {
+    // Validar campos
     if (!this.name || !this.email || !this.phone || !this.password) {
       this.errorMessage = 'Por favor, completa todos los campos obligatorios.';
       return;
     }
-
     if (!this.acceptTerms) {
       this.errorMessage = 'Debes aceptar los términos y condiciones.';
       return;
     }
-
-    // Validación básica de email
     if (!this.email.includes('@') || !this.email.includes('.')) {
       this.errorMessage = 'Por favor, introduce un email válido.';
       return;
@@ -66,40 +64,29 @@ export class SingupModalComponent {
       email: this.email,
       phone: this.phone,
       password: this.password,
-      roles: ['USER'], // Asignar rol por defecto
+      roles: ['USER']
     };
 
+    // 1) Registro
     this.authService.register(userData).subscribe({
-      next: (registerResponse) => {
-        // Después de registrar, hacemos login automático
-        this.authService.loginAfterRegister(this.email, this.password).subscribe({
-          next: (loginResponse) => {
-            
-            
-              localStorage.setItem('token', loginResponse.token);
-              this.activeModal.close();
-              // Recargar para actualizar el estado de autenticación
-              this.router.navigate(['/'])
-             
+      next: () => {
+        // 2) Login automático tras registro
+        this.authService.login(this.email, this.password).subscribe({
+          next: () => {
             this.isLoading = false;
+            this.activeModal.close();
+            this.router.navigate(['/']);
           },
-          error: (loginError) => {
+          error: () => {
             this.isLoading = false;
             this.errorMessage = 'Registro completado, pero no se pudo iniciar sesión automáticamente. Por favor, inicia sesión manualmente.';
-            console.error('Error en login después de registro:', loginError);
           }
         });
       },
-      error: (registerError) => {
+      error: registerError => {
         this.isLoading = false;
-        console.error('Error en el registro:', registerError);
-        
-        if (registerError.status === 400) {
-          if (registerError.error && registerError.error.message) {
-            this.errorMessage = registerError.error.message;
-          } else {
-            this.errorMessage = 'Error en los datos proporcionados. Verifica la información.';
-          }
+        if (registerError.status === 400 && registerError.error?.message) {
+          this.errorMessage = registerError.error.message;
         } else if (registerError.status === 409) {
           this.errorMessage = 'El email ya está registrado. ¿Quieres iniciar sesión?';
         } else if (registerError.status === 0) {
