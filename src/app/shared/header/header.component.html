@@ -7,32 +7,32 @@
     <ul>
       <!-- Mostrar todos los items -->
       <li *ngFor="let item of items">
-        <a [href]="item.link"  rel="noopener noreferrer">
+        <a [routerLink]='item.link' rel="noopener noreferrer">
           {{ item.name }}
         </a>
       </li>
       <!-- Mostrar nombre de usuario y opciones si está autenticado -->
       <li *ngIf="isAuthenticated" class="user-menu">
         <div class="dropdown">
-          <a href="#" class="dropdown-toggle" (click)="goToProfile($event)">
+          <a  class="dropdown-toggle" (click)="goToProfile($event)">
             {{ userName }}
           </a>
           <div class="dropdown-content">
-            <a href="#" (click)="goToProfile($event)">Perfil</a>
-            <a href="#" (click)="logout($event)">Cerrar sesión</a>
+            <a [routerLink]="['/profile']" (click)="goToProfile($event)">Perfil</a>
+            <a [routerLink]="['/home']" (click)="logout($event)">Cerrar sesión</a>
           </div>
         </div>
       </li>
       <!-- Mostrar Login si no está autenticado -->
       <li *ngIf="!isAuthenticated">
-        <a href="#" (click)="openLoginModal($event)">Login</a>
+        <a  (click)="openLoginModal($event)">Login</a>
       </li>
     </ul>
   </div>
   <div class="container-titulo">
     <div class="texto-principal">
       <h1>TEATRO DAW</h1>
-      <hr class="line-title" href="#" />
+      <hr class="line-title" />
       <p>El mejor lugar para disfrutar de la buena música y noche madrileña</p>
     </div>
   </div>

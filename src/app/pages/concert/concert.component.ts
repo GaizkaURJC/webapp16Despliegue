@@ -73,8 +73,16 @@ export class ConcertComponent implements OnInit {
   }
   
   ngOnInit() {
-    this.loadEventData();
-  }
+  this.route.paramMap.subscribe(params => {
+    const concertId = Number(params.get('id'));
+    if (!isNaN(concertId)) {
+      this.loadEvent(concertId);
+      this.loadComments(concertId);
+      this.loadEventImage(concertId);
+    }
+  });
+}
+
 
   private loadEventData(): void {
     const concertId = Number(this.route.snapshot.paramMap.get('id'));

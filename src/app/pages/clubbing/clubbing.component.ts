@@ -17,6 +17,8 @@ import { ChartData, ChartType, Chart, ArcElement, Tooltip, Legend, PieController
 import { HttpClient } from '@angular/common/http';
 import { forkJoin } from 'rxjs';
 import { TicketDTO } from '../../dtos/ticket.dto';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+
 Chart.register(ArcElement, Tooltip, Legend, PieController);
 
 import JsPDF from 'jspdf'
@@ -42,9 +44,10 @@ export class ClubbingComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private modalService: NgbModal,
-    private eventService: EventService
-    , private authState: AuthStateService,
-    private auth: AuthService
+    private eventService: EventService,
+    private authState: AuthStateService,
+    private auth: AuthService,
+    private route: ActivatedRoute
   ) { 
     addIcons({
       menuOutline,
@@ -105,33 +108,28 @@ export class ClubbingComponent implements OnInit {
   doc.save(`entrada_${ticketData.ticketName}.pdf`);
 }
 
-
-  
-
   ngOnInit() {
-    const eventId = 1;
-    this.eventService.getEventById(eventId).subscribe({
-      next: (data) => {
-        this.event = data;
-        this.loadGenderDistribution(data.title); // Cargar la distribución de género
-      },
-      error: (err) => {
-        console.error('Error al obtener el evento:', err);
-      }
-    });
-
-    // Cargar la imagen del evento
-    this.eventService.getEventImage(eventId).subscribe({
-      next: (blob) => {
-        const objectURL = URL.createObjectURL(blob); // Crear una URL para el Blob
-        this.imgUrl = objectURL; // Asignar la URL a imgUrl
-      },
-      error: (err) => {
-        console.error('Error al obtener la imagen del evento:', err);
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      const eventId = Number(params.get('id'));
+      if (!isNaN(eventId)) {
+        this.eventService.getEventById(eventId).subscribe({
+          next: data => {
+            this.event = data;
+            this.loadGenderDistribution(data.title);
+          },
+          error: err => console.error('Error al obtener el evento:', err)
+        });
+        this.eventService.getEventImage(eventId).subscribe({
+          next: blob => {
+            this.imgUrl = URL.createObjectURL(blob);
+          },
+          error: err => console.error('Error al obtener la imagen del evento:', err)
+        });
+      } else {
+        console.error('ID de evento no válido:', params.get('id'));
       }
     });
   }
-
   private loadGenderDistribution(title: string): void {
     const t = encodeURIComponent(title);
     forkJoin({

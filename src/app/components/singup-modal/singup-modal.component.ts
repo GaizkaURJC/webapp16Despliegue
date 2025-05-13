@@ -79,7 +79,7 @@ export class SingupModalComponent {
               localStorage.setItem('token', loginResponse.token);
               this.activeModal.close();
               // Recargar para actualizar el estado de autenticación
-              window.location.reload();
+              this.router.navigate(['/'])
              
             this.isLoading = false;
           },

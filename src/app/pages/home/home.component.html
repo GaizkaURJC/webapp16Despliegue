@@ -44,8 +44,8 @@
                 <div class="available-concerts" *ngFor="let concert of displayedConcerts">
                   <img [src]="'data:image/jpeg;base64,' + concert.imageBase64" [alt]="concert.title" class="img-fluid">
                   <div class="concert-info">
-                    <a [routerLink]="['/concerts', concert.id]">{{concert.title}}</a> 
-                    <a [routerLink]="['/concerts', concert.id]" fragment="inicio"><ion-icon name="link-outline"></ion-icon></a>
+                    <a [routerLink]="['/concert', concert.id]">{{concert.title}}</a> 
+                    <a [routerLink]="['/concert', concert.id]" fragment="inicio"><ion-icon name="link-outline"></ion-icon></a>
                   </div>
                 </div>
             </div>

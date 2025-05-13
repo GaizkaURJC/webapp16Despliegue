@@ -13,7 +13,7 @@
         </ng-container>
         <!-- login abre modal -->
         <ng-container *ngIf="item.name === 'Login'">
-          <a href="#" (click)="openLoginModal($event)" class="top-nav-section">
+          <a  (click)="openLoginModal($event)" class="top-nav-section">
             {{ item.name }}
           </a>
         </ng-container>
@@ -21,12 +21,12 @@
 
       <li *ngIf="isAuthenticated" class="nav-item user-menu">
         <div class="dropdown">
-          <a href="#" class="dropdown-toggle" (click)="goToProfile($event)">
+          <a class="dropdown-toggle" (click)="goToProfile($event)">
             {{ userName }}
           </a>
           <div class="dropdown-content">
-            <a href="#" (click)="goToProfile($event)">Perfil</a>
-            <a href="#" (click)="logout($event)">Cerrar sesión</a>
+            <a [routerLink]="['/profile']" (click)="goToProfile($event)">Perfil</a>
+            <a  (click)="logout($event)">Cerrar sesión</a>
           </div>
         </div>
       </li>
