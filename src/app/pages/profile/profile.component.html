@@ -26,12 +26,6 @@
     <div class="container-profile-info">
       <div class="container-profile-img">
         <img [src]="profileImage" alt="Imagen de perfil" class="profile-img">
-        <div class="mt-2">
-          <input type="file" id="profileImageInput" accept="image/*" (change)="onFileSelected($event)" style="display: none;">
-          <label for="profileImageInput" class="btn btn-sm btn-outline-light rounded-pill">
-            <i class="bi bi-camera me-1"></i> Cambiar foto
-          </label>
-        </div>
       </div>
       <div class="container-profile-data">
         <h1 class="profile-name">{{userLogged.name}}</h1>
