@@ -741,24 +741,24 @@ Sigue estos pasos para configurar y ejecutar la aplicación Angular en tu entorn
 ---
 **Gaizka Aranbarri Berasaluze**
 - Tareas Realizadas
-  1. tarea 1
-  2. tarea 2
-  3. tarea 3
-  4. tarea n
+  1. Migracion pagina administrador
+  2. Funciones de eliminar objetos
+  3. Solucionar errores varios en login
+  4. Modales de creacion de eventos
 
 - Commits más significativos :
-  - [Commit 1](enlace):
-  - [Commit 2](enlace):
-  - [Commit 3](enlace):
-  - [Commit 4](enlace):
-  - [Commit 5](enlace):
+  - [Commit 1]([enlace](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/d8e2bb38abdcb33bdf899a3b6fc2401eee1773cf))
+  - [Commit 2]([enlace](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/f9944a6d6e426fc49daa798b125db2584cbc46cd))
+  - [Commit 3]([enlace](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/419f856f1d740fbc1e0bb85bcc23535bf05fe277))
+  - [Commit 4]([enlace](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/bd8a58a9f769667a36dad6fff44b526132d40b46))
+  - [Commit 5]([enlace](https://github.com/CodeURJC-DAW-2024-25/webapp16/commit/2e7977b40f0a1f206cffd29bb92fa324f239e978))
 
 - Ficheros en los que se ha participado :
-  1. '`
-  2. '`
-  3. '`
-  4. '`
-  5. ``
+  1. 'frontend/src/app/pages/admin/admin.component.ts`
+  2. 'frontend/src/app/pages/admin/admin.component.html`
+  3. 'frontend/src/app/components/concert-modal/concert-modal.component.ts`
+  4. 'frontend/src/app/components/concert-modal/concert-modal.component.ts`
+  5. `frontend/src/app/components/gender-chart/gender-chart.component.ts`
 ----
 **Alejandro Rico González**
 - Tareas Realizadas
