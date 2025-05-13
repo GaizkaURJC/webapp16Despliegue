@@ -815,4 +815,4 @@ Sigue estos pasos para configurar y ejecutar la aplicación Angular en tu entorn
 
 ---
 ### Link al video de youtube
-  - [VideoYT]([enlace](https://www.youtube.com/watch?v=Bd_F_oJSTfc)):
+  - [VideoYT](https://www.youtube.com/watch?v=Bd_F_oJSTfc):
