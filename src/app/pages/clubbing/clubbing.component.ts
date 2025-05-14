@@ -120,8 +120,8 @@ export class ClubbingComponent implements OnInit {
   private loadGenderDistribution(title: string): void {
     const t = encodeURIComponent(title);
     forkJoin({
-      male: this.http.get<TicketDTO[]>(`https://localhost:443/api/v1/tickets/gender/Hombre/${t}`),
-      female: this.http.get<TicketDTO[]>(`https://localhost:443/api/v1/tickets/gender/Mujer/${t}`)
+      male: this.http.get<TicketDTO[]>(`https://appWeb16.dawgis.etsii.urjc.es:443/api/v1/tickets/gender/Hombre/${t}`),
+      female: this.http.get<TicketDTO[]>(`https://appWeb16.dawgis.etsii.urjc.es:443/api/v1/tickets/gender/Mujer/${t}`)
     }).subscribe({
       next: ({ male, female }) => {
         this.pieChartData = {
