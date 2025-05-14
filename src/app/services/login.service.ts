@@ -16,9 +16,9 @@ interface LoginResponse {
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'https://localhost:443/api/auth'; 
+  private apiUrl = 'https://appWeb16.dawgis.etsii.urjc.es:443/api/auth'; 
   //private apiUrl = '/api/auth'; 
-  private URL= 'https://localhost:443/api/v1/users';
+  private URL= 'https://appWeb16.dawgis.etsii.urjc.es:443/api/v1/users';
   private readonly API_URL = '/api/auth';
   private userUrl = '/api/v1/users';
 

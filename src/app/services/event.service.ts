@@ -8,8 +8,8 @@ import { EventDTO, EventWithImageDTO} from "../dtos/event.dto";
 })
 export class EventService{
     
-    private apiURL= 'api/v1/events';
-    private apiURLType= 'https://localhost:443/api/v1/events';
+    private apiURL= 'https://appWeb16.dawgis.etsii.urjc.es/api/v1/events';
+    private apiURLType= 'https://appWeb16.dawgis.etsii.urjc.es:443/api/v1/events';
 
     constructor(private http: HttpClient) { }
 

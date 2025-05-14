@@ -8,7 +8,7 @@ import { SafeUrl } from '@angular/platform-browser';
   providedIn: 'root'
 })
 export class TicketService {
-    private apiUrl = 'https://localhost:443/api/v1/tickets/';
+    private apiUrl = 'https://appWeb16.dawgis.etsii.urjc.es:443/api/v1/tickets/';
 
   constructor(private http: HttpClient) { }
 

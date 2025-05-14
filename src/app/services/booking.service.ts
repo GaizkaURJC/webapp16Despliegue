@@ -7,7 +7,7 @@ import { BookingDTO } from '../dtos/booking.dto';
   providedIn: 'root'
 })
 export class BookingService {
-  private apiUrl: string = 'https://localhost:443/api/v1/bookings';
+  private apiUrl: string = 'https://appWeb16.dawgis.etsii.urjc.es:443/api/v1/bookings';
 
   constructor(private http: HttpClient) {}
 
